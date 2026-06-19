@@ -144,14 +144,126 @@ function initImages(){
 }
 initImages();
 
-/* ── TERRITORIOS HSCROLL DRAG ──────────── */
+/* ── 3D CYLINDER CAROUSEL ──────────────── */
 (function(){
-  const track=document.querySelector('.ter-hscroll');
-  if(!track)return;
-  let down=false,startX,scrollLeft;
-  track.addEventListener('mousedown',e=>{down=true;startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft;});
-  document.addEventListener('mouseup',()=>{down=false;});
-  track.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();const x=e.pageX-track.offsetLeft;track.scrollLeft=scrollLeft-(x-startX)*1.4;});
+  const scene=document.getElementById('terScene');
+  if(!scene)return;
+  const cards=Array.from(scene.querySelectorAll('.ter-3d-card'));
+  const N=cards.length;
+  if(!N)return;
+
+  let prog=0;
+  const mouse={x:0,y:0,tx:0,ty:0};
+  const D=1350,GAP=36,PEEK=-55;
+  // Card dimensions — read from CSS custom logic; keep in sync with CSS
+  function cardH(){return window.innerWidth<=768?360:440;}
+
+  window.addEventListener('mousemove',e=>{
+    mouse.tx=Math.max(-1,Math.min(1,(e.clientX-innerWidth/2)/(innerWidth/2)));
+    mouse.ty=Math.max(-1,Math.min(1,(e.clientY-innerHeight/2)/(innerHeight/2)));
+  },{passive:true});
+  document.addEventListener('mouseleave',()=>{mouse.tx=0;mouse.ty=0;});
+
+  const ss=t=>t*t*(3-2*t);
+
+  function render(){
+    prog+=0.0016;
+    mouse.x+=(mouse.tx-mouse.x)*0.08;
+    mouse.y+=(mouse.ty-mouse.y)*0.08;
+
+    const wrap=scene.closest('.ter-3d-wrap');
+    const h=wrap?wrap.offsetHeight:520;
+    const CH=cardH();
+
+    const ri=Math.round(prog);
+    const diff=prog-ri;
+    const ed=Math.sign(diff)*Math.pow(Math.abs(diff)*2,4.2)/2;
+    const va=ri+ed;
+
+    cards.forEach((card,i)=>{
+      let off=i-va;
+      while(off>N/2)off-=N;
+      while(off<-N/2)off+=N;
+      const abs=Math.abs(off),sgn=Math.sign(off);
+
+      if(abs>2.5){card.style.visibility='hidden';return;}
+      card.style.visibility='visible';
+
+      let y=0,z=0,rx=0;
+      if(abs<=1){
+        const et=ss(abs);
+        y=-sgn*et*(CH+GAP);
+        z=400+et*(220-400);
+        rx=et*132;
+      } else {
+        const et=ss(Math.min(abs-1,1));
+        const zE=-60, sE=D/(D-zE);
+        const yE=(h/2-PEEK)/sE-CH/2;
+        y=-sgn*((CH+GAP)+et*(yE-(CH+GAP)));
+        z=220+et*(zE-220);
+        rx=132+et*(175-132);
+      }
+
+      const lrx=-sgn*rx;
+      const cf=Math.max(0,1-abs);
+      card.style.zIndex=Math.round(z+500).toString();
+      card.style.transform=`translateY(${y.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateX(${(lrx-mouse.y*12*cf).toFixed(2)}deg) rotateY(${(mouse.x*15*cf).toFixed(2)}deg) rotateZ(-3deg)`;
+    });
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+
+/* ── INTERACTIVE GRID CANVAS (ter-3d-wrap) ─ */
+(function(){
+  const canvas=document.getElementById('terGridCanvas');
+  if(!canvas)return;
+  const wrap=canvas.closest('.ter-3d-wrap');
+  const ctx=canvas.getContext('2d');
+  const GS=44,TRAIL=5,IDLE_N=4,IDLE_SPEED=0.18;
+
+  function resize(){canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+
+  let trail=[],lastMouse=Date.now();
+  const idleTgt=[],idlePos=[];
+  function randCell(){return{x:Math.floor(Math.random()*(canvas.width/GS)),y:Math.floor(Math.random()*(canvas.height/GS))};}
+  for(let i=0;i<IDLE_N;i++){idleTgt.push(randCell());idlePos.push({...idleTgt[i]});}
+
+  wrap.addEventListener('mousemove',e=>{
+    lastMouse=Date.now();
+    const r=wrap.getBoundingClientRect();
+    const gx=Math.floor((e.clientX-r.left)/GS),gy=Math.floor((e.clientY-r.top)/GS);
+    const last=trail[0];
+    if(!last||last.x!==gx||last.y!==gy){trail.unshift({x:gx,y:gy});if(trail.length>TRAIL)trail.pop();}
+  },{passive:true});
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // Idle wandering
+    if(Date.now()-lastMouse>2000){
+      idlePos.forEach((pos,i)=>{
+        const t=idleTgt[i],dx=t.x-pos.x,dy=t.y-pos.y;
+        if(Math.abs(dx)<0.02&&Math.abs(dy)<0.02){idleTgt[i]=randCell();}
+        else{pos.x+=dx*IDLE_SPEED;pos.y+=dy*IDLE_SPEED;}
+        const rx=Math.round(pos.x),ry=Math.round(pos.y);
+        const last=trail[0];
+        if(!last||last.x!==rx||last.y!==ry){trail.unshift({x:rx,y:ry});if(trail.length>TRAIL*IDLE_N)trail.pop();}
+      });
+    }
+    // Draw glowing trail cells
+    trail.forEach((cell,idx)=>{
+      const a=(1-idx/(TRAIL+1))*0.42;
+      ctx.fillStyle=`rgba(199,255,77,${a})`;
+      ctx.shadowColor=`rgba(199,255,77,${a})`;
+      ctx.shadowBlur=22;
+      ctx.fillRect(cell.x*GS,cell.y*GS,GS,GS);
+    });
+    ctx.shadowBlur=0;
+    requestAnimationFrame(draw);
+  }
+  draw();
 })();
 
 /* ── CURSOS PARALLAX ───────────────────── */
