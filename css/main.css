@@ -496,7 +496,7 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
 /* ── 3D CYLINDER CAROUSEL ────────────────── */
 .ter-3d-wrap{
   position:relative;
-  height:520px;overflow:hidden;
+  height:520px;overflow:visible;
   background:transparent;
   margin-bottom:3rem;
   user-select:none;
