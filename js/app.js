@@ -143,6 +143,36 @@ function initImages(){
 }
 initImages();
 
+/* ── CURSOS PARALLAX ───────────────────── */
+(function(){
+  const curLib=document.querySelector('.cur-lib');
+  const curCourseList=document.querySelector('.course-list');
+  const curSection=document.getElementById('cursos');
+  let curTick=false;
+  function updateCursosParallax(){
+    curTick=false;
+    if(!curSection)return;
+    const r=curSection.getBoundingClientRect();
+    const vh=window.innerHeight;
+    if(r.top<vh&&r.bottom>0){
+      const p=(vh-r.top)/(vh+r.height);
+      const offset=+(p*60-30).toFixed(2);
+      if(curLib)curLib.style.transform=`translateY(${-offset*.7}px)`;
+      if(curCourseList)curCourseList.style.transform=`translateY(${offset*.45}px)`;
+    }
+  }
+  window.addEventListener('scroll',()=>{if(!curTick){curTick=true;requestAnimationFrame(updateCursosParallax);}},{passive:true});
+  updateCursosParallax();
+})();
+
+/* ── COURSE CLICK HIGHLIGHT ────────────── */
+document.querySelectorAll('.course').forEach(c=>{
+  c.addEventListener('click',()=>{
+    c.classList.add('acid-click');
+    setTimeout(()=>c.classList.remove('acid-click'),420);
+  });
+});
+
 /* ── LOADER DISMISS ────────────────────── */
 const loader=document.getElementById('loader');
 function dismissLoader(){
