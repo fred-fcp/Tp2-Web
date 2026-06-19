@@ -19,4 +19,7 @@ window.__D__ = {
   al5:     'assets/al5.jpg',
   al6:     'assets/al6.jpg',
   al7:     'assets/al7.jpg',
+  card01:  'assets/CARD 01.jpg',
+  card02:  'assets/CARD 02.jpg',
+  card03:  'assets/CARD 03.jpg',
 };

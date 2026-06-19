@@ -137,11 +137,33 @@ function initImages(){
   set('capasImg','capas');
   set('h1','h1');set('h2','h2');set('h3','h3');set('h4','h4');
   set('cursosImg','cursos');
+  set('terCard01','card01');set('terCard02','card02');set('terCard03','card03');
   const vid=document.getElementById('heroVid');
   if(d.heroVid)setupVideo(vid,d.heroVid);
   buildSlider();
 }
 initImages();
+
+/* ── TERRITORIOS PARALLAX ──────────────── */
+(function(){
+  const cards=document.querySelectorAll('.ter-card');
+  if(!cards.length)return;
+  let tick=false;
+  const offsets=[0,-18,10];
+  function update(){
+    tick=false;
+    cards.forEach((c,i)=>{
+      const r=c.getBoundingClientRect();
+      const vh=window.innerHeight;
+      if(r.top<vh&&r.bottom>0){
+        const p=(vh-r.top)/(vh+r.height);
+        const img=c.querySelector('img');
+        if(img)img.style.transform=`scale(1.07) translateY(${((p-.5)*offsets[i]||0).toFixed(2)}px)`;
+      }
+    });
+  }
+  window.addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(update);}},{passive:true});
+})();
 
 /* ── CURSOS PARALLAX ───────────────────── */
 (function(){
