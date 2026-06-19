@@ -144,25 +144,14 @@ function initImages(){
 }
 initImages();
 
-/* ── TERRITORIOS PARALLAX ──────────────── */
+/* ── TERRITORIOS HSCROLL DRAG ──────────── */
 (function(){
-  const cards=document.querySelectorAll('.ter-card');
-  if(!cards.length)return;
-  let tick=false;
-  const offsets=[0,-18,10];
-  function update(){
-    tick=false;
-    cards.forEach((c,i)=>{
-      const r=c.getBoundingClientRect();
-      const vh=window.innerHeight;
-      if(r.top<vh&&r.bottom>0){
-        const p=(vh-r.top)/(vh+r.height);
-        const img=c.querySelector('img');
-        if(img)img.style.transform=`scale(1.07) translateY(${((p-.5)*offsets[i]||0).toFixed(2)}px)`;
-      }
-    });
-  }
-  window.addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(update);}},{passive:true});
+  const track=document.querySelector('.ter-hscroll');
+  if(!track)return;
+  let down=false,startX,scrollLeft;
+  track.addEventListener('mousedown',e=>{down=true;startX=e.pageX-track.offsetLeft;scrollLeft=track.scrollLeft;});
+  document.addEventListener('mouseup',()=>{down=false;});
+  track.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();const x=e.pageX-track.offsetLeft;track.scrollLeft=scrollLeft-(x-startX)*1.4;});
 })();
 
 /* ── CURSOS PARALLAX ───────────────────── */
