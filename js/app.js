@@ -144,7 +144,7 @@ function initImages(){
 }
 initImages();
 
-/* ── 3D CYLINDER CAROUSEL — interactive ── */
+/* ── 3D CAROUSEL — horizontal axis ──────── */
 (function(){
   const scene=document.getElementById('terScene');
   if(!scene)return;
@@ -152,17 +152,12 @@ initImages();
   const cards=Array.from(scene.querySelectorAll('.ter-3d-card'));
   const N=cards.length;if(!N)return;
 
-  const D=1350,GAP=36,PEEK=-55;
-  function CH(){return window.innerWidth<=768?360:440;}
+  const D=1350,GAP=64;
+  function CW(){return window.innerWidth<=768?260:320;}
 
-  // prog: current rendered value — lerps toward target
-  // target: user-driven destination
-  let prog=0,target=0,lastInteract=0;
-  let hovering=false;
-
+  let prog=0,target=0,lastInteract=0,hovering=false;
   const mouse={x:0,y:0,tx:0,ty:0};
 
-  /* ── Mouse move (for parallax tilt) */
   if(wrap){
     wrap.addEventListener('mousemove',e=>{
       const r=wrap.getBoundingClientRect();
@@ -171,18 +166,16 @@ initImages();
     },{passive:true});
     wrap.addEventListener('mouseenter',()=>{hovering=true;lastInteract=Date.now();});
     wrap.addEventListener('mouseleave',()=>{hovering=false;mouse.tx=0;mouse.ty=0;});
-  }
-
-  /* ── Wheel scroll (advance/retreat cards) */
-  if(wrap){
     wrap.addEventListener('wheel',e=>{
       e.preventDefault();
-      target+=e.deltaY*0.004;
+      target+=e.deltaX*0.005||e.deltaY*0.005;
       lastInteract=Date.now();
     },{passive:false});
   }
 
-  /* ── Click on a card → snap to it */
+  document.getElementById('terPrev')?.addEventListener('click',()=>{target-=1;lastInteract=Date.now();});
+  document.getElementById('terNext')?.addEventListener('click',()=>{target+=1;lastInteract=Date.now();});
+
   cards.forEach((card,i)=>{
     card.style.cursor='pointer';
     card.addEventListener('click',()=>{
@@ -194,51 +187,29 @@ initImages();
     });
   });
 
-  /* ── Touch swipe (vertical drag = advance) */
-  let touchY0=0,targetOnTouch=0;
+  let tx0=0,tgt0=0;
   if(wrap){
-    wrap.addEventListener('touchstart',e=>{
-      touchY0=e.touches[0].clientY;
-      targetOnTouch=target;
-      lastInteract=Date.now();
-    },{passive:true});
-    wrap.addEventListener('touchmove',e=>{
-      const dy=e.touches[0].clientY-touchY0;
-      target=targetOnTouch-dy/180;
-      lastInteract=Date.now();
-    },{passive:true});
-    wrap.addEventListener('touchend',()=>{
-      // Snap to nearest integer
-      target=Math.round(target);
-      lastInteract=Date.now();
-    },{passive:true});
+    wrap.addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;tgt0=target;lastInteract=Date.now();},{passive:true});
+    wrap.addEventListener('touchmove',e=>{target=tgt0-(e.touches[0].clientX-tx0)/180;lastInteract=Date.now();},{passive:true});
+    wrap.addEventListener('touchend',()=>{target=Math.round(target);lastInteract=Date.now();},{passive:true});
   }
 
   const ss=t=>t*t*(3-2*t);
 
   function render(){
-    const idle=!hovering&&(Date.now()-lastInteract>1800);
-    if(idle) target+=0.0014; // slow auto-advance when idle
-
-    // Smooth lerp — faster snap when user-driven, slower during auto
-    const lerpF=idle?0.04:0.09;
-    prog+=(target-prog)*lerpF;
-
-    // Inertia damp on mouse
+    const idle=!hovering&&Date.now()-lastInteract>2200;
+    if(idle) target+=0.0014;
+    prog+=(target-prog)*(idle?0.04:0.09);
     mouse.x+=(mouse.tx-mouse.x)*0.07;
     mouse.y+=(mouse.ty-mouse.y)*0.07;
 
-    const h=wrap?wrap.offsetHeight:520;
-    const ch=CH();
-
+    const cw=CW();
     const ri=Math.round(prog);
     const diff=prog-ri;
     const ed=Math.sign(diff)*Math.pow(Math.abs(diff)*2,4.2)/2;
     const va=ri+ed;
 
-    // Amplify tilt when hovering
-    const tiltX=hovering?22:14;
-    const tiltY=hovering?28:16;
+    const tX=hovering?20:12,tY=hovering?26:16;
 
     cards.forEach((card,i)=>{
       let off=i-va;
@@ -246,28 +217,29 @@ initImages();
       while(off<-N/2)off+=N;
       const abs=Math.abs(off),sgn=Math.sign(off);
 
-      if(abs>2.5){card.style.visibility='hidden';return;}
+      if(abs>2.2){card.style.visibility='hidden';card.style.opacity='0';return;}
       card.style.visibility='visible';
 
-      let y=0,z=0,rx=0;
+      let x=0,z=0,ry=0,op=1;
       if(abs<=1){
         const et=ss(abs);
-        y=-sgn*et*(ch+GAP);
-        z=400+et*(220-400);
-        rx=et*132;
+        x=-sgn*et*(cw+GAP);
+        z=400+et*(210-400);
+        ry=et*122;
+        op=1;
       } else {
         const et=ss(Math.min(abs-1,1));
-        const zE=-60,sE=D/(D-zE);
-        const yE=(h/2-PEEK)/sE-ch/2;
-        y=-sgn*((ch+GAP)+et*(yE-(ch+GAP)));
-        z=220+et*(zE-220);
-        rx=132+et*(175-132);
+        x=-sgn*((cw+GAP)+et*cw*0.9);
+        z=210+et*(-60-210);
+        ry=122+et*(168-122);
+        op=+(1-et*0.9).toFixed(2);
       }
 
-      const lrx=-sgn*rx;
+      const lry=-sgn*ry;
       const cf=Math.max(0,1-abs);
+      card.style.opacity=String(op);
       card.style.zIndex=Math.round(z+500).toString();
-      card.style.transform=`translateY(${y.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateX(${(lrx-mouse.y*tiltX*cf).toFixed(2)}deg) rotateY(${(mouse.x*tiltY*cf).toFixed(2)}deg) rotateZ(-3deg)`;
+      card.style.transform=`translateX(${x.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateY(${(lry+mouse.x*tY*cf).toFixed(2)}deg) rotateX(${(-mouse.y*tX*cf).toFixed(2)}deg) rotateZ(-1deg)`;
     });
     requestAnimationFrame(render);
   }
