@@ -144,41 +144,101 @@ function initImages(){
 }
 initImages();
 
-/* ── 3D CYLINDER CAROUSEL ──────────────── */
+/* ── 3D CYLINDER CAROUSEL — interactive ── */
 (function(){
   const scene=document.getElementById('terScene');
   if(!scene)return;
+  const wrap=scene.closest('.ter-3d-wrap');
   const cards=Array.from(scene.querySelectorAll('.ter-3d-card'));
-  const N=cards.length;
-  if(!N)return;
+  const N=cards.length;if(!N)return;
 
-  let prog=0;
-  const mouse={x:0,y:0,tx:0,ty:0};
   const D=1350,GAP=36,PEEK=-55;
-  // Card dimensions — read from CSS custom logic; keep in sync with CSS
-  function cardH(){return window.innerWidth<=768?360:440;}
+  function CH(){return window.innerWidth<=768?360:440;}
 
-  window.addEventListener('mousemove',e=>{
-    mouse.tx=Math.max(-1,Math.min(1,(e.clientX-innerWidth/2)/(innerWidth/2)));
-    mouse.ty=Math.max(-1,Math.min(1,(e.clientY-innerHeight/2)/(innerHeight/2)));
-  },{passive:true});
-  document.addEventListener('mouseleave',()=>{mouse.tx=0;mouse.ty=0;});
+  // prog: current rendered value — lerps toward target
+  // target: user-driven destination
+  let prog=0,target=0,lastInteract=0;
+  let hovering=false;
+
+  const mouse={x:0,y:0,tx:0,ty:0};
+
+  /* ── Mouse move (for parallax tilt) */
+  if(wrap){
+    wrap.addEventListener('mousemove',e=>{
+      const r=wrap.getBoundingClientRect();
+      mouse.tx=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/(r.width/2)));
+      mouse.ty=Math.max(-1,Math.min(1,(e.clientY-r.top-r.height/2)/(r.height/2)));
+    },{passive:true});
+    wrap.addEventListener('mouseenter',()=>{hovering=true;lastInteract=Date.now();});
+    wrap.addEventListener('mouseleave',()=>{hovering=false;mouse.tx=0;mouse.ty=0;});
+  }
+
+  /* ── Wheel scroll (advance/retreat cards) */
+  if(wrap){
+    wrap.addEventListener('wheel',e=>{
+      e.preventDefault();
+      target+=e.deltaY*0.004;
+      lastInteract=Date.now();
+    },{passive:false});
+  }
+
+  /* ── Click on a card → snap to it */
+  cards.forEach((card,i)=>{
+    card.style.cursor='pointer';
+    card.addEventListener('click',()=>{
+      let off=i-Math.round(prog);
+      while(off>N/2)off-=N;
+      while(off<-N/2)off+=N;
+      target=Math.round(prog)+off;
+      lastInteract=Date.now();
+    });
+  });
+
+  /* ── Touch swipe (vertical drag = advance) */
+  let touchY0=0,targetOnTouch=0;
+  if(wrap){
+    wrap.addEventListener('touchstart',e=>{
+      touchY0=e.touches[0].clientY;
+      targetOnTouch=target;
+      lastInteract=Date.now();
+    },{passive:true});
+    wrap.addEventListener('touchmove',e=>{
+      const dy=e.touches[0].clientY-touchY0;
+      target=targetOnTouch-dy/180;
+      lastInteract=Date.now();
+    },{passive:true});
+    wrap.addEventListener('touchend',()=>{
+      // Snap to nearest integer
+      target=Math.round(target);
+      lastInteract=Date.now();
+    },{passive:true});
+  }
 
   const ss=t=>t*t*(3-2*t);
 
   function render(){
-    prog+=0.0016;
-    mouse.x+=(mouse.tx-mouse.x)*0.08;
-    mouse.y+=(mouse.ty-mouse.y)*0.08;
+    const idle=!hovering&&(Date.now()-lastInteract>1800);
+    if(idle) target+=0.0014; // slow auto-advance when idle
 
-    const wrap=scene.closest('.ter-3d-wrap');
+    // Smooth lerp — faster snap when user-driven, slower during auto
+    const lerpF=idle?0.04:0.09;
+    prog+=(target-prog)*lerpF;
+
+    // Inertia damp on mouse
+    mouse.x+=(mouse.tx-mouse.x)*0.07;
+    mouse.y+=(mouse.ty-mouse.y)*0.07;
+
     const h=wrap?wrap.offsetHeight:520;
-    const CH=cardH();
+    const ch=CH();
 
     const ri=Math.round(prog);
     const diff=prog-ri;
     const ed=Math.sign(diff)*Math.pow(Math.abs(diff)*2,4.2)/2;
     const va=ri+ed;
+
+    // Amplify tilt when hovering
+    const tiltX=hovering?22:14;
+    const tiltY=hovering?28:16;
 
     cards.forEach((card,i)=>{
       let off=i-va;
@@ -192,14 +252,14 @@ initImages();
       let y=0,z=0,rx=0;
       if(abs<=1){
         const et=ss(abs);
-        y=-sgn*et*(CH+GAP);
+        y=-sgn*et*(ch+GAP);
         z=400+et*(220-400);
         rx=et*132;
       } else {
         const et=ss(Math.min(abs-1,1));
-        const zE=-60, sE=D/(D-zE);
-        const yE=(h/2-PEEK)/sE-CH/2;
-        y=-sgn*((CH+GAP)+et*(yE-(CH+GAP)));
+        const zE=-60,sE=D/(D-zE);
+        const yE=(h/2-PEEK)/sE-ch/2;
+        y=-sgn*((ch+GAP)+et*(yE-(ch+GAP)));
         z=220+et*(zE-220);
         rx=132+et*(175-132);
       }
@@ -207,20 +267,20 @@ initImages();
       const lrx=-sgn*rx;
       const cf=Math.max(0,1-abs);
       card.style.zIndex=Math.round(z+500).toString();
-      card.style.transform=`translateY(${y.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateX(${(lrx-mouse.y*12*cf).toFixed(2)}deg) rotateY(${(mouse.x*15*cf).toFixed(2)}deg) rotateZ(-3deg)`;
+      card.style.transform=`translateY(${y.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateX(${(lrx-mouse.y*tiltX*cf).toFixed(2)}deg) rotateY(${(mouse.x*tiltY*cf).toFixed(2)}deg) rotateZ(-3deg)`;
     });
     requestAnimationFrame(render);
   }
   requestAnimationFrame(render);
 })();
 
-/* ── INTERACTIVE GRID CANVAS (ter-3d-wrap) ─ */
+/* ── INTERACTIVE GRID CANVAS (light-mode) ── */
 (function(){
   const canvas=document.getElementById('terGridCanvas');
   if(!canvas)return;
   const wrap=canvas.closest('.ter-3d-wrap');
   const ctx=canvas.getContext('2d');
-  const GS=44,TRAIL=5,IDLE_N=4,IDLE_SPEED=0.18;
+  const GS=44,TRAIL=5,IDLE_N=3,IDLE_SPEED=0.15;
 
   function resize(){canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;}
   resize();
@@ -241,7 +301,6 @@ initImages();
 
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    // Idle wandering
     if(Date.now()-lastMouse>2000){
       idlePos.forEach((pos,i)=>{
         const t=idleTgt[i],dx=t.x-pos.x,dy=t.y-pos.y;
@@ -252,12 +311,11 @@ initImages();
         if(!last||last.x!==rx||last.y!==ry){trail.unshift({x:rx,y:ry});if(trail.length>TRAIL*IDLE_N)trail.pop();}
       });
     }
-    // Draw glowing trail cells
     trail.forEach((cell,idx)=>{
-      const a=(1-idx/(TRAIL+1))*0.42;
-      ctx.fillStyle=`rgba(199,255,77,${a})`;
-      ctx.shadowColor=`rgba(199,255,77,${a})`;
-      ctx.shadowBlur=22;
+      const a=(1-idx/(TRAIL+1))*0.38;
+      ctx.fillStyle=`rgba(122,179,0,${a})`;
+      ctx.shadowColor=`rgba(122,179,0,${a*1.4})`;
+      ctx.shadowBlur=18;
       ctx.fillRect(cell.x*GS,cell.y*GS,GS,GS);
     });
     ctx.shadowBlur=0;

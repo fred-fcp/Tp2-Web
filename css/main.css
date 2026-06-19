@@ -497,23 +497,17 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
 .ter-3d-wrap{
   position:relative;
   height:520px;overflow:hidden;
-  background:var(--dk);
-  border-radius:1.5rem;
+  background:transparent;
   margin-bottom:3rem;
   user-select:none;
 }
-/* Edge fade — same technique as InteractiveGridBackground showFade */
-.ter-3d-wrap::after{
-  content:"";position:absolute;inset:0;pointer-events:none;z-index:5;
-  background:radial-gradient(ellipse at center,transparent 28%,var(--dk) 78%);
-}
-/* Grid canvas — lines via CSS bg, trail via canvas 2D */
+/* Grid canvas — subtle warm lines on cream bg, acid trail */
 .ter-grid-bg{
   position:absolute;inset:0;pointer-events:none;z-index:1;
   width:100%;height:100%;
   background-image:
-    linear-gradient(to right,rgba(255,255,255,.04) 1px,transparent 1px),
-    linear-gradient(to bottom,rgba(255,255,255,.04) 1px,transparent 1px);
+    linear-gradient(to right,rgba(166,106,68,.07) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(166,106,68,.07) 1px,transparent 1px);
   background-size:44px 44px;
 }
 /* Perspective viewport */
