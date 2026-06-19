@@ -153,7 +153,7 @@ initImages();
   const N=cards.length;if(!N)return;
 
   const D=1350,GAP=64;
-  function CW(){return window.innerWidth<=768?260:320;}
+  function CW(){return window.innerWidth<=430?200:window.innerWidth<=768?240:320;}
 
   let prog=0,target=0,lastInteract=0,hovering=false;
   const mouse={x:0,y:0,tx:0,ty:0};
@@ -337,3 +337,19 @@ let loaderDone=false;
 function tryDismiss(){if(loaderDone)return;loaderDone=true;dismissLoader();}
 window.addEventListener('load',()=>setTimeout(tryDismiss,400));
 setTimeout(tryDismiss,2500);
+/* ── HOTSPOT TAP — mobile touch ───────────────── */
+(function(){
+  if(window.matchMedia('(hover:none)').matches){
+    document.querySelectorAll('.hotspot').forEach(hs=>{
+      hs.addEventListener('click',e=>{
+        e.stopPropagation();
+        const wasActive=hs.classList.contains('active');
+        document.querySelectorAll('.hotspot').forEach(h=>h.classList.remove('active'));
+        if(!wasActive)hs.classList.add('active');
+      });
+    });
+    document.addEventListener('click',()=>{
+      document.querySelectorAll('.hotspot').forEach(h=>h.classList.remove('active'));
+    });
+  }
+})();

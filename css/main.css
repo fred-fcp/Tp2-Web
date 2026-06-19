@@ -415,7 +415,7 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
 .slider-btn:hover{background:rgba(199,255,77,.2);color:var(--acid)}
 
 /* ─── CURSOS ─────────────────────────────────── */
-#cursos{background:var(--bg);padding:6rem 3rem;overflow:hidden;position:relative}
+#cursos{background:var(--bg);padding:6rem 3rem;overflow:visible;position:relative}
 .cur-layout{max-width:1400px;margin:2rem auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:start}
 .cur-lib img{width:100%;display:block;border-radius:1.25rem}
 .cur-lib-note{font-family:var(--fm);font-size:.82rem;letter-spacing:.14em;color:var(--gr);text-transform:uppercase;margin-top:.75rem}
@@ -600,13 +600,6 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
 .ter-nav-prev{left:1rem}
 .ter-nav-next{right:1rem}
 .ter-nav-btn:hover{color:#7ab300;transform:translateY(-50%) scale(1.1)}
-@media(max-width:768px){
-  .ter-3d-wrap{height:400px;border-radius:1rem;margin-bottom:2rem}
-  .ter-carousel-root,.ter-3d-card{width:260px;height:360px}
-  .ter-nav-btn{width:38px;height:38px;font-size:.9rem}
-  .ter-nav-prev{left:.5rem}
-  .ter-nav-next{right:.5rem}
-}
 .ter-sub{
   font-family:var(--fm);font-size:.66rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--wood);margin-bottom:.3rem;
@@ -622,36 +615,109 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
   transition:all .3s;cursor:pointer;
 }
 .ter-cta:hover{color:#7ab300;transform:translateX(3px)}
-@media(max-width:768px){
-  .ter-strip{padding:0 1.5rem;margin-bottom:2.5rem}
-  .ter-strip-head{grid-template-columns:1fr;gap:.75rem}
-  .ter-card-h{width:260px}
-}
 
 /* ─── FOOTER ─────────────────────────────────── */
 footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .fl{font-family:var(--fi);font-style:italic;font-size:1.1rem;letter-spacing:.35em;color:rgba(255,255,255,.2);text-transform:uppercase}
 .fn{font-family:var(--fm);font-size:.78rem;letter-spacing:.13em;color:rgba(255,255,255,.15);text-transform:uppercase}
 
-/* ─── RESPONSIVE ─────────────────────────────── */
+/* ─── RESPONSIVE ── ≤768px ───────────────────── */
 @media(max-width:768px){
+
+  /* NAV */
   .n-links,.n-spacer{display:none}
-  .h-fg{padding:0 1.5rem;padding-top:6rem}
+
+  /* HERO */
+  .h-fg{padding:0 1.25rem;padding-top:5.5rem}
+  .h-badge{flex-wrap:wrap;gap:.35rem}
+  .h-badge-txt{font-size:.75rem}
+  .h-title{font-size:clamp(2.2rem,10vw,3.5rem);max-width:none;margin-bottom:1.1rem}
+  .h-sub{max-width:none;margin-bottom:1.5rem}
+  .h-ctas{flex-direction:column;align-items:stretch;gap:.85rem;margin-bottom:2rem}
+  .h-cta-p,.h-cta-s{justify-content:center;text-align:center;width:100%}
+  .h-stats{flex-direction:column;gap:.75rem}
+  .h-stat{width:auto}
   .h-coords,.h-scroll,.h-partners{display:none}
-  .sec-wrap,.rutas-foot,.capas-head,.capas-stage,.capas-rail,.slider-controls{padding-left:1.5rem;padding-right:1.5rem}
-  #rutas,.sec-wrap{padding-left:1.5rem;padding-right:1.5rem}
-  .rutas-foot{grid-template-columns:1fr}
-  .capas-head{grid-template-columns:1fr;gap:2rem}
-  .capas-rail{grid-template-columns:1fr 1fr}
-  #hallazgos,#cursos{padding:5rem 1.5rem}
-  .hall-head,.com-head{grid-template-columns:1fr;gap:2rem}
+
+  /* SECTIONS SHARED */
+  .sec-wrap{padding:0 1.25rem}
+  #rutas,.sec-wrap{padding-left:1.25rem;padding-right:1.25rem}
+  .sec-title{font-size:clamp(1.9rem,8.5vw,2.8rem)}
+  .sec-sub{max-width:none}
+
+  /* RUTAS */
+  .rutas-foot{grid-template-columns:1fr;padding:2rem 1.25rem 4rem;gap:1.75rem}
+  .rf-chip{padding:.6rem 1.1rem;font-size:.7rem}
+
+  /* CAPAS */
+  #capas{padding:4rem 0}
+  .capas-head{grid-template-columns:1fr;gap:1.5rem;padding:0 1.25rem;margin-bottom:2rem}
+  .capas-title{font-size:clamp(2.4rem,11vw,3.8rem)}
+  .capas-stage{padding:0 1.25rem}
+  .capas-rail{grid-template-columns:1fr 1fr;padding:0 1.25rem}
+  .hs-card{width:160px;font-size:.63rem;padding:.75rem}
+
+  /* HALLAZGOS */
+  #hallazgos{padding:4rem 1.25rem}
+  .hall-head{grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}
   .hall-row-1,.hall-row-2{grid-template-columns:1fr}
   .find.tall,.find.sq{aspect-ratio:4/3}
-  .com-head{padding:0 1.5rem}
-  .cur-layout{grid-template-columns:1fr}
+  .hall-accent{padding:0;gap:.6rem;flex-wrap:wrap}
+  .hall-chip{font-size:.65rem;padding:.5rem .9rem}
+
+  /* COMUNIDAD */
+  #comunidad{padding:4rem 0}
+  .com-head{grid-template-columns:1fr;gap:1.5rem;padding:0 1.25rem}
+  .slider-controls{padding:0 1.25rem;margin-top:.75rem}
+
+  /* CURSOS */
+  #cursos{padding:4rem 1.25rem}
+  .cur-layout{grid-template-columns:1fr;gap:2rem}
+  .course{padding:1.3rem 1.1rem}
+  .course-badge{padding:.6rem 1.1rem;font-size:.7rem}
+
+  /* TERRITORIOS */
+  .ter-strip{padding:0;margin-bottom:2rem}
+  .ter-strip-head{grid-template-columns:1fr;gap:.65rem;margin-bottom:1.5rem}
+  .ter-strip-body{max-width:none}
+  .ter-3d-wrap{height:380px;margin-bottom:2rem}
+  .ter-carousel-root,.ter-3d-card{width:240px;height:320px}
+  .ter-c-front,.ter-c-back,.ter-c-edge{border-radius:1rem}
+  .ter-nav-btn{width:36px;height:36px;font-size:.85rem}
+  .ter-nav-prev{left:.4rem}
+  .ter-nav-next{right:.4rem}
+
+  /* FINAL CTA */
+  .final-cta{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;gap:1.25rem;margin:1.5rem 0 0}
+  .fc-arr{align-self:flex-end}
+
+  /* CAP CARDS */
   .cap-cards{grid-template-columns:1fr}
-  footer{flex-direction:column;text-align:center}
+
+  /* FOOTER */
+  footer{flex-direction:column;text-align:center;padding:2rem 1.25rem;gap:.6rem}
 }
+
+/* ─── TOUCH: hotspot tap ─────────────────────── */
+@media(hover:none){
+  .hotspot.active .hs-card{opacity:1;visibility:visible;pointer-events:auto}
+}
+
+/* ─── VERY SMALL (≤430px) ────────────────────── */
+@media(max-width:430px){
+  .h-title{font-size:clamp(1.95rem,11.5vw,2.6rem)}
+  .h-badge-txt{display:none}
+  .h-stat{padding:.8rem 1rem}
+  .capas-rail{grid-template-columns:1fr}
+  .slide{width:260px;height:340px}
+  .slide.feat{width:280px;height:360px}
+  .ter-3d-wrap{height:340px}
+  .ter-carousel-root,.ter-3d-card{width:200px;height:280px}
+  .hall-row-1,.hall-row-2{gap:3px}
+  .rutas-foot{padding:1.5rem 1.1rem 3rem}
+  footer{padding:1.5rem 1rem}
+}
+
 @media(prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none}
   .slider-track{animation:none}
