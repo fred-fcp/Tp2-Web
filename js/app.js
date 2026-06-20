@@ -1,3 +1,27 @@
+/* ── PARALLAX BACKGROUND ─────────────────── */
+(function(){
+  const bg=document.getElementById('bg-parallax');
+  const capas=document.getElementById('capas');
+  if(!bg)return;
+  /* scroll parallax — image drifts at 20% of scroll speed */
+  let ticking=false;
+  function onScroll(){
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(()=>{
+      bg.style.transform=`translateY(${window.scrollY*0.2}px)`;
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  /* fade out bg once #capas enters viewport */
+  if(capas){
+    new IntersectionObserver(([e])=>{
+      bg.style.opacity=e.isIntersecting?'0':'1';
+    },{threshold:0.1}).observe(capas);
+  }
+})();
+
 /* ── FADING VIDEO ───────────────────────── */
 const FADE_MS=500, FADE_LEAD=0.55;
 function setupVideo(vid,src){
@@ -58,9 +82,20 @@ window.addEventListener('scroll',requestHeroParallax,{passive:true});
 window.addEventListener('resize',requestHeroParallax,{passive:true});
 requestHeroParallax();
 
-/* ── NAV SWITCH ────────────────────────── */
+/* ── NAV SWITCH — section-aware ────────── */
 const navEl=document.getElementById('nav');
-window.addEventListener('scroll',()=>navEl.classList.toggle('light',window.scrollY>window.innerHeight*.82),{passive:true});
+(function(){
+  const LIGHT=new Set(['hallazgos']);
+  const PHOTO=new Set(['rutas']);
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      navEl.classList.toggle('light',LIGHT.has(e.target.id));
+      navEl.classList.toggle('nav-photo',PHOTO.has(e.target.id));
+    });
+  },{rootMargin:'-35% 0px -35% 0px',threshold:0});
+  document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+})();
 
 /* ── DUST PARTICLES ────────────────────── */
 const dustEl=document.getElementById('dust');
@@ -250,75 +285,10 @@ let loaderDone=false;
 function tryDismiss(){if(loaderDone)return;loaderDone=true;dismissLoader();}
 window.addEventListener('load',()=>setTimeout(tryDismiss,400));
 setTimeout(tryDismiss,2500);
-/* ── RUTAS DOTTED MAP ─────────────────────────── */
-(async function(){
-  const el=document.getElementById('rutasMap');
-  if(!el)return;
-  try{
-    const{default:DM}=await import('https://esm.sh/dotted-map@2');
-    const map=new DM({height:70,grid:'diagonal'});
-
-    /* ── Highlight country territories with acid pins ── */
-    // Brazil — scatter pins across territory
-    const bra=[
-      [-5,-60],[-10,-55],[-15,-52],[-20,-47],[-25,-52],[-30,-53],
-      [-3,-43],[-8,-38],[-12,-48],[-2,-60],[-20,-56],[-28,-49]
-    ];
-    bra.forEach(([lat,lng])=>map.addPin({lat,lng,svgOptions:{color:'#c7ff4d',radius:.38}}));
-
-    // Sweden — elongated strip north-south
-    const swe=[
-      [56,13],[58,15],[60,16],[62,16],[64,18],[66,20],[68,20]
-    ];
-    swe.forEach(([lat,lng])=>map.addPin({lat,lng,svgOptions:{color:'#c7ff4d',radius:.38}}));
-
-    // Denmark — Jutland peninsula + islands
-    const dnk=[
-      [55.5,9.5],[56,9],[56.5,10],[57,10],[55,12],[55,15]
-    ];
-    dnk.forEach(([lat,lng])=>map.addPin({lat,lng,svgOptions:{color:'#c7ff4d',radius:.38}}));
-
-    /* ── Main markers (larger) ── */
-    map.addPin({lat:-14.2,lng:-51.9,svgOptions:{color:'#A66A44',radius:.65}});  // Brazil
-    map.addPin({lat:62.0, lng:16.0, svgOptions:{color:'#A66A44',radius:.65}});  // Sweden
-    map.addPin({lat:56.0, lng:10.0, svgOptions:{color:'#A66A44',radius:.65}});  // Denmark
-
-    const svg=map.getSVG({
-      radius:.2,
-      color:'rgba(166,106,68,.16)',
-      shape:'circle',
-      backgroundColor:'transparent'
-    });
-    el.innerHTML=svg;
-    const s=el.querySelector('svg');
-    if(s){s.setAttribute('preserveAspectRatio','xMidYMid slice');}
-
-    /* ── Map hotspot overlays ─────────────────────── */
-    const MHS=[
-      {pct:[35,68],label:'23°S · Brasil',name:'Fluidez',
-       desc:'Curvas orgánicas, libertad formal, materiales cálidos. La forma como movimiento vivo — el mueble como organismo que respira y guarda memoria de quién lo habitó.',
-       tags:['Expresividad','Materialidad cálida','Forma orgánica']},
-      {pct:[54,14],label:'59°N · Suecia',name:'Claridad',
-       desc:'Líneas limpias, geometría depurada, vacío como decisión de diseño. Lo que no está también comunica: la síntesis escandinava como idioma del rigor y la elegancia desnuda.',
-       tags:['Geometría funcional','Síntesis','Vacío como forma']},
-      {pct:[53,22],label:'55°N · Dinamarca',name:'Materialidad',
-       desc:'Uniones visibles, detalle constructivo, refinamiento artesanal. Cada ensamble es una firma — la arqueología del objeto revela quién lo construyó y cómo pensaba el mundo.',
-       tags:['Craft','Ensambles','Precisión constructiva']},
-    ];
-    MHS.forEach(h=>{
-      const w=document.createElement('div');
-      w.className='map-hs';
-      w.style.cssText=`left:${h.pct[0]}%;top:${h.pct[1]}%`;
-      w.innerHTML=`<div class="map-hs-dot"></div><div class="map-hs-card"><div class="map-hs-label">${h.label}</div><div class="map-hs-name">${h.name}</div><div class="map-hs-desc">${h.desc}</div><div class="map-hs-tags">${h.tags.map(t=>`<span class="map-hs-tag">${t}</span>`).join('')}</div></div>`;
-      el.appendChild(w);
-    });
-  }catch(e){console.warn('dotted-map CDN unavailable',e);}
-})();
-
 /* ── HOTSPOT TAP — mobile touch ───────────────── */
 (function(){
   if(window.matchMedia('(hover:none)').matches){
-    const allHS=()=>document.querySelectorAll('.hotspot,.map-hs');
+    const allHS=()=>document.querySelectorAll('.hotspot');
     document.querySelectorAll('.hotspot').forEach(hs=>{
       hs.addEventListener('click',e=>{
         e.stopPropagation();
@@ -327,18 +297,6 @@ setTimeout(tryDismiss,2500);
         if(!wasActive)hs.classList.add('active');
       });
     });
-    /* map-hs tap — injected async, so delegate via #rutasMap */
-    const rm=document.getElementById('rutasMap');
-    if(rm){
-      rm.addEventListener('click',e=>{
-        const mh=e.target.closest('.map-hs');
-        if(!mh)return;
-        e.stopPropagation();
-        const wasActive=mh.classList.contains('active');
-        allHS().forEach(h=>h.classList.remove('active'));
-        if(!wasActive)mh.classList.add('active');
-      });
-    }
     document.addEventListener('click',()=>{
       allHS().forEach(h=>h.classList.remove('active'));
     });
