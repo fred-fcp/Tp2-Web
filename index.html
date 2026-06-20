@@ -6,8 +6,24 @@
 <title>RAÍZ — Atlas Vivo de Transformación</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
+<style>
+@font-face{font-family:'Fraunces';src:url('Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Fraunces';src:url('Typography/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}
+
+/* ── HERO TRANSITION ──────────────────────────── */
+#hero{position:relative}
+#hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:14rem;background:linear-gradient(to bottom,transparent 0%,rgba(21,18,16,.6) 50%,#090705 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 55%,black 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 55%,black 100%);z-index:5;pointer-events:none}
+#rutas{position:relative;z-index:1}
+
+/* ── TIPOGRAFÍA DEL SISTEMA ───────────────────── */
+.h-title{font-family:'Fraunces',Georgia,serif!important;font-style:normal!important;font-weight:700!important}
+.sec-title{font-family:'Fraunces',Georgia,serif!important;font-weight:700!important;font-style:normal!important}
+.capas-title{font-family:'Fraunces',Georgia,serif!important;font-style:normal!important;font-weight:700!important}
+.rf-name{font-family:'Fraunces',Georgia,serif!important;font-style:normal!important;font-weight:500!important}
+</style>
 </head>
 <body>
 
@@ -56,7 +72,7 @@
 
 <!-- ── BANTER LOADER ──────────────────────────── -->
 <div id="loader">
-  <span class="loader-brand">Raíz</span>
+  <img src="assets/white logo.png" alt="RAÍZ" style="height:36px;width:auto;opacity:.9">
   <div class="banter-loader">
     <div class="banter-loader__box"></div>
     <div class="banter-loader__box"></div>
@@ -72,7 +88,9 @@
 
 <!-- ── NAV ───────────────────────────────────── -->
 <nav id="nav">
-  <div class="lg n-logo">RAÍZ</div>
+  <div class="lg n-logo" style="padding:.55rem 1.4rem">
+    <img id="navLogo" src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block;transition:opacity .3s">
+  </div>
   <div class="lg n-links">
     <a href="#hero">Atlas</a>
     <a href="#rutas">Rutas</a>
@@ -115,8 +133,8 @@
     <h1 class="h-title rv d1">Cada restauración comienza siguiendo una <span class="acid">ruta.</span></h1>
     <p class="h-sub rv d2">Explora las culturas, materiales y técnicas que transforman los muebles en nuevas historias.</p>
     <div class="h-ctas rv d2">
-      <a href="#rutas" class="lgs h-cta-p">Explorar el Atlas ↗</a>
-      <a href="#cursos" class="h-cta-s">▶ Descubrir los cursos</a>
+      <a href="#rutas" class="fc-btn">Explorar el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <a href="#cursos" class="btn-primary lgs">Ver los cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
     </div>
     <div class="h-stats rv d3">
       <a href="#cursos" class="lg h-stat">
@@ -324,7 +342,7 @@
           <div class="ter-c-caption">
             <div class="ter-sub">La materia como origen</div>
             <div class="ter-name-h">Monolitos</div>
-            <a class="ter-cta">Explorar pieza ↗</a>
+            <a class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -336,7 +354,7 @@
           <div class="ter-c-caption">
             <div class="ter-sub">La estructura como lenguaje</div>
             <div class="ter-name-h">Ensamblajes</div>
-            <a class="ter-cta">Explorar sistema ↗</a>
+            <a class="ter-cta">Explorar sistema<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -348,7 +366,7 @@
           <div class="ter-c-caption">
             <div class="ter-sub">La forma como crecimiento</div>
             <div class="ter-name-h">Organismos</div>
-            <a class="ter-cta">Explorar forma ↗</a>
+            <a class="ter-cta">Explorar forma<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -356,14 +374,17 @@
     </div>
   </div>
 
-  <a href="#" class="final-cta rv" style="background:var(--ink);position:relative;z-index:1">
-    <div><div class="fc-eye">Próximo recorrido · Marzo 2025 · Cupos limitados</div><div class="fc-head">Comenzar el recorrido.</div></div>
-    <span class="fc-arr">↗</span>
-  </a>
+  <div class="rv" style="margin:0 3rem 4rem;padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;z-index:1">
+    <div>
+      <div class="fc-eye">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
+      <div class="fc-head">Comenzar el recorrido.</div>
+    </div>
+    <a href="#cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+  </div>
 </section>
 
 <footer>
-  <span class="fl">Raíz</span>
+  <img src="assets/white logo.png" alt="RAÍZ" style="height:18px;width:auto;opacity:.35">
   <span class="fn">Atlas Vivo de Transformación · Buenos Aires · Est. 2024</span>
   <span class="fn">34°36'S · 58°22'W</span>
 </footer>

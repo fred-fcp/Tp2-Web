@@ -316,3 +316,27 @@ setTimeout(tryDismiss,2500);
     });
   }
 })();
+
+/* ── LOGO SWAP BY SECTION ──────────────────── */
+(function(){
+  const logo=document.getElementById('navLogo');
+  if(!logo)return;
+  const map={
+    'hero':       'assets/white logo.png',
+    'rutas':      'assets/acid logo.png',
+    'capas':      'assets/white logo.png',
+    'hallazgos':  'assets/black logo.png',
+    'comunidad':  'assets/white logo.png',
+    'cursos':     'assets/acid logo.png',
+  };
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const src=map[e.target.id];
+      if(!src||logo.getAttribute('src')===src)return;
+      logo.style.opacity='0';
+      setTimeout(()=>{logo.src=src;logo.style.opacity='1';},150);
+    });
+  },{rootMargin:'-40% 0px -40% 0px',threshold:0});
+  document.querySelectorAll('section[id],#hero').forEach(s=>io.observe(s));
+})();
