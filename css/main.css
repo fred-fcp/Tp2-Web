@@ -307,6 +307,35 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .capas-kicker{font-family:var(--fp);font-style:italic;font-size:1.45rem;color:rgba(255,255,255,.75);margin-bottom:.4rem}
 .capas-sub{font-size:1rem;line-height:1.85;color:rgba(255,255,255,.6);max-width:52ch}
 .capas-stage{position:relative;max-width:1400px;margin:0 auto;padding:0 3rem}
+
+/* ── CP CROP FRAMES ──────────────────────── */
+.cp-cluster{position:absolute;inset:0;pointer-events:none;z-index:4}
+.cp-frame{
+  position:absolute;
+  width:148px;height:148px;
+  overflow:hidden;border-radius:.6rem;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 12px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12);
+  pointer-events:auto;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;
+}
+.cp-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.cp-label{
+  position:absolute;bottom:.5rem;left:.55rem;
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  background:rgba(10,7,4,.52);backdrop-filter:blur(10px);
+  padding:.2rem .55rem;border-radius:9999px;
+  border:1px solid rgba(255,255,255,.12);
+}
+/* Posiciones y rotaciones individuales */
+.cp-1{top:4%;left:-1rem;transform:rotate(-3.5deg)}
+.cp-2{top:38%;right:-1rem;transform:rotate(2deg);z-index:6}
+.cp-3{bottom:6%;right:-1rem;transform:rotate(2deg)}
+/* Hover lift */
+.cp-frame:hover{transform:rotate(0deg) translateY(-6px)!important;box-shadow:0 24px 56px rgba(0,0,0,.55)}
+.cp-3:hover{transform:rotate(0deg) translateY(-6px)!important}
+
 .capas-img-outer{position:relative}
 .capas-img-inner{position:relative;overflow:hidden;border-radius:1rem}
 .capas-img{width:100%;display:block;will-change:transform;transition:transform .1s linear}
@@ -339,6 +368,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   animation:hintPulse 3s ease-in-out infinite;
 }
 .capas-hint-icon{font-size:.9rem;color:var(--acid);animation:hintSpin 6s linear infinite}
+.capas-hint-mobile{display:none}
 @keyframes hintPulse{0%,100%{opacity:.75}50%{opacity:1}}
 @keyframes hintSpin{to{transform:rotate(360deg)}}
 
@@ -810,6 +840,11 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-head{padding:0 1.25rem;margin-bottom:2rem;gap:1rem}
   .capas-title{font-size:clamp(2.4rem,11vw,3.8rem)}
   .capas-stage{padding:0 1.25rem}
+  .cp-frame{width:88px;height:88px}
+  .cp-1{top:2%;left:.5rem;transform:rotate(-3deg)}
+  .cp-2{top:auto;bottom:3%;left:.5rem;right:auto;transform:rotate(2deg)}
+  .cp-cluster{inset:0 0 -2rem 0}
+  .cp-3{bottom:0;right:.75rem;left:auto;transform:rotate(-2deg)}
   /* hotspot cards: centradas encima del dot en mobile */
   .hs-card{
     width:160px;font-size:.63rem;padding:.75rem;
@@ -818,7 +853,12 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
     transform:translateX(-50%)!important;
   }
   .hotspot.lft .hs-card{left:50%!important;right:auto!important;transform:translateX(-50%)!important}
-  .capas-hint-cta{font-size:.62rem;padding:.55rem 1.1rem;gap:.4rem;white-space:normal;text-align:center;width:calc(100% - 3rem);justify-content:center}
+  .capas-hint-cta:not(.capas-hint-mobile){display:none}
+  .capas-hint-mobile{
+    display:inline-flex;margin-top:.85rem;
+    position:static;transform:none;
+    font-size:.62rem;padding:.55rem 1.1rem;gap:.4rem;
+  }
 
   /* HALLAZGOS */
   #hallazgos{padding:4rem 1.25rem}
@@ -886,7 +926,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .h-badge-txt{display:none}
   .h-stat{padding:.8rem 1rem}
   .hs-card{width:135px;font-size:.58rem;padding:.6rem}
-  .capas-hint-cta{font-size:.56rem;padding:.45rem .9rem}
+  .capas-hint-cta{font-size:.56rem;padding:.45rem .9rem;margin-bottom:.7rem}
   .slide{width:260px;height:340px}
   .slide.feat{width:280px;height:360px}
   .rut-panel{height:150px}
