@@ -492,16 +492,32 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
 /* ── RUTAS TRIPTYCH ───────────────────────── */
 .rutas-triptych{display:flex;flex-direction:column;width:100%;gap:3px}
 .rut-panel{
-  width:100%;height:230px;overflow:hidden;position:relative;
-  background-size:300% auto;background-repeat:no-repeat;
-  background-position:0% 50%;
-  transition:transform .5s;
+  width:100%;height:260px;overflow:hidden;position:relative;
+  transition:transform .45s;
 }
-.rut-panel:nth-child(2){background-position:50% 50%}
-.rut-panel:nth-child(3){background-position:100% 50%}
-.rut-panel:hover{transform:scaleY(1.03);z-index:2}
+.rut-panel:hover{transform:scaleY(1.04);z-index:2}
+.rut-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(1);
+  transition:filter 1.4s ease;
+}
+.rut-panel.pix-done .rut-img{filter:grayscale(0)}
+/* Pixel reveal grid */
+.rut-pixel-grid{
+  position:absolute;inset:0;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-template-rows:repeat(4,1fr);
+  pointer-events:none;z-index:2;
+}
+.rut-px-cell{
+  background:var(--bg);
+  transition:opacity .45s ease,transform .45s ease;
+  transform-origin:center;
+}
+.rut-px-cell.gone{opacity:0;transform:scale(1.08)}
 .rut-label{
-  position:absolute;bottom:.9rem;left:1.25rem;
+  position:absolute;bottom:.9rem;left:1.25rem;z-index:3;
   font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
   color:rgba(255,255,255,.82);display:flex;align-items:center;gap:.45rem;
 }
@@ -658,7 +674,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .course-badge{padding:.6rem 1.1rem;font-size:.7rem}
 
   /* RUTAS TRIPTYCH */
-  .rut-panel{height:160px}
+  .rut-panel{height:180px}
 
   /* TERRITORIOS */
   .ter-strip{padding:0;margin-bottom:2rem}
@@ -694,7 +710,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-rail{grid-template-columns:1fr}
   .slide{width:260px;height:340px}
   .slide.feat{width:280px;height:360px}
-  .rut-panel{height:130px}
+  .rut-panel{height:140px}
   .ter-blob-card{width:220px;height:300px}
   .hall-row-1,.hall-row-2{gap:3px}
   .rutas-foot{padding:1.5rem 1.1rem 3rem}

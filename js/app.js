@@ -133,7 +133,7 @@ function initImages(){
   const d=window.__D__;
   const set=(id,key)=>{const el=document.getElementById(id);if(el&&d[key])el.src=d[key];};
   set('heroPoster','hero');
-  if(d.rutas){document.querySelectorAll('.rut-panel').forEach(p=>{p.style.backgroundImage=`url(${d.rutas})`;});}
+  set('rutasBRA','bra01');set('rutasSU','su02');set('rutasDI','di03');
   set('capasImg','capas');
   set('h1','h1');set('h2','h2');set('h3','h3');set('h4','h4');
   set('cursosImg','cursos');
@@ -143,6 +143,46 @@ function initImages(){
   buildSlider();
 }
 initImages();
+
+/* ── PIXEL REVEAL (rutas triptych) ───────────── */
+(function(){
+  const COLS=6,ROWS=4;
+
+  function buildGrid(panel){
+    const grid=panel.querySelector('.rut-pixel-grid');
+    if(!grid||grid.childElementCount)return;
+    for(let i=0;i<ROWS*COLS;i++){
+      const c=document.createElement('div');
+      c.className='rut-px-cell';
+      grid.appendChild(c);
+    }
+  }
+
+  function reveal(panel){
+    if(panel.classList.contains('pix-done'))return;
+    panel.classList.add('pix-done');
+    const cells=Array.from(panel.querySelectorAll('.rut-px-cell'));
+    // shuffle for random dissolve
+    cells.sort(()=>Math.random()-.5);
+    cells.forEach((c,i)=>{
+      setTimeout(()=>c.classList.add('gone'), i*38+80);
+    });
+  }
+
+  document.querySelectorAll('.rut-panel').forEach(panel=>{
+    buildGrid(panel);
+    const img=panel.querySelector('.rut-img');
+    const io=new IntersectionObserver(([e])=>{
+      if(!e.isIntersecting)return;
+      io.disconnect();
+      const fire=()=>reveal(panel);
+      if(img&&img.complete&&img.naturalWidth)fire();
+      else if(img)img.addEventListener('load',fire,{once:true});
+      else fire();
+    },{threshold:.2});
+    io.observe(panel);
+  });
+})();
 
 /* ── BLOB CARD SLIDER ─────────────────────────── */
 (function(){

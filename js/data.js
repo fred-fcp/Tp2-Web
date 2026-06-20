@@ -22,4 +22,7 @@ window.__D__ = {
   card01:  'assets/CARD 01.jpg',
   card02:  'assets/CARD 02.jpg',
   card03:  'assets/CARD 03.jpg',
+  bra01:   'assets/BRA 01.jpg',
+  su02:    'assets/SU 02.jpg',
+  di03:    'assets/DI 03.jpg',
 };
