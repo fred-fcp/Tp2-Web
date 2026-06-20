@@ -292,22 +292,55 @@ setTimeout(tryDismiss,2500);
     el.innerHTML=svg;
     const s=el.querySelector('svg');
     if(s){s.setAttribute('preserveAspectRatio','xMidYMid slice');}
+
+    /* ── Map hotspot overlays ─────────────────────── */
+    const MHS=[
+      {pct:[35,68],label:'23°S · Brasil',name:'Fluidez',
+       desc:'Curvas orgánicas, libertad formal, materiales cálidos. La forma como movimiento vivo — el mueble como organismo que respira y guarda memoria de quién lo habitó.',
+       tags:['Expresividad','Materialidad cálida','Forma orgánica']},
+      {pct:[54,14],label:'59°N · Suecia',name:'Claridad',
+       desc:'Líneas limpias, geometría depurada, vacío como decisión de diseño. Lo que no está también comunica: la síntesis escandinava como idioma del rigor y la elegancia desnuda.',
+       tags:['Geometría funcional','Síntesis','Vacío como forma']},
+      {pct:[53,22],label:'55°N · Dinamarca',name:'Materialidad',
+       desc:'Uniones visibles, detalle constructivo, refinamiento artesanal. Cada ensamble es una firma — la arqueología del objeto revela quién lo construyó y cómo pensaba el mundo.',
+       tags:['Craft','Ensambles','Precisión constructiva']},
+    ];
+    MHS.forEach(h=>{
+      const w=document.createElement('div');
+      w.className='map-hs';
+      w.style.cssText=`left:${h.pct[0]}%;top:${h.pct[1]}%`;
+      w.innerHTML=`<div class="map-hs-dot"></div><div class="map-hs-card"><div class="map-hs-label">${h.label}</div><div class="map-hs-name">${h.name}</div><div class="map-hs-desc">${h.desc}</div><div class="map-hs-tags">${h.tags.map(t=>`<span class="map-hs-tag">${t}</span>`).join('')}</div></div>`;
+      el.appendChild(w);
+    });
   }catch(e){console.warn('dotted-map CDN unavailable',e);}
 })();
 
 /* ── HOTSPOT TAP — mobile touch ───────────────── */
 (function(){
   if(window.matchMedia('(hover:none)').matches){
+    const allHS=()=>document.querySelectorAll('.hotspot,.map-hs');
     document.querySelectorAll('.hotspot').forEach(hs=>{
       hs.addEventListener('click',e=>{
         e.stopPropagation();
         const wasActive=hs.classList.contains('active');
-        document.querySelectorAll('.hotspot').forEach(h=>h.classList.remove('active'));
+        allHS().forEach(h=>h.classList.remove('active'));
         if(!wasActive)hs.classList.add('active');
       });
     });
+    /* map-hs tap — injected async, so delegate via #rutasMap */
+    const rm=document.getElementById('rutasMap');
+    if(rm){
+      rm.addEventListener('click',e=>{
+        const mh=e.target.closest('.map-hs');
+        if(!mh)return;
+        e.stopPropagation();
+        const wasActive=mh.classList.contains('active');
+        allHS().forEach(h=>h.classList.remove('active'));
+        if(!wasActive)mh.classList.add('active');
+      });
+    }
     document.addEventListener('click',()=>{
-      document.querySelectorAll('.hotspot').forEach(h=>h.classList.remove('active'));
+      allHS().forEach(h=>h.classList.remove('active'));
     });
   }
 })();
