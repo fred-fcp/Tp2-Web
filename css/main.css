@@ -341,14 +341,10 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
   max-width:1400px;margin:2rem auto 0;padding:0 3rem;
 }
 .hall-chip{
-  padding:.7rem 1.4rem;border-radius:9999px;
-  font-family:var(--fm);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.7rem 1.5rem;border-radius:9999px;
+  font-family:var(--fm);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--ink);cursor:default;
-  background:rgba(21,18,16,.08);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.5),0 2px 10px rgba(21,18,16,.07);
-  border:1px solid rgba(21,18,16,.14);
-  position:relative;overflow:hidden;
+  transition:all .3s;
 }
 
 /* ─── COMUNIDAD SLIDER ───────────────────────── */
@@ -493,101 +489,86 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
   font-size:.78rem;line-height:1.7;color:var(--gr);
   max-width:36ch;font-weight:300;
 }
-/* ── 3D CYLINDER CAROUSEL ────────────────── */
-.ter-3d-wrap{
+/* ── RUTAS TRIPTYCH ───────────────────────── */
+.rutas-triptych{display:flex;flex-direction:column;width:100%;gap:3px}
+.rut-panel{
+  width:100%;height:230px;overflow:hidden;position:relative;
+  background-size:300% auto;background-repeat:no-repeat;
+  background-position:0% 50%;
+  transition:transform .5s;
+}
+.rut-panel:nth-child(2){background-position:50% 50%}
+.rut-panel:nth-child(3){background-position:100% 50%}
+.rut-panel:hover{transform:scaleY(1.03);z-index:2}
+.rut-label{
+  position:absolute;bottom:.9rem;left:1.25rem;
+  font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);display:flex;align-items:center;gap:.45rem;
+}
+.rut-dot{width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0}
+
+/* ── BLOB CARD SLIDER ─────────────────────── */
+.ter-blob-wrap{
   position:relative;
-  height:520px;overflow:visible;
-  background:transparent;
+  overflow:hidden;
   margin-bottom:3rem;
-  user-select:none;
+  padding:1.5rem 0;
 }
-/* Grid canvas — subtle warm lines on cream bg, acid trail */
-.ter-grid-bg{
-  position:absolute;inset:0;pointer-events:none;z-index:1;
-  width:100%;height:100%;
-  background-image:
-    linear-gradient(to right,rgba(166,106,68,.07) 1px,transparent 1px),
-    linear-gradient(to bottom,rgba(166,106,68,.07) 1px,transparent 1px);
-  background-size:44px 44px;
+.ter-blob-track{
+  display:flex;gap:2rem;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  padding:.5rem 3rem 1.5rem;
+  cursor:grab;
+  -webkit-overflow-scrolling:touch;
 }
-/* Perspective viewport */
-.ter-carousel-vp{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  perspective:1350px;
-  z-index:2;
+.ter-blob-track::-webkit-scrollbar{display:none}
+.ter-blob-track:active{cursor:grabbing}
+.ter-blob-outer{
+  position:relative;flex-shrink:0;
+  scroll-snap-align:center;
 }
-/* 3D coordinate root */
-.ter-carousel-root{
-  position:relative;
-  width:320px;height:440px;
-  transform-style:preserve-3d;
+.ter-blob{
+  position:absolute;inset:-18px;
+  border-radius:50%;
+  background:#c7ff4d;
+  opacity:.28;
+  filter:blur(32px);
+  z-index:0;
+  pointer-events:none;
+  animation:blob-bounce 5s infinite ease;
 }
-/* Individual card wrapper */
-.ter-3d-card{
-  position:absolute;inset:0;
-  width:320px;height:440px;
-  transform-style:preserve-3d;
-  backface-visibility:visible;
+@keyframes blob-bounce{
+  0%  {transform:translate(0,0)}
+  25% {transform:translate(38px,-18px)}
+  50% {transform:translate(18px,38px)}
+  75% {transform:translate(-28px,18px)}
+  100%{transform:translate(0,0)}
 }
-/* Edge / thickness layers */
-.ter-c-edge{
-  position:absolute;inset:0;
+.ter-blob-card{
+  position:relative;z-index:1;
+  width:300px;height:400px;
   border-radius:1.25rem;overflow:hidden;
-  background:#4a4a4a;
-  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 20px 55px rgba(0,0,0,.22),0 0 0 1.5px rgba(199,255,77,.15);
+  cursor:pointer;
+  transition:transform .35s,box-shadow .35s;
 }
-/* Front face */
-.ter-c-front{
-  position:absolute;inset:0;
-  border-radius:1.25rem;overflow:hidden;
-  background:var(--dk);
-  backface-visibility:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.1);
+.ter-blob-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 28px 70px rgba(0,0,0,.28),0 0 0 1.5px rgba(199,255,77,.32);
 }
-.ter-c-front img{
+.ter-blob-card img{
   position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;
-  filter:contrast(1.04) saturate(.9);
+  object-fit:cover;display:block;
+  filter:contrast(1.04) saturate(.92);
 }
 .ter-c-ov{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 38%,rgba(21,18,16,.8) 100%);
+  background:linear-gradient(to bottom,transparent 38%,rgba(21,18,16,.82) 100%);
 }
 .ter-c-caption{
   position:absolute;bottom:1.2rem;left:1rem;right:1rem;
   padding:1.1rem 1.3rem 1.25rem;border-radius:1rem;
-}
-/* Back face */
-.ter-c-back{
-  position:absolute;inset:0;
-  border-radius:1.25rem;overflow:hidden;
-  background:var(--dk2);
-  backface-visibility:hidden;
-  border:1px solid rgba(199,255,77,.1);
-}
-.ter-c-stripe{
-  position:absolute;left:0;right:0;top:1.3rem;
-  height:2.6rem;
-  background:rgba(0,0,0,.88);
-  backdrop-filter:blur(4px);
-}
-.ter-c-back-info{
-  position:absolute;bottom:1.6rem;left:1.6rem;right:1.6rem;
-  display:flex;flex-direction:column;gap:.3rem;
-}
-.ter-c-back-title{
-  font-family:var(--fi);font-style:italic;
-  font-size:1.9rem;color:#fff;line-height:1;letter-spacing:-.01em;
-}
-.ter-c-back-sub{
-  font-family:var(--fm);font-size:.68rem;letter-spacing:.15em;
-  text-transform:uppercase;color:rgba(255,255,255,.45);
-}
-.ter-c-back-tag{
-  font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--acid);margin-top:.35rem;
 }
 /* Nav buttons */
 .ter-nav-btn{
@@ -597,8 +578,8 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
   font-size:1.1rem;color:var(--ink);cursor:pointer;
   transition:all .3s;
 }
-.ter-nav-prev{left:1rem}
-.ter-nav-next{right:1rem}
+.ter-nav-prev{left:.5rem}
+.ter-nav-next{right:.5rem}
 .ter-nav-btn:hover{color:#7ab300;transform:translateY(-50%) scale(1.1)}
 .ter-sub{
   font-family:var(--fm);font-size:.66rem;letter-spacing:.16em;
@@ -676,16 +657,18 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .course{padding:1.3rem 1.1rem}
   .course-badge{padding:.6rem 1.1rem;font-size:.7rem}
 
+  /* RUTAS TRIPTYCH */
+  .rut-panel{height:160px}
+
   /* TERRITORIOS */
   .ter-strip{padding:0;margin-bottom:2rem}
   .ter-strip-head{grid-template-columns:1fr;gap:.65rem;margin-bottom:1.5rem}
   .ter-strip-body{max-width:none}
-  .ter-3d-wrap{height:380px;margin-bottom:2rem}
-  .ter-carousel-root,.ter-3d-card{width:240px;height:320px}
-  .ter-c-front,.ter-c-back,.ter-c-edge{border-radius:1rem}
+  .ter-blob-track{padding:.5rem 1.25rem 1.5rem;gap:1.25rem}
+  .ter-blob-card{width:260px;height:340px}
   .ter-nav-btn{width:36px;height:36px;font-size:.85rem}
-  .ter-nav-prev{left:.4rem}
-  .ter-nav-next{right:.4rem}
+  .ter-nav-prev{left:.25rem}
+  .ter-nav-next{right:.25rem}
 
   /* FINAL CTA */
   .final-cta{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;gap:1.25rem;margin:1.5rem 0 0}
@@ -711,8 +694,8 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-rail{grid-template-columns:1fr}
   .slide{width:260px;height:340px}
   .slide.feat{width:280px;height:360px}
-  .ter-3d-wrap{height:340px}
-  .ter-carousel-root,.ter-3d-card{width:200px;height:280px}
+  .rut-panel{height:130px}
+  .ter-blob-card{width:220px;height:300px}
   .hall-row-1,.hall-row-2{gap:3px}
   .rutas-foot{padding:1.5rem 1.1rem 3rem}
   footer{padding:1.5rem 1rem}

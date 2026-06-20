@@ -133,7 +133,7 @@ function initImages(){
   const d=window.__D__;
   const set=(id,key)=>{const el=document.getElementById(id);if(el&&d[key])el.src=d[key];};
   set('heroPoster','hero');
-  set('rutasImg','rutas');
+  if(d.rutas){document.querySelectorAll('.rut-panel').forEach(p=>{p.style.backgroundImage=`url(${d.rutas})`;});}
   set('capasImg','capas');
   set('h1','h1');set('h2','h2');set('h3','h3');set('h4','h4');
   set('cursosImg','cursos');
@@ -144,157 +144,30 @@ function initImages(){
 }
 initImages();
 
-/* ── 3D CAROUSEL — horizontal axis ──────── */
+/* ── BLOB CARD SLIDER ─────────────────────────── */
 (function(){
-  const scene=document.getElementById('terScene');
-  if(!scene)return;
-  const wrap=scene.closest('.ter-3d-wrap');
-  const cards=Array.from(scene.querySelectorAll('.ter-3d-card'));
-  const N=cards.length;if(!N)return;
+  const track=document.getElementById('terBlobTrack');
+  if(!track)return;
 
-  const D=1350,GAP=64;
-  function CW(){return window.innerWidth<=430?200:window.innerWidth<=768?240:320;}
-
-  let prog=0,target=0,lastInteract=0,hovering=false;
-  const mouse={x:0,y:0,tx:0,ty:0};
-
-  if(wrap){
-    wrap.addEventListener('mousemove',e=>{
-      const r=wrap.getBoundingClientRect();
-      mouse.tx=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/(r.width/2)));
-      mouse.ty=Math.max(-1,Math.min(1,(e.clientY-r.top-r.height/2)/(r.height/2)));
-    },{passive:true});
-    wrap.addEventListener('mouseenter',()=>{hovering=true;lastInteract=Date.now();});
-    wrap.addEventListener('mouseleave',()=>{hovering=false;mouse.tx=0;mouse.ty=0;});
-    wrap.addEventListener('wheel',e=>{
-      e.preventDefault();
-      target+=e.deltaX*0.005||e.deltaY*0.005;
-      lastInteract=Date.now();
-    },{passive:false});
+  function cardStep(){
+    const outer=track.querySelector('.ter-blob-outer');
+    return outer?(outer.offsetWidth+parseInt(getComputedStyle(track).gap)||32):332;
   }
 
-  document.getElementById('terPrev')?.addEventListener('click',()=>{target-=1;lastInteract=Date.now();});
-  document.getElementById('terNext')?.addEventListener('click',()=>{target+=1;lastInteract=Date.now();});
-
-  cards.forEach((card,i)=>{
-    card.style.cursor='pointer';
-    card.addEventListener('click',()=>{
-      let off=i-Math.round(prog);
-      while(off>N/2)off-=N;
-      while(off<-N/2)off+=N;
-      target=Math.round(prog)+off;
-      lastInteract=Date.now();
-    });
+  document.getElementById('terPrev')?.addEventListener('click',()=>{
+    track.scrollBy({left:-cardStep(),behavior:'smooth'});
+  });
+  document.getElementById('terNext')?.addEventListener('click',()=>{
+    track.scrollBy({left:cardStep(),behavior:'smooth'});
   });
 
-  let tx0=0,tgt0=0;
-  if(wrap){
-    wrap.addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;tgt0=target;lastInteract=Date.now();},{passive:true});
-    wrap.addEventListener('touchmove',e=>{target=tgt0-(e.touches[0].clientX-tx0)/180;lastInteract=Date.now();},{passive:true});
-    wrap.addEventListener('touchend',()=>{target=Math.round(target);lastInteract=Date.now();},{passive:true});
-  }
-
-  const ss=t=>t*t*(3-2*t);
-
-  function render(){
-    const idle=!hovering&&Date.now()-lastInteract>2200;
-    if(idle) target+=0.0014;
-    prog+=(target-prog)*(idle?0.04:0.09);
-    mouse.x+=(mouse.tx-mouse.x)*0.07;
-    mouse.y+=(mouse.ty-mouse.y)*0.07;
-
-    const cw=CW();
-    const ri=Math.round(prog);
-    const diff=prog-ri;
-    const ed=Math.sign(diff)*Math.pow(Math.abs(diff)*2,4.2)/2;
-    const va=ri+ed;
-
-    const tX=hovering?20:12,tY=hovering?26:16;
-
-    cards.forEach((card,i)=>{
-      let off=i-va;
-      while(off>N/2)off-=N;
-      while(off<-N/2)off+=N;
-      const abs=Math.abs(off),sgn=Math.sign(off);
-
-      if(abs>2.2){card.style.visibility='hidden';card.style.opacity='0';return;}
-      card.style.visibility='visible';
-
-      let x=0,z=0,ry=0,op=1;
-      if(abs<=1){
-        const et=ss(abs);
-        x=-sgn*et*(cw+GAP);
-        z=400+et*(210-400);
-        ry=et*122;
-        op=1;
-      } else {
-        const et=ss(Math.min(abs-1,1));
-        x=-sgn*((cw+GAP)+et*cw*0.9);
-        z=210+et*(-60-210);
-        ry=122+et*(168-122);
-        op=+(1-et*0.9).toFixed(2);
-      }
-
-      const lry=-sgn*ry;
-      const cf=Math.max(0,1-abs);
-      card.style.opacity=String(op);
-      card.style.zIndex=Math.round(z+500).toString();
-      card.style.transform=`translateX(${x.toFixed(2)}px) translateZ(${z.toFixed(2)}px) rotateY(${(lry+mouse.x*tY*cf).toFixed(2)}deg) rotateX(${(-mouse.y*tX*cf).toFixed(2)}deg) rotateZ(-1deg)`;
-    });
-    requestAnimationFrame(render);
-  }
-  requestAnimationFrame(render);
+  /* drag to scroll */
+  let drag=false,startX=0,sl=0;
+  track.addEventListener('mousedown',e=>{drag=true;startX=e.pageX-track.offsetLeft;sl=track.scrollLeft;track.style.cursor='grabbing';});
+  track.addEventListener('mousemove',e=>{if(!drag)return;e.preventDefault();track.scrollLeft=sl-(e.pageX-track.offsetLeft-startX);});
+  ['mouseup','mouseleave'].forEach(ev=>track.addEventListener(ev,()=>{drag=false;track.style.cursor='grab';}));
 })();
 
-/* ── INTERACTIVE GRID CANVAS (light-mode) ── */
-(function(){
-  const canvas=document.getElementById('terGridCanvas');
-  if(!canvas)return;
-  const wrap=canvas.closest('.ter-3d-wrap');
-  const ctx=canvas.getContext('2d');
-  const GS=44,TRAIL=5,IDLE_N=3,IDLE_SPEED=0.15;
-
-  function resize(){canvas.width=wrap.offsetWidth;canvas.height=wrap.offsetHeight;}
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-
-  let trail=[],lastMouse=Date.now();
-  const idleTgt=[],idlePos=[];
-  function randCell(){return{x:Math.floor(Math.random()*(canvas.width/GS)),y:Math.floor(Math.random()*(canvas.height/GS))};}
-  for(let i=0;i<IDLE_N;i++){idleTgt.push(randCell());idlePos.push({...idleTgt[i]});}
-
-  wrap.addEventListener('mousemove',e=>{
-    lastMouse=Date.now();
-    const r=wrap.getBoundingClientRect();
-    const gx=Math.floor((e.clientX-r.left)/GS),gy=Math.floor((e.clientY-r.top)/GS);
-    const last=trail[0];
-    if(!last||last.x!==gx||last.y!==gy){trail.unshift({x:gx,y:gy});if(trail.length>TRAIL)trail.pop();}
-  },{passive:true});
-
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    if(Date.now()-lastMouse>2000){
-      idlePos.forEach((pos,i)=>{
-        const t=idleTgt[i],dx=t.x-pos.x,dy=t.y-pos.y;
-        if(Math.abs(dx)<0.02&&Math.abs(dy)<0.02){idleTgt[i]=randCell();}
-        else{pos.x+=dx*IDLE_SPEED;pos.y+=dy*IDLE_SPEED;}
-        const rx=Math.round(pos.x),ry=Math.round(pos.y);
-        const last=trail[0];
-        if(!last||last.x!==rx||last.y!==ry){trail.unshift({x:rx,y:ry});if(trail.length>TRAIL*IDLE_N)trail.pop();}
-      });
-    }
-    trail.forEach((cell,idx)=>{
-      const a=(1-idx/(TRAIL+1))*0.38;
-      ctx.fillStyle=`rgba(122,179,0,${a})`;
-      ctx.shadowColor=`rgba(122,179,0,${a*1.4})`;
-      ctx.shadowBlur=18;
-      ctx.fillRect(cell.x*GS,cell.y*GS,GS,GS);
-    });
-    ctx.shadowBlur=0;
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
 
 /* ── CURSOS PARALLAX ───────────────────── */
 (function(){

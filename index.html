@@ -134,16 +134,16 @@
     <h2 class="sec-title rv d1">Tres culturas conectadas por una misma <em>raíz.</em></h2>
     <p class="sec-sub rv d2">No comparamos países: mostramos cómo distintas formas de pensar el diseño se entrelazan — como ramas de un mismo árbol evolutivo.</p>
   </div>
-  <div class="rutas-img-wrap rv" style="position:relative;z-index:1">
-    <img id="rutasImg" alt="">
-    <svg class="rutas-svg" viewBox="0 0 1000 667" preserveAspectRatio="none">
-      <circle cx="150" cy="330" r="7" fill="none" stroke="#A66A44" stroke-width="1.5" opacity=".9"/><circle cx="150" cy="330" r="2.5" fill="#A66A44"/>
-      <circle cx="500" cy="340" r="7" fill="none" stroke="#F6F1E8" stroke-width="1.2" opacity=".8"/><circle cx="500" cy="340" r="2.5" fill="#F6F1E8"/>
-      <circle cx="830" cy="300" r="7" fill="none" stroke="#A66A44" stroke-width="1.2" opacity=".85"/><circle cx="830" cy="300" r="2.5" fill="#A66A44"/>
-      <text x="168" y="327" font-family="'Space Mono'" font-size="10" fill="white" letter-spacing="1">BR · FLUIDEZ</text>
-      <text x="517" y="337" font-family="'Space Mono'" font-size="10" fill="white" letter-spacing="1">SE · CLARIDAD</text>
-      <text x="706" y="297" font-family="'Space Mono'" font-size="10" fill="white" letter-spacing="1">DK · MATERIALIDAD</text>
-    </svg>
+  <div class="rutas-triptych rv" style="position:relative;z-index:1">
+    <div class="rut-panel">
+      <div class="rut-label"><span class="rut-dot" style="background:var(--wood)"></span>23°S · Brasil</div>
+    </div>
+    <div class="rut-panel">
+      <div class="rut-label"><span class="rut-dot" style="background:var(--acid)"></span>59°N · Suecia</div>
+    </div>
+    <div class="rut-panel">
+      <div class="rut-label"><span class="rut-dot" style="background:var(--wood)"></span>55°N · Dinamarca</div>
+    </div>
   </div>
   <div class="rutas-foot" style="position:relative;z-index:1">
     <div class="rv">
@@ -235,11 +235,11 @@
   </div>
   <!-- Liquid glass accent chips -->
   <div class="hall-accent" style="position:relative;z-index:1">
-    <span class="lgw hall-chip">Uniones históricas</span>
-    <span class="lgw hall-chip">Superficies en transición</span>
-    <span class="lgw hall-chip">Ensambles ocultos</span>
-    <span class="lgw hall-chip">Vetas como mapa</span>
-    <span class="lgw hall-chip">Materialidad revelada</span>
+    <span class="lgd hall-chip">Uniones históricas</span>
+    <span class="lgd hall-chip">Superficies en transición</span>
+    <span class="lgd hall-chip">Ensambles ocultos</span>
+    <span class="lgd hall-chip">Vetas como mapa</span>
+    <span class="lgd hall-chip">Materialidad revelada</span>
   </div>
 </section>
 
@@ -283,85 +283,52 @@
       <h3 class="ter-strip-title">Territorios <em>Futuros</em></h3>
       <p class="ter-strip-body">No todos los objetos pertenecen al pasado. Estas piezas son experimentos: territorios donde la restauración dialoga con la innovación y la tradición imagina nuevas formas.</p>
     </div>
-    <!-- 3D cylinder carousel -->
-    <div class="ter-3d-wrap">
-      <canvas id="terGridCanvas" class="ter-grid-bg"></canvas>
+    <!-- Blob card slider -->
+    <div class="ter-blob-wrap">
+      <div class="ter-blob-track" id="terBlobTrack">
+
+        <div class="ter-blob-outer">
+          <div class="ter-blob"></div>
+          <div class="ter-blob-card">
+            <img id="terCard01" alt="Monolitos">
+            <div class="ter-c-ov"></div>
+            <div class="lg ter-c-caption">
+              <div class="ter-sub">La materia como origen</div>
+              <div class="ter-name-h">Monolitos</div>
+              <a class="ter-cta lgs">Explorar pieza ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ter-blob-outer">
+          <div class="ter-blob" style="animation-delay:-1.67s"></div>
+          <div class="ter-blob-card">
+            <img id="terCard02" alt="Ensamblajes">
+            <div class="ter-c-ov"></div>
+            <div class="lg ter-c-caption">
+              <div class="ter-sub">La estructura como lenguaje</div>
+              <div class="ter-name-h">Ensamblajes</div>
+              <a class="ter-cta lgs">Explorar sistema ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ter-blob-outer">
+          <div class="ter-blob" style="animation-delay:-3.33s"></div>
+          <div class="ter-blob-card">
+            <img id="terCard03" alt="Organismos">
+            <div class="ter-c-ov"></div>
+            <div class="lg ter-c-caption">
+              <div class="ter-sub">La forma como crecimiento</div>
+              <div class="ter-name-h">Organismos</div>
+              <a class="ter-cta lgs">Explorar forma ↗</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <button class="lgd ter-nav-btn ter-nav-prev" id="terPrev" aria-label="Anterior">←</button>
       <button class="lgd ter-nav-btn ter-nav-next" id="terNext" aria-label="Siguiente">→</button>
-      <div class="ter-carousel-vp">
-        <div id="terScene" class="ter-carousel-root">
-
-          <!-- CARD 1 -->
-          <div class="ter-3d-card">
-            <div class="ter-c-edge" style="transform:translateZ(-1.5px)"></div>
-            <div class="ter-c-edge" style="transform:translateZ(-0.8px)"></div>
-            <div class="ter-c-front" style="transform:translateZ(1.5px)">
-              <img id="terCard01" alt="Monolitos">
-              <div class="ter-c-ov"></div>
-              <div class="lg ter-c-caption">
-                <div class="ter-sub">La materia como origen</div>
-                <div class="ter-name-h">Monolitos</div>
-                <a class="ter-cta lgs">Explorar pieza ↗</a>
-              </div>
-            </div>
-            <div class="ter-c-back" style="transform:translateZ(-1.5px) rotateX(180deg)">
-              <div class="ter-c-stripe"></div>
-              <div class="ter-c-back-info">
-                <span class="ter-c-back-title">Monolitos</span>
-                <span class="ter-c-back-sub">La materia como origen</span>
-                <span class="ter-c-back-tag">RAÍZ · Colección Cápsula</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- CARD 2 -->
-          <div class="ter-3d-card">
-            <div class="ter-c-edge" style="transform:translateZ(-1.5px)"></div>
-            <div class="ter-c-edge" style="transform:translateZ(-0.8px)"></div>
-            <div class="ter-c-front" style="transform:translateZ(1.5px)">
-              <img id="terCard02" alt="Ensamblajes">
-              <div class="ter-c-ov"></div>
-              <div class="lg ter-c-caption">
-                <div class="ter-sub">La estructura como lenguaje</div>
-                <div class="ter-name-h">Ensamblajes</div>
-                <a class="ter-cta lgs">Explorar sistema ↗</a>
-              </div>
-            </div>
-            <div class="ter-c-back" style="transform:translateZ(-1.5px) rotateX(180deg)">
-              <div class="ter-c-stripe"></div>
-              <div class="ter-c-back-info">
-                <span class="ter-c-back-title">Ensamblajes</span>
-                <span class="ter-c-back-sub">La estructura como lenguaje</span>
-                <span class="ter-c-back-tag">RAÍZ · Colección Cápsula</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- CARD 3 -->
-          <div class="ter-3d-card">
-            <div class="ter-c-edge" style="transform:translateZ(-1.5px)"></div>
-            <div class="ter-c-edge" style="transform:translateZ(-0.8px)"></div>
-            <div class="ter-c-front" style="transform:translateZ(1.5px)">
-              <img id="terCard03" alt="Organismos">
-              <div class="ter-c-ov"></div>
-              <div class="lg ter-c-caption">
-                <div class="ter-sub">La forma como crecimiento</div>
-                <div class="ter-name-h">Organismos</div>
-                <a class="ter-cta lgs">Explorar forma ↗</a>
-              </div>
-            </div>
-            <div class="ter-c-back" style="transform:translateZ(-1.5px) rotateX(180deg)">
-              <div class="ter-c-stripe"></div>
-              <div class="ter-c-back-info">
-                <span class="ter-c-back-title">Organismos</span>
-                <span class="ter-c-back-sub">La forma como crecimiento</span>
-                <span class="ter-c-back-tag">RAÍZ · Colección Cápsula</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
     </div>
   </div>
 
