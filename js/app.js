@@ -274,6 +274,20 @@ document.querySelectorAll('.course').forEach(c=>{
   });
 });
 
+/* ── MOBILE NAV DRAWER ─────────────────── */
+(function(){
+  const burger=document.getElementById('nBurger');
+  const drawer=document.getElementById('nDrawer');
+  const overlay=document.getElementById('nOverlay');
+  const close=document.getElementById('nDrawerClose');
+  function open(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+  function shut(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+  burger?.addEventListener('click',open);
+  close?.addEventListener('click',shut);
+  overlay?.addEventListener('click',shut);
+  drawer?.querySelectorAll('a').forEach(a=>a.addEventListener('click',shut));
+})();
+
 /* ── LOADER DISMISS ────────────────────── */
 const loader=document.getElementById('loader');
 function dismissLoader(){
