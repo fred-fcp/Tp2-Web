@@ -313,6 +313,16 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .h-stats{display:flex;gap:1rem;flex-wrap:wrap}
 .h-stat{padding:1.2rem 1.4rem;border-radius:1.25rem;width:190px;text-decoration:none;transition:background .3s,box-shadow .3s}
 .h-stat:hover{background:rgba(199,255,77,.12);box-shadow:0 0 0 1px rgba(199,255,77,.25),0 8px 24px rgba(0,0,0,.12)}
+/* ─── STAT CARDS (sistema) ───────────────────── */
+.stat-card{display:flex;flex-direction:column;gap:.6rem;padding:1.1rem 1.25rem;border-radius:1rem;min-width:140px;text-decoration:none;transition:all .3s;cursor:pointer}
+.stat-card:hover{background:rgba(199,255,77,.14)}
+.stat-icon{width:36px;height:36px;border-radius:.5rem;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stat-card:hover .stat-icon{background:rgba(199,255,77,.12)}
+.stat-card:hover .stat-icon svg{stroke:#C7FF4D}
+.stat-bottom{display:flex;flex-direction:column;gap:.15rem}
+.stat-n{font-family:'Manrope',sans-serif;font-size:1.75rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
+.stat-l{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.5;max-width:14ch}
+
 .h-stat:hover .h-stat-n{color:var(--acid)}
 .h-stat:hover .h-stat-l{color:rgba(199,255,77,.75)}
 .h-stat:hover svg{stroke:var(--acid);transition:stroke .3s}
