@@ -243,6 +243,13 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
 
 /* ─── RUTAS ──────────────────────────────────── */
 #rutas{background:var(--bg);padding:7rem 0 0;overflow:hidden;position:relative}
+.rutas-map{
+  position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.rutas-map svg{
+  width:100%;height:100%;opacity:.52;
+  transition:opacity .6s;
+}
 .rutas-img-wrap{position:relative;width:100%;overflow:hidden}
 .rutas-img-wrap img{width:100%;display:block}
 .rutas-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
