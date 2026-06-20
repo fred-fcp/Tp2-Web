@@ -490,12 +490,18 @@ nav.light .n-cta:hover{background:var(--wood)!important;color:#fff!important}
   max-width:36ch;font-weight:300;
 }
 /* ── RUTAS TRIPTYCH ───────────────────────── */
-.rutas-triptych{display:flex;flex-direction:column;width:100%;gap:3px}
-.rut-panel{
-  width:100%;height:260px;overflow:hidden;position:relative;
-  transition:transform .45s;
+.rutas-triptych{
+  display:flex;flex-direction:column;align-items:center;
+  gap:1rem;padding:2rem 3rem;max-width:1400px;margin:0 auto;
 }
-.rut-panel:hover{transform:scaleY(1.04);z-index:2}
+.rut-panel{
+  width:100%;max-width:680px;height:260px;
+  overflow:hidden;position:relative;
+  border-radius:1.25rem;
+  box-shadow:0 8px 32px rgba(0,0,0,.1);
+  transition:transform .4s,box-shadow .4s;
+}
+.rut-panel:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.15)}
 .rut-img{
   width:100%;height:100%;object-fit:cover;display:block;
   filter:grayscale(1);
@@ -674,7 +680,8 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .course-badge{padding:.6rem 1.1rem;font-size:.7rem}
 
   /* RUTAS TRIPTYCH */
-  .rut-panel{height:180px}
+  .rutas-triptych{padding:1.5rem 1.25rem}
+  .rut-panel{max-width:none;height:190px}
 
   /* TERRITORIOS */
   .ter-strip{padding:0;margin-bottom:2rem}
@@ -710,7 +717,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-rail{grid-template-columns:1fr}
   .slide{width:260px;height:340px}
   .slide.feat{width:280px;height:360px}
-  .rut-panel{height:140px}
+  .rut-panel{height:150px}
   .ter-blob-card{width:220px;height:300px}
   .hall-row-1,.hall-row-2{gap:3px}
   .rutas-foot{padding:1.5rem 1.1rem 3rem}
