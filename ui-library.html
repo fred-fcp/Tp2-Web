@@ -41,25 +41,25 @@ body::before{
 
 /* ─── RAIL NAV ───────────────── */
 .sys-rail{
-  width:52px;height:100vh;position:fixed;left:0;top:0;
-  background:rgba(9,7,5,.85);backdrop-filter:blur(20px);
+  width:48px;height:100vh;position:fixed;left:0;top:0;
+  background:rgba(9,7,5,.9);backdrop-filter:blur(20px);
   border-right:1px solid rgba(255,255,255,.07);
   display:flex;flex-direction:column;align-items:center;
-  padding:1.25rem 0;gap:0;z-index:200;
+  padding:1rem 0;gap:0;z-index:200;
 }
 .rail-logo{
   font-family:'Fraunces',Georgia,serif;font-weight:700;
-  font-size:.95rem;color:var(--acid);letter-spacing:.05em;
-  margin-bottom:2rem;
+  font-size:.9rem;color:var(--acid);letter-spacing:.05em;
+  margin-bottom:1.5rem;
 }
-.rail-dots{display:flex;flex-direction:column;align-items:center;gap:1.6rem;flex:1}
+.rail-dots{display:flex;flex-direction:column;align-items:center;gap:1.25rem;flex:1}
 .rail-dot{
   position:relative;display:flex;align-items:center;cursor:pointer;
   text-decoration:none;
 }
 .rail-dot-mark{
   width:6px;height:6px;border-radius:50%;
-  background:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.22);
   transition:background .25s,box-shadow .25s;
 }
 .rail-dot:hover .rail-dot-mark,
@@ -68,34 +68,34 @@ body::before{
   box-shadow:0 0 0 3px rgba(199,255,77,.2);
 }
 .rail-dot-label{
-  position:absolute;left:calc(100% + 12px);
+  position:absolute;left:calc(100% + 10px);
   white-space:nowrap;
-  font-family:var(--fm);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.45);
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
   opacity:0;transform:translateX(-4px);
   transition:opacity .2s,transform .2s;
   pointer-events:none;
-  background:rgba(9,7,5,.9);padding:.2rem .45rem;border-radius:.25rem;
-  border:1px solid rgba(255,255,255,.08);
+  background:rgba(9,7,5,.95);padding:.25rem .55rem;border-radius:.25rem;
+  border:1px solid rgba(255,255,255,.1);
 }
 .rail-dot:hover .rail-dot-label{opacity:1;transform:translateX(0)}
 .rail-version{
-  font-family:var(--fm);font-size:.48rem;letter-spacing:.12em;
-  color:rgba(255,255,255,.2);text-transform:uppercase;margin-top:auto;
+  font-family:var(--fm);font-size:.52rem;letter-spacing:.12em;
+  color:rgba(255,255,255,.28);text-transform:uppercase;margin-top:auto;
   writing-mode:vertical-rl;transform:rotate(180deg);padding-bottom:.5rem;
 }
 
 /* ─── CANVAS ─────────────────── */
 .sys-canvas{
-  margin-left:52px;min-height:100vh;
-  position:relative;z-index:1;width:calc(100% - 52px);
+  margin-left:48px;min-height:100vh;
+  position:relative;z-index:1;width:calc(100% - 48px);
 }
 
 /* ─── HEADER ─────────────────── */
 .sys-header{
   display:grid;grid-template-columns:1fr auto;
   align-items:end;gap:2rem;
-  padding:3rem 3rem 2.5rem;
+  padding:2rem 2.5rem 1.75rem;
   border-bottom:1px solid rgba(255,255,255,.07);
   position:relative;
 }
@@ -104,30 +104,30 @@ body::before{
   width:120px;height:2px;background:var(--acid);opacity:.5;
 }
 .hd-eyebrow{
-  font-family:var(--fm);font-size:.55rem;letter-spacing:.28em;
-  text-transform:uppercase;color:rgba(199,255,77,.6);margin-bottom:.75rem;
+  font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(199,255,77,.7);margin-bottom:.6rem;
   display:flex;align-items:center;gap:.75rem;
 }
 .hd-eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--acid);opacity:.5}
 .hd-title{
   font-family:'Fraunces',Georgia,serif;font-weight:700;
-  font-size:clamp(2.2rem,4vw,3.8rem);color:#fff;
+  font-size:clamp(2rem,3.5vw,3.2rem);color:#fff;
   line-height:.95;letter-spacing:-.025em;
 }
 .hd-title span{color:var(--acid)}
 .hd-sub{
-  font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;
-  color:rgba(255,255,255,.3);text-transform:uppercase;margin-top:.75rem;
+  font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;
+  color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:.6rem;
 }
 .hd-meta{
-  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;
+  display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;
   padding-bottom:.25rem;
 }
 .hd-meta-item{
-  font-family:var(--fm);font-size:.52rem;letter-spacing:.12em;
-  color:rgba(255,255,255,.25);text-transform:uppercase;
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;
+  color:rgba(255,255,255,.35);text-transform:uppercase;
 }
-.hd-meta-item strong{color:rgba(255,255,255,.5);font-weight:400}
+.hd-meta-item strong{color:rgba(255,255,255,.65);font-weight:400}
 
 /* ─── BENTO GRID ─────────────── */
 .sys-bento{
@@ -139,52 +139,52 @@ body::before{
 .sys-mod{
   border-right:1px solid rgba(255,255,255,.06);
   border-bottom:1px solid rgba(255,255,255,.06);
-  padding:2rem 2rem 2.5rem;
+  padding:1.5rem 1.75rem 2rem;
   position:relative;overflow:hidden;
   transition:background .3s;
 }
 .sys-mod::before{
   content:attr(data-id);
-  position:absolute;top:.85rem;left:.85rem;
-  font-family:var(--fm);font-size:.45rem;letter-spacing:.22em;
-  color:rgba(199,255,77,.3);text-transform:uppercase;
+  position:absolute;top:.7rem;left:.7rem;
+  font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;
+  color:rgba(199,255,77,.4);text-transform:uppercase;
 }
 /* corner node dot */
 .sys-mod::after{
   content:'';position:absolute;top:-3px;right:-3px;
   width:5px;height:5px;border-radius:50%;
-  background:rgba(199,255,77,.2);
+  background:rgba(199,255,77,.25);
 }
 
 .mod-title{
-  font-family:var(--fm);font-size:.58rem;letter-spacing:.24em;
-  color:rgba(255,255,255,.55);text-transform:uppercase;
-  margin:1.6rem 0 1.5rem;
+  font-family:var(--fm);font-size:.68rem;letter-spacing:.2em;
+  color:rgba(255,255,255,.7);text-transform:uppercase;
+  margin:1.3rem 0 .9rem;
   display:flex;align-items:center;gap:.65rem;
 }
-.mod-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+.mod-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
 
 .mod-accent-line{
   position:absolute;top:0;left:0;width:100%;height:2px;
   background:linear-gradient(90deg,var(--acid) 0%,transparent 60%);
   opacity:0;transition:opacity .3s;
 }
-.sys-mod:hover .mod-accent-line{opacity:.35}
+.sys-mod:hover .mod-accent-line{opacity:.4}
 
 /* annotation label */
 .ann{
-  font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;
-  color:rgba(255,255,255,.22);text-transform:uppercase;
-  display:flex;align-items:center;gap:.4rem;margin-top:.6rem;
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;
+  color:rgba(255,255,255,.38);text-transform:uppercase;
+  display:flex;align-items:center;gap:.4rem;margin-top:.65rem;
 }
-.ann::before{content:'';display:inline-block;width:16px;height:1px;background:rgba(255,255,255,.15)}
+.ann::before{content:'';display:inline-block;width:16px;height:1px;background:rgba(255,255,255,.2)}
 
 /* ─── GRID SPANS ─────────────── */
 .mod-color    {grid-column:1/8}
-.mod-type     {grid-column:8/13;grid-row:1/3}
-.mod-glass    {grid-column:1/5}
-.mod-buttons  {grid-column:5/13}
-.mod-cards    {grid-column:1/7;grid-row:4/6}
+.mod-type     {grid-column:8/13}
+.mod-glass    {grid-column:1/13}
+.mod-buttons  {grid-column:1/13}
+.mod-cards    {grid-column:1/7}
 .mod-slide    {grid-column:7/13}
 .mod-comps    {grid-column:7/13}
 .mod-courses  {grid-column:1/13}
@@ -204,20 +204,20 @@ body::before{
 .dark-glass{background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)}
 
 /* ─── COLOUR TOKENS ──────────── */
-.swatch-group{margin-bottom:1.4rem}
-.swatch-group-label{font-family:var(--fm);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.65rem}
-.swatch-row{display:flex;gap:.5rem;flex-wrap:wrap}
-.swatch{border-radius:.4rem;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.3);flex-shrink:0;width:68px}
-.swatch-color{height:48px}
-.swatch-info{padding:.35rem .45rem;background:rgba(255,255,255,.04)}
-.swatch-name{font-family:var(--fm);font-size:.48rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);display:block}
-.swatch-val{font-family:var(--fm);font-size:.44rem;color:rgba(255,255,255,.3);margin-top:.1rem;display:block}
+.swatch-group{margin-bottom:1.1rem}
+.swatch-group-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.55rem}
+.swatch-row{display:flex;gap:.45rem;flex-wrap:wrap}
+.swatch{border-radius:.4rem;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.3);flex-shrink:0;width:72px}
+.swatch-color{height:44px}
+.swatch-info{padding:.35rem .45rem;background:rgba(255,255,255,.05)}
+.swatch-name{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.65);display:block}
+.swatch-val{font-family:var(--fm);font-size:.5rem;color:rgba(255,255,255,.4);margin-top:.1rem;display:block}
 
 /* ─── TYPOGRAPHY ─────────────── */
-.type-scale{display:flex;flex-direction:column;gap:1.4rem}
-.type-row{padding-bottom:1.4rem;border-bottom:1px solid rgba(255,255,255,.05)}
-.type-meta{font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.4rem;display:flex;gap:.75rem}
-.type-meta span{color:rgba(199,255,77,.45)}
+.type-scale{display:flex;flex-direction:column;gap:.9rem}
+.type-row{padding-bottom:.9rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.type-meta{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.3rem;display:flex;gap:.75rem}
+.type-meta span{color:rgba(199,255,77,.6)}
 .h-title-demo{font-family:'Fraunces',Georgia,serif;font-style:normal;font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
 .sec-title-demo{font-family:'Manrope',sans-serif;font-size:clamp(1.4rem,2vw,1.9rem);font-weight:600;color:#fff;line-height:1.1}
 .capas-title-demo{font-family:'Manrope',sans-serif;font-size:clamp(1.2rem,1.8vw,1.6rem);font-weight:600;color:#fff;line-height:1.05}
@@ -266,9 +266,9 @@ body::before{
 .m-full{width:100%;justify-content:space-between}
 
 /* Button grid */
-.btn-grid{display:flex;flex-direction:column;gap:.85rem}
+.btn-grid{display:flex;flex-direction:column;gap:.7rem}
 .btn-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.btn-context{font-family:var(--fm);font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2);min-width:80px}
+.btn-context{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);min-width:80px;margin-bottom:.35rem}
 
 /* ─── CARDS ──────────────────── */
 .ter-card-demo{position:relative;width:200px;height:300px;border-radius:1.25rem;overflow:hidden;flex-shrink:0;background:linear-gradient(160deg,#2a1f14,#1a1208);cursor:pointer;transition:transform .4s,box-shadow .4s}
@@ -298,26 +298,26 @@ body::before{
 .find-note{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.6}
 
 /* ─── STAT CARD ──────────────── */
-.stat-card{display:flex;flex-direction:column;gap:.75rem;padding:1.4rem 1.6rem;border-radius:1rem;min-width:150px;text-decoration:none;transition:all .3s;cursor:pointer}
+.stat-card{display:flex;flex-direction:column;gap:.6rem;padding:1.1rem 1.25rem;border-radius:1rem;min-width:140px;text-decoration:none;transition:all .3s;cursor:pointer}
 .stat-card:hover{background:rgba(199,255,77,.14);border-color:rgba(199,255,77,.35) !important}
-.stat-icon{width:40px;height:40px;border-radius:.6rem;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stat-icon{width:36px;height:36px;border-radius:.5rem;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .stat-card:hover .stat-icon{background:rgba(199,255,77,.12)}
 .stat-card:hover .stat-icon svg{stroke:#C7FF4D}
-.stat-bottom{display:flex;flex-direction:column;gap:.2rem}
-.stat-n{font-family:'Manrope',sans-serif;font-size:1.9rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
-.stat-l{font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1.5;max-width:14ch}
+.stat-bottom{display:flex;flex-direction:column;gap:.15rem}
+.stat-n{font-family:'Manrope',sans-serif;font-size:1.75rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
+.stat-l{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.5;max-width:14ch}
 
 /* ─── COURSE ROW ─────────────── */
-.course-row{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:1.4rem 1.6rem;background:transparent;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;transition:background .3s;position:relative;overflow:hidden}
+.course-row{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:1.1rem 1.4rem;background:transparent;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;transition:background .3s;position:relative;overflow:hidden}
 .course-row::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--acid);transform:scaleY(0);transform-origin:top;transition:transform .4s}
 .course-row:hover{background:rgba(255,255,255,.04)}
 .course-row:hover::after{transform:scaleY(1)}
-.course-type{font-family:var(--fm);font-size:.75rem;letter-spacing:.18em;color:var(--acid);text-transform:uppercase;margin-bottom:.4rem}
-.course-name{font-family:'Manrope',sans-serif;font-size:1.25rem;font-weight:600;color:#fff;line-height:1.05;margin-bottom:.3rem}
-.course-desc{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.65;max-width:38ch}
+.course-type{font-family:var(--fm);font-size:.62rem;letter-spacing:.16em;color:var(--acid);text-transform:uppercase;margin-bottom:.3rem}
+.course-name{font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.05;margin-bottom:.25rem}
+.course-desc{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;max-width:38ch}
 .course-price{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:.1rem}
-.course-price-amt{font-family:'Manrope',sans-serif;font-size:1.35rem;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1}
-.course-price-cur{font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.course-price-amt{font-family:'Manrope',sans-serif;font-size:1.25rem;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1}
+.course-price-cur{font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42)}
 
 /* ─── FINAL CTA ──────────────── */
 .fc-eye{font-family:var(--fm);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.5rem}
@@ -359,20 +359,17 @@ body::before{
 .conn-label{font-family:var(--fm);font-size:8px;fill:rgba(199,255,77,.4);letter-spacing:.08em}
 
 /* data-viz decorations */
-.dv-ruler{
-  display:flex;align-items:center;gap:0;
-  margin-bottom:1rem;
-}
+.dv-ruler{display:flex;align-items:center;gap:0;margin-bottom:1rem;}
 .dv-ruler-tick{width:1px;background:rgba(255,255,255,.12);flex-shrink:0}
 .dv-ruler-tick:nth-child(5n){background:rgba(199,255,77,.3)}
 .dv-tag{
   display:inline-flex;align-items:center;gap:.35rem;
-  font-family:var(--fm);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(199,255,77,.5);padding:.2rem .5rem;
-  border:1px solid rgba(199,255,77,.2);border-radius:.25rem;
-  margin-bottom:.6rem;
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(199,255,77,.7);padding:.22rem .55rem;
+  border:1px solid rgba(199,255,77,.25);border-radius:.25rem;
+  margin-bottom:.55rem;
 }
-.dv-tag::before{content:'◈';font-size:.5rem}
+.dv-tag::before{content:'◈';font-size:.52rem}
 
 /* rf-chip preserved */
 .rf-chip{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:.5rem 1rem;border-radius:9999px;cursor:pointer;transition:all .25s;text-decoration:none;position:relative;overflow:hidden}
@@ -383,6 +380,42 @@ body::before{
 .rf-tag{font-family:var(--fm);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acid);display:inline-block;margin-bottom:.5rem}
 .rf-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.6rem;color:#fff;line-height:1.1;margin-bottom:.4rem}
 .rf-desc{font-size:.9rem;color:rgba(255,255,255,.72);line-height:1.7;max-width:38ch;margin-bottom:.75rem}
+
+/* ─── EDITORIAL HIERARCHY ────── */
+.mod-num{font-family:'Fraunces',Georgia,serif;font-size:3rem;font-weight:700;color:rgba(199,255,77,.06);position:absolute;bottom:.75rem;right:1.25rem;letter-spacing:-.05em;line-height:1;pointer-events:none;user-select:none}
+.mod-desc{font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.52);max-width:58ch;margin-bottom:.85rem;font-weight:300}
+.mod-rels{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem}
+.rel-chip{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(199,255,77,.6);padding:.22rem .6rem;border:1px solid rgba(199,255,77,.22);border-radius:.25rem;text-decoration:none;transition:background .2s,color .2s;cursor:pointer}
+.rel-chip:hover{background:rgba(199,255,77,.1);color:rgba(199,255,77,.9)}
+.rel-chip::before{content:'→ ';opacity:.7}
+
+/* ─── CHAPTER SEPARATORS ─────── */
+.sys-chapter{
+  grid-column:1/13;padding:1rem 1.75rem .75rem;
+  display:flex;align-items:center;gap:1rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  position:relative;background:rgba(9,7,5,.5);
+}
+.sys-chapter::before{content:'';position:absolute;left:0;top:0;width:100%;height:1px;background:linear-gradient(90deg,var(--acid) 0%,transparent 35%);opacity:.25}
+.ch-num{font-family:var(--fm);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(199,255,77,.55);flex-shrink:0;min-width:4.5rem}
+.ch-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1rem;color:rgba(255,255,255,.65);letter-spacing:-.01em}
+.ch-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-left:auto}
+.ch-tag{font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:.15rem .45rem;border:1px solid rgba(255,255,255,.1);border-radius:.2rem}
+.ch-line{flex:1;height:1px;background:rgba(255,255,255,.06)}
+
+/* ─── ASSET SECTION ──────────── */
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-top:.25rem}
+.img-item{border-radius:.6rem;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:border-color .25s,transform .3s;position:relative;display:flex;flex-direction:column}
+.img-item:hover{border-color:rgba(199,255,77,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.img-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:rgba(26,18,8,.8);flex-shrink:0}
+.img-thumb.portrait{aspect-ratio:3/4}
+.img-meta{padding:.5rem .6rem .65rem;flex:1;display:flex;flex-direction:column;gap:.2rem}
+.img-path{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;color:rgba(199,255,77,.65);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.img-use{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.5;margin:.1rem 0}
+.img-tag{display:inline-block;font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);padding:.12rem .4rem;border:1px solid rgba(255,255,255,.1);border-radius:.2rem;margin-top:auto}
+.img-cat{font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);margin:1.25rem 0 .6rem;display:flex;align-items:center;gap:.65rem}
+.img-cat::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+.img-cat:first-child{margin-top:0}
 </style>
 </head>
 <body>
@@ -401,7 +434,7 @@ body::before{
     </a>
     <a class="rail-dot" href="#glass">
       <div class="rail-dot-mark"></div>
-      <span class="rail-dot-label">03 · Glass</span>
+      <span class="rail-dot-label">03 · Vidrio</span>
     </a>
     <a class="rail-dot" href="#buttons">
       <div class="rail-dot-mark"></div>
@@ -409,7 +442,7 @@ body::before{
     </a>
     <a class="rail-dot" href="#cards">
       <div class="rail-dot-mark"></div>
-      <span class="rail-dot-label">05 · Cards</span>
+      <span class="rail-dot-label">05 · Tarjetas</span>
     </a>
     <a class="rail-dot" href="#courses">
       <div class="rail-dot-mark"></div>
@@ -417,11 +450,15 @@ body::before{
     </a>
     <a class="rail-dot" href="#mobile">
       <div class="rail-dot-mark"></div>
-      <span class="rail-dot-label">07 · Mobile</span>
+      <span class="rail-dot-label">07 · Móvil</span>
     </a>
     <a class="rail-dot" href="#anim">
       <div class="rail-dot-mark"></div>
       <span class="rail-dot-label">08 · Animaciones</span>
+    </a>
+    <a class="rail-dot" href="#assets" style="margin-top:.8rem">
+      <div class="rail-dot-mark" style="background:rgba(199,255,77,.35);box-shadow:0 0 0 2px rgba(199,255,77,.12)"></div>
+      <span class="rail-dot-label">11 · Recursos</span>
     </a>
   </div>
   <div class="rail-version">v2.0 · 2026</div>
@@ -434,15 +471,15 @@ body::before{
   <header class="sys-header">
     <div>
       <div class="hd-eyebrow">Sistema Visual · RAÍZ Atlas</div>
-      <div class="hd-title">Design<br>System<span>.</span></div>
-      <div class="hd-sub">Atlas Vivo de Transformación · Componentes, tokens y patrones</div>
+      <div class="hd-title">Sistema<br>Visual<span>.</span></div>
+      <div class="hd-sub">Atlas Vivo de Transformación · Componentes, tokens y patrones de diseño</div>
     </div>
     <div class="hd-meta">
       <div class="hd-meta-item">Versión <strong>2.0</strong></div>
       <div class="hd-meta-item">Fecha <strong>06.2026</strong></div>
-      <div class="hd-meta-item">Fuentes <strong>Fraunces · Manrope</strong></div>
-      <div class="hd-meta-item">Paleta <strong>Dark · Cream · Acid</strong></div>
-      <div class="hd-meta-item">Sistema <strong>Liquid Glass</strong></div>
+      <div class="hd-meta-item">Tipografías <strong>Fraunces · Manrope</strong></div>
+      <div class="hd-meta-item">Paleta <strong>Oscuro · Crema · Ácido</strong></div>
+      <div class="hd-meta-item">Sistema <strong>Vidrio Líquido</strong></div>
     </div>
     <!-- SVG decoration -->
     <svg style="position:absolute;right:2rem;bottom:1rem;opacity:.18" width="160" height="60" viewBox="0 0 160 60" fill="none">
@@ -461,11 +498,30 @@ body::before{
   <!-- ═══ BENTO GRID ══════════════════════════════ -->
   <div class="sys-bento">
 
+    <!-- ── CAPÍTULO 01 ───────────────────────────── -->
+    <div class="sys-chapter">
+      <span class="ch-num">CAP·01</span>
+      <span class="ch-name">Fundamentos</span>
+      <span class="ch-line"></span>
+      <div class="ch-tags">
+        <span class="ch-tag">Color</span>
+        <span class="ch-tag">Tipografía</span>
+        <span class="ch-tag">Vidrio líquido</span>
+      </div>
+    </div>
+
     <!-- ══ 01 COLOR TOKENS ════════════════════════ -->
     <section class="sys-mod mod-color" id="tokens" data-id="SYS·01 · COLOR">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">01</div>
       <div class="dv-tag">Tokens</div>
       <div class="mod-title">Paleta · Tones</div>
+      <p class="mod-desc">Tres familias cromáticas que definen el carácter de la marca: lo oscuro como base, lo crema como calidez, y el ácido como pulso de acción. Cada color tiene un rol específico — no son intercambiables.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('typography').scrollIntoView({behavior:'smooth'})">SYS·02 Tipografía</span>
+        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio</span>
+        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 Botones</span>
+      </div>
 
       <!-- SVG ruler decoration -->
       <svg width="100%" height="8" viewBox="0 0 400 8" preserveAspectRatio="none" style="margin-bottom:1.25rem;opacity:.4">
@@ -513,36 +569,42 @@ body::before{
     <!-- ══ 02 TYPOGRAPHY ══════════════════════════ -->
     <section class="sys-mod mod-type" id="typography" data-id="SYS·02 · TYPE">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">02</div>
       <div class="dv-tag">Tipografía</div>
-      <div class="mod-title">Type Scale</div>
+      <div class="mod-title">Escala tipográfica</div>
+      <p class="mod-desc">Fraunces para los momentos de peso y emoción. Manrope para lectura funcional. Space Mono para datos, coordenadas y eyebrows. Las tres trabajan juntas sin competir.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('tokens').scrollIntoView({behavior:'smooth'})">SYS·01 Color</span>
+        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
+      </div>
       <div class="type-scale">
         <div class="type-row">
           <div class="type-meta">
-            <span>Hero Title</span>
+            <span>Título hero</span>
             <span>Fraunces · 700 · normal</span>
           </div>
           <div class="h-title-demo">El Atlas<br>Vivo.</div>
         </div>
         <div class="type-row">
           <div class="type-meta">
-            <span>Section Title</span>
+            <span>Título de sección</span>
             <span>Manrope · 600</span>
           </div>
           <div class="sec-title-demo">Territorios</div>
         </div>
         <div class="type-row">
           <div class="type-meta">
-            <span>Capas Title</span>
+            <span>Título secundario</span>
             <span>Manrope · 600</span>
           </div>
           <div class="capas-title-demo">Capas</div>
         </div>
         <div class="type-row">
-          <div class="type-meta"><span>Body</span><span>Manrope · 300 · 16px</span></div>
+          <div class="type-meta"><span>Cuerpo de texto</span><span>Manrope · 300 · 16px</span></div>
           <div class="body-demo">El recorrido completo: leer, desarmar, intervenir y reinterpretar la materia.</div>
         </div>
         <div class="type-row" style="border-bottom:none">
-          <div class="type-meta"><span>Mono / Eyebrow</span><span>Space Mono · 400</span></div>
+          <div class="type-meta"><span>Mono · Subtítulo</span><span>Space Mono · 400</span></div>
           <div class="mono-demo">SYS · 001 · ATLAS VIVO</div>
         </div>
       </div>
@@ -551,33 +613,93 @@ body::before{
     <!-- ══ 03 GLASS SYSTEM ════════════════════════ -->
     <section class="sys-mod mod-glass" id="glass" data-id="SYS·03 · GLASS">
       <div class="mod-accent-line"></div>
-      <div class="dv-tag">Liquid Glass</div>
-      <div class="mod-title">Variantes</div>
-      <div style="display:flex;flex-direction:column;gap:.75rem;background:url('assets/capas.jpg') center/cover;padding:1.25rem;border-radius:.75rem;position:relative">
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,.3);border-radius:.75rem"></div>
-        <div class="lgs" style="position:relative;padding:1rem;border-radius:.6rem;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.12em;color:rgba(255,255,255,.7)">.lgs</span>
-          <span style="font-family:var(--fm);font-size:.48rem;color:rgba(255,255,255,.35)">blur(50px) · 6%</span>
+      <div class="mod-num">03</div>
+      <div class="dv-tag">Vidrio Líquido</div>
+      <div class="mod-title">Variantes del sistema</div>
+      <p class="mod-desc">El sistema de capas translúcidas que dan profundidad sin peso. Siempre se aplica sobre foto o gradiente oscuro — nunca sobre fondo plano.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 Botones</span>
+        <span class="rel-chip" onclick="document.getElementById('assets').scrollIntoView({behavior:'smooth'})">SYS·11 Recursos</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
+        <!-- lgs -->
+        <div style="background:url('assets/capas.jpg') center/cover;border-radius:.75rem;overflow:hidden;position:relative;min-height:140px">
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,.25)"></div>
+          <div class="lgs" style="position:absolute;inset:.75rem;border-radius:.5rem;display:flex;flex-direction:column;justify-content:space-between;padding:.85rem">
+            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.5)">Clase</span>
+            <div>
+              <div style="font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:#fff;margin-bottom:.2rem">.lgs</div>
+              <div style="font-family:var(--fm);font-size:.44rem;color:rgba(255,255,255,.4)">blur(50px) · bg 6%<br>Nav, CTAs sobre foto</div>
+            </div>
+          </div>
         </div>
-        <div class="dark-glass" style="position:relative;padding:1rem;border-radius:.6rem;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.12em;color:rgba(255,255,255,.7)">.dark-glass</span>
-          <span style="font-family:var(--fm);font-size:.48rem;color:rgba(255,255,255,.35)">blur(22px) · 48%</span>
+        <!-- dark-glass -->
+        <div style="background:url('assets/capas.jpg') center 30%/cover;border-radius:.75rem;overflow:hidden;position:relative;min-height:140px">
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,.25)"></div>
+          <div class="dark-glass" style="position:absolute;inset:.75rem;border-radius:.5rem;display:flex;flex-direction:column;justify-content:space-between;padding:.85rem">
+            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.5)">Clase</span>
+            <div>
+              <div style="font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:#fff;margin-bottom:.2rem">.dark-glass</div>
+              <div style="font-family:var(--fm);font-size:.44rem;color:rgba(255,255,255,.4)">blur(22px) · bg 48%<br>Botones, tarjetas sobre foto</div>
+            </div>
+          </div>
+        </div>
+        <!-- lg -->
+        <div style="background:url('assets/hero.jpg') center/cover;border-radius:.75rem;overflow:hidden;position:relative;min-height:140px">
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,.2)"></div>
+          <div class="lg" style="position:absolute;inset:.75rem;border-radius:.5rem;display:flex;flex-direction:column;justify-content:space-between;padding:.85rem">
+            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.5)">Clase</span>
+            <div>
+              <div style="font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:#fff;margin-bottom:.2rem">.lg</div>
+              <div style="font-family:var(--fm);font-size:.44rem;color:rgba(255,255,255,.4)">blur(8px) · bg 4%<br>Tarjetas de datos, elementos leves</div>
+            </div>
+          </div>
+        </div>
+        <!-- lgw -->
+        <div style="background:url('assets/cursos.jpg') center/cover;border-radius:.75rem;overflow:hidden;position:relative;min-height:140px">
+          <div style="position:absolute;inset:0;background:rgba(0,0,0,.2)"></div>
+          <div class="lgw" style="position:absolute;inset:.75rem;border-radius:.5rem;display:flex;flex-direction:column;justify-content:space-between;padding:.85rem">
+            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.5)">Clase</span>
+            <div>
+              <div style="font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:#fff;margin-bottom:.2rem">.lgw</div>
+              <div style="font-family:var(--fm);font-size:.44rem;color:rgba(255,255,255,.4)">blur(8px) · tono madera<br>Chips de ruta, etiquetas</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="ann">Glass sobre fondos oscuros · foto · gradiente</div>
+      <div class="ann" style="margin-top:.85rem">Siempre sobre foto, gradiente o fondo oscuro — nunca sobre fondo plano</div>
     </section>
 
+    <!-- ── CAPÍTULO 02 ───────────────────────────── -->
+    <div class="sys-chapter">
+      <span class="ch-num">CAP·02</span>
+      <span class="ch-name">Interacción</span>
+      <span class="ch-line"></span>
+      <div class="ch-tags">
+        <span class="ch-tag">Botones</span>
+        <span class="ch-tag">Estado hover</span>
+        <span class="ch-tag">Expansión animada</span>
+      </div>
+    </div>
+
     <!-- ══ 04 BUTTONS ══════════════════════════════ -->
-    <section class="sys-mod mod-buttons" id="buttons" data-id="SYS·04 · BUTTONS">
+    <section class="sys-mod mod-buttons" id="buttons" data-id="SYS·04 · BUTTONS" style="grid-column:1/13">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">04</div>
       <div class="dv-tag">Botones</div>
       <div class="mod-title">Sistema · 5 variantes</div>
+      <p class="mod-desc">Todos los botones comparten la misma animación de expansión — un círculo ácido que emerge desde la izquierda y se expande hasta cubrir el botón. El ícono-flecha rota 45° al hover. La jerarquía va de Vidrio Primario (más sutil) a Relleno Ácido (más directo).</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('tokens').scrollIntoView({behavior:'smooth'})">SYS·01 Color</span>
+        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio</span>
+        <span class="rel-chip" onclick="document.getElementById('anim').scrollIntoView({behavior:'smooth'})">SYS·10 Animaciones</span>
+      </div>
       <div class="btn-grid">
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
           <!-- Glass primary -->
           <div>
-            <div class="btn-context">Glass primary</div>
+            <div class="btn-context">Vidrio primario</div>
             <div style="background:linear-gradient(135deg,#2a1f14,#1a1208);padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
               <a class="btn-primary lgs">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
               <a class="btn-primary lgs" style="background:var(--acid);border-color:transparent;color:var(--dk)">Hover<span class="fc-btn-icon" style="color:var(--dk);border-color:rgba(21,18,16,.22);background:rgba(21,18,16,.1)"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
@@ -585,7 +707,7 @@ body::before{
           </div>
           <!-- Nav CTA -->
           <div>
-            <div class="btn-context">Nav CTA</div>
+            <div class="btn-context">CTA de navegación</div>
             <div style="background:rgba(255,255,255,.03);backdrop-filter:blur(12px);padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
               <a class="btn-nav-cta">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
               <a class="btn-nav-cta" style="background:var(--acid)">Hover<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
@@ -593,7 +715,7 @@ body::before{
           </div>
           <!-- Acid fill -->
           <div>
-            <div class="btn-context">Acid fill</div>
+            <div class="btn-context">Relleno ácido</div>
             <div style="background:var(--dk);padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
               <a class="btn-acid">Comenzar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
               <a class="btn-acid" style="background:#d4ff6a">Hover<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
@@ -601,7 +723,7 @@ body::before{
           </div>
           <!-- Dark glass pill -->
           <div>
-            <div class="btn-context">Dark glass pill</div>
+            <div class="btn-context">Píldora oscura</div>
             <div style="background:url('assets/capas.jpg') center/cover;padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;position:relative">
               <div style="position:absolute;inset:0;background:rgba(0,0,0,.4);border-radius:.75rem"></div>
               <a class="btn-dark" style="position:relative">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
@@ -612,20 +734,39 @@ body::before{
 
         <!-- Animated expand -->
         <div>
-          <div class="btn-context">Animated expand (CTA destacado)</div>
+          <div class="btn-context">Expansión animada · CTA principal</div>
           <div style="background:linear-gradient(135deg,#1c1208,#0f0c08);padding:1.25rem;border-radius:.75rem;display:flex;gap:1rem;align-items:center">
             <a class="fc-btn">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.12em;color:rgba(255,255,255,.2)">← hover para ver</span>
+            <span style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.35)">← pasar el mouse para ver</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ── CAPÍTULO 03 ───────────────────────────── -->
+    <div class="sys-chapter">
+      <span class="ch-num">CAP·03</span>
+      <span class="ch-name">Contenido</span>
+      <span class="ch-line"></span>
+      <div class="ch-tags">
+        <span class="ch-tag">Tarjetas</span>
+        <span class="ch-tag">Carrusel</span>
+        <span class="ch-tag">Puntos activos</span>
+        <span class="ch-tag">Cursos</span>
+      </div>
+    </div>
+
     <!-- ══ 05 CARDS — TER ══════════════════════════ -->
     <section class="sys-mod mod-cards" id="cards" data-id="SYS·05 · CARDS">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">05</div>
       <div class="dv-tag">Cards</div>
       <div class="mod-title">Tarjetas de contenido</div>
+      <p class="mod-desc">Tres familias de tarjetas: Territorios (verticales, foto + CTA), Hallazgos (aparición al pasar el mouse), Estadísticas (datos compactos con ícono). Todas usan la misma lógica de gradiente oscuro inferior.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('assets').scrollIntoView({behavior:'smooth'})">SYS·11 Recursos</span>
+        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio</span>
+      </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
         <!-- ter card -->
         <div>
@@ -653,7 +794,7 @@ body::before{
       </div>
 
       <!-- Stat cards -->
-      <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.6rem;text-transform:uppercase">Stat Cards</div>
+      <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:.6rem;text-transform:uppercase">Tarjetas de datos</div>
       <div style="display:flex;gap:.65rem;flex-wrap:wrap">
         <a class="stat-card lg" style="border-radius:.85rem">
           <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="3.8"/><line x1="12" y1="8.2" x2="12" y2="3.2"/><line x1="15.3" y1="13.9" x2="19.6" y2="16.4"/><line x1="8.7" y1="13.9" x2="4.4" y2="16.4"/><circle cx="12" cy="3.2" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="19.6" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="4.4" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/></svg></div>
@@ -673,8 +814,14 @@ body::before{
     <!-- ══ 06 SLIDE CARD ══════════════════════════ -->
     <section class="sys-mod mod-slide" id="slide" data-id="SYS·06 · SLIDE">
       <div class="mod-accent-line"></div>
-      <div class="dv-tag">Slider · Ruta</div>
+      <div class="mod-num">06</div>
+      <div class="dv-tag">Carrusel · Ruta</div>
       <div class="mod-title">Tarjetas de ruta</div>
+      <p class="mod-desc">Fotos de egresados y rutas geográficas. Usan coordenadas como encabezado pequeño y el sistema de hotspot para marcar puntos de interés dentro de una imagen.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('assets').scrollIntoView({behavior:'smooth'})">SYS·11 Egresados</span>
+        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 Btn-dark</span>
+      </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
         <div class="slide-demo">
           <div class="slide-ov"></div>
@@ -694,7 +841,7 @@ body::before{
         </div>
       </div>
       <!-- Hotspot -->
-      <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.6rem;text-transform:uppercase">Hotspot</div>
+      <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:.6rem;text-transform:uppercase">Punto activo</div>
       <div style="display:flex;gap:1.5rem;align-items:center">
         <div class="hs-dot"></div>
         <div class="hs-card-demo">
@@ -708,8 +855,14 @@ body::before{
     <!-- ══ 07 COURSES ══════════════════════════════ -->
     <section class="sys-mod mod-courses" id="courses" data-id="SYS·07 · CURSOS">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">07</div>
       <div class="dv-tag">Cursos</div>
-      <div class="mod-title">Course Row · Lista de programas</div>
+      <div class="mod-title">Fila de programa · Lista de cursos</div>
+      <p class="mod-desc">Patrón de lista para programas y talleres. El borde izquierdo ácido aparece al hover como indicador de selección. El precio queda siempre alineado a la derecha para facilitar la comparación rápida.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('typography').scrollIntoView({behavior:'smooth'})">SYS·02 Type scale</span>
+        <span class="rel-chip" onclick="document.getElementById('tokens').scrollIntoView({behavior:'smooth'})">SYS·01 --acid</span>
+      </div>
       <div style="border-radius:.75rem;overflow:hidden;background:rgba(255,255,255,.02)">
         <div class="course-row">
           <div>
@@ -738,11 +891,29 @@ body::before{
       </div>
     </section>
 
+    <!-- ── CAPÍTULO 04 ───────────────────────────── -->
+    <div class="sys-chapter">
+      <span class="ch-num">CAP·04</span>
+      <span class="ch-name">Sistema</span>
+      <span class="ch-line"></span>
+      <div class="ch-tags">
+        <span class="ch-tag">Móvil</span>
+        <span class="ch-tag">Llamada a la acción</span>
+        <span class="ch-tag">Animaciones</span>
+      </div>
+    </div>
+
     <!-- ══ 08 MOBILE PREVIEW ═══════════════════════ -->
     <section class="sys-mod mod-mobile" id="mobile" data-id="SYS·08 · MOBILE">
       <div class="mod-accent-line"></div>
-      <div class="dv-tag">Mobile · 390px</div>
-      <div class="mod-title">Vista responsive</div>
+      <div class="mod-num">08</div>
+      <div class="dv-tag">Móvil · 390px</div>
+      <div class="mod-title">Vista móvil · 390px</div>
+      <p class="mod-desc">Todos los componentes deben funcionar en 390px. El nav colapsa a hamburger, los botones se expanden full-width, las cards se apilan en columna.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 .m-full</span>
+        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
+      </div>
       <div class="m-device-wrap" style="padding:1.5rem 0 0">
         <div class="m-device">
           <div class="m-status-bar">
@@ -768,7 +939,7 @@ body::before{
               <a class="btn-primary lgs m-full">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
             </div>
             <div class="m-block">
-              <div class="m-label">Stats</div>
+              <div class="m-label">Estadísticas</div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
                 <a class="stat-card lg" style="border-radius:.65rem;min-width:auto;padding:1rem">
                   <div class="stat-icon" style="width:32px;height:32px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
@@ -781,7 +952,7 @@ body::before{
               </div>
             </div>
             <div class="m-block" style="background:var(--dk)">
-              <div class="m-label">Course row</div>
+              <div class="m-label">Fila de curso</div>
               <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:.65rem">
                 <div class="course-type" style="font-size:.65rem">Programa fundamental</div>
                 <div style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;color:#fff;margin-bottom:.3rem">Restauración Integral</div>
@@ -799,8 +970,14 @@ body::before{
     <!-- ══ 09 FINAL CTA ════════════════════════════ -->
     <section class="sys-mod mod-cta" id="cta" data-id="SYS·09 · CTA">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">09</div>
       <div class="dv-tag">Final CTA</div>
-      <div class="mod-title">Call to action</div>
+      <div class="mod-title">Llamada a la acción</div>
+      <p class="mod-desc">Bloque de cierre de sección. Gradiente oscuro cálido, título grande en Fraunces, encabezado pequeño en mono ácido y el botón fc-btn como único punto de acción.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 fc-btn</span>
+        <span class="rel-chip" onclick="document.getElementById('typography').scrollIntoView({behavior:'smooth'})">SYS·02 Fraunces</span>
+      </div>
       <div style="padding:2.5rem;background:linear-gradient(135deg,rgba(21,18,16,.98) 0%,rgba(28,22,17,.96) 58%,rgba(77,48,32,.96) 100%);border-radius:1rem;border:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap">
         <div>
           <div class="fc-eye">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
@@ -813,24 +990,30 @@ body::before{
     <!-- ══ 10 ANIMACIONES ══════════════════════════ -->
     <section class="sys-mod mod-anim" id="anim" data-id="SYS·10 · ANIMACIONES" style="grid-column:1/13">
       <div class="mod-accent-line"></div>
+      <div class="mod-num">10</div>
       <div class="dv-tag">Animaciones</div>
-      <div class="mod-title">Scroll Reveal · Estados</div>
+      <div class="mod-title">Revelación al scroll · Estados</div>
+      <p class="mod-desc">Los elementos con <code style="font-family:var(--fm);font-size:.75em;color:rgba(199,255,77,.6);background:rgba(199,255,77,.06);padding:.1em .3em;border-radius:.2em">.rv</code> aparecen al entrar en viewport. Los delays <code style="font-family:var(--fm);font-size:.75em;color:rgba(199,255,77,.6);background:rgba(199,255,77,.06);padding:.1em .3em;border-radius:.2em">.d1 .d2 .d3</code> crean efecto en cascada para grupos de elementos relacionados.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
+        <span class="rel-chip" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">SYS·07 Cursos</span>
+      </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
         <div>
-          <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.5rem;text-transform:uppercase">.rv · delay 0</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">opacity:0 → 1<br>translateY(28px) → 0<br><span style="color:rgba(199,255,77,.5)">.9s ease</span></div>
+          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv · sin demora</div>
+          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">opacity:0 → 1<br>translateY(28px) → 0<br><span style="color:rgba(199,255,77,.6)">.9s ease</span></div>
         </div>
         <div>
-          <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.5rem;text-transform:uppercase">.rv.d1 · delay .12s</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">transition-delay: .12s</div>
+          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv.d1 · demora .12s</div>
+          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">transition-delay: .12s</div>
         </div>
         <div>
-          <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.5rem;text-transform:uppercase">.rv.d2 · delay .24s</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">transition-delay: .24s</div>
+          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv.d2 · demora .24s</div>
+          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">transition-delay: .24s</div>
         </div>
         <div>
-          <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.5rem;text-transform:uppercase">.rv.d3 · delay .36s</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">transition-delay: .36s</div>
+          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv.d3 · demora .36s</div>
+          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">transition-delay: .36s</div>
         </div>
       </div>
       <!-- scroll reveal live demo -->
@@ -840,7 +1023,296 @@ body::before{
         <div class="rv d2" style="padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">.rv.d2</div>
         <div class="rv d3" style="padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">.rv.d3</div>
       </div>
-      <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center">
+    </section>
+
+    <!-- ── CAPÍTULO 05 ───────────────────────────── -->
+    <div class="sys-chapter">
+      <span class="ch-num">CAP·05</span>
+      <span class="ch-name">Recursos · Imágenes del sistema</span>
+      <span class="ch-line"></span>
+      <div class="ch-tags">
+        <span class="ch-tag">Hero</span>
+        <span class="ch-tag">Territorios</span>
+        <span class="ch-tag">Hallazgos</span>
+        <span class="ch-tag">Rutas</span>
+        <span class="ch-tag">Egresados</span>
+        <span class="ch-tag">Capas</span>
+      </div>
+    </div>
+
+    <!-- ══ 11 ASSETS ══════════════════════════════ -->
+    <section class="sys-mod" id="assets" data-id="SYS·11 · ASSETS" style="grid-column:1/13;padding-bottom:3rem">
+      <div class="mod-accent-line"></div>
+      <div class="mod-num">11</div>
+      <div class="dv-tag">Imágenes</div>
+      <div class="mod-title">Mapa visual · Todos los recursos</div>
+      <p class="mod-desc">Cada imagen tiene un rol definido en la narrativa visual. No son intercambiables — la paleta, el encuadre y la atmósfera de cada foto fue elegida para su sección específica. Al incorporar nuevas imágenes, respetar el mismo tratamiento: tonos cálidos oscuros, materia visible, textura presente.</p>
+      <div class="mod-rels">
+        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio sobre foto</span>
+        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
+        <span class="rel-chip" onclick="document.getElementById('slide').scrollIntoView({behavior:'smooth'})">SYS·06 Carrusel</span>
+      </div>
+
+      <!-- HERO -->
+      <div class="img-cat">Hero · Apertura</div>
+      <div class="img-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+        <div class="img-item">
+          <img class="img-thumb" src="assets/hero.jpg" alt="Hero poster" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/hero.jpg</span>
+            <span class="img-use">Poster del video hero. Visible mientras carga el video. Encuadre vertical oscuro, materia central.</span>
+            <span class="img-tag">id="heroPoster" · #hero</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <video class="img-thumb" src="assets/heroVid.mp4" muted autoplay loop playsinline style="object-fit:cover"></video>
+          <div class="img-meta">
+            <span class="img-path">assets/heroVid.mp4</span>
+            <span class="img-use">Video de apertura. Se reproduce en loop con fade-in/out. Parallax leve al scroll.</span>
+            <span class="img-tag">id="heroVid" · setupVideo()</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/FONDO.jpg" alt="Fondo" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/FONDO.jpg</span>
+            <span class="img-use">Fondo general de la web. Textura de madera y materia como base cromática.</span>
+            <span class="img-tag">background · body</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAPAS -->
+      <div class="img-cat">Capas · Sección de técnicas</div>
+      <div class="img-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+        <div class="img-item">
+          <img class="img-thumb" src="assets/capas.jpg" alt="Capas" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/capas.jpg</span>
+            <span class="img-use">Imagen central de la sección Capas. También usada como demo del sistema de vidrio en botones y variantes.</span>
+            <span class="img-tag">id="capasImg" · #capas · demos de vidrio</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/CP1 .jpg" alt="CP1" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/CP1 .jpg</span>
+            <span class="img-use">Detalle de técnica artesanal. Complementa la narrativa de capas y procesos.</span>
+            <span class="img-tag">#capas · detalle</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/CP2.jpg" alt="CP2" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/CP2.jpg</span>
+            <span class="img-use">Proceso visible. La imagen muestra las capas del hacer como narrativa visual.</span>
+            <span class="img-tag">#capas · proceso</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/CP3.jpg" alt="CP3" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/CP3.jpg</span>
+            <span class="img-use">Cierre visual de la sección. Textura final, objeto terminado.</span>
+            <span class="img-tag">#capas · resultado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HALLAZGOS -->
+      <div class="img-cat">Hallazgos · Descubrimientos</div>
+      <div class="img-grid">
+        <div class="img-item">
+          <img class="img-thumb" src="assets/h1.jpg" alt="Hallazgo 1" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/h1.jpg</span>
+            <span class="img-use">Primer hallazgo. Objeto o detalle que condensa un descubrimiento conceptual.</span>
+            <span class="img-tag">id="h1" · #hallazgos</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/h2.jpg" alt="Hallazgo 2" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/h2.jpg</span>
+            <span class="img-use">Segundo hallazgo. Encuadre cercano, foco en materia o gesto.</span>
+            <span class="img-tag">id="h2" · #hallazgos</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/h3.jpg" alt="Hallazgo 3" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/h3.jpg</span>
+            <span class="img-use">Tercer hallazgo. Puede ser un lugar, una unión, un acabado.</span>
+            <span class="img-tag">id="h3" · #hallazgos</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/h4.jpg" alt="Hallazgo 4" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/h4.jpg</span>
+            <span class="img-use">Cuarto hallazgo. Cierra la secuencia visual de la sección.</span>
+            <span class="img-tag">id="h4" · #hallazgos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TERRITORIOS -->
+      <div class="img-cat">Territorios · Cards de contenido</div>
+      <div class="img-grid">
+        <div class="img-item">
+          <img class="img-thumb portrait" src="assets/CARD 01.jpg" alt="Card 01" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/CARD 01.jpg</span>
+            <span class="img-use">Tarjeta de territorio 01. Formato vertical, fondo de foto con gradiente oscuro inferior para legibilidad del texto.</span>
+            <span class="img-tag">id="terCard01" · .ter-card</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb portrait" src="assets/CARD 02.jpg" alt="Card 02" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/CARD 02.jpg</span>
+            <span class="img-use">Tarjeta de territorio 02. Misma proporción, atmósfera diferente.</span>
+            <span class="img-tag">id="terCard02" · .ter-card</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb portrait" src="assets/CARD 03.jpg" alt="Card 03" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/CARD 03.jpg</span>
+            <span class="img-use">Tarjeta de territorio 03. Cierra el set de tres en el carrusel horizontal.</span>
+            <span class="img-tag">id="terCard03" · .ter-card</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RUTAS -->
+      <div class="img-cat">Rutas · Triptych geográfico</div>
+      <div class="img-grid">
+        <div class="img-item">
+          <img class="img-thumb" src="assets/rutas.jpg" alt="Rutas" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/rutas.jpg</span>
+            <span class="img-use">Imagen de fondo de la sección Rutas. Atmósfera de viaje y materialidad.</span>
+            <span class="img-tag">id="rutasBG" · #rutas</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/BRA 01.jpg" alt="Brasil" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/BRA 01.jpg</span>
+            <span class="img-use">Panel Brasil. Primera ruta del tríptico. Usa pixel-reveal al entrar en viewport.</span>
+            <span class="img-tag">id="rutasBRA" · .rut-panel</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/SU 02.jpg" alt="Sudamérica" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/SU 02.jpg</span>
+            <span class="img-use">Panel Sudamérica. Segunda ruta. Pixel-reveal con delay escalonado.</span>
+            <span class="img-tag">id="rutasSU" · .rut-panel</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/DI 03.jpg" alt="Diseño" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/DI 03.jpg</span>
+            <span class="img-use">Panel Diseño interior / tercer destino. Cierra el recorrido visual.</span>
+            <span class="img-tag">id="rutasDI" · .rut-panel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EGRESADOS -->
+      <div class="img-cat">Egresados · Carrusel de recorridos</div>
+      <div class="img-grid">
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al1.jpg" alt="Egresado 1" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al1.jpg</span>
+            <span class="img-use">Slide destacado (feat). Sofía Aramburu — Buenos Aires. Incluye cita y datos de coordenada.</span>
+            <span class="img-tag">al1 · .slide.feat</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al2.jpg" alt="Egresado 2" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al2.jpg</span>
+            <span class="img-use">Martín F. — Córdoba. Slide estándar sin cita.</span>
+            <span class="img-tag">al2 · .slide</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al3.jpg" alt="Egresado 3" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al3.jpg</span>
+            <span class="img-use">Laura G. — Rosario.</span>
+            <span class="img-tag">al3 · .slide</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al4.jpg" alt="Egresado 4" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al4.jpg</span>
+            <span class="img-use">Diego M. — Montevideo.</span>
+            <span class="img-tag">al4 · .slide</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al5.jpg" alt="Egresado 5" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al5.jpg</span>
+            <span class="img-use">Ana P. — Santiago.</span>
+            <span class="img-tag">al5 · .slide</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al6.jpg" alt="Egresado 6" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al6.jpg</span>
+            <span class="img-use">Carolina V. — Buenos Aires. El Atlas Personal.</span>
+            <span class="img-tag">al6 · .slide</span>
+          </div>
+        </div>
+        <div class="img-item">
+          <img class="img-thumb" src="assets/al7.jpg" alt="Egresado 7" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/al7.jpg</span>
+            <span class="img-use">Tomás R. — Lima. Cierra el carousel antes de que se duplique en loop.</span>
+            <span class="img-tag">al7 · .slide</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CURSOS -->
+      <div class="img-cat">Cursos · Sección de programas</div>
+      <div class="img-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+        <div class="img-item">
+          <img class="img-thumb" src="assets/cursos.jpg" alt="Cursos" loading="lazy">
+          <div class="img-meta">
+            <span class="img-path">assets/cursos.jpg</span>
+            <span class="img-use">Imagen lateral de la sección Cursos. Se aplica parallax vertical leve sincronizado con el scroll. Fondo de la biblioteca curatorial.</span>
+            <span class="img-tag">id="cursosImg" · #cursos · .cur-lib</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nota de uso -->
+      <div style="margin-top:2.5rem;padding:1.25rem 1.5rem;background:rgba(199,255,77,.04);border:1px solid rgba(199,255,77,.12);border-radius:.65rem;display:flex;gap:1.5rem;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px">
+          <div style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:.5rem">Criterio de selección</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7">Todas las imágenes comparten una paleta cálida oscura: marrones, tierras, negros con sutiles reflejos de luz natural. Evitar imágenes con dominante fría, blanca o saturada — rompen la coherencia cromática del sistema.</div>
+        </div>
+        <div style="flex:1;min-width:220px">
+          <div style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:.5rem">Reglas de uso</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7">Las fotos nunca se muestran crudas — siempre llevan un overlay de gradiente oscuro inferior o un componente glass encima. Las proporciones de las cards (4:3 horizontal, 3:4 vertical) deben respetarse para no distorsionar el encuadre original.</div>
+        </div>
+        <div style="flex:1;min-width:220px">
+          <div style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:.5rem">Paths · Convención</div>
+          <div style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.35);line-height:1.9">assets/hero.jpg<br>assets/capas.jpg<br>assets/h[1-4].jpg<br>assets/CARD 0[1-3].jpg<br>assets/BRA 01.jpg · SU 02.jpg · DI 03.jpg<br>assets/al[1-7].jpg<br>assets/cursos.jpg · FONDO.jpg</div>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center">
         <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;color:rgba(255,255,255,.18);text-transform:uppercase">RAÍZ · Design System · Atlas Vivo de Transformación · v2.0 · 2026</div>
         <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.12em;color:rgba(199,255,77,.3);text-transform:uppercase">SYS·END · ◈</div>
       </div>
