@@ -908,8 +908,13 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .h-ctas{flex-direction:column;align-items:center;gap:.85rem;margin-bottom:2rem}
   .h-cta-p,.h-cta-s{justify-content:center;text-align:center;width:100%}
   .h-ctas .fc-btn,.h-ctas .btn-primary{justify-content:center;width:auto;padding:.45rem .45rem .45rem .9rem;gap:.45rem}
-  .h-stats{flex-direction:column;gap:.75rem}
+  .h-stats{flex-direction:column;align-items:center;gap:.5rem}
   .h-stat{width:auto}
+  .stat-card.lg{flex-direction:row;align-items:center;text-align:left;gap:1rem;padding:1rem 1.25rem;min-width:0;width:100%}
+  .stat-icon{width:42px;height:42px;flex-shrink:0}
+  .stat-bottom{display:flex;flex-direction:column;gap:.25rem;flex:1}
+  .stat-n{font-size:1.65rem;letter-spacing:-.02em}
+  .stat-l{font-size:.72rem;line-height:1.4;max-width:none;letter-spacing:.08em}
   .h-coords,.h-scroll,.h-partners{display:none}
 
   /* SECTIONS SHARED */
