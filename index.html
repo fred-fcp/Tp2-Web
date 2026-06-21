@@ -13,14 +13,10 @@
 @font-face{font-family:'Fraunces';src:url('Typography/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
 @font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}
 
-/* ── HERO TRANSITION ──────────────────────────── */
-#hero{position:relative}
-#hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:14rem;background:linear-gradient(to bottom,transparent 0%,rgba(21,18,16,.6) 50%,#090705 100%);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 55%,black 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 55%,black 100%);z-index:5;pointer-events:none}
-#rutas{position:relative;z-index:1}
-
 /* ── TIPOGRAFÍA DEL SISTEMA ───────────────────── */
 .h-title{font-family:'Fraunces',Georgia,serif!important;font-style:normal!important;font-weight:700!important}
 .sec-title{font-family:'Fraunces',Georgia,serif!important;font-weight:700!important;font-style:normal!important}
+.sec-title em{font-style:normal!important;font-weight:700}
 .capas-title{font-family:'Fraunces',Georgia,serif!important;font-style:normal!important;font-weight:700!important}
 .rf-name{font-family:'Fraunces',Georgia,serif!important;font-style:normal!important;font-weight:500!important}
 </style>
@@ -88,9 +84,9 @@
 
 <!-- ── NAV ───────────────────────────────────── -->
 <nav id="nav">
-  <div class="lg n-logo" style="padding:.55rem 1.4rem">
+  <a href="#hero" class="lg n-logo" style="padding:.55rem 1.4rem;text-decoration:none;display:block">
     <img id="navLogo" src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block;transition:opacity .3s">
-  </div>
+  </a>
   <div class="lg n-links">
     <a href="#hero">Atlas</a>
     <a href="#rutas">Rutas</a>
@@ -137,15 +133,15 @@
       <a href="#cursos" class="btn-primary lgs">Ver los cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
     </div>
     <div class="h-stats rv d3" style="display:flex;gap:.65rem;flex-wrap:wrap">
-      <a href="#cursos" class="stat-card lg" style="border-radius:.85rem">
+      <a href="restauracion-integral.html" class="stat-card lg" style="border-radius:.85rem">
         <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <div class="stat-bottom"><div class="stat-n">8 sem</div><div class="stat-l">Primer laboratorio presencial</div></div>
       </a>
-      <a href="#rutas" class="stat-card lg" style="border-radius:.85rem">
+      <a href="restauracion-integral.html" class="stat-card lg" style="border-radius:.85rem">
         <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="3.8"/><line x1="12" y1="8.2" x2="12" y2="3.2"/><line x1="15.3" y1="13.9" x2="19.6" y2="16.4"/><line x1="8.7" y1="13.9" x2="4.4" y2="16.4"/><circle cx="12" cy="3.2" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="19.6" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="4.4" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/></svg></div>
         <div class="stat-bottom"><div class="stat-n">3+</div><div class="stat-l">Culturas conectadas en el Atlas</div></div>
       </a>
-      <a href="#cursos" class="stat-card lg" style="border-radius:.85rem">
+      <a href="restauracion-integral.html" class="stat-card lg" style="border-radius:.85rem">
         <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="stat-bottom"><div class="stat-n">24</div><div class="stat-l">Cupos por edición</div></div>
       </a>
@@ -189,19 +185,19 @@
       <div class="rf-tag" style="color:var(--wood)">23°S · Brasil</div>
       <div class="rf-name">Fluidez</div>
       <div class="rf-desc">Curvas orgánicas, libertad formal, materiales cálidos. La forma como movimiento.</div>
-      <span class="lgw rf-chip">Expresividad · Materialidad cálida</span>
+      <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Expresividad · Materialidad cálida</a>
     </div>
     <div class="rv d1">
       <div class="rf-tag" style="color:var(--acid)">59°N · Suecia</div>
       <div class="rf-name">Claridad</div>
       <div class="rf-desc">Líneas limpias, geometría, espacio negativo como decisión. La síntesis sofisticada.</div>
-      <span class="lgw rf-chip">Geometría · Vacío funcional</span>
+      <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Geometría · Vacío funcional</a>
     </div>
     <div class="rv d2">
       <div class="rf-tag" style="color:var(--wood)">55°N · Dinamarca</div>
       <div class="rf-name">Materialidad</div>
       <div class="rf-desc">Uniones visibles, detalle constructivo, refinamiento artesanal.</div>
-      <span class="lgw rf-chip">Craft · Ensambles · Precisión</span>
+      <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Craft · Ensambles · Precisión</a>
     </div>
   </div>
 </section>
@@ -218,27 +214,27 @@
     <div class="rv d2">
       <p class="capas-kicker">Cada pieza se revela capa por capa.</p>
       <p class="capas-sub">Cada intervención comienza entendiendo la estructura, los materiales y las decisiones que dieron forma al objeto.</p>
-      <div class="capas-hint-cta capas-hint-mobile">
+      <a href="restauracion-integral.html" class="capas-hint-cta capas-hint-mobile" style="text-decoration:none">
         <span class="capas-hint-icon">◎</span>
         <span>Explorá cada punto del despiece</span>
-      </div>
+      </a>
     </div>
   </div>
   <div class="capas-stage rv" style="position:relative;z-index:1">
     <!-- Crop cutouts -->
     <div class="cp-cluster" aria-hidden="true">
-      <div class="cp-frame cp-1"><img src="assets/CP1 .jpg" alt=""></div>
-      <div class="cp-frame cp-2"><img src="assets/CP2.jpg" alt=""></div>
-      <div class="cp-frame cp-3"><img src="assets/CP3.jpg" alt=""></div>
+      <div class="cp-frame cp-1"><a href="restauracion-integral.html"><img src="assets/CP1 .jpg" alt=""></a></div>
+      <div class="cp-frame cp-2"><a href="restauracion-integral.html"><img src="assets/CP2.jpg" alt=""></a></div>
+      <div class="cp-frame cp-3"><a href="restauracion-integral.html"><img src="assets/CP3.jpg" alt=""></a></div>
     </div>
     <div class="capas-img-outer">
       <div class="capas-img-inner">
         <img id="capasImg" alt="Vista explotada del aparador" class="capas-img">
       </div>
-      <div class="capas-hint-cta">
+      <a href="restauracion-integral.html" class="capas-hint-cta" style="text-decoration:none">
         <span class="capas-hint-icon">◎</span>
         <span>Explorá cada punto del despiece</span>
-      </div>
+      </a>
       <div class="hotspot" style="top:13%;left:64%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 01 · Superficie</div><div class="hs-name">Historia</div><div class="hs-desc">La tapa guarda marcas de uso y acabados previos. Se lee antes de tocar.</div></div></div>
       <div class="hotspot" style="top:32%;left:72%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 02 · Estructura</div><div class="hs-name">Esqueleto</div><div class="hs-desc">Estantes y armazón. Cómo se sostiene revela su lógica constructiva.</div></div></div>
       <div class="hotspot lft" style="top:50%;left:83%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 03 · Material</div><div class="hs-name">Cajonería</div><div class="hs-desc">Maderas claras y oscuras. Cada una con su densidad, su veta, su memoria.</div></div></div>
@@ -259,24 +255,24 @@
   </div>
   <div class="hall-grid" style="position:relative;z-index:1">
     <div class="hall-row hall-row-1">
-      <div class="find tall rv">
+      <a href="restauracion-integral.html" class="find tall rv" style="text-decoration:none;display:block">
         <img id="h1" alt="Espiga a diente">
         <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-001 · Unión</div><div class="find-name">Espiga a diente</div><div class="find-note">Unión tradicional al descubierto. La memoria del ensamble original.</div></div></div>
-      </div>
-      <div class="find sq rv d1">
+      </a>
+      <a href="restauracion-integral.html" class="find sq rv d1" style="text-decoration:none;display:block">
         <img id="h2" alt="Frente de intervención">
         <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-002 · Superficie</div><div class="find-name">Frente de intervención</div><div class="find-note">Donde termina la pátina y comienza la restauración.</div></div></div>
-      </div>
+      </a>
     </div>
     <div class="hall-row hall-row-2">
-      <div class="find sq rv d1">
+      <a href="restauracion-integral.html" class="find sq rv d1" style="text-decoration:none;display:block">
         <img id="h3" alt="Cruceta de estantería">
         <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-003 · Encuentro</div><div class="find-name">Cruceta de estantería</div><div class="find-note">Geometría constructiva. Cada encuentro es una decisión de diseño.</div></div></div>
-      </div>
-      <div class="find tall rv d2">
+      </a>
+      <a href="restauracion-integral.html" class="find tall rv d2" style="text-decoration:none;display:block">
         <img id="h4" alt="Superficie de tapa">
         <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-004 · Veta</div><div class="find-name">Superficie de tapa</div><div class="find-note">La veta como mapa topográfico. Información, no decoración.</div></div></div>
-      </div>
+      </a>
     </div>
   </div>
   <!-- Liquid glass accent chips -->
@@ -322,10 +318,10 @@
       <div class="cur-lib-note">Archivo · Planos, muestras y procesos documentados</div>
     </div>
     <div class="course-list rv d1">
-      <div class="course"><div><div class="course-type">Programa fundamental</div><div class="course-name">Restauración Integral</div><div class="course-desc">El recorrido completo: leer, desarmar, intervenir y reinterpretar.</div><span class="lgw course-badge">8 sem · Presencial · BA</span></div><div class="course-price"><span class="course-price-amt">$118.000</span><span class="course-price-cur">ARS / mes</span></div></div>
-      <div class="course"><div><div class="course-type">Especialización</div><div class="course-name">Materiales y Acabados</div><div class="course-desc">Maderas, fibras, piedras. El espectro completo del material.</div><span class="lgw course-badge">6 sem · Híbrido</span></div><div class="course-price"><span class="course-price-amt">$89.000</span><span class="course-price-cur">ARS / mes</span></div></div>
-      <div class="course"><div><div class="course-type">Cultura del diseño</div><div class="course-name">Historia del Diseño</div><div class="course-desc">Brasil, Escandinavia. Cómo cada cultura piensa la forma.</div><span class="lgw course-badge">6 sem · Online</span></div><div class="course-price"><span class="course-price-amt">$72.000</span><span class="course-price-cur">ARS / mes</span></div></div>
-      <div class="course"><div><div class="course-type">Síntesis</div><div class="course-name">Proyecto Final</div><div class="course-desc">Tu primera restauración completa con punto de vista propio.</div><span class="lgw course-badge">16 sem · Intensivo · BA</span></div><div class="course-price"><span class="course-price-amt">$105.000</span><span class="course-price-cur">ARS / mes</span></div></div>
+      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Programa fundamental</div><div class="course-name">Restauración Integral</div><div class="course-desc">El recorrido completo: leer, desarmar, intervenir y reinterpretar.</div><span class="lgw course-badge">8 sem · Presencial · BA</span></div><div class="course-price"><span class="course-price-amt">$118.000</span><span class="course-price-cur">ARS / mes</span></div></a>
+      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Especialización</div><div class="course-name">Materiales y Acabados</div><div class="course-desc">Maderas, fibras, piedras. El espectro completo del material.</div><span class="lgw course-badge">6 sem · Híbrido</span></div><div class="course-price"><span class="course-price-amt">$89.000</span><span class="course-price-cur">ARS / mes</span></div></a>
+      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Cultura del diseño</div><div class="course-name">Historia del Diseño</div><div class="course-desc">Brasil, Escandinavia. Cómo cada cultura piensa la forma.</div><span class="lgw course-badge">6 sem · Online</span></div><div class="course-price"><span class="course-price-amt">$72.000</span><span class="course-price-cur">ARS / mes</span></div></a>
+      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Síntesis</div><div class="course-name">Proyecto Final</div><div class="course-desc">Tu primera restauración completa con punto de vista propio.</div><span class="lgw course-badge">16 sem · Intensivo · BA</span></div><div class="course-price"><span class="course-price-amt">$105.000</span><span class="course-price-cur">ARS / mes</span></div></a>
     </div>
   </div>
   <!-- ── Territorios Futuros (colección cápsula) ── -->
@@ -344,7 +340,7 @@
           <div class="ter-c-caption">
             <div class="ter-sub">La materia como origen</div>
             <div class="ter-name-h">Monolitos</div>
-            <a class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -356,7 +352,7 @@
           <div class="ter-c-caption">
             <div class="ter-sub">La estructura como lenguaje</div>
             <div class="ter-name-h">Ensamblajes</div>
-            <a class="ter-cta">Explorar sistema<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar sistema<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -368,7 +364,7 @@
           <div class="ter-c-caption">
             <div class="ter-sub">La forma como crecimiento</div>
             <div class="ter-name-h">Organismos</div>
-            <a class="ter-cta">Explorar forma<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar forma<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -381,7 +377,7 @@
       <div class="fc-eye">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
       <div class="fc-head">Comenzar el recorrido.</div>
     </div>
-    <a href="#cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    <a href="restauracion-integral.html" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
   </div>
 </section>
 

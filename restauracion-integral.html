@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Restauración Integral — RAÍZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<style>
+@font-face{font-family:'Fraunces';src:url('Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Fraunces';src:url('Typography/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}
+
+/* ── PAGE BASE ────────────────────────────────── */
+html{min-height:100%;background:linear-gradient(180deg,#070604 0%,#090806 20%,#0c0d07 42%,#111508 62%,#182008 78%,#1f2d08 90%,#253506 100%)}
+body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── TIPOGRAFÍA DEL SISTEMA ───────────────────── */
+.ri-title{font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:clamp(2.8rem,5.5vw,5.2rem);line-height:.95;letter-spacing:-.025em;color:#fff}
+.ri-sec-title{font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:clamp(2rem,3.8vw,3.6rem);line-height:1;letter-spacing:-.02em;color:#fff}
+.ri-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid)}
+.ri-sub{font-family:'Manrope',sans-serif;font-size:1rem;line-height:1.75;color:rgba(255,255,255,.72);max-width:54ch;font-weight:300}
+.ri-num{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:rgba(255,255,255,.28);text-transform:uppercase}
+
+/* ── HERO ─────────────────────────────────────── */
+#ri-hero{padding-top:6rem;min-height:100vh;display:flex;flex-direction:column;position:relative;background-image:url('assets/backlanding.png');background-size:cover;background-position:center;background-repeat:no-repeat}
+#ri-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,4,.72) 0%,rgba(7,6,4,.55) 50%,rgba(7,6,4,.85) 100%);z-index:0;pointer-events:none}
+#ri-hero>*{position:relative;z-index:1}
+.ri-h-top{max-width:860px;margin:0 auto;padding:2.5rem 3rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center}
+.ri-h-kicker{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1.4rem}
+.ri-h-kicker-bar{width:32px;height:1.5px;background:var(--acid)}
+.ri-h-ctas{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+.ri-h-bottom{display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;margin:0 2rem;align-items:start}
+.ri-h-video-wrap{border-radius:1rem;overflow:hidden;max-width:360px;margin-left:auto}
+.ri-h-video-wrap video{width:100%;height:auto;display:block;opacity:0;transition:opacity 1.2s ease}
+.ri-h-video-wrap video.rdy{opacity:1}
+.ri-h-video-rule{height:1px;margin:2rem 2rem 0;background:linear-gradient(to right,transparent,rgba(255,255,255,.06),transparent)}
+
+/* infográfico */
+.ri-h-info{display:flex;flex-direction:column;gap:0;padding:.5rem 0}
+.ri-info-grid{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:.85rem;overflow:hidden;margin-bottom:1.5rem;width:50%}
+.ri-info-cell{background:rgba(255,255,255,.02);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1.25rem;transition:background .3s,transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s}
+.ri-info-cell:hover{background:rgba(255,255,255,.05);transform:translateX(6px);box-shadow:-3px 0 0 0 var(--acid)}
+.ri-info-n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:3rem;color:#fff;line-height:1;letter-spacing:-.03em;min-width:3.5rem}
+.ri-info-unit{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acid)}
+.ri-info-l{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.45);font-weight:400;line-height:1.3}
+.ri-info-right{display:flex;flex-direction:column;gap:.3rem}
+.ri-info-block{padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.ri-info-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.6rem}
+.ri-info-flow{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.ri-flow-step{font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;color:rgba(255,255,255,.82)}
+.ri-flow-step--acid{color:var(--acid)}
+.ri-flow-sep{font-family:'Space Mono',monospace;font-size:.85rem;color:rgba(255,255,255,.2)}
+.ri-info-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+.ri-tag{font-family:'Manrope',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.03em;color:rgba(255,255,255,.65);padding:.4rem .85rem;border:1px solid rgba(255,255,255,.1);border-radius:999px;transition:border-color .3s,color .3s}
+.ri-tag:hover{border-color:rgba(199,255,77,.3);color:var(--acid)}
+
+@media(max-width:800px){.ri-h-bottom{grid-template-columns:1fr}}
+
+/* ── SECTIONS SHARED ──────────────────────────── */
+.ri-sec{padding:5rem 3rem;position:relative}
+.ri-wrap{max-width:1200px;margin:0 auto}
+.ri-two-col{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start}
+.ri-three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+
+/* ── INTRO ────────────────────────────────────── */
+#ri-intro{background:transparent}
+.ri-intro-rule{width:100%;height:1px;background:linear-gradient(to right,var(--acid),rgba(199,255,77,.12),transparent);margin-bottom:2.5rem}
+
+/* ── PROGRAMA / MAP ───────────────────────────── */
+#ri-programa{background:transparent;position:relative;isolation:isolate}
+#ri-programa .island-layer{position:absolute;inset:0;pointer-events:none;z-index:0;background:rgba(52,65,73,.35);filter:url(#octave1) brightness(8) contrast(.6);opacity:.1;mix-blend-mode:luminosity}
+.ri-prog-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:2rem;border:1px solid rgba(255,255,255,.07);border-radius:1rem;overflow:hidden}
+.ri-prog-item{padding:1.75rem 1.5rem;border-right:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);position:relative;transition:background .3s}
+.ri-prog-item:hover{background:rgba(199,255,77,.04)}
+.ri-prog-item:nth-child(even){border-right:none}
+.ri-prog-item:nth-last-child(-n+2){border-bottom:none}
+.ri-prog-num{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:rgba(199,255,77,.45);text-transform:uppercase;margin-bottom:.85rem}
+.ri-prog-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;line-height:1.1;margin-bottom:.6rem}
+.ri-prog-desc{font-size:.82rem;color:rgba(255,255,255,.52);line-height:1.6;font-weight:300}
+.ri-prog-accent{position:absolute;top:0;left:0;width:2px;height:0;background:var(--acid);transition:height .4s cubic-bezier(.22,1,.36,1)}
+.ri-prog-item:hover .ri-prog-accent{height:100%}
+
+/* ── IMAGEN PLACEHOLDER ───────────────────────── */
+.ri-img-ph{background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.1);border-radius:.85rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;text-align:center;overflow:hidden;position:relative}
+.ri-img-ph-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+.ri-img-ph-icon{width:32px;height:32px;opacity:.18}
+.ri-img-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+
+/* ── RESULTADOS ───────────────────────────────── */
+#ri-resultados{background:transparent}
+.ri-result-list{list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.07)}
+.ri-result-item{display:flex;align-items:center;gap:1.5rem;padding:1.6rem 0;border-bottom:1px solid rgba(255,255,255,.07);transition:padding-left .3s}
+.ri-result-item:hover{padding-left:.5rem}
+.ri-result-bar{width:3px;height:28px;background:var(--acid);border-radius:2px;flex-shrink:0;transition:height .3s}
+.ri-result-item:hover .ri-result-bar{height:36px}
+.ri-result-text{font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:500;color:rgba(255,255,255,.88)}
+
+/* ── MODALIDAD ────────────────────────────────── */
+#ri-modalidad{background:transparent;position:relative;isolation:isolate}
+#ri-modalidad .island-layer{position:absolute;inset:0;pointer-events:none;z-index:0;background:rgba(52,65,73,.35);filter:url(#octave1) brightness(8) contrast(.6);opacity:.08;mix-blend-mode:luminosity}
+.ri-modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);border-radius:1rem;overflow:hidden;margin-top:3rem}
+.ri-modal-cell{background:rgba(0,0,0,.18);padding:2rem 1.75rem;transition:background .3s}
+.ri-modal-cell:hover{background:rgba(255,255,255,.04)}
+.ri-modal-val{font-family:'Fraunces',Georgia,serif;font-size:clamp(1.6rem,2.5vw,2.4rem);font-weight:700;color:#fff;line-height:1;margin-bottom:.5rem}
+.ri-modal-key{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+
+/* ── CTA FINAL ─────────────────────────────────── */
+#ri-cta{background:transparent;padding:6rem 3rem 8rem}
+.ri-cta-block{max-width:1200px;margin:0 auto;padding:4rem;background:linear-gradient(135deg,rgba(28,18,8,.98) 0%,rgba(21,16,10,.96) 55%,rgba(77,48,32,.9) 100%);border-radius:1.5rem;border:1px solid rgba(255,255,255,.07);display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center}
+.ri-cta-eyebrow{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:1rem}
+.ri-cta-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2rem,3.5vw,3.2rem);color:#fff;line-height:1;margin-bottom:1rem}
+.ri-cta-text{font-size:.9rem;color:rgba(255,255,255,.58);line-height:1.7;max-width:48ch}
+.ri-cta-btns{display:flex;flex-direction:column;gap:.85rem;flex-shrink:0;align-items:flex-start}
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media(max-width:900px){
+  .ri-two-col{grid-template-columns:1fr;gap:3rem}
+  .ri-prog-grid{grid-template-columns:1fr}
+  .ri-prog-item:nth-child(even){border-right:1px solid rgba(255,255,255,.07)}
+  .ri-prog-item:nth-last-child(-n+2){border-bottom:1px solid rgba(255,255,255,.07)}
+  .ri-prog-item:last-child{border-bottom:none}
+  .ri-modal-grid{grid-template-columns:1fr 1fr}
+  .ri-cta-block{grid-template-columns:1fr;gap:2rem}
+  .ri-sec{padding:5rem 1.5rem}
+  .ri-h-fg{padding:0 1.5rem 4rem}
+  .ri-cta-btns{flex-direction:row;flex-wrap:wrap}
+}
+@media(max-width:600px){
+  .ri-modal-grid{grid-template-columns:1fr}
+  .ri-three-col{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── SVG FILTERS ─────────────────────────────── -->
+<svg class="svg-filters" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="octave1">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0004" numOctaves="8" seed="4" result="o1"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0001" numOctaves="8" seed="4" result="o3"/>
+      <feMerge result="finalIsland"><feMergeNode in="o1"/><feMergeNode in="o3"/><feMergeNode in="o1"/><feMergeNode in="o3"/></feMerge>
+      <feGaussianBlur in="finalIsland" stdDeviation="5" result="noiseo"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0008" numOctaves="8" seed="4" result="o1"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0018" numOctaves="8" seed="4" result="o4"/>
+      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o4"/><feMergeNode in="noiseo"/></feMerge>
+      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0016" numOctaves="8" seed="4" result="o1"/>
+      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o1"/><feMergeNode in="noiseo"/></feMerge>
+      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
+      <feDiffuseLighting in="noiseo" surfaceScale="12" diffuseConstant="1" lighting-color="#d7bb98" result="lit">
+        <feDistantLight azimuth="90" elevation="45"/>
+      </feDiffuseLighting>
+      <feBlend in="lit" in2="SourceGraphic" mode="overlay"/>
+    </filter>
+    <filter id="octave2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0004" numOctaves="8" seed="4" result="o1"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0001" numOctaves="8" seed="4" result="o3"/>
+      <feMerge result="finalIsland"><feMergeNode in="o1"/><feMergeNode in="o3"/><feMergeNode in="o1"/><feMergeNode in="o3"/></feMerge>
+      <feGaussianBlur in="finalIsland" stdDeviation="5" result="noiseo"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0008" numOctaves="8" seed="4" result="o1"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0018" numOctaves="8" seed="4" result="o4"/>
+      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o4"/><feMergeNode in="noiseo"/></feMerge>
+      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0016" numOctaves="8" seed="4" result="o1"/>
+      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o1"/><feMergeNode in="noiseo"/></feMerge>
+      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
+      <feDiffuseLighting in="noiseo" surfaceScale="12" diffuseConstant="1" lighting-color="#d1bf96" result="lit">
+        <feDistantLight azimuth="-90" elevation="45"/>
+      </feDiffuseLighting>
+      <feBlend in="lit" in2="SourceGraphic" mode="overlay"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ── LOADER ──────────────────────────────────── -->
+<div id="loader">
+  <img src="assets/white logo.png" alt="RAÍZ" style="height:36px;width:auto;opacity:.9">
+  <div class="banter-loader">
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div>
+  </div>
+</div>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav id="nav">
+  <div class="lg n-logo" style="padding:.55rem 1.4rem">
+    <img id="navLogo" src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block;transition:opacity .3s">
+  </div>
+  <div class="lg n-links">
+    <a href="index.html">Atlas</a>
+    <a href="index.html#rutas">Rutas</a>
+    <a href="index.html#capas">Capas</a>
+    <a href="index.html#hallazgos">Hallazgos</a>
+    <a href="index.html#cursos" class="n-cta">Inscribirse ↗</a>
+  </div>
+  <div class="n-spacer" style="width:80px"></div>
+  <button class="n-burger" id="nBurger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="n-drawer" id="nDrawer">
+  <button class="n-drawer-close" id="nDrawerClose" aria-label="Cerrar">✕</button>
+  <a href="index.html" class="n-drawer-link">Atlas</a>
+  <a href="index.html#rutas" class="n-drawer-link">Rutas</a>
+  <a href="index.html#capas" class="n-drawer-link">Capas</a>
+  <a href="index.html#hallazgos" class="n-drawer-link">Hallazgos</a>
+  <a href="index.html#cursos" class="n-drawer-cta">Inscribirse ↗</a>
+</div>
+<div class="n-drawer-overlay" id="nOverlay"></div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- HERO                                           -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-hero">
+  <div class="dust" id="dust"></div>
+
+  <!-- contenido centrado -->
+  <div class="ri-h-top">
+    <div class="ri-h-kicker rv">
+      <span class="ri-h-kicker-bar"></span>
+      <span class="ri-label">Recorrido · Laboratorio Presencial · Buenos Aires · 2025</span>
+      <span class="ri-h-kicker-bar"></span>
+    </div>
+    <h1 class="ri-title rv d1" style="font-size:clamp(2.4rem,5vw,4.4rem)">Restauración Integral<br>como territorio de exploración.</h1>
+    <p class="ri-sub rv d2" style="margin-top:1rem;text-align:center">Un recorrido presencial para aprender a leer, intervenir y transformar muebles desde una mirada contemporánea, material y cultural.</p>
+    <div class="ri-h-ctas rv d3">
+      <a href="#ri-cta" class="fc-btn">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <a href="index.html" class="btn-primary lgs">Ver el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- video + infográfico -->
+  <div class="ri-h-bottom rv d2">
+    <!-- video -->
+    <div class="ri-h-video-wrap">
+      <video id="riVid" muted playsinline autoplay preload="auto"></video>
+    </div>
+
+    <!-- infográfico -->
+    <div class="ri-h-info">
+
+      <!-- stats columna -->
+      <div class="ri-info-grid">
+        <div class="ri-info-cell">
+          <div class="ri-info-n">8</div>
+          <div class="ri-info-right">
+            <div class="ri-info-unit">semanas</div>
+            <div class="ri-info-l">Duración del laboratorio</div>
+          </div>
+        </div>
+        <div class="ri-info-cell">
+          <div class="ri-info-n">24</div>
+          <div class="ri-info-right">
+            <div class="ri-info-unit">cupos</div>
+            <div class="ri-info-l">Grupos reducidos por edición</div>
+          </div>
+        </div>
+        <div class="ri-info-cell">
+          <div class="ri-info-n">6</div>
+          <div class="ri-info-right">
+            <div class="ri-info-unit">capas</div>
+            <div class="ri-info-l">Unidades del recorrido</div>
+          </div>
+        </div>
+        <div class="ri-info-cell">
+          <div class="ri-info-n">1:1</div>
+          <div class="ri-info-right">
+            <div class="ri-info-unit">acompañamiento</div>
+            <div class="ri-info-l">Por proyecto · presencial</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- proceso -->
+      <div class="ri-info-block">
+        <div class="ri-info-label">Proceso</div>
+        <div class="ri-info-flow">
+          <span class="ri-flow-step">Observar</span>
+          <span class="ri-flow-sep">→</span>
+          <span class="ri-flow-step">Diagnosticar</span>
+          <span class="ri-flow-sep">→</span>
+          <span class="ri-flow-step">Intervenir</span>
+          <span class="ri-flow-sep">→</span>
+          <span class="ri-flow-step ri-flow-step--acid">Documentar</span>
+        </div>
+      </div>
+
+      <!-- materiales -->
+      <div class="ri-info-block">
+        <div class="ri-info-label">Materiales</div>
+        <div class="ri-info-tags">
+          <span class="ri-tag">Madera maciza</span>
+          <span class="ri-tag">Ensambles</span>
+          <span class="ri-tag">Acabados naturales</span>
+          <span class="ri-tag">Fibras textiles</span>
+          <span class="ri-tag">Metales</span>
+          <span class="ri-tag">Pátinas</span>
+        </div>
+      </div>
+
+      <!-- formato -->
+      <div class="ri-info-block" style="border-bottom:none;padding-bottom:0">
+        <div class="ri-info-label">Formato</div>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.6rem">
+          <div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.35rem;font-weight:700;color:#fff">Presencial</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">Buenos Aires</div>
+          </div>
+          <div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.35rem;font-weight:700;color:var(--acid)">Mar 2025</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">Próximo inicio</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="ri-h-video-rule"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAREA B: INTRO CONCEPTUAL                      -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-intro" class="ri-sec">
+  <div class="ri-wrap">
+    <div class="ri-intro-rule"></div>
+    <div class="ri-two-col">
+      <div>
+        <div class="ch rv" style="margin-bottom:1.5rem">
+          <span class="ch-bar" style="background:var(--wood)"></span>
+          <span class="ch-n" style="color:var(--wood)">01</span>
+          <span class="ch-l" style="color:rgba(255,255,255,.7)">Concepto</span>
+        </div>
+        <h2 class="ri-sec-title rv d1">No aprendes solo una técnica. Aprendes a mirar.</h2>
+      </div>
+      <div style="padding-top:1rem">
+        <p class="ri-sub rv d2" style="font-size:1.1rem;line-height:1.85;margin-bottom:2rem">Cada objeto guarda una estructura, una historia y una lógica material. Este recorrido enseña a observar esas capas antes de intervenirlas.</p>
+        <p class="ri-sub rv d2" style="color:rgba(255,255,255,.5)">No se trata de aprender a lijar o barnizar. Se trata de desarrollar criterio. De entender por qué ese ensamble fue hecho así, qué madera eligió ese artesano, qué historia porta esa pátina. La intervención viene después.</p>
+        <!-- image placeholder: interior de taller / detalle de objeto -->
+        <div class="rv d3" style="height:240px;margin-top:2rem;border-radius:1rem;overflow:hidden">
+          <img src="assets/detalle.jpg" alt="Interior de laboratorio" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+        <!-- CTA persuasivo: intro -->
+        <div class="rv d3" style="margin-top:1.5rem;padding:1.5rem 2rem;background:rgba(199,255,77,.04);border:1px solid rgba(199,255,77,.12);border-radius:1rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Cupos · Marzo 2025</div>
+            <div style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;color:#fff">Los lugares se agotan antes de que el recorrido empiece.</div>
+          </div>
+          <a href="#ri-cta" class="fc-btn" style="flex-shrink:0">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAREA B: MAPA DEL PROGRAMA                     -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-programa" class="ri-sec">
+  <div class="ri-wrap">
+    <div style="text-align:center;max-width:680px;margin:0 auto">
+      <div class="ch rv" style="margin-bottom:1.5rem;justify-content:center">
+        <span class="ch-bar" style="background:var(--acid)"></span>
+        <span class="ch-n" style="color:var(--acid)">02</span>
+        <span class="ch-l" style="color:rgba(255,255,255,.7)">El Recorrido</span>
+      </div>
+      <h2 class="ri-sec-title rv d1">El recorrido se organiza en capas.</h2>
+      <p class="ri-sub rv d2" style="margin:1.2rem auto 0;color:rgba(255,255,255,.5);text-align:center">Seis unidades que van de la observación al proyecto. Cada capa construye sobre la anterior.</p>
+    </div>
+
+    <div class="ri-prog-grid rv d2">
+      <div class="ri-prog-item">
+        <div class="ri-prog-accent"></div>
+        <div class="ri-prog-num">Capa · 01</div>
+        <div class="ri-prog-name">Observación del objeto</div>
+        <div class="ri-prog-desc">Aprender a leer un mueble antes de tocarlo. Estructura, materiales, historia de uso, intervenciones previas.</div>
+      </div>
+      <div class="ri-prog-item">
+        <div class="ri-prog-accent"></div>
+        <div class="ri-prog-num">Capa · 02</div>
+        <div class="ri-prog-name">Diagnóstico material</div>
+        <div class="ri-prog-desc">Identificar maderas, fibras, metales y acabados. Entender el deterioro como información, no como problema.</div>
+      </div>
+      <div class="ri-prog-item">
+        <div class="ri-prog-accent"></div>
+        <div class="ri-prog-num">Capa · 03</div>
+        <div class="ri-prog-name">Ensambles y estructura</div>
+        <div class="ri-prog-desc">Los sistemas constructivos como lenguaje. Cómo los ensambles revelan la lógica del diseñador original.</div>
+      </div>
+      <div class="ri-prog-item">
+        <div class="ri-prog-accent"></div>
+        <div class="ri-prog-num">Capa · 04</div>
+        <div class="ri-prog-name">Acabados naturales</div>
+        <div class="ri-prog-desc">Aceites, ceras, lacas naturales y tintes. El acabado como parte del diseño, no como decoración.</div>
+      </div>
+      <div class="ri-prog-item">
+        <div class="ri-prog-accent"></div>
+        <div class="ri-prog-num">Capa · 05</div>
+        <div class="ri-prog-name">Intervención contemporánea</div>
+        <div class="ri-prog-desc">Cómo intervenir con criterio sin borrar la historia. El diálogo entre lo original y lo nuevo.</div>
+      </div>
+      <div class="ri-prog-item">
+        <div class="ri-prog-accent"></div>
+        <div class="ri-prog-num">Capa · 06</div>
+        <div class="ri-prog-name">Proyecto final</div>
+        <div class="ri-prog-desc">Una restauración completa documentada. Objeto real, proceso visible, resultado con punto de vista propio.</div>
+      </div>
+    </div>
+
+    <!-- CTA persuasivo: programa -->
+    <div class="rv d3" style="margin-top:2rem;text-align:center">
+      <div style="font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.75rem">24 participantes · cada edición</div>
+      <p style="font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:500;color:#fff;max-width:480px;margin:0 auto 1.5rem;line-height:1.55">El grupo reducido no es un detalle menor. Es la condición que hace posible trabajar con tu propio objeto y tu propio ritmo.</p>
+      <a href="#ri-cta" class="fc-btn">Asegurar mi lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAREA C: CASO DE ESTUDIO                       -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-caso" class="ri-sec">
+  <div class="ri-wrap">
+    <div class="ch rv" style="margin-bottom:1.5rem">
+      <span class="ch-bar" style="background:var(--wood)"></span>
+      <span class="ch-n" style="color:var(--wood)">03</span>
+      <span class="ch-l" style="color:rgba(255,255,255,.7)">Caso de estudio</span>
+    </div>
+    <div class="ri-two-col" style="margin-bottom:3rem">
+      <h2 class="ri-sec-title rv d1">Un objeto real como territorio.</h2>
+      <p class="ri-sub rv d2" style="padding-top:.5rem">Cada recorrido trabaja sobre piezas reales. El objeto es el punto de partida, el archivo y el resultado final.</p>
+    </div>
+
+    <!-- antes / después -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:1rem;overflow:hidden;margin-bottom:2px" class="rv d1">
+      <div class="ri-img-ph" style="height:340px;border-radius:0">
+        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="ri-img-ph-label">imagen · antes · objeto sin intervenir</span>
+        <span class="ri-num" style="margin-top:.35rem;position:absolute;bottom:1rem;left:1rem">Estado original</span>
+      </div>
+      <div class="ri-img-ph" style="height:340px;border-radius:0">
+        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="ri-img-ph-label">imagen · después · objeto restaurado</span>
+        <span class="ri-num" style="margin-top:.35rem;position:absolute;bottom:1rem;left:1rem">Resultado final</span>
+      </div>
+    </div>
+
+    <!-- macro + axonométrica -->
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:2px;border-radius:0 0 1rem 1rem;overflow:hidden" class="rv d2">
+      <div class="ri-img-ph" style="height:220px;border-radius:0">
+        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        <span class="ri-img-ph-label">macro · detalle de ensamble restaurado</span>
+      </div>
+      <div class="ri-img-ph" style="height:220px;border-radius:0;background:rgba(255,255,255,.02)">
+        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/></svg>
+        <span class="ri-img-ph-label">ilustración · axonométrica explotada del objeto</span>
+      </div>
+    <!-- CTA persuasivo: caso -->
+    <div class="rv d3" style="margin-top:2rem;padding:1.75rem 2rem;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap">
+      <p style="font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:500;color:rgba(255,255,255,.75);max-width:460px;margin:0;line-height:1.55">Cada participante llega con su propio objeto. El tuyo ya tiene historia — el recorrido le da lenguaje.</p>
+      <a href="#ri-cta" class="btn-primary lgs" style="flex-shrink:0">Iniciar el proceso<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAREA D: RESULTADOS                            -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-resultados" class="ri-sec">
+  <div class="ri-wrap">
+    <div class="ch rv" style="margin-bottom:1.25rem">
+      <span class="ch-bar" style="background:var(--acid)"></span>
+      <span class="ch-n" style="color:var(--acid)">04</span>
+      <span class="ch-l" style="color:rgba(255,255,255,.7)">Lo que llevás</span>
+    </div>
+    <h2 class="ri-sec-title rv d1">El resultado no es solo un mueble restaurado.</h2>
+    <!-- CTA persuasivo: resultados — debajo del h2 -->
+    <div class="rv d2" style="margin-top:1.75rem;background:linear-gradient(135deg,rgba(199,255,77,.06) 0%,rgba(166,106,68,.06) 100%);border:1px solid rgba(199,255,77,.1);border-radius:1rem;padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap">
+      <p style="font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;color:#fff;max-width:480px;margin:0;line-height:1.5">El portfolio no se construye después del recorrido. Se construye durante — junto con el objeto.</p>
+      <a href="#ri-cta" class="fc-btn" style="flex-shrink:0">Empezar ahora<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+    <div class="ri-two-col" style="margin-top:2.5rem">
+      <p class="ri-sub rv d1">Al final del recorrido no tenés solo un objeto terminado. Tenés un criterio, una metodología y un proyecto documentado.</p>
+      <ul class="ri-result-list rv d2">
+        <li class="ri-result-item">
+          <span class="ri-result-bar"></span>
+          <span class="ri-result-text">Criterio de observación material</span>
+        </li>
+        <li class="ri-result-item">
+          <span class="ri-result-bar"></span>
+          <span class="ri-result-text">Conocimiento de maderas, fibras y acabados</span>
+        </li>
+        <li class="ri-result-item">
+          <span class="ri-result-bar"></span>
+          <span class="ri-result-text">Metodología de intervención documentada</span>
+        </li>
+        <li class="ri-result-item">
+          <span class="ri-result-bar"></span>
+          <span class="ri-result-text">Archivo del proceso completo</span>
+        </li>
+        <li class="ri-result-item">
+          <span class="ri-result-bar"></span>
+          <span class="ri-result-text">Proyecto final para portfolio propio</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TAREA E: CTA FINAL                             -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-cta">
+  <div class="ri-cta-block rv">
+    <div>
+      <div class="ri-cta-eyebrow">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
+      <div class="ri-cta-title">Entrar al próximo territorio.</div>
+      <p class="ri-cta-text">Reservá tu lugar en el próximo recorrido de Restauración Integral. Un laboratorio presencial en Buenos Aires con grupos reducidos y acompañamiento por proyecto.</p>
+    </div>
+    <div class="ri-cta-btns">
+      <a href="#" class="fc-btn">Iniciar inscripción<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <a href="index.html#hallazgos" class="btn-dark">Ver Hallazgos del Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────── -->
+<footer>
+  <img src="assets/white logo.png" alt="RAÍZ" style="height:18px;width:auto;opacity:.35">
+  <span class="fn">Restauración Integral · Buenos Aires · 2025</span>
+  <span class="fn">34°36'S · 58°22'W</span>
+</footer>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- JS                                             -->
+<!-- ══════════════════════════════════════════════ -->
+<script>
+/* ── LOADER ────────────────────────────────────── */
+const loader=document.getElementById('loader');
+let loaderDone=false;
+function tryDismiss(){if(loaderDone)return;loaderDone=true;loader.classList.add('hidden');setTimeout(()=>loader.style.display='none',900);}
+window.addEventListener('load',()=>setTimeout(tryDismiss,400));
+setTimeout(tryDismiss,2500);
+
+/* ── NAV BURGER ────────────────────────────────── */
+const burger=document.getElementById('nBurger');
+const drawer=document.getElementById('nDrawer');
+const overlay=document.getElementById('nOverlay');
+const drawerClose=document.getElementById('nDrawerClose');
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+if(burger)burger.addEventListener('click',openDrawer);
+if(drawerClose)drawerClose.addEventListener('click',closeDrawer);
+if(overlay)overlay.addEventListener('click',closeDrawer);
+
+/* ── DUST PARTICLES ────────────────────────────── */
+const dustEl=document.getElementById('dust');
+if(dustEl){for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*2.5+1;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*16+14}s;animation-delay:${Math.random()*-20}s;opacity:${Math.random()*.5+.2}`;dustEl.appendChild(p);}}
+
+/* ── VIDEO SETUP ───────────────────────────────── */
+const FADE_MS=500,FADE_LEAD=0.55;
+function setupVideo(vid,src){
+  if(!vid||!src)return;
+  let raf=null,fadingOut=false;
+  vid.src=src;vid.style.opacity=0;
+  function fadeTo(t,ms){
+    if(raf)cancelAnimationFrame(raf);
+    const s=performance.now(),from=parseFloat(vid.style.opacity)||0;
+    function step(n){const p=Math.min((n-s)/ms,1);vid.style.opacity=from+(t-from)*p;if(p<1)raf=requestAnimationFrame(step);}
+    raf=requestAnimationFrame(step);
+  }
+  vid.addEventListener('loadeddata',()=>{vid.classList.add('rdy');vid.style.opacity=0;vid.play().catch(()=>{});fadeTo(1,FADE_MS);});
+  vid.addEventListener('timeupdate',()=>{if(!fadingOut&&vid.duration&&(vid.duration-vid.currentTime)<=FADE_LEAD&&(vid.duration-vid.currentTime)>0){fadingOut=true;fadeTo(0,FADE_MS);}});
+  vid.addEventListener('ended',()=>{vid.style.opacity=0;setTimeout(()=>{vid.currentTime=0;vid.play().catch(()=>{});fadingOut=false;fadeTo(1,FADE_MS);},100);});
+}
+setupVideo(document.getElementById('riVid'),'assets/human.mp4');
+
+/* ── SCROLL REVEAL ─────────────────────────────── */
+const rvEls=document.querySelectorAll('.rv');
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07,rootMargin:'0px 0px -25px 0px'});
+rvEls.forEach(el=>io.observe(el));
+
+/* ── NAV SECTION AWARE ─────────────────────────── */
+const navEl=document.getElementById('nav');
+(function(){
+  const LIGHT=new Set([]);
+  const ioNav=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      navEl.classList.toggle('light',LIGHT.has(e.target.id));
+    });
+  },{rootMargin:'-35% 0px -35% 0px',threshold:0});
+  document.querySelectorAll('section[id]').forEach(s=>ioNav.observe(s));
+})();
+
+/* ── LOGO SWAP ─────────────────────────────────── */
+(function(){
+  const logo=document.getElementById('navLogo');
+  if(!logo)return;
+  const map={
+    'ri-hero':        'assets/white logo.png',
+    'ri-intro':       'assets/white logo.png',
+    'ri-programa':    'assets/acid logo.png',
+    'ri-caso':        'assets/white logo.png',
+    'ri-resultados':  'assets/white logo.png',
+    'ri-modalidad':   'assets/acid logo.png',
+    'ri-cta':         'assets/white logo.png',
+  };
+  const ioLogo=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const src=map[e.target.id];
+      if(!src||logo.getAttribute('src')===src)return;
+      logo.style.opacity='0';
+      setTimeout(()=>{logo.src=src;logo.style.opacity='1';},150);
+    });
+  },{rootMargin:'-40% 0px -40% 0px',threshold:0});
+  document.querySelectorAll('section[id]').forEach(s=>ioLogo.observe(s));
+})();
+</script>
+</body>
+</html>

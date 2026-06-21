@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <rect width="600" height="800" fill="#0c0a07"/>
+  <rect x="40" y="40" width="520" height="720" rx="8" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="6 4"/>
+  <g transform="translate(300,380)" opacity="0.18">
+    <rect x="-28" y="-28" width="56" height="56" rx="4" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="0" cy="-8" r="8" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <polyline points="-20,20 -6,4 6,12 20,-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+  <text x="300" y="440" text-anchor="middle" font-family="monospace" font-size="10" letter-spacing="3" fill="rgba(255,255,255,0.2)" text-transform="uppercase">imagen · restauración</text>
+</svg>
