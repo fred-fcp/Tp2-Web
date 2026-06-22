@@ -301,7 +301,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .h-fg{position:relative;z-index:10;padding:0 3rem;max-width:1400px;margin:0 auto;width:100%;padding-top:7rem;flex:1;display:flex;flex-direction:column;justify-content:center}
 .h-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.375rem .5rem;border-radius:9999px;margin-bottom:1.5rem;align-self:flex-start}
 .h-badge-new{background:#fff;color:var(--dk);font-family:var(--fb);font-size:.9rem;font-weight:600;padding:.25rem .75rem;border-radius:9999px}
-.h-badge-txt{font-family:var(--fb);font-size:1rem;color:rgba(255,255,255,.9);padding-right:.75rem}
+.h-badge-txt{font-family:var(--fb);font-size:1.15rem;color:rgba(255,255,255,.9);padding-right:.75rem}
 .h-title{font-family:var(--fi);font-style:italic;font-size:clamp(3rem,7vw,6.5rem);font-weight:400;line-height:.9;letter-spacing:-.02em;color:#fff;max-width:16ch;margin-bottom:1.5rem}
 .h-title .acid{color:var(--acid)}
 .h-sub{font-size:1.35rem;line-height:1.85;color:rgba(255,255,255,.7);max-width:44ch;margin-bottom:2rem;font-weight:300}
