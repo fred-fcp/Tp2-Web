@@ -156,7 +156,7 @@
 <section id="rutas" class="noise-bg">
   <div class="rutas-hero">
   <div class="sec-wrap rutas-text">
-    <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">02</span><span class="ch-l">Las Rutas</span></div>
+    <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:#C7FF4D">02</span><span class="ch-l">Las Rutas</span></div>
     <h2 class="sec-title rv d1">Tres culturas conectadas por una misma <em>raíz.</em></h2>
     <div class="rv d2" style="display:inline-block;max-width:46ch;margin-bottom:2.5rem;padding:1.2rem 1.4rem;border-radius:1.5rem;background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)">
       <p class="sec-sub" style="margin-bottom:0">No comparamos países: mostramos cómo distintas formas de pensar el diseño se entrelazan — como ramas de un mismo árbol evolutivo.</p>
@@ -180,7 +180,7 @@
     </div>
   </div>
   </div><!-- /rutas-hero -->
-  <div class="rutas-foot" style="position:relative;z-index:1">
+  <div class="rutas-foot" style="position:relative;z-index:1;isolation:auto">
     <div class="rv">
       <div class="rf-tag" style="color:var(--wood)">23°S · Brasil</div>
       <div class="rf-name">Fluidez</div>
@@ -203,9 +203,11 @@
 </section>
 
 <!-- ── CAPAS ──────────────────────────────────── -->
-<section id="capas" class="island-bg">
-  <div class="island-layer"></div>
-  <div class="island-layer2"></div>
+<section id="capas">
+  <div class="capas-vid-wrap" aria-hidden="true">
+    <video class="capas-vid-bg" autoplay muted loop playsinline preload="none" data-src="assets/seccion3.mp4"></video>
+    <div class="capas-vid-overlay"></div>
+  </div>
   <div class="capas-head" style="position:relative;z-index:1">
     <div>
       <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">03</span><span class="ch-l">Capas</span></div>
@@ -242,11 +244,14 @@
       <div class="hotspot lft" style="top:84%;left:63%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 05 · Soporte</div><div class="hs-name">Patas torneadas</div><div class="hs-desc">La base como firma. Proporción y refinamiento contemporáneo.</div></div></div>
     </div>
   </div>
+  <div class="hall-tools-bridge" aria-hidden="true">
+    <img src="assets/tools.png" alt="" class="hall-tools-bridge-img">
+  </div>
 </section>
 
 <!-- ── HALLAZGOS ──────────────────────────────── -->
 <section id="hallazgos" class="noise-bg">
-  <div class="hall-head" style="position:relative;z-index:1">
+  <div class="hall-head" style="position:relative;z-index:200">
     <div>
       <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">04</span><span class="ch-l">Hallazgos</span></div>
       <h2 class="sec-title rv d1">Lo que se descubre al <em>mirar de cerca.</em></h2>
@@ -276,6 +281,7 @@
     </div>
   </div>
   <!-- Liquid glass accent chips -->
+  <div class="hall-arch" aria-hidden="true"></div>
 </section>
 
 <!-- ── COMUNIDAD (slider) ─────────────────────── -->
@@ -307,7 +313,8 @@
 
 <!-- ── CURSOS ─────────────────────────────────── -->
 <section id="cursos" class="noise-bg">
-  <div style="max-width:1400px;margin:0 auto;position:relative;z-index:1">
+  <div class="cursos-arch-top" aria-hidden="true"></div>
+  <div style="max-width:1400px;margin:0 auto;position:relative;z-index:10">
     <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">06</span><span class="ch-l">Cursos</span></div>
     <h2 class="sec-title rv d1">Aprende a transformar muebles desde una mirada <em>contemporánea.</em></h2>
     <p class="sec-sub rv d2">No una plataforma educativa: una biblioteca de conocimiento. Todo lo que viste arriba se aprende acá.</p>
@@ -374,7 +381,7 @@
 
   <div class="rv" style="margin:0 3rem 4rem;padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;z-index:1">
     <div>
-      <div class="fc-eye">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
+      <div class="fc-eye">Próximo recorrido · Julio 2026 · Cupos limitados</div>
       <div class="fc-head">Comenzar el recorrido.</div>
     </div>
     <a href="restauracion-integral.html" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>

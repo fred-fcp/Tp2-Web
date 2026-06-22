@@ -14,11 +14,16 @@
     });
   }
   window.addEventListener('scroll',onScroll,{passive:true});
-  /* fade out bg once #capas enters viewport */
+  /* fade out bg gradually as #capas scrolls in */
   if(capas){
-    new IntersectionObserver(([e])=>{
-      bg.style.opacity=e.isIntersecting?'0':'1';
-    },{threshold:0.1}).observe(capas);
+    bg.style.transition='opacity .6s ease';
+    window.addEventListener('scroll',()=>{
+      const r=capas.getBoundingClientRect();
+      const vh=window.innerHeight;
+      /* start fading when capas top hits 80% of viewport, fully gone at 20% */
+      const raw=Math.min(Math.max((vh*.8-r.top)/(vh*.6),0),1);
+      bg.style.opacity=String((1-raw).toFixed(3));
+    },{passive:true});
   }
 })();
 
@@ -51,6 +56,33 @@ window.addEventListener('scroll',()=>{
   const r=capasEl.getBoundingClientRect(),vh=window.innerHeight;
   if(r.top<vh&&r.bottom>0){const p=(vh-r.top)/(vh+r.height);capasEl.style.transform=`scale(${1+p*.05})`;}
 },{passive:true});
+
+/* ── CAPAS VIDEO BG — lazy load + parallax ── */
+(function(){
+  const sec=document.getElementById('capas');
+  const vid=sec?.querySelector('.capas-vid-bg');
+  if(!sec||!vid)return;
+  let loaded=false,tick=false;
+  /* lazy-load src on first intersection */
+  new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting||loaded)return;
+    loaded=true;
+    vid.src=vid.dataset.src;
+    vid.load();
+  },{rootMargin:'200px'}).observe(sec);
+  /* parallax: video drifts slower than scroll */
+  window.addEventListener('scroll',()=>{
+    if(tick)return;tick=true;
+    requestAnimationFrame(()=>{
+      tick=false;
+      const r=sec.getBoundingClientRect(),vh=window.innerHeight;
+      if(r.top>vh||r.bottom<0)return;
+      const p=(vh-r.top)/(vh+r.height);
+      const y=((p-.5)*80).toFixed(2);
+      vid.style.transform=`scale(1.18) translateY(${y}px)`;
+    });
+  },{passive:true});
+})();
 
 
 /* ── HERO PARALLAX ON SCROLL ─────────────────── */
@@ -339,4 +371,24 @@ setTimeout(tryDismiss,2500);
     });
   },{rootMargin:'-40% 0px -40% 0px',threshold:0});
   document.querySelectorAll('section[id],#hero').forEach(s=>io.observe(s));
+})();
+
+/* ── HALLAZGOS FLIP (mobile viewport) ─────────────── */
+(function(){
+  function initFlip(){
+    if(window.innerWidth>768)return;
+    document.querySelectorAll('#hallazgos .find').forEach(card=>{
+      if(card._flipBound)return;
+      card._flipBound=true;
+      card.addEventListener('click',function(e){
+        if(!this.classList.contains('flipped')){
+          e.preventDefault();
+          document.querySelectorAll('#hallazgos .find.flipped').forEach(c=>c.classList.remove('flipped'));
+          this.classList.add('flipped');
+        }
+      });
+    });
+  }
+  document.addEventListener('DOMContentLoaded',initFlip);
+  window.addEventListener('resize',initFlip);
 })();
