@@ -571,7 +571,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 #rutas .rf-chip:hover{color:var(--acid)!important}
 
 /* ─── HALLAZGOS ──────────────────────────────── */
-#hallazgos{background:#acc43a;padding:6rem 3rem;overflow:visible;position:relative;padding-top:6rem;z-index:110}
+#hallazgos{background:#acc43a;padding:4rem 3rem 5rem;overflow:visible;position:relative;z-index:110}
 .hall-arch{position:absolute;bottom:-70px;left:-10%;width:120%;height:140px;background:#acc43a;border-radius:50%;pointer-events:none;z-index:3}
 .hall-arrondi{display:block;width:100%;height:auto;margin-bottom:-1px;position:relative;z-index:10;pointer-events:none}
 .hall-tools-bridge{position:absolute;bottom:-140px;left:0;width:100%;z-index:100;pointer-events:none}
@@ -582,6 +582,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .hall-head{max-width:1400px;margin:0 auto 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end}
 .hall-grid{max-width:1400px;margin:0 auto}
 .hall-row{display:grid;gap:3px;margin-bottom:3px}
+.hall-head{margin-bottom:1.5rem!important}
 .hall-row-1{grid-template-columns:1.65fr 1fr}
 .hall-row-2{grid-template-columns:1fr 1.65fr}
 .find{position:relative;overflow:hidden;cursor:pointer;border-radius:1.25rem;background:var(--layer)}
@@ -598,8 +599,8 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .find-ref{font-family:var(--fm);font-size:.88rem;letter-spacing:.14em;color:var(--acid);text-transform:uppercase;margin-bottom:.5rem}
 .find-name{font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:1.9rem;color:#fff;line-height:1.1;margin-bottom:.4rem}
 .find-note{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.6}
-.find.tall{aspect-ratio:2/2.2}
-.find.sq{aspect-ratio:4/3}
+.find.tall{aspect-ratio:2/1.6}
+.find.sq{aspect-ratio:16/9}
 /* Liquid card accent on hallazgos */
 .hall-accent{
   display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
