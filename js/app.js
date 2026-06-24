@@ -151,13 +151,13 @@ for(let i=0;i<28;i++){
 function buildSlider(){
   const d=window.__D__;
   const slides=[
-    {img:d.al1,avatar:'assets/alexis-aramburu.jpg',coord:"Alexis Aramburu",quote:'"Descubrí que restaurar no era reparar."',name:'Sofía Aramburu',loc:'Buenos Aires · Cartografía de la Forma',feat:true},
-    {img:d.al2,avatar:'assets/morgan-f.jpg',coord:"Morgan F.",name:'Martín F.',loc:'Córdoba'},
-    {img:d.al3,avatar:'assets/sasha-g.jpg',coord:"Sasha G.",name:'Laura G.',loc:'Rosario'},
-    {img:d.al4,avatar:'assets/river-m.jpg',coord:"River M.",name:'Diego M.',loc:'Montevideo'},
-    {img:d.al5,avatar:'assets/sage-p.jpg',coord:"Sage P.",name:'Ana P.',loc:'Santiago'},
-    {img:d.al6,avatar:'assets/quinn-v.jpg',coord:"Quinn V.",name:'Carolina V.',loc:'Buenos Aires · El Atlas Personal'},
-    {img:d.al7,avatar:'assets/avery-r.jpg',coord:"Avery R.",name:'Tomás R.',loc:'Lima'},
+    {img:d.al1,avatar:'assets/alexis-aramburu.jpg',coord:"Alexis Aramburu",quote:'"Descubrí que restaurar no era reparar."',name:'Alexis Aramburu',loc:'Buenos Aires · Cartografía de la Forma',feat:true},
+    {img:d.al2,avatar:'assets/morgan-f.jpg',coord:"Morgan F.",quote:'"Cada pieza me enseñó algo que ningún libro pudo."',name:'Morgan F.',loc:'Córdoba'},
+    {img:d.al3,avatar:'assets/sasha-g.jpg',coord:"Sasha G.",quote:'"Aprendí a leer un mueble como si fuera un texto."',name:'Sasha G.',loc:'Rosario'},
+    {img:d.al4,avatar:'assets/river-m.jpg',coord:"River M.",quote:'"El método me dio un lenguaje que antes no tenía."',name:'River M.',loc:'Montevideo'},
+    {img:d.al5,avatar:'assets/sage-p.jpg',coord:"Sage P.",quote:'"Transformé mi taller y mi manera de ver los objetos."',name:'Sage P.',loc:'Santiago'},
+    {img:d.al6,avatar:'assets/quinn-v.jpg',coord:"Quinn V.",quote:'"No vine a aprender un oficio. Vine a encontrar uno."',name:'Quinn V.',loc:'Buenos Aires · El Atlas Personal'},
+    {img:d.al7,avatar:'assets/avery-r.jpg',coord:"Avery R.",quote:'"Lo que parecía roto tenía más historia que lo nuevo."',name:'Avery R.',loc:'Lima'},
   ];
   const track=document.getElementById('sliderTrack');
   // Duplicate for seamless loop

@@ -180,7 +180,7 @@ body{background:var(--dk);color:var(--ink);font-family:var(--fb);font-weight:300
 
 /* ─── NAV ────────────────────────────────────── */
 nav{
-  position:fixed;top:1rem;left:0;right:0;z-index:200;
+  position:fixed;top:1rem;left:0;right:0;z-index:9999;
   display:flex;justify-content:space-between;align-items:center;
   padding:0 2rem;transition:all .4s;
 }
@@ -387,9 +387,9 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .sec-wrap{padding:0 3rem;max-width:1400px;margin:0 auto}
 .sec-title{font-family:var(--fp);font-size:clamp(2.4rem,5vw,4.8rem);font-weight:400;line-height:1.02;letter-spacing:-.015em;color:var(--ink);max-width:18ch;margin-bottom:1rem}
 .sec-title em{font-style:normal}
-.sec-sub{font-size:.9rem;line-height:1.85;color:var(--gr);max-width:46ch;margin-bottom:2.5rem;font-weight:300}
+.sec-sub{font-size:1.25rem;line-height:1.75;color:var(--gr);max-width:46ch;margin-bottom:2.5rem;font-weight:300}
 .sec-title-lt{color:#fff}
-.sec-sub-lt{color:rgba(255,255,255,.82);font-size:1rem;line-height:1.7}
+.sec-sub-lt{color:rgba(255,255,255,.82);font-size:1.25rem;line-height:1.7}
 
 /* ─── RUTAS ──────────────────────────────────── */
 #rutas{background:transparent;padding:2rem 0 0;overflow:visible;position:relative}
@@ -591,7 +591,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 #rutas .ch-bar{background:var(--acid)!important}
 #rutas .sec-title{color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.55)}
 #rutas .sec-title em{color:var(--acid)}
-#rutas .sec-sub{color:rgba(255,255,255,.82);font-size:1.05rem;line-height:1.75}
+#rutas .sec-sub{color:rgba(255,255,255,.82);font-size:1.25rem;line-height:1.75}
 #rutas .sec-wrap>div[style*="backdrop-filter"]{max-width:52ch!important;padding:1.5rem 1.7rem!important;background:rgba(61,56,48,.85)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;will-change:transform;transform:translateZ(0)}
 /* ─── RUTAS FOOT — blur panel ─── */
 #rutas .rutas-foot{
@@ -730,7 +730,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 #territorios{padding-top:4rem}
 .section-bridge{display:none}
 #hallazgos .sec-title{color:var(--ink)}
-#hallazgos .sec-sub{color:rgba(21,21,21,.82);font-size:1.05rem;line-height:1.75}
+#hallazgos .sec-sub{color:rgba(21,21,21,.82);font-size:1.25rem;line-height:1.75}
 .hall-head{max-width:1400px;margin:0 auto 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end}
 .hall-grid{max-width:1400px;margin:0 auto}
 .hall-row{display:grid;gap:3px;margin-bottom:3px}
@@ -748,9 +748,9 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 }
 .find:hover .find-cap{transform:translateY(0)}
 .find-inner{padding:1.2rem 1.3rem;border-radius:.85rem;background:rgba(21,18,16,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(199,255,77,.2)}
-.find-ref{font-family:var(--fm);font-size:.88rem;letter-spacing:.14em;color:var(--acid);text-transform:uppercase;margin-bottom:.5rem}
+.find-ref{font-family:var(--fm);font-size:.95rem;letter-spacing:.14em;color:var(--acid);text-transform:uppercase;margin-bottom:.5rem}
 .find-name{font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:1.9rem;color:#fff;line-height:1.1;margin-bottom:.4rem}
-.find-note{font-size:.85rem;color:rgba(255,255,255,.82);line-height:1.6}
+.find-note{font-size:1.25rem;color:rgba(255,255,255,.82);line-height:1.6}
 .find.tall{aspect-ratio:2/1.6}
 .find.sq{aspect-ratio:16/9}
 /* Liquid card accent on hallazgos */
@@ -775,7 +775,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 }
 
 /* ─── COMUNIDAD SLIDER ───────────────────────── */
-#comunidad{background:linear-gradient(to bottom,transparent 60%,#151210 100%),url('../assets/seccion5.jpg') center/cover no-repeat,var(--dk);padding:8rem 0 6rem;overflow:visible;position:relative;z-index:1}
+#comunidad{background:linear-gradient(to bottom,transparent 60%,#151210 100%),url('../assets/seccion5.jpg') center/cover no-repeat,var(--dk);padding:8rem 0 10rem;margin-bottom:4rem;overflow:visible;position:relative;z-index:1}
 .com-head{padding:0 3rem;max-width:1400px;margin:0 auto 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end}
 
 /* Slider track */
@@ -820,18 +820,15 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 }
 .slide-avatar img{width:100%;height:100%;object-fit:cover;object-position:center}
 .slide-coord{
-  font-family:var(--fm);font-size:.75rem;letter-spacing:.1em;color:rgba(255,255,255,.6);z-index:3;
+  font-family:var(--fm);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:3;
 }
 .slide-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;z-index:3}
 .slide-quote{
-  font-family:var(--fp);font-style:italic;font-size:1.1rem;color:#fff;
-  line-height:1.35;margin-bottom:.9rem;max-width:22ch;
+  font-family:var(--fb);font-style:normal;font-weight:400;font-size:1rem;color:#fff;
+  line-height:1.5;margin-bottom:.9rem;max-width:22ch;
 }
-.slide-name{font-family:var(--fp);font-weight:400;color:#fff;font-size:1.1rem;line-height:1.1;margin-bottom:.25rem}
-.slide-loc{font-family:var(--fm);font-size:.75rem;letter-spacing:.12em;color:var(--acid);text-transform:uppercase}
-/* Featured big slide */
-.slide.feat{width:460px;height:540px}
-.slide.feat .slide-quote{font-size:1.3rem;max-width:24ch}
+.slide-name{font-family:var(--fb);font-weight:600;color:#fff;font-size:.88rem;line-height:1.1;margin-bottom:.25rem;letter-spacing:.02em}
+.slide-loc{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;color:var(--acid);text-transform:uppercase}
 
 /* Slider outer — botones en lados en desktop, debajo en mobile */
 .slider-outer{position:relative}
@@ -853,14 +850,14 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .slider-btn:hover{background:rgba(199,255,77,.2);color:var(--acid)}
 
 /* ─── CURSOS ─────────────────────────────────── */
-#cursos{background:url('../assets/Fondocurso.png') center top/cover no-repeat;padding:6rem 3rem 5rem;overflow:visible;position:relative;z-index:2;isolation:isolate;padding-bottom:14rem}
+#cursos{background:url('../assets/Fondocurso.png') center top/cover no-repeat;padding:6rem 3rem 5rem;overflow:visible;position:relative;z-index:2;padding-bottom:14rem}
 #comunidad{margin-top:-9rem}
 .cursos-arch-top{position:absolute;top:-70px;left:-25%;width:150%;height:220px;background:var(--dk);border-radius:50%;pointer-events:none;z-index:3}
 .cursos-arch-bottom{position:absolute;bottom:-70px;left:-25%;width:150%;height:220px;background:var(--dk);border-radius:50%;pointer-events:none;z-index:3;transform:scaleY(-1)}
 /* Tipografía sobre fondo oscuro — estilo hero */
 #cursos .sec-title{color:#fff;text-shadow:none}
 #cursos .sec-title em{color:var(--acid)}
-#cursos .sec-sub{color:rgba(255,255,255,.62);font-size:1.05rem;line-height:1.75}
+#cursos .sec-sub{color:rgba(255,255,255,.62);font-size:1.25rem;line-height:1.75}
 #cursos .cur-lib-note{color:rgba(255,255,255,.35)}
 /* Course list — dark glass */
 #cursos .course-list{background:rgba(255,255,255,.04);border-radius:.75rem;overflow:hidden}
@@ -945,18 +942,18 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   gap:.35rem;margin-bottom:2.5rem;
 }
 .ter-strip-eyebrow{
-  font-family:var(--fm);font-size:.7rem;letter-spacing:.22em;
+  font-family:var(--fm);font-size:.88rem;letter-spacing:.22em;
   text-transform:uppercase;color:var(--wood);
 }
 .ter-strip-title{
   font-family:'Manrope',sans-serif;font-style:normal;
-  font-size:clamp(2rem,3.5vw,3rem);font-weight:700;
+  font-size:clamp(2.8rem,4.5vw,4.2rem);font-weight:700;
   line-height:1;letter-spacing:-.03em;color:var(--ink);
   margin-top:.1rem;
 }
 .ter-strip-title em{color:var(--acid);font-style:normal}
 .ter-strip-body{
-  font-size:.85rem;line-height:1.65;color:var(--gr);
+  font-size:1.15rem;line-height:1.65;color:var(--gr);
   max-width:52ch;font-weight:300;margin-top:.6rem;
 }
 /* ── RUTAS HERO — grid texto + imágenes ───── */
@@ -1102,11 +1099,11 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   transform:translateY(-50%);
 }
 .ter-sub{
-  font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;
+  font-family:var(--fm);font-size:.82rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--acid);margin-bottom:.4rem;
 }
 .ter-name-h{
-  font-family:'Manrope',sans-serif;font-style:normal;font-weight:700;font-size:1.55rem;
+  font-family:'Manrope',sans-serif;font-style:normal;font-weight:700;font-size:2.1rem;
   color:#fff;line-height:1.05;margin-bottom:.9rem;
 }
 .ter-cta{
@@ -1114,8 +1111,8 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   display:inline-flex;align-items:center;gap:.65rem;
   background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
   border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.85);
-  font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.55rem .55rem .55rem 1.1rem;border-radius:9999px;
+  font-family:var(--fm);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.65rem .65rem .65rem 1.3rem;border-radius:9999px;
   cursor:pointer;transition:color .4s,border-color .4s;text-decoration:none;
 }
 .ter-cta::after{content:'';position:absolute;width:130%;aspect-ratio:1;left:-110%;top:50%;transform:translateY(-50%);background:var(--acid);border-radius:50%;z-index:-1;transition:left .6s cubic-bezier(.22,1,.36,1),scale .6s;scale:0}
