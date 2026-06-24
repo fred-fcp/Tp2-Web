@@ -84,7 +84,7 @@
 
 <!-- ── NAV ───────────────────────────────────── -->
 <nav id="nav">
-  <a href="#hero" class="lg n-logo" style="padding:.55rem 1.4rem;text-decoration:none;display:block">
+  <a href="#hero" class="lg n-logo" style="text-decoration:none;display:block">
     <img id="navLogo" src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block;transition:opacity .3s">
   </a>
   <div class="lg n-links">
@@ -116,39 +116,16 @@
     <video id="heroVid" muted playsinline autoplay preload="auto"></video>
   </div>
   <div class="dust" id="dust"></div>
-  <div class="h-grad"></div>
+
   <div class="h-fg">
-    <div class="ch rv" style="margin-bottom:1.2rem">
-      <span class="ch-bar" style="background:var(--acid)"></span>
-      <span class="ch-n" style="color:var(--acid)">01</span>
-      <span class="ch-l">El Atlas</span>
-    </div>
-    <div class="h-badge rv d1">
-      <span class="h-badge-txt">Próxima edición — Laboratorio de Restauración 2026</span>
-    </div>
-    <h1 class="h-title rv d1">Cada restauración comienza siguiendo una <span class="acid">ruta.</span></h1>
+    <h1 class="h-title rv d1">Explorar<br>para <span class="acid">restaurar</span></h1>
     <p class="h-sub rv d2">Explora las culturas, materiales y técnicas que transforman los muebles en nuevas historias.</p>
-    <div class="h-ctas rv d2">
-      <a href="#rutas" class="fc-btn">Explorar el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-      <a href="#cursos" class="btn-primary lgs">Ver los cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
-    <div class="h-stats rv d3">
-      <a href="restauracion-integral.html" class="stat-card lg" style="border-radius:.85rem">
-        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div class="stat-bottom"><div class="stat-n">8 sem</div><div class="stat-l">Primer laboratorio presencial</div></div>
-      </a>
-      <a href="restauracion-integral.html" class="stat-card lg" style="border-radius:.85rem">
-        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="3.8"/><line x1="12" y1="8.2" x2="12" y2="3.2"/><line x1="15.3" y1="13.9" x2="19.6" y2="16.4"/><line x1="8.7" y1="13.9" x2="4.4" y2="16.4"/><circle cx="12" cy="3.2" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="19.6" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="4.4" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/></svg></div>
-        <div class="stat-bottom"><div class="stat-n">3+</div><div class="stat-l">Culturas conectadas en el Atlas</div></div>
-      </a>
-      <a href="restauracion-integral.html" class="stat-card lg" style="border-radius:.85rem">
-        <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="stat-bottom"><div class="stat-n">24</div><div class="stat-l">Cupos por edición</div></div>
-      </a>
+    <div class="h-ctas rv d2" style="display:none">
+      <a href="#rutas" class="fc-btn">Explorar el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"></path></svg></span></a>
+      <a href="#cursos" class="btn-primary lgs">Ver los cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"></path></svg></span></a>
     </div>
   </div>
 
-  <div class="h-coords">34°36'30"S · 58°22'12"W<br>ATLAS VIVO DE TRANSFORMACIÓN</div>
   <div class="h-scroll"><span class="sbar"></span>Explorar</div>
 </section>
 
@@ -156,30 +133,75 @@
 <section id="rutas" class="noise-bg">
   <div class="rutas-hero">
   <div class="sec-wrap rutas-text">
-    <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:#C7FF4D">02</span><span class="ch-l">Las Rutas</span></div>
+    <div class="ch rv" style="margin-top:3rem"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:#C7FF4D">02</span><span class="ch-l">Las Rutas</span></div>
     <h2 class="sec-title rv d1">Tres culturas conectadas por una misma <em>raíz.</em></h2>
-    <div class="rv d2" style="display:inline-block;max-width:46ch;margin-bottom:2.5rem;padding:1.2rem 1.4rem;border-radius:1.5rem;background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)">
+    <div class="rv d2" style="display:inline-block;max-width:46ch;margin-bottom:2.5rem;padding:1.2rem 1.4rem;border-radius:1.5rem;background:rgba(61,56,48,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)">
       <p class="sec-sub" style="margin-bottom:0">No comparamos países: mostramos cómo distintas formas de pensar el diseño se entrelazan — como ramas de un mismo árbol evolutivo.</p>
     </div>
   </div>
-  <div class="rutas-triptych">
-    <div class="rut-panel rv">
-      <img id="rutasBRA" class="rut-img" alt="Brasil · Fluidez">
-      <div class="rut-pixel-grid"></div>
-      <div class="rut-label"><span class="rut-dot" style="background:var(--wood)"></span>23°S · Brasil</div>
-    </div>
-    <div class="rut-panel rv d1">
-      <img id="rutasSU" class="rut-img" alt="Suecia · Claridad">
-      <div class="rut-pixel-grid"></div>
-      <div class="rut-label"><span class="rut-dot" style="background:var(--acid)"></span>59°N · Suecia</div>
-    </div>
-    <div class="rut-panel rv d2">
-      <img id="rutasDI" class="rut-img" alt="Dinamarca · Materialidad">
-      <div class="rut-pixel-grid"></div>
-      <div class="rut-label"><span class="rut-dot" style="background:var(--wood)"></span>55°N · Dinamarca</div>
+  <div class="rut-wallet-wrap">
+    <div class="rut-wallet">
+      <div class="rut-wallet-back"></div>
+
+      <!-- Brasil — fondo -->
+      <div class="rut-card rut-bra">
+        <div class="rut-card-bg" style="background-image:url('assets/BRA 01.jpg')"></div>
+        <div class="rut-card-inner">
+          <div class="rut-card-top">
+            <span class="rut-card-tag"><span class="rut-dot" style="background:var(--wood)"></span>23°S · Brasil</span>
+
+          </div>
+          <div class="rut-card-bottom">
+            <div class="rf-name">Fluidez</div>
+            <div class="rf-desc">Curvas orgánicas, libertad formal, materiales cálidos. La forma como movimiento.</div>
+            <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Expresividad · Materialidad cálida</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suecia — medio -->
+      <div class="rut-card rut-su">
+        <div class="rut-card-bg" style="background-image:url('assets/SU 02.jpg')"></div>
+        <div class="rut-card-inner">
+          <div class="rut-card-top">
+            <span class="rut-card-tag"><span class="rut-dot" style="background:var(--acid)"></span>59°N · Suecia</span>
+
+          </div>
+          <div class="rut-card-bottom">
+            <div class="rf-name">Claridad</div>
+            <div class="rf-desc">Líneas limpias, geometría, espacio negativo como decisión. La síntesis sofisticada.</div>
+            <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Geometría · Vacío funcional</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dinamarca — frente -->
+      <div class="rut-card rut-di">
+        <div class="rut-card-bg" style="background-image:url('assets/DI 03.jpg')"></div>
+        <div class="rut-card-inner">
+          <div class="rut-card-top">
+            <span class="rut-card-tag"><span class="rut-dot" style="background:var(--wood)"></span>55°N · Dinamarca</span>
+
+          </div>
+          <div class="rut-card-bottom">
+            <div class="rf-name">Materialidad</div>
+            <div class="rf-desc">Uniones visibles, detalle constructivo, refinamiento artesanal.</div>
+            <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Craft · Ensambles · Precisión</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="rut-pocket">
+        <svg class="rut-pocket-svg" viewBox="0 0 500 285" fill="none">
+          <path d="M 0 36 C 0 18 9 18 18 18 C 36 18 45 45 71 45 L 429 45 C 455 45 464 18 482 18 C 491 18 500 18 500 36 L 500 225 Q 500 285 440 285 L 60 285 Q 0 285 0 225 Z" fill="#7a4f33"></path>
+        </svg>
+        <div class="rut-pocket-content">
+          <span class="rut-pocket-label">Un archivo</span>
+          <span class="rut-pocket-label">Tres culturas</span>
+        </div>
+      </div>
     </div>
   </div>
-  </div><!-- /rutas-hero -->
   <div class="rutas-foot" style="position:relative;z-index:1;isolation:auto">
     <div class="rv">
       <div class="rf-tag" style="color:var(--wood)">23°S · Brasil</div>
@@ -200,14 +222,12 @@
       <a href="restauracion-integral.html" class="lgw rf-chip" style="text-decoration:none">Craft · Ensambles · Precisión</a>
     </div>
   </div>
+  </div><!-- /rutas-hero -->
 </section>
 
 <!-- ── CAPAS ──────────────────────────────────── -->
 <section id="capas">
-  <div class="capas-vid-wrap" aria-hidden="true">
-    <video class="capas-vid-bg" autoplay muted loop playsinline preload="none" data-src="assets/seccion3.mp4"></video>
-    <div class="capas-vid-overlay"></div>
-  </div>
+
   <div class="capas-head" style="position:relative;z-index:1">
     <div>
       <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">03</span><span class="ch-l">Capas</span></div>
@@ -233,10 +253,7 @@
       <div class="capas-img-inner">
         <img id="capasImg" alt="Vista explotada del aparador" class="capas-img">
       </div>
-      <a href="restauracion-integral.html" class="capas-hint-cta" style="text-decoration:none">
-        <span class="capas-hint-icon">◎</span>
-        <span>Explorá cada punto del despiece</span>
-      </a>
+
       <div class="hotspot" style="top:13%;left:64%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 01 · Superficie</div><div class="hs-name">Historia</div><div class="hs-desc">La tapa guarda marcas de uso y acabados previos. Se lee antes de tocar.</div></div></div>
       <div class="hotspot" style="top:32%;left:72%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 02 · Estructura</div><div class="hs-name">Esqueleto</div><div class="hs-desc">Estantes y armazón. Cómo se sostiene revela su lógica constructiva.</div></div></div>
       <div class="hotspot lft" style="top:50%;left:83%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 03 · Material</div><div class="hs-name">Cajonería</div><div class="hs-desc">Maderas claras y oscuras. Cada una con su densidad, su veta, su memoria.</div></div></div>
@@ -244,16 +261,142 @@
       <div class="hotspot lft" style="top:84%;left:63%"><div class="hs-dot"></div><div class="hs-card"><div class="hs-num">Capa 05 · Soporte</div><div class="hs-name">Patas torneadas</div><div class="hs-desc">La base como firma. Proporción y refinamiento contemporáneo.</div></div></div>
     </div>
   </div>
-  <div class="hall-tools-bridge" aria-hidden="true">
-    <img src="assets/tools.png" alt="" class="hall-tools-bridge-img">
+</section>
+
+<!-- ── CURSOS ─────────────────────────────────── -->
+<section id="cursos" class="noise-bg">
+  <div style="max-width:1400px;margin:0 auto;position:relative;z-index:10">
+    <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">04</span><span class="ch-l">Cursos</span></div>
+    <h2 class="sec-title rv d1">Aprende a transformar muebles desde una mirada <em>contemporánea.</em></h2>
+    <p class="sec-sub rv d2">No una plataforma educativa: una biblioteca de conocimiento. Todo lo que viste arriba se aprende acá.</p>
+  </div>
+  <div class="wrap_card rv d1" style="position:relative;z-index:1">
+
+    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
+      <div class="content">
+        <span>01</span>
+        <img src="assets/curso1.jpg" alt="" class="card-bg-img">
+        <div class="card-info">
+          <div class="course-type">Programa fundamental</div>
+          <div class="course-name">Restauración Integral</div>
+          <div class="course-desc">El recorrido completo: leer, desarmar, intervenir y reinterpretar.</div>
+          <span class="lgw course-badge">8 sem · Presencial · BA</span>
+          <div class="course-divider"></div>
+          <div class="card-price">$118.000 <span>ARS/mes</span></div>
+        </div>
+      </div>
+    </a>
+
+    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
+      <div class="content">
+        <span>02</span>
+        <img src="assets/curso2.jpg" alt="" class="card-bg-img">
+        <div class="card-info">
+          <div class="course-type">Especialización</div>
+          <div class="course-name">Materiales y Acabados</div>
+          <div class="course-desc">Maderas, fibras, piedras. El espectro completo del material.</div>
+          <span class="lgw course-badge">6 sem · Híbrido</span>
+          <div class="course-divider"></div>
+          <div class="card-price">$89.000 <span>ARS/mes</span></div>
+        </div>
+      </div>
+    </a>
+
+    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
+      <div class="content">
+        <span>03</span>
+        <img src="assets/curso3.jpg" alt="" class="card-bg-img">
+        <div class="card-info">
+          <div class="course-type">Cultura del diseño</div>
+          <div class="course-name">Historia del Diseño</div>
+          <div class="course-desc">Brasil, Escandinavia. Cómo cada cultura piensa la forma.</div>
+          <span class="lgw course-badge">6 sem · Online</span>
+          <div class="course-divider"></div>
+          <div class="card-price">$72.000 <span>ARS/mes</span></div>
+        </div>
+      </div>
+    </a>
+
+    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
+      <div class="content">
+        <span>04</span>
+        <img src="assets/curso4.jpg" alt="" class="card-bg-img">
+        <div class="card-info">
+          <div class="course-type">Síntesis</div>
+          <div class="course-name">Proyecto Final</div>
+          <div class="course-desc">Tu primera restauración completa con punto de vista propio.</div>
+          <span class="lgw course-badge">16 sem · Intensivo · BA</span>
+          <div class="course-divider"></div>
+          <div class="card-price">$105.000 <span>ARS/mes</span></div>
+        </div>
+      </div>
+    </a>
+
+    <svg style="visibility:hidden;width:0;height:0">
+      <defs>
+        <linearGradient id="cg-full" x1="0%" y1="0%" x2="120%" y2="120%">
+          <stop offset="0%" stop-color="#ffffff"></stop>
+          <stop offset="100%" stop-color="#ffffff00"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="clines">
+      <div class="cline"></div>
+      <div class="cline"></div>
+    </div>
+
+  </div>
+
+  <div class="card-controls">
+    <button class="card-ctrl-btn lgd" id="cardPrev" aria-label="Anterior">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="card-dots">
+      <button class="card-dot active" data-idx="0" aria-label="Curso 1"></button>
+      <button class="card-dot" data-idx="1" aria-label="Curso 2"></button>
+      <button class="card-dot" data-idx="2" aria-label="Curso 3"></button>
+      <button class="card-dot" data-idx="3" aria-label="Curso 4"></button>
+    </div>
+    <button class="card-ctrl-btn lgd" id="cardNext" aria-label="Siguiente">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="cursos-arch-bottom" aria-hidden="true"></div>
+</section>
+
+<!-- ── COMUNIDAD (slider) ─────────────────────── -->
+<section id="comunidad" class="island-bg">
+  <div class="island-layer" style="opacity:.08"></div>
+  <div class="island-layer2" style="opacity:.05"></div>
+  <div class="com-head" style="position:relative;z-index:1">
+    <div>
+      <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">05</span><span class="ch-l">Comunidad</span></div>
+      <h2 class="sec-title sec-title-lt rv d1">Nuevas Entradas<br>al <em>Atlas.</em></h2>
+    </div>
+    <div class="rv d2">
+      <p class="sec-sub sec-sub-lt">No testimonios: transformaciones reales, en distintos países, conectadas por el mismo método.</p>
+    </div>
+  </div>
+  <div class="slider-outer" style="position:relative;z-index:1">
+    <div class="slider-wrap">
+      <div class="slider-track" id="sliderTrack">
+        <!-- cards rendered by JS from __D__ -->
+      </div>
+    </div>
+    <div class="slider-btns">
+      <button class="lgd slider-btn" id="slPrev" aria-label="Anterior">←</button>
+      <button class="lgd slider-btn" id="slNext" aria-label="Siguiente">→</button>
+    </div>
   </div>
 </section>
 
 <!-- ── HALLAZGOS ──────────────────────────────── -->
 <section id="hallazgos" class="noise-bg">
+  <div class="hall-arch-top" aria-hidden="true"></div>
   <div class="hall-head" style="position:relative;z-index:200">
     <div>
-      <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">04</span><span class="ch-l">Hallazgos</span></div>
+      <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">06</span><span class="ch-l">Hallazgos</span></div>
       <h2 class="sec-title rv d1">Lo que se descubre al <em>mirar de cerca.</em></h2>
     </div>
     <p class="sec-sub rv d2">Cada imagen es una evidencia: uniones históricas, superficies en transición, ensambles que revelan la inteligencia del material.</p>
@@ -280,58 +423,13 @@
       </a>
     </div>
   </div>
-  <!-- Liquid glass accent chips -->
-  <div class="hall-arch" aria-hidden="true"></div>
 </section>
 
-<!-- ── COMUNIDAD (slider) ─────────────────────── -->
-<section id="comunidad" class="island-bg">
-  <div class="island-layer" style="opacity:.08"></div>
-  <div class="island-layer2" style="opacity:.05"></div>
-  <div class="com-head" style="position:relative;z-index:1">
-    <div>
-      <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">05</span><span class="ch-l">Comunidad</span></div>
-      <h2 class="sec-title sec-title-lt rv d1">Nuevas Entradas<br>al <em>Atlas.</em></h2>
-    </div>
-    <div class="rv d2">
-      <p class="sec-sub sec-sub-lt">No testimonios: transformaciones reales, en distintos países, conectadas por el mismo método.</p>
-    </div>
+<!-- ── TERRITORIOS FUTUROS ─────────────────────── -->
+<section id="territorios" class="noise-bg">
+  <div class="hall-tools-bridge" aria-hidden="true">
+    <img src="assets/tools.png" alt="" class="hall-tools-bridge-img">
   </div>
-
-  <div class="slider-outer" style="position:relative;z-index:1">
-    <div class="slider-wrap">
-      <div class="slider-track" id="sliderTrack">
-        <!-- cards rendered by JS from __D__ -->
-      </div>
-    </div>
-    <div class="slider-btns">
-      <button class="lgd slider-btn" id="slPrev" aria-label="Anterior">←</button>
-      <button class="lgd slider-btn" id="slNext" aria-label="Siguiente">→</button>
-    </div>
-  </div>
-</section>
-
-<!-- ── CURSOS ─────────────────────────────────── -->
-<section id="cursos" class="noise-bg">
-  <div class="cursos-arch-top" aria-hidden="true"></div>
-  <div style="max-width:1400px;margin:0 auto;position:relative;z-index:10">
-    <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">06</span><span class="ch-l">Cursos</span></div>
-    <h2 class="sec-title rv d1">Aprende a transformar muebles desde una mirada <em>contemporánea.</em></h2>
-    <p class="sec-sub rv d2">No una plataforma educativa: una biblioteca de conocimiento. Todo lo que viste arriba se aprende acá.</p>
-  </div>
-  <div class="cur-layout" style="position:relative;z-index:1">
-    <div class="cur-lib rv">
-      <img id="cursosImg" alt="Biblioteca de conocimiento">
-      <div class="cur-lib-note">Archivo · Planos, muestras y procesos documentados</div>
-    </div>
-    <div class="course-list rv d1">
-      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Programa fundamental</div><div class="course-name">Restauración Integral</div><div class="course-desc">El recorrido completo: leer, desarmar, intervenir y reinterpretar.</div><span class="lgw course-badge">8 sem · Presencial · BA</span></div><div class="course-price"><span class="course-price-amt">$118.000</span><span class="course-price-cur">ARS / mes</span></div></a>
-      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Especialización</div><div class="course-name">Materiales y Acabados</div><div class="course-desc">Maderas, fibras, piedras. El espectro completo del material.</div><span class="lgw course-badge">6 sem · Híbrido</span></div><div class="course-price"><span class="course-price-amt">$89.000</span><span class="course-price-cur">ARS / mes</span></div></a>
-      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Cultura del diseño</div><div class="course-name">Historia del Diseño</div><div class="course-desc">Brasil, Escandinavia. Cómo cada cultura piensa la forma.</div><span class="lgw course-badge">6 sem · Online</span></div><div class="course-price"><span class="course-price-amt">$72.000</span><span class="course-price-cur">ARS / mes</span></div></a>
-      <a href="restauracion-integral.html" class="course" style="text-decoration:none;display:block"><div><div class="course-type">Síntesis</div><div class="course-name">Proyecto Final</div><div class="course-desc">Tu primera restauración completa con punto de vista propio.</div><span class="lgw course-badge">16 sem · Intensivo · BA</span></div><div class="course-price"><span class="course-price-amt">$105.000</span><span class="course-price-cur">ARS / mes</span></div></a>
-    </div>
-  </div>
-  <!-- ── Territorios Futuros (colección cápsula) ── -->
   <div class="ter-strip" style="position:relative;z-index:1">
     <div class="ter-strip-head rv">
       <div class="ter-strip-eyebrow">Colección cápsula</div>
@@ -379,14 +477,16 @@
     </div>
   </div>
 
-  <div class="rv" style="margin:0 3rem 4rem;padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;z-index:1">
-    <div>
-      <div class="fc-eye">Próximo recorrido · Julio 2026 · Cupos limitados</div>
-      <div class="fc-head">Comenzar el recorrido.</div>
-    </div>
-    <a href="restauracion-integral.html" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-  </div>
 </section>
+
+<!-- ── CTA FINAL — independiente, no mover salvo instrucción explícita ── -->
+<div id="cta-final" style="margin:0 3rem 4rem;padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;z-index:1">
+  <div>
+    <div class="fc-eye">Próximo recorrido · Julio 2026 · Cupos limitados</div>
+    <div class="fc-head">Comenzar el recorrido.</div>
+  </div>
+  <a href="restauracion-integral.html" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+</div>
 
 <footer>
   <img src="assets/white logo.png" alt="RAÍZ" style="height:18px;width:auto;opacity:.35">

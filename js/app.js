@@ -44,6 +44,15 @@ function setupVideo(vid,src){
   vid.addEventListener('ended',()=>{vid.style.opacity=0;setTimeout(()=>{vid.currentTime=0;vid.play().catch(()=>{});fadingOut=false;fadeTo(1,FADE_MS);},100);});
 }
 
+/* ── HERO CTA SMOOTH SCROLL ──────────── */
+document.querySelectorAll('.h-ctas a[href^="#"]').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.getElementById(btn.getAttribute('href').slice(1));
+    if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
 /* ── SCROLL REVEAL ─────────────────────── */
 const rvEls=document.querySelectorAll('.rv');
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07,rootMargin:'0px 0px -25px 0px'});
@@ -142,13 +151,13 @@ for(let i=0;i<28;i++){
 function buildSlider(){
   const d=window.__D__;
   const slides=[
-    {img:d.al1,coord:"ENTRADA-07 · 34°36'S",quote:'"Descubrí que restaurar no era reparar."',name:'Sofía Aramburu',loc:'Buenos Aires · Cartografía de la Forma',feat:true},
-    {img:d.al2,coord:"ENTRADA-12",name:'Martín F.',loc:'Córdoba'},
-    {img:d.al3,coord:"ENTRADA-18",name:'Laura G.',loc:'Rosario'},
-    {img:d.al4,coord:"ENTRADA-23",name:'Diego M.',loc:'Montevideo'},
-    {img:d.al5,coord:"ENTRADA-29",name:'Ana P.',loc:'Santiago'},
-    {img:d.al6,coord:"ENTRADA-31",name:'Carolina V.',loc:'Buenos Aires · El Atlas Personal'},
-    {img:d.al7,coord:"ENTRADA-34",name:'Tomás R.',loc:'Lima'},
+    {img:d.al1,avatar:'assets/user1.jpg',coord:"Alexis Aramburu",quote:'"Descubrí que restaurar no era reparar."',name:'Sofía Aramburu',loc:'Buenos Aires · Cartografía de la Forma',feat:true},
+    {img:d.al2,avatar:'assets/user2.jpg',coord:"Morgan F.",name:'Martín F.',loc:'Córdoba'},
+    {img:d.al3,avatar:'assets/user3.jpg',coord:"Sasha G.",name:'Laura G.',loc:'Rosario'},
+    {img:d.al4,avatar:'assets/user4.jpg',coord:"River M.",name:'Diego M.',loc:'Montevideo'},
+    {img:d.al5,avatar:'assets/user5.jpg',coord:"Sage P.",name:'Ana P.',loc:'Santiago'},
+    {img:d.al6,avatar:'assets/user6.jpg',coord:"Quinn V.",name:'Carolina V.',loc:'Buenos Aires · El Atlas Personal'},
+    {img:d.al7,avatar:'assets/user7.jpg',coord:"Avery R.",name:'Tomás R.',loc:'Lima'},
   ];
   const track=document.getElementById('sliderTrack');
   // Duplicate for seamless loop
@@ -160,13 +169,18 @@ function buildSlider(){
     if(s.img)img.src=s.img;
     img.alt=s.name||'';
     const ov=document.createElement('div');ov.className='slide-ov';
+    const profile=document.createElement('div');profile.className='slide-profile';
+    const avatar=document.createElement('div');avatar.className='slide-avatar';
+    const avatarImg=document.createElement('img');avatarImg.src=s.avatar||'';avatarImg.alt=s.name||'';
+    avatar.appendChild(avatarImg);
     const coord=document.createElement('div');coord.className='slide-coord';coord.textContent=s.coord||'';
+    profile.append(avatar,coord);
     const info=document.createElement('div');info.className='slide-info';
     let html='';
     if(s.quote)html+=`<div class="slide-quote">${s.quote}</div>`;
     html+=`<div class="slide-name">${s.name}</div><div class="slide-loc">${s.loc}</div>`;
     info.innerHTML=html;
-    div.append(img,ov,coord,info);
+    div.append(img,ov,profile,info);
     track.appendChild(div);
   });
 
@@ -391,4 +405,75 @@ setTimeout(tryDismiss,2500);
   }
   document.addEventListener('DOMContentLoaded',initFlip);
   window.addEventListener('resize',initFlip);
+})();
+
+/* ── PARALLAX DEPTH SHIFT — #rutas ────────────── */
+(function(){
+  const section   = document.getElementById('rutas');
+  if(!section)return;
+
+  const layers = [
+    { el: section.querySelector('.rutas-text'),      speed: -0.08 },
+    { el: section.querySelector('.rut-wallet-wrap'), speed:  0.12 },
+    { el: section.querySelector('.rutas-foot'),      speed: -0.05 },
+  ].filter(l => l.el);
+
+  let ticking = false;
+
+  function update(){
+    const rect   = section.getBoundingClientRect();
+    const vh     = window.innerHeight;
+    const center = rect.top + rect.height / 2 - vh / 2;
+
+    layers.forEach(({el, speed}) => {
+      el.style.transform = `translateY(${(center * speed).toFixed(2)}px)`;
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if(ticking)return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, {passive:true});
+
+  update();
+})();
+
+/* ── CARD CAROUSEL CONTROLS ──────────────────── */
+(function(){
+  const TOTAL = 4;
+  const wrap  = document.querySelector('.wrap_card');
+  const cards = document.querySelectorAll('.wrap_card .card');
+  const dots  = document.querySelectorAll('.card-dot');
+  const prev  = document.getElementById('cardPrev');
+  const next  = document.getElementById('cardNext');
+  if(!cards.length || !prev || !next) return;
+
+  let current = 0;
+
+  function goTo(idx){
+    current = ((idx % TOTAL) + TOTAL) % TOTAL;
+    wrap.classList.add('manual');
+    cards.forEach(c => c.setAttribute('data-step', current + 1));
+    dots.forEach((d,i) => d.classList.toggle('active', i === current));
+  }
+
+  function resume(){
+    wrap.classList.remove('manual');
+    cards.forEach(c => c.setAttribute('data-step','1'));
+    current = 0;
+    dots.forEach((d,i) => d.classList.toggle('active', i === 0));
+  }
+
+  const section = document.getElementById('cursos');
+  if(section){
+    new IntersectionObserver(([e]) => {
+      if(!e.isIntersecting) resume();
+    }, {threshold: 0}).observe(section);
+  }
+
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
 })();
