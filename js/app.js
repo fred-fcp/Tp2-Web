@@ -151,13 +151,13 @@ for(let i=0;i<28;i++){
 function buildSlider(){
   const d=window.__D__;
   const slides=[
-    {img:d.al1,avatar:'assets/user1.jpg',coord:"Alexis Aramburu",quote:'"Descubrí que restaurar no era reparar."',name:'Sofía Aramburu',loc:'Buenos Aires · Cartografía de la Forma',feat:true},
-    {img:d.al2,avatar:'assets/user2.jpg',coord:"Morgan F.",name:'Martín F.',loc:'Córdoba'},
-    {img:d.al3,avatar:'assets/user3.jpg',coord:"Sasha G.",name:'Laura G.',loc:'Rosario'},
-    {img:d.al4,avatar:'assets/user4.jpg',coord:"River M.",name:'Diego M.',loc:'Montevideo'},
-    {img:d.al5,avatar:'assets/user5.jpg',coord:"Sage P.",name:'Ana P.',loc:'Santiago'},
-    {img:d.al6,avatar:'assets/user6.jpg',coord:"Quinn V.",name:'Carolina V.',loc:'Buenos Aires · El Atlas Personal'},
-    {img:d.al7,avatar:'assets/user7.jpg',coord:"Avery R.",name:'Tomás R.',loc:'Lima'},
+    {img:d.al1,avatar:'assets/alexis-aramburu.jpg',coord:"Alexis Aramburu",quote:'"Descubrí que restaurar no era reparar."',name:'Sofía Aramburu',loc:'Buenos Aires · Cartografía de la Forma',feat:true},
+    {img:d.al2,avatar:'assets/morgan-f.jpg',coord:"Morgan F.",name:'Martín F.',loc:'Córdoba'},
+    {img:d.al3,avatar:'assets/sasha-g.jpg',coord:"Sasha G.",name:'Laura G.',loc:'Rosario'},
+    {img:d.al4,avatar:'assets/river-m.jpg',coord:"River M.",name:'Diego M.',loc:'Montevideo'},
+    {img:d.al5,avatar:'assets/sage-p.jpg',coord:"Sage P.",name:'Ana P.',loc:'Santiago'},
+    {img:d.al6,avatar:'assets/quinn-v.jpg',coord:"Quinn V.",name:'Carolina V.',loc:'Buenos Aires · El Atlas Personal'},
+    {img:d.al7,avatar:'assets/avery-r.jpg',coord:"Avery R.",name:'Tomás R.',loc:'Lima'},
   ];
   const track=document.getElementById('sliderTrack');
   // Duplicate for seamless loop
@@ -451,26 +451,86 @@ setTimeout(tryDismiss,2500);
   if(!cards.length || !prev || !next) return;
 
   let current = 0;
+  let autoTimer = null;
 
-  function goTo(idx){
+  function setActive(idx){
+    cards.forEach((c,i) => c.classList.toggle('card-active', i === idx));
+    dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+  }
+
+  let rafId = null;
+  let activeAt = 0;
+  const PER_CARD = 6000;
+  const EARLY   = 900;
+
+  function setNext(idx){
+    cards.forEach((c,i) => c.classList.toggle('card-next', i === idx));
+  }
+
+  function watchAnim(){
+    function tick(){
+      if(wrap.classList.contains('manual')){ rafId = null; return; }
+      const now = performance.now();
+      for(let i = 0; i < cards.length; i++){
+        const z = parseInt(window.getComputedStyle(cards[i]).zIndex) || 0;
+        if(z >= 2 && i !== current){
+          current = i;
+          activeAt = now;
+          setActive(i);
+          setNext(-1);
+          break;
+        }
+      }
+      if(now - activeAt > PER_CARD - EARLY){
+        const next = (current + 1) % TOTAL;
+        if(!cards[next].classList.contains('card-next')) setNext(next);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    if(!rafId) rafId = requestAnimationFrame(tick);
+  }
+
+  function stopWatch(){
+    if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  function step(idx){
     current = ((idx % TOTAL) + TOTAL) % TOTAL;
     wrap.classList.add('manual');
     cards.forEach(c => c.setAttribute('data-step', current + 1));
-    dots.forEach((d,i) => d.classList.toggle('active', i === current));
+    setActive(current);
+  }
+
+  function startAutoSync(){
+    wrap.classList.remove('manual');
+    cards.forEach(c => c.setAttribute('data-step','1'));
+    watchAnim();
+  }
+
+  function goTo(idx){
+    stopWatch();
+    step(idx);
   }
 
   function resume(){
+    stopWatch();
     wrap.classList.remove('manual');
     cards.forEach(c => c.setAttribute('data-step','1'));
     current = 0;
-    dots.forEach((d,i) => d.classList.toggle('active', i === 0));
+    setActive(0);
   }
+
+  setActive(0);
 
   const section = document.getElementById('cursos');
   if(section){
     new IntersectionObserver(([e]) => {
-      if(!e.isIntersecting) resume();
-    }, {threshold: 0}).observe(section);
+      if(e.isIntersecting){
+        startAutoSync();
+      } else {
+        resume();
+      }
+    }, {threshold: 0.1}).observe(section);
   }
 
   prev.addEventListener('click', () => goTo(current - 1));

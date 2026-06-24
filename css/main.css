@@ -853,7 +853,8 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .slider-btn:hover{background:rgba(199,255,77,.2);color:var(--acid)}
 
 /* ─── CURSOS ─────────────────────────────────── */
-#cursos{background:var(--dk);padding:6rem 3rem 10rem;overflow:visible;position:relative}
+#cursos{background:url('../assets/Fondocurso.png') center top/cover no-repeat;padding:6rem 3rem 5rem;overflow:visible;position:relative;z-index:2;isolation:isolate;padding-bottom:14rem}
+#comunidad{margin-top:-9rem}
 .cursos-arch-top{position:absolute;top:-70px;left:-25%;width:150%;height:220px;background:var(--dk);border-radius:50%;pointer-events:none;z-index:3}
 .cursos-arch-bottom{position:absolute;bottom:-70px;left:-25%;width:150%;height:220px;background:var(--dk);border-radius:50%;pointer-events:none;z-index:3;transform:scaleY(-1)}
 /* Tipografía sobre fondo oscuro — estilo hero */
@@ -1547,8 +1548,8 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   overflow:hidden;
   display:flex;
   flex-direction:column;
-  justify-content:center;
-  padding:2rem 1.75rem;
+  justify-content:flex-start;
+  padding:7rem 1.75rem 2.75rem;
 }
 .card-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:.2}
 .wrap_card .card:nth-child(4) .content{background:rgba(0,0,0,.62)}
@@ -1592,8 +1593,53 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   color:rgba(255,255,255,.45);margin-left:.35rem;
 }
 
+/* ─── CARD HIGHLIGHTS ───────────────────────── */
+.card-highlights{
+  list-style:none;margin:.75rem 0 0;padding:0;
+  display:flex;flex-direction:column;gap:.4rem;
+}
+.card-highlights li{
+  font-family:'Manrope',sans-serif;font-weight:500;font-size:.78rem;
+  color:rgba(255,255,255,.75);line-height:1.4;
+  padding-left:1.1rem;position:relative;
+}
+.card-highlights li::before{
+  content:'';position:absolute;left:0;top:.45em;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--acid);flex-shrink:0;
+}
+
+/* ─── CARD TEACHER ───────────────────────────── */
+.card-teacher{
+  position:absolute;top:2.25rem;left:1.75rem;z-index:4;
+  display:flex;align-items:center;gap:.65rem;
+}
+.card-teacher img{
+  width:44px;height:44px;border-radius:50%;
+  object-fit:cover;object-position:center;
+  border:1.5px solid rgba(255,255,255,.25);flex-shrink:0;
+}
+.card-teacher div{display:flex;flex-direction:column;gap:.15rem}
+.card-teacher span{
+  font-family:'Manrope',sans-serif;font-weight:500;
+  font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+.card-teacher b{
+  font-family:'Manrope',sans-serif;font-weight:600;
+  font-size:.85rem;color:#fff;font-style:normal;
+}
+
 /* Card 1 — dark bg, acid border: texto blanco + accent acid */
-.wrap_card .card:nth-child(1){box-shadow:0 0 0 2px #C7FF4D}
+@keyframes cardGlow{
+  0%   {box-shadow:0 0 0 2px #C7FF4D,0 0 16px 2px rgba(199,255,77,.3),0 0 36px 4px rgba(199,255,77,.12)}
+  50%  {box-shadow:0 0 0 2px #C7FF4D,0 0 28px 6px rgba(199,255,77,.55),0 0 60px 10px rgba(199,255,77,.25)}
+  100% {box-shadow:0 0 0 2px #C7FF4D,0 0 16px 2px rgba(199,255,77,.3),0 0 36px 4px rgba(199,255,77,.12)}
+}
+.wrap_card .card{box-shadow:0 0 0 1.5px rgba(255,255,255,.1);transition:box-shadow .55s ease}
+.wrap_card .card.card-next{box-shadow:0 0 0 2px #C7FF4D,0 0 16px 2px rgba(199,255,77,.3),0 0 36px 4px rgba(199,255,77,.12)}
+.wrap_card .card.card-active{animation:crd-rotating 24s cubic-bezier(.75,0,0,1.01) infinite 0s,cardGlow 2s ease-in-out infinite}
+.wrap_card.manual .card.card-active{animation:cardGlow 2s ease-in-out infinite!important}
 .wrap_card .card:nth-child(1) .card-info .course-type{color:var(--acid)}
 .wrap_card .card:nth-child(1) .card-price{color:var(--acid)}
 
@@ -1637,7 +1683,11 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   width:11px;height:11px;border-radius:50%;border:none;cursor:pointer;
   background:rgba(255,255,255,.2);transition:background .3s,transform .3s;padding:0;
 }
-.card-dot.active{background:var(--acid);transform:scale(1.45)}
+@keyframes dotPulse{
+  0%,100%{transform:scale(1.45);box-shadow:0 0 0 0 rgba(199,255,77,.5)}
+  60%    {transform:scale(1.65);box-shadow:0 0 0 5px rgba(199,255,77,0)}
+}
+.card-dot.active{background:var(--acid);animation:dotPulse 1.5s ease-in-out infinite}
 
 /* ─── MANUAL SLIDE MODE ──────────────────────── */
 .wrap_card.manual .card{
