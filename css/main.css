@@ -716,8 +716,8 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 @media(max-width:768px){
   .rut-wallet-wrap{padding:2rem 0 4rem}
   .rut-wallet{width:320px;height:300px}
-  .rut-wallet-back{width:320px;height:230px}
-  .rut-card{width:294px;height:190px;left:13px}
+  .rut-wallet-back{width:320px;height:230px;border-radius:16px 16px 32px 32px}
+  .rut-card{width:294px;height:190px;left:13px;border-radius:14px}
   .rut-pocket{width:320px}
   .rut-bra{bottom:118px}
   .rut-su{bottom:85px}
@@ -1256,28 +1256,80 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   /* NAV */
   .n-links,.n-spacer{display:none}
 
-  /* HERO — una columna en mobile */
-  #hero{min-height:100svh!important;grid-template-columns:1fr;grid-template-rows:auto auto}
-  .h-left{grid-column:1;grid-row:1;padding:5.5rem 1.25rem 2rem;border-right:none;border-bottom:1px solid rgba(212,195,176,0.1)}
-  .h-right{grid-column:1;grid-row:2;min-height:55vw}
-  .h-coords{display:none}
-  .h-grad{display:block!important;background:linear-gradient(to bottom,rgba(21,18,16,.55) 0%,rgba(21,18,16,.35) 40%,rgba(21,18,16,.7) 100%)!important}
-  .h-fg{padding:0 1.25rem;padding-top:5.5rem;background:transparent!important}
-  .h-badge{flex-wrap:wrap;gap:.35rem}
-  .h-badge-txt{font-size:.75rem}
-  .h-title{font-size:clamp(2.2rem,10vw,3.5rem);max-width:none;margin-bottom:1.1rem}
-  .h-sub{max-width:none;margin-bottom:1.5rem}
-  .h-ctas{flex-direction:column;align-items:center;gap:.85rem;margin-bottom:2rem}
-  .h-cta-p,.h-cta-s{justify-content:center;text-align:center;width:100%}
-  .h-ctas .fc-btn,.h-ctas .btn-primary{justify-content:center;width:auto;padding:.45rem .45rem .45rem .9rem;gap:.45rem}
-  .h-stats{flex-direction:column;align-items:center;gap:.5rem}
-  .h-stat{width:auto}
-  .stat-card.lg{flex-direction:row;align-items:center;text-align:left;gap:1rem;padding:1rem 1.25rem;min-width:0;width:100%}
-  .stat-icon{width:42px;height:42px;flex-shrink:0}
-  .stat-bottom{display:flex;flex-direction:column;gap:.25rem;flex:1}
-  .stat-n{font-size:1.65rem;letter-spacing:-.02em}
-  .stat-l{font-size:.72rem;line-height:1.4;max-width:none;letter-spacing:.08em}
-  .h-coords,.h-scroll,.h-partners{display:none}
+  /* HERO MOBILE — pantalla completa */
+  #hero{
+    min-height:100svh!important;
+    display:flex;flex-direction:column;
+    position:relative;overflow:hidden;
+  }
+  .h-media{position:absolute;inset:0;z-index:0}
+  .h-media video{width:100%;height:100%;object-fit:cover}
+  .h-grad{
+    display:block!important;
+    background:linear-gradient(to bottom,
+      rgba(21,18,16,.3) 0%,
+      rgba(21,18,16,.15) 30%,
+      rgba(21,18,16,.82) 75%,
+      rgba(21,18,16,1) 100%
+    )!important;
+  }
+  .h-fg{
+    position:relative;z-index:2;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    flex:1;
+    padding:5.5rem 1.25rem 7rem;
+    background:transparent!important;
+  }
+  /* Badge de sección */
+  .h-fg::before{
+    content:'01 / 07';
+    font-family:var(--fm);font-size:.68rem;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--acid);opacity:.75;
+    display:block;margin-bottom:auto;padding-top:.5rem;
+  }
+  .h-title{
+    font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;
+    font-size:clamp(3rem,14vw,4.5rem);
+    line-height:.95;letter-spacing:-.02em;
+    color:#fff;max-width:none;margin-bottom:1rem;
+  }
+  .h-sub{
+    font-family:var(--fb);font-weight:300;
+    font-size:clamp(1rem,4.2vw,1.15rem);
+    color:rgba(255,255,255,.75);
+    max-width:none;margin-bottom:2rem;line-height:1.6;
+  }
+  /* CTA visible en mobile */
+  .h-ctas{
+    display:flex!important;flex-direction:row;
+    align-items:center;gap:1rem;flex-wrap:wrap;
+    margin-bottom:0;
+  }
+  .h-cta-p,.h-cta-s{width:auto}
+  .h-ctas .fc-btn,.h-ctas .btn-primary{
+    padding:.65rem .65rem .65rem 1.2rem;gap:.5rem;
+  }
+  /* Scroll indicator */
+  .h-scroll{
+    display:flex!important;
+    position:absolute;bottom:1.75rem;left:50%;
+    transform:translateX(-50%);
+    flex-direction:column;align-items:center;gap:.35rem;
+    font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;
+    text-transform:uppercase;color:rgba(255,255,255,.45);
+    z-index:3;
+  }
+  .h-scroll .sbar{
+    width:1px;height:32px;background:rgba(255,255,255,.25);
+    animation:sbarDrop 1.6s ease-in-out infinite;
+  }
+  @keyframes sbarDrop{
+    0%,100%{transform:scaleY(1);opacity:.4}
+    50%{transform:scaleY(.4);opacity:.9}
+  }
+  .h-coords,.h-partners,.h-badge,.h-stats{display:none!important}
+  .h-right{display:none}
 
   /* SECTIONS SHARED */
   .sec-wrap{padding:0 1.25rem}
@@ -1295,7 +1347,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-head{padding:0 1.25rem;margin-bottom:2rem;gap:1rem}
   .capas-title{font-size:clamp(2.4rem,11vw,3.8rem)}
   .capas-stage{padding:0 1.25rem}
-  .cp-frame{width:64px;height:64px}
+  .cp-frame{width:52px;height:52px}
   .hall-tools-bridge{bottom:-80px}
   .hall-tools-bridge-img{width:100%;object-fit:cover;max-height:160px;object-position:center}
   .cp-1{top:4%;left:1.5rem;transform:rotate(-3deg)}
@@ -1311,6 +1363,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
     border-radius:.4rem!important;
     border-left:2px solid rgba(199,255,77,.72)!important;
     border-right:1px solid rgba(199,255,77,.08)!important;
+    max-width:calc(100vw - 2rem);
   }
   .hotspot.lft .hs-card{left:50%!important;right:auto!important;transform:translateX(-50%)!important}
   .hotspot::before{display:none}
@@ -1318,7 +1371,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-hint-mobile{
     display:inline-flex;margin-top:.85rem;
     position:static;transform:none;
-    font-size:.62rem;padding:.55rem 1.1rem;gap:.4rem;
+    font-size:clamp(.72rem,2.5vw,.82rem);padding:.55rem 1.1rem;gap:.4rem;
   }
 
   /* HALLAZGOS */
@@ -1346,7 +1399,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   }
   .find.flipped .find-cap{opacity:1}
   .find:hover img{transform:none;filter:none}
-  .hall-accent{padding:0;gap:.6rem;flex-wrap:wrap}
+  .hall-accent{padding:0 1.25rem;gap:.6rem;flex-wrap:wrap;justify-content:center}
   .hall-chip{font-size:.65rem;padding:.5rem .9rem}
 
   /* COMUNIDAD */
@@ -1394,10 +1447,36 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   /* FINAL CTA */
   .final-cta{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem;gap:1.25rem;margin:1.5rem 0 0}
   #cursos>[style*="margin:0 3rem"]{margin:0 0 2rem!important;border-radius:.85rem!important}
-  .fc-arr{align-self:flex-end}
+  .fc-arr{align-self:flex-start}
+  #cta-final{flex-direction:column;align-items:flex-start;margin:0 1.25rem 2rem!important;padding:2rem 1.5rem!important}
 
   /* CAP CARDS */
   .cap-cards{grid-template-columns:1fr}
+
+  /* TIPOGRAFÍAS GENERALES */
+  .sec-title{font-size:clamp(1.8rem,8vw,2.8rem)}
+  .sec-sub,.sec-sub-lt{font-size:1.05rem}
+  .rf-name{font-size:clamp(1.6rem,7vw,2.2rem)}
+  .fc-head{font-size:clamp(1.5rem,6vw,2rem)}
+
+  /* SLIDER COMUNIDAD */
+  .slider-track{animation:none;gap:12px}
+  .slide{width:calc(100vw - 2.5rem);max-width:340px}
+  .slide-coord{font-size:clamp(.68rem,2.2vw,.82rem)}
+
+  /* CARD CAROUSEL */
+  .wrap_card{--w-card:300px;--h-card:420px;--insetX-card:40px}
+  .card-ctrl-btn{width:48px;height:48px}
+  .card-controls{gap:1.2rem;margin-top:1.75rem}
+
+  /* ARCHIVO CÁPSULAS */
+  .archivo-grid{grid-template-columns:repeat(2,1fr);gap:1rem;padding:1.5rem 1.25rem 2rem}
+  .archivo-back{padding:1.25rem 1rem}
+  .archivo-back-title{font-size:1.3rem}
+  .archivo-back-body{font-size:.85rem}
+  .archivo-tab-title{font-size:1.15rem}
+  .archivo-tab-sub{font-size:.82rem}
+  .archivo-label{padding:1rem .9rem .9rem}
 
   /* FOOTER */
   footer{flex-direction:column;text-align:center;padding:2rem 1.25rem;gap:.6rem}
@@ -1406,6 +1485,8 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
 /* ─── TOUCH: hotspot tap ─────────────────────── */
 @media(hover:none){
   .hotspot.active .hs-card{opacity:1;visibility:visible;pointer-events:auto}
+  .archivo-book.open .archivo-cover{transform:rotatey(-95deg);box-shadow:8px 0 20px rgba(0,0,0,.6)}
+  .archivo-book-90.open .archivo-cover{transform:rotatey(-90deg)!important}
 }
 
 /* ─── VERY SMALL (≤430px) ────────────────────── */

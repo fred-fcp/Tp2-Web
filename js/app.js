@@ -374,6 +374,7 @@ setTimeout(tryDismiss,2500);
     'hallazgos':  'assets/black logo.png',
     'comunidad':  'assets/white logo.png',
     'cursos':     'assets/acid logo.png',
+    'capsula':    'assets/white logo.png',
   };
   const io=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
@@ -385,6 +386,8 @@ setTimeout(tryDismiss,2500);
     });
   },{rootMargin:'-40% 0px -40% 0px',threshold:0});
   document.querySelectorAll('section[id],#hero').forEach(s=>io.observe(s));
+  const capsula=document.getElementById('capsula');
+  if(capsula)io.observe(capsula);
 })();
 
 /* ── HALLAZGOS FLIP (mobile viewport) ─────────────── */
@@ -565,6 +568,18 @@ setTimeout(tryDismiss,2500);
   window.addEventListener('scroll', update, {passive:true});
   window.addEventListener('resize', update, {passive:true});
   update();
+})();
+
+/* ── ARCHIVO BOOKS TAP (mobile) ─────────────── */
+(function(){
+  if(window.matchMedia('(hover:hover)').matches) return;
+  document.querySelectorAll('.archivo-book').forEach(book => {
+    book.addEventListener('click', function(e){
+      const isOpen = this.classList.contains('open');
+      document.querySelectorAll('.archivo-book.open').forEach(b => b.classList.remove('open'));
+      if(!isOpen) this.classList.add('open');
+    });
+  });
 })();
 
 /* ── COMPASS PIN ────────────────────────────── */
