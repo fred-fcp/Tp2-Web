@@ -537,3 +537,137 @@ setTimeout(tryDismiss,2500);
   next.addEventListener('click', () => goTo(current + 1));
   dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.idx)));
 })();
+
+/* ── WORD SWAP SCROLL EFFECT ────────────────── */
+(function(){
+  const section = document.getElementById('rutas');
+  if(!section) return;
+  const swaps = section.querySelectorAll('.word-swap');
+  if(!swaps.length) return;
+
+  function update(){
+    const rect = section.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.55)));
+
+    swaps.forEach(ws => {
+      const oldW = ws.querySelector('.old-word');
+      const newW = ws.querySelector('.new-word');
+      if(!oldW || !newW) return;
+      const h = oldW.offsetHeight;
+      ws.style.width  = Math.max(oldW.offsetWidth, newW.offsetWidth) + 'px';
+      oldW.style.transform = `translateY(${-progress * h}px)`;
+      oldW.style.opacity   = String(1 - progress * 1.8);
+      newW.style.transform = `translateY(${h - progress * h}px)`;
+    });
+  }
+
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update, {passive:true});
+  update();
+})();
+
+/* ── COMPASS PIN ────────────────────────────── */
+function initCompass(){
+  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
+    setTimeout(initCompass, 200);
+    return;
+  }
+  if(!document.getElementById('compass-wrap')) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── VETAS PARALLAX ────────────────────────────
+  const tunnel = document.getElementById('compass-tunnel');
+  if(tunnel){
+    const TOOL_FILES = [
+      'tool_brush','tool_scraper','tool_chisel','tool_sandpaper',
+      'tool_hammer','tool_clamp','tool_varnish_brush'
+    ];
+
+    function rng(n, s){ return Math.sin(s * 9301 + n * 49297 + 0.5) * 0.5 + 0.5; }
+
+    const layers = tunnel.querySelectorAll('.veta-layer');
+    layers.forEach((layer, li) => {
+      layer.style.position = 'absolute';
+      layer.style.inset    = '0';
+      const COUNT = 5 + li * 2;
+      for(let i = 0; i < COUNT; i++){
+        const seed    = li * 100 + i;
+        const file    = TOOL_FILES[Math.floor(rng(seed, 1) * TOOL_FILES.length)];
+        const x       = rng(seed, 2) * 100;
+        const y       = rng(seed, 3) * 100;
+        const size    = 80 + rng(seed, 4) * 140;
+        const angle   = (rng(seed, 5) - 0.5) * 360;
+        const opacity = 0.12 + rng(seed, 6) * 0.22;
+
+        const img = document.createElement('img');
+        img.src = `assets/${file}.png`;
+        img.style.cssText = `
+          position:absolute;
+          left:${x.toFixed(1)}%;
+          top:${y.toFixed(1)}%;
+          width:${size.toFixed(0)}px;
+          height:auto;
+          transform:translate(-50%,-50%) rotate(${angle.toFixed(1)}deg);
+          opacity:${opacity.toFixed(3)};
+          pointer-events:none;
+          user-select:none;
+        `;
+        layer.appendChild(img);
+      }
+    });
+
+    layers.forEach((layer, i) => {
+      const speed = parseFloat(layer.dataset.speed) || 1;
+      const dist  = window.innerHeight * speed * 1.2;
+
+      gsap.fromTo(layer,
+        { y: -dist },
+        {
+          y: dist,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#compass-wrap',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true,
+            invalidateOnRefresh: true,
+          }
+        }
+      );
+    });
+  }
+
+  gsap.fromTo('#compass-img',
+    { rotateZ: 0 },
+    {
+      rotateZ: 720,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#compass-wrap',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1.5,
+        invalidateOnRefresh: true,
+      }
+    }
+  );
+
+  gsap.fromTo('#compass-text',
+    { opacity: 0, x: 40 },
+    {
+      opacity: 1,
+      x: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#compass-wrap',
+        start: 'top top',
+        end: '40% bottom',
+        scrub: 1,
+        invalidateOnRefresh: true,
+      }
+    }
+  );
+}
+if(document.readyState === 'complete') initCompass();
+else window.addEventListener('load', initCompass);

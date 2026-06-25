@@ -134,7 +134,7 @@
   <div class="rutas-hero">
   <div class="sec-wrap rutas-text">
     <div class="ch rv" style="margin-top:3rem"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:#C7FF4D">02</span><span class="ch-l">Las Rutas</span></div>
-    <h2 class="sec-title rv d1">Tres culturas conectadas por una misma <em>raíz.</em></h2>
+    <h2 class="sec-title rv d1"><span class="word-swap"><span class="old-word">Tres</span><span class="new-word">Una</span></span> <span class="word-swap"><span class="old-word">culturas</span><span class="new-word">historia</span></span> conectadas por una misma <em>raíz.</em></h2>
     <div class="rv d2" style="display:inline-block;max-width:46ch;margin-bottom:2.5rem;padding:1.2rem 1.4rem;border-radius:1.5rem;background:rgba(61,56,48,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)">
       <p class="sec-sub" style="margin-bottom:0">No comparamos países: mostramos cómo distintas formas de pensar el diseño se entrelazan — como ramas de un mismo árbol evolutivo.</p>
     </div>
@@ -263,11 +263,29 @@
   </div>
 </section>
 
+<!-- ── COMPASS PIN ───────────────────────────── -->
+<div id="compass-wrap">
+  <div id="compass-pin">
+    <div id="compass-tunnel">
+      <div class="veta-layer" data-speed="0.4"></div>
+      <div class="veta-layer" data-speed="0.8"></div>
+      <div class="veta-layer" data-speed="1.4"></div>
+      <div class="veta-layer" data-speed="2.0"></div>
+      <div class="veta-layer" data-speed="2.8"></div>
+    </div>
+    <img id="compass-img" src="assets/compass.png" alt="Compás">
+    <div id="compass-text">
+      <span class="compass-label">Próxima etapa</span>
+      <p class="compass-heading">Aprende&nbsp;a <em>transformar</em></p>
+    </div>
+  </div>
+</div>
+
 <!-- ── CURSOS ─────────────────────────────────── -->
 <section id="cursos">
   <div style="max-width:1400px;margin:0 auto;position:relative;z-index:10">
     <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">04</span><span class="ch-l">Cursos</span></div>
-    <h2 class="sec-title rv d1">Aprende a transformar muebles desde una mirada <em>contemporánea.</em></h2>
+    <h2 class="sec-title rv d1">Desde una mirada <em>contemporánea.</em></h2>
   </div>
   <div class="wrap_card rv d1" style="position:relative;z-index:1">
 
@@ -518,7 +536,8 @@
 
 <!-- ── DATA PLACEHOLDER (replaced at build time) ── -->
 <script src="js/data.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

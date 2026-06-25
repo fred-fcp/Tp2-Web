@@ -11,15 +11,16 @@
   --lg-bg:rgba(255,255,255,0.04);
   --lg-shadow:inset 0 1px 1px rgba(255,255,255,0.12);
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--dk);color:var(--ink);font-family:var(--fb);font-weight:300;overflow-x:hidden}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--dk);color:var(--ink);font-family:var(--fb);font-weight:300;overflow-x:clip}
 
 /* ─── PARALLAX BACKGROUND ───────────────────── */
 #bg-parallax{
   position:fixed;top:-15%;left:0;right:0;bottom:-15%;z-index:-1;
-  background:url('../assets/FONDO.jpg') center/cover no-repeat;
+  background:url('../assets/FONDO.png') center/cover no-repeat;
   will-change:transform;
   transition:opacity .6s;
+  pointer-events:none;
 }
 
 /* ─── BANTER LOADER ──────────────────────────── */
@@ -386,6 +387,9 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 /* ─── SECTION SHARED ─────────────────────────── */
 .sec-wrap{padding:0 3rem;max-width:1400px;margin:0 auto}
 .sec-title{font-family:var(--fp);font-size:clamp(2.4rem,5vw,4.8rem);font-weight:400;line-height:1.02;letter-spacing:-.015em;color:var(--ink);max-width:18ch;margin-bottom:1rem}
+.word-swap{position:relative;display:inline-block;overflow:hidden;vertical-align:top}
+.word-swap .old-word,.word-swap .new-word{display:inline-block;will-change:transform,opacity}
+.word-swap .new-word{position:absolute;left:0;top:0;white-space:nowrap;opacity:1}
 .sec-title em{font-style:normal}
 .sec-sub{font-size:1.25rem;line-height:1.75;color:var(--gr);max-width:46ch;margin-bottom:2.5rem;font-weight:300}
 .sec-title-lt{color:#fff}
@@ -1120,6 +1124,44 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .ter-cta:hover{color:var(--dk);border-color:transparent}
 .ter-cta .fc-btn-icon{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.18)}
 .ter-cta:hover .fc-btn-icon{color:var(--dk);border-color:rgba(21,18,16,.18);background:rgba(21,18,16,.08);transform:rotate(45deg)}
+
+/* ─── COMPASS PIN ───────────────────────────── */
+#compass-wrap{height:230vh;position:relative;background:var(--dk)}
+#compass-pin{
+  position:sticky;top:0;
+  height:100vh;display:flex;align-items:center;justify-content:center;
+  background:var(--dk);gap:6rem;overflow:hidden;
+}
+#compass-tunnel{
+  position:absolute;inset:-100% 0;
+  width:100%;height:300%;
+  z-index:0;pointer-events:none;overflow:hidden;
+}
+.veta-layer{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  will-change:transform;
+}
+#compass-img,#compass-text{position:relative;z-index:1}
+#compass-img{
+  width:420px;height:420px;min-width:420px;min-height:420px;
+  object-fit:contain;flex-shrink:0;will-change:transform;
+}
+#compass-text{flex-shrink:0}
+#compass-text{
+  display:flex;flex-direction:column;gap:1rem;max-width:34ch;
+}
+.compass-label{
+  font-family:var(--fm);font-size:1.1rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--acid);
+}
+.compass-heading{
+  font-family:'Fraunces',Georgia,serif;font-style:normal;
+  font-size:clamp(2.8rem,5vw,4.5rem);
+  font-weight:700;line-height:1;color:#fff;
+}
+.compass-heading em{color:var(--acid);font-style:normal}
+.compass-heading-sm{font-size:.55em;font-weight:400;opacity:.75}
 
 /* ─── FOOTER ─────────────────────────────────── */
 footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
