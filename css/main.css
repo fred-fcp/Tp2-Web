@@ -718,10 +718,13 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   .rut-wallet{width:320px;height:300px}
   .rut-wallet-back{width:320px;height:230px;border-radius:14px 14px 38px 38px}
   .rut-card{width:294px;height:190px;left:13px;border-radius:18px}
-  .rut-pocket{width:320px}
+  .rut-pocket{width:320px;height:182px}
+  .rut-pocket-content{height:148px}
+  .rut-pocket-label{font-size:.88rem;letter-spacing:.16em}
   .rut-bra{bottom:118px}
   .rut-su{bottom:85px}
   .rut-di{bottom:52px}
+  .rutas-foot{padding:1.5rem 1.25rem 2.5rem;gap:2rem}
 }
 
 /* ─── HALLAZGOS ──────────────────────────────── */
@@ -848,6 +851,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   width:48px;height:48px;border-radius:9999px;border:none;
   background:rgba(255,255,255,.07);color:#fff;font-size:1.1rem;
   display:flex;align-items:center;justify-content:center;
+  line-height:1;padding:0;
   cursor:pointer;transition:background .3s;
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
@@ -1263,7 +1267,16 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
     position:relative;overflow:hidden;
   }
   .h-media{position:absolute;inset:0;z-index:0}
-  .h-media video{width:100%;height:100%;object-fit:cover}
+  .h-media video{
+    width:auto;
+    height:85vh;
+    max-width:none;
+    object-fit:contain;
+    object-position:center top;
+    top:0;
+    left:50%;
+    transform:translateX(-50%)!important;
+  }
   .h-grad{
     display:block!important;
     background:linear-gradient(to bottom,
@@ -1277,17 +1290,12 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
     position:relative;z-index:2;
     display:flex;flex-direction:column;justify-content:flex-end;
     flex:1;
-    padding:5.5rem 1.25rem 7rem;
+    padding:0 1.25rem 2.5rem;
+    padding-top:62vh;
     background:transparent!important;
   }
   /* Badge de sección */
-  .h-fg::before{
-    content:'01 / 07';
-    font-family:var(--fm);font-size:.68rem;
-    letter-spacing:.22em;text-transform:uppercase;
-    color:var(--acid);opacity:.75;
-    display:block;margin-bottom:auto;padding-top:.5rem;
-  }
+  .h-fg::before{display:none}
   .h-title{
     font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;
     font-size:clamp(3rem,14vw,4.5rem);
@@ -1300,16 +1308,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
     color:rgba(255,255,255,.75);
     max-width:none;margin-bottom:2rem;line-height:1.6;
   }
-  /* CTA visible en mobile */
-  .h-ctas{
-    display:flex!important;flex-direction:row;
-    align-items:center;gap:1rem;flex-wrap:wrap;
-    margin-bottom:0;
-  }
-  .h-cta-p,.h-cta-s{width:auto}
-  .h-ctas .fc-btn,.h-ctas .btn-primary{
-    padding:.65rem .65rem .65rem 1.2rem;gap:.5rem;
-  }
+  .h-ctas{display:none!important}
   /* Scroll indicator */
   .h-scroll{
     display:flex!important;
@@ -1340,7 +1339,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   /* RUTAS */
   .rutas-hero{grid-template-columns:1fr;padding:0 1.25rem;gap:0}
   .rutas-foot{grid-template-columns:1fr;padding:2rem 1.25rem 4rem;gap:1.75rem}
-  .rf-chip{padding:.6rem 1.1rem;font-size:.7rem}
+  .rf-chip{padding:.45rem .9rem;font-size:.62rem;letter-spacing:.12em;margin-top:.6rem}
 
   /* CAPAS */
   #capas{padding:10rem 0 6rem}
@@ -1348,8 +1347,7 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .capas-title{font-size:clamp(2.4rem,11vw,3.8rem)}
   .capas-stage{padding:0 1.25rem}
   .cp-frame{width:52px;height:52px}
-  .hall-tools-bridge{bottom:-80px}
-  .hall-tools-bridge-img{width:100%;object-fit:cover;max-height:160px;object-position:center}
+  .hall-tools-bridge-img{width:100%;object-fit:cover;object-position:center}
   .cp-1{top:4%;left:1.5rem;transform:rotate(-3deg)}
   .cp-2{top:auto;bottom:4%;left:1.5rem;right:auto;transform:rotate(2deg)}
   .cp-cluster{inset:0 0 -2rem 0}
@@ -1375,7 +1373,8 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   }
 
   /* HALLAZGOS */
-  #hallazgos{padding:4rem 1.25rem 5rem;overflow:visible}
+  #hallazgos{padding:4rem 1.25rem 3rem;overflow:visible;margin-bottom:-2px}
+  #territorios{padding-top:0;margin-top:0}
   .hall-head{grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}
   .hall-row-1,.hall-row-2{grid-template-columns:1fr}
   .find.tall,.find.sq{aspect-ratio:4/3}
@@ -1403,16 +1402,28 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .hall-chip{font-size:.65rem;padding:.5rem .9rem}
 
   /* COMUNIDAD */
-  #comunidad{padding:6rem 0 6rem;background:linear-gradient(to bottom,transparent 40%,#151210 75%),url('../assets/seccion5.jpg') center/cover no-repeat,var(--dk)}
+  #comunidad{padding:3.5rem 0 2.5rem;margin-top:0!important;background:linear-gradient(to bottom,transparent 40%,#151210 75%),url('../assets/seccion5.jpg') center/cover no-repeat,var(--dk)}
   .hall-arch{bottom:-60px;left:-8%;width:116%;height:120px}
   .cursos-arch-top{display:none}
   /* curva en el tope de cursos via border-radius */
   #cursos{border-radius:50% 50% 0 0/80px 80px 0 0;margin-top:-80px;padding-top:5rem;position:relative;z-index:4}
-  .com-head{grid-template-columns:1fr;gap:.6rem;padding:0 1.25rem;margin-bottom:1.5rem}
+  .com-head{grid-template-columns:1fr;gap:.6rem;padding:0 1.25rem;margin-top:2.5rem;margin-bottom:1.5rem}
   .com-head .sec-sub-lt{padding:0 .5rem;color:rgba(255,255,255,.82);font-size:1rem;line-height:1.7}
   /* slider — botones debajo centrados en mobile */
   .slider-btns{position:static;transform:none;padding:0;justify-content:center;gap:1rem;margin-top:1.25rem}
-  .slider-outer{margin-bottom:5rem}
+  .slider-outer{margin-bottom:1.5rem}
+
+  /* COMPASS */
+  #compass-wrap{height:260vh}
+  #compass-pin{
+    flex-direction:column;
+    gap:2rem;padding:2rem 1.25rem;
+    justify-content:center;align-items:center;
+  }
+  #compass-img{width:220px;height:220px;min-width:220px;min-height:220px}
+  #compass-text{max-width:none;text-align:center;align-items:center}
+  .compass-label{font-size:.78rem}
+  .compass-heading{font-size:clamp(2rem,9vw,3rem);text-align:center}
 
   /* CURSOS */
   #cursos{padding:4rem 1.25rem;background:var(--dk)}
@@ -1464,19 +1475,65 @@ footer{background:var(--ink);padding:2.2rem 3rem;display:flex;justify-content:sp
   .slide{width:calc(100vw - 2.5rem);max-width:340px}
   .slide-coord{font-size:clamp(.68rem,2.2vw,.82rem)}
 
-  /* CARD CAROUSEL */
-  .wrap_card{--w-card:300px;--h-card:420px;--insetX-card:40px}
-  .card-ctrl-btn{width:48px;height:48px}
-  .card-controls{gap:1.2rem;margin-top:1.75rem}
+  /* CARD CAROUSEL — mobile: una card a la vez */
+  .wrap_card{
+    --h-card:480px;
+    width:calc(100vw - 3rem)!important;
+    height:var(--h-card);
+    margin:1.5rem auto;
+    padding-top:0;
+    overflow:hidden;
+    clip-path:none;
+  }
+  .wrap_card .card{
+    animation:none!important;
+    width:100%!important;
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    transform:none!important;
+    opacity:0;
+    z-index:0!important;
+    transition:opacity .45s ease;
+    pointer-events:none;
+  }
+  .wrap_card .card.card-active{
+    opacity:1;
+    z-index:2!important;
+    pointer-events:auto;
+  }
+  .card-ctrl-btn{width:44px;height:44px}
+  .card-controls{gap:1rem;margin-top:1.25rem}
+  .card-info .course-name{font-size:1.5rem}
+  .card-info .course-desc{font-size:.85rem}
+  .card-price{font-size:1.4rem}
+  .card-teacher{top:1rem;left:1rem}
+  .card-teacher img{width:34px;height:34px}
+  .card-teacher div span{font-size:.58rem}
+  .card-teacher div b{font-size:.72rem}
+
+  /* TER-STRIP (cápsula) */
+  .ter-strip{padding:0 1.25rem;margin-bottom:2rem}
+  .ter-strip-head{margin-bottom:1.5rem}
+  .ter-strip-title{font-size:clamp(2rem,9vw,3rem)}
+  .ter-strip-body{font-size:.9rem}
+
+  /* HALL-TOOLS BRIDGE */
+  #territorios{padding-top:0}
+  .hall-tools-bridge{margin-top:0;margin-bottom:0}
 
   /* ARCHIVO CÁPSULAS */
-  .archivo-grid{grid-template-columns:repeat(2,1fr);gap:1rem;padding:1.5rem 1.25rem 2rem}
-  .archivo-back{padding:1.25rem 1rem}
-  .archivo-back-title{font-size:1.3rem}
-  .archivo-back-body{font-size:.85rem}
-  .archivo-tab-title{font-size:1.15rem}
-  .archivo-tab-sub{font-size:.82rem}
-  .archivo-label{padding:1rem .9rem .9rem}
+  .archivo-grid{grid-template-columns:repeat(2,1fr);gap:.75rem;padding:1.25rem 1.25rem 2rem}
+  .archivo-back{padding:.85rem .75rem}
+  .archivo-back-inner{gap:.45rem}
+  .archivo-back-title{font-size:1rem}
+  .archivo-back-body{font-size:.75rem;line-height:1.45}
+  .archivo-back-inner .archivo-num{font-size:.72rem}
+  .archivo-tab-title{font-size:.95rem}
+  .archivo-tab-sub{font-size:.72rem}
+  .archivo-num{font-size:.82rem}
+  .archivo-label{padding:.75rem .75rem .7rem}
+  .archivo-back .ter-cta{font-size:.65rem;padding:.45rem .45rem .45rem .75rem;gap:.35rem}
 
   /* FOOTER */
   footer{flex-direction:column;text-align:center;padding:2rem 1.25rem;gap:.6rem}
