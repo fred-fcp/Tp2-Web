@@ -932,7 +932,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   border-radius:1.25rem;
 }
 .final-cta:hover{opacity:.92}
-.fc-eye{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--acid);text-transform:uppercase;margin-bottom:.9rem}
+.fc-eye{font-family:var(--fm);font-size:.85rem;letter-spacing:.2em;color:var(--acid);text-transform:uppercase;margin-bottom:.9rem}
 .fc-head{font-family:var(--fp);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;color:#fff;line-height:1.05}
 .fc-arr{font-size:2.3rem;color:var(--acid);transition:transform .3s}
 .final-cta:hover .fc-arr{transform:translate(5px,-5px)}
@@ -950,7 +950,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   text-transform:uppercase;color:var(--wood);
 }
 .ter-strip-title{
-  font-family:'Manrope',sans-serif;font-style:normal;
+  font-family:'Fraunces',Georgia,serif;font-style:normal;
   font-size:clamp(2.8rem,4.5vw,4.2rem);font-weight:700;
   line-height:1;letter-spacing:-.03em;color:var(--ink);
   margin-top:.1rem;
@@ -1124,6 +1124,88 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .ter-cta:hover{color:var(--dk);border-color:transparent}
 .ter-cta .fc-btn-icon{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.18)}
 .ter-cta:hover .fc-btn-icon{color:var(--dk);border-color:rgba(21,18,16,.18);background:rgba(21,18,16,.08);transform:rotate(45deg)}
+
+/* ── ARCHIVO CÁPSULAS ──────────────────────── */
+.archivo-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2rem;
+  padding:2rem 3rem 3rem;
+  perspective:2000px;
+}
+.archivo-book{
+  position:relative;
+  border-radius:4px 12px 12px 4px;
+  aspect-ratio:3/4;
+  background:url('../assets/archivo_interior.jpg') center/cover no-repeat;
+  box-shadow:4px 4px 24px rgba(0,0,0,.7),inset 3px 0 8px rgba(0,0,0,.4);
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+.archivo-book::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;
+  width:6px;
+  background:linear-gradient(to right,rgba(0,0,0,.5),rgba(0,0,0,.1));
+  border-radius:4px 0 0 4px;
+  z-index:2;
+}
+.archivo-cover{
+  position:absolute;inset:0;
+  border-radius:4px 12px 12px 4px;
+  overflow:hidden;
+  transform-origin:left center;
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,0,.2,1),box-shadow .6s ease;
+  box-shadow:3px 0 12px rgba(0,0,0,.5);
+  z-index:3;
+}
+.archivo-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.archivo-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.5rem 1.25rem 1.25rem;
+  background:linear-gradient(to top,rgba(10,8,4,.92) 60%,transparent);
+  display:flex;flex-direction:column;gap:.25rem;
+}
+.archivo-num{
+  font-family:var(--fm);font-size:1.4rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--acid);opacity:.8;
+}
+.archivo-tab-title{
+  font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:1.5rem;color:#fff;line-height:1.05;
+}
+.archivo-tab-sub{
+  font-family:var(--fb);font-size:1rem;font-weight:300;color:var(--gr);letter-spacing:.02em;
+}
+.archivo-back{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.5rem;z-index:1;
+}
+.archivo-back-inner{display:flex;flex-direction:column;gap:.75rem;}
+.archivo-back-inner .archivo-num{font-size:1rem}
+.archivo-back-title{
+  font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:2.1rem;
+  color:#fff;line-height:1.05;margin:0;
+}
+.archivo-back-body{
+  font-family:var(--fb);font-size:1.05rem;font-weight:400;color:rgba(255,255,255,.82);line-height:1.6;margin:0;
+}
+.archivo-book:hover .archivo-cover{
+  transform:rotatey(-100deg);
+  box-shadow:8px 0 20px rgba(0,0,0,.6);
+}
+.archivo-book-90:hover .archivo-cover{
+  transform:rotatey(-90deg) !important;
+}
+.archivo-interior{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:4px 12px 12px 4px;
+  z-index:0;
+  filter:brightness(.55);
+}
 
 /* ─── COMPASS PIN ───────────────────────────── */
 #compass-wrap{height:230vh;position:relative;background:var(--dk)}

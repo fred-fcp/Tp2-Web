@@ -193,7 +193,12 @@
 
       <div class="rut-pocket">
         <svg class="rut-pocket-svg" viewBox="0 0 500 285" fill="none">
-          <path d="M 0 36 C 0 18 9 18 18 18 C 36 18 45 45 71 45 L 429 45 C 455 45 464 18 482 18 C 491 18 500 18 500 36 L 500 225 Q 500 285 440 285 L 60 285 Q 0 285 0 225 Z" fill="#7a4f33"></path>
+          <defs>
+            <pattern id="folderTex" patternUnits="userSpaceOnUse" width="500" height="285">
+              <image href="assets/folder_texture.jpg" x="0" y="0" width="500" height="285" preserveAspectRatio="xMidYMid slice"/>
+            </pattern>
+          </defs>
+          <path d="M 0 36 C 0 18 9 18 18 18 C 36 18 45 45 71 45 L 429 45 C 455 45 464 18 482 18 C 491 18 500 18 500 36 L 500 225 Q 500 285 440 285 L 60 285 Q 0 285 0 225 Z" fill="url(#folderTex)"></path>
         </svg>
         <div class="rut-pocket-content">
           <span class="rut-pocket-label">Un archivo</span>
@@ -476,40 +481,84 @@
       <h3 class="ter-strip-title">Territorios <em>Futuros</em></h3>
       <p class="ter-strip-body">No todos los objetos pertenecen al pasado. Estas piezas son experimentos: territorios donde la restauración dialoga con la innovación y la tradición imagina nuevas formas.</p>
     </div>
-    <div class="ter-mosaic">
+    <div class="archivo-grid">
 
-      <div class="ter-blob-outer rv ter-card-1">
-        <div class="ter-blob-card">
-          <img id="terCard01" alt="Monolitos">
-          <div class="ter-c-ov"></div>
-          <div class="ter-c-caption">
-            <div class="ter-sub">La materia como origen</div>
-            <div class="ter-name-h">Monolitos</div>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <div class="archivo-book rv archivo-book-90">
+        <img class="archivo-interior" src="assets/capsula_01_img.jpg" alt="Monolitos">
+        <div class="archivo-cover">
+          <img src="assets/capsula_01_cover.jpg" alt="Cápsula 01">
+          <div class="archivo-label">
+            <span class="archivo-num">01</span>
+            <span class="archivo-tab-title">Monolitos</span>
+            <span class="archivo-tab-sub">La materia como origen</span>
+          </div>
+        </div>
+        <div class="archivo-back">
+          <div class="archivo-back-inner">
+            <span class="archivo-num">01</span>
+            <h4 class="archivo-back-title">Monolitos</h4>
+            <p class="archivo-back-body">La materia como origen. Piezas donde el peso y la solidez son el lenguaje.</p>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
 
-      <div class="ter-blob-outer rv d1 ter-card-2">
-        <div class="ter-blob-card">
-          <img id="terCard02" alt="Ensamblajes">
-          <div class="ter-c-ov"></div>
-          <div class="ter-c-caption">
-            <div class="ter-sub">La estructura como lenguaje</div>
-            <div class="ter-name-h">Ensamblajes</div>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar sistema<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <div class="archivo-book rv d1 archivo-book-90">
+        <img class="archivo-interior" src="assets/capsula_02_img.jpg" alt="Ensamblajes">
+        <div class="archivo-cover">
+          <img src="assets/capsula_02_cover.jpg" alt="Cápsula 02">
+          <div class="archivo-label">
+            <span class="archivo-num">02</span>
+            <span class="archivo-tab-title">Ensamblajes</span>
+            <span class="archivo-tab-sub">La estructura como lenguaje</span>
+          </div>
+        </div>
+        <div class="archivo-back">
+          <div class="archivo-back-inner">
+            <span class="archivo-num">02</span>
+            <h4 class="archivo-back-title">Ensamblajes</h4>
+            <p class="archivo-back-body">La estructura como lenguaje. Uniones que hablan de tiempo y técnica.</p>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar sistema<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
 
-      <div class="ter-blob-outer rv d2 ter-card-3">
-        <div class="ter-blob-card">
-          <img id="terCard03" alt="Organismos">
-          <div class="ter-c-ov"></div>
-          <div class="ter-c-caption">
-            <div class="ter-sub">La forma como crecimiento</div>
-            <div class="ter-name-h">Organismos</div>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar forma<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <div class="archivo-book rv d2">
+        <img class="archivo-interior" src="assets/capsula_03_img.jpg" alt="Organismos">
+        <div class="archivo-cover">
+          <img src="assets/capsula_03_cover.jpg" alt="Cápsula 03">
+          <div class="archivo-label">
+            <span class="archivo-num">03</span>
+            <span class="archivo-tab-title">Organismos</span>
+            <span class="archivo-tab-sub">La forma como crecimiento</span>
+          </div>
+        </div>
+        <div class="archivo-back">
+          <div class="archivo-back-inner">
+            <span class="archivo-num">03</span>
+            <h4 class="archivo-back-title">Organismos</h4>
+            <p class="archivo-back-body">La forma como crecimiento. Objetos que evolucionan entre lo orgánico y lo construido.</p>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar forma<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="archivo-book rv d3">
+        <img class="archivo-interior" src="assets/capsula_04_img.jpg" alt="Territorios">
+        <div class="archivo-cover">
+          <img src="assets/capsula_04_cover.jpg" alt="Cápsula 04">
+          <div class="archivo-label">
+            <span class="archivo-num">04</span>
+            <span class="archivo-tab-title">Territorios</span>
+            <span class="archivo-tab-sub">El espacio como memoria</span>
+          </div>
+        </div>
+        <div class="archivo-back">
+          <div class="archivo-back-inner">
+            <span class="archivo-num">04</span>
+            <h4 class="archivo-back-title">Territorios</h4>
+            <p class="archivo-back-body">El espacio como memoria. Piezas que delimitan y definen el lugar que habitamos.</p>
+            <a href="restauracion-integral.html" class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -525,7 +574,7 @@
     <div class="fc-eye">Próximo recorrido · Julio 2026 · Cupos limitados</div>
     <div class="fc-head">Comenzar el recorrido.</div>
   </div>
-  <a href="restauracion-integral.html" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+  <a href="#cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
 </div>
 
 <footer>
