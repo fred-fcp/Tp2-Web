@@ -716,8 +716,8 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 @media(max-width:768px){
   .rut-wallet-wrap{padding:2rem 0 4rem}
   .rut-wallet{width:320px;height:300px}
-  .rut-wallet-back{width:320px;height:230px;border-radius:16px 16px 32px 32px}
-  .rut-card{width:294px;height:190px;left:13px;border-radius:14px}
+  .rut-wallet-back{width:320px;height:230px;border-radius:14px 14px 38px 38px}
+  .rut-card{width:294px;height:190px;left:13px;border-radius:18px}
   .rut-pocket{width:320px}
   .rut-bra{bottom:118px}
   .rut-su{bottom:85px}
