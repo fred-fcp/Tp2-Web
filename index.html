@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -120,13 +120,15 @@
   <div class="h-fg">
     <h1 class="h-title rv d1">Explorar<br>para <span class="acid">restaurar</span></h1>
     <p class="h-sub rv d2">Explora las culturas, materiales y técnicas que transforman los muebles en nuevas historias.</p>
-    <div class="h-ctas rv d2" style="display:none">
-      <a href="#rutas" class="fc-btn">Explorar el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"></path></svg></span></a>
+    <div class="h-ctas rv d2 on">
+      <a href="#rutas" class="btn-primary lgs">Explorar el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"></path></svg></span></a>
       <a href="#cursos" class="btn-primary lgs">Ver los cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"></path></svg></span></a>
     </div>
   </div>
 
   <div class="h-scroll"><span class="sbar"></span>Explorar</div>
+
+
 </section>
 
 <!-- ── RUTAS ──────────────────────────────────── -->
@@ -134,7 +136,7 @@
   <div class="rutas-hero">
   <div class="sec-wrap rutas-text">
     <div class="ch rv" style="margin-top:3rem"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:#C7FF4D">02</span><span class="ch-l">Las Rutas</span></div>
-    <h2 class="sec-title rv d1"><span class="word-swap"><span class="old-word">Tres</span><span class="new-word">Una</span></span> <span class="word-swap"><span class="old-word">culturas</span><span class="new-word">historia</span></span> conectadas por una misma <em>raíz.</em></h2>
+    <h2 class="sec-title rv d1">Historias conectadas por una misma <em>raíz.</em></h2>
     <div class="rv d2" style="display:inline-block;max-width:46ch;margin-bottom:2.5rem;padding:1.2rem 1.4rem;border-radius:1.5rem;background:rgba(61,56,48,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)">
       <p class="sec-sub" style="margin-bottom:0">No comparamos países: mostramos cómo distintas formas de pensar el diseño se entrelazan — como ramas de un mismo árbol evolutivo.</p>
     </div>
@@ -271,143 +273,221 @@
 <!-- ── COMPASS PIN ───────────────────────────── -->
 <div id="compass-wrap">
   <div id="compass-pin">
-    <div id="compass-tunnel">
-      <div class="veta-layer" data-speed="0.4"></div>
-      <div class="veta-layer" data-speed="0.8"></div>
-      <div class="veta-layer" data-speed="1.4"></div>
-      <div class="veta-layer" data-speed="2.0"></div>
-      <div class="veta-layer" data-speed="2.8"></div>
-    </div>
     <img id="compass-img" src="assets/compass.png" alt="Compás">
     <div id="compass-text">
-      <span class="compass-label">Próxima etapa</span>
-      <p class="compass-heading">Aprende&nbsp;a <em>transformar</em></p>
+      <span class="compass-label">Antes de actuar, orientate</span>
+      <p class="compass-heading">Calibrá <em>tu&nbsp;mirada</em></p>
+      <p class="compass-sub">Intervenir sin criterio es dañar.<br>Primero vamos al método.</p>
     </div>
   </div>
 </div>
 
-<!-- ── CURSOS ─────────────────────────────────── -->
+<!-- ── CURSOS · CASES TEASER ATLAS ───────────── -->
 <section id="cursos">
-  <div style="max-width:1400px;margin:0 auto;position:relative;z-index:10">
-    <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">04</span><span class="ch-l">Cursos</span></div>
-    <h2 class="sec-title rv d1">Desde una mirada <em>contemporánea.</em></h2>
-  </div>
-  <div class="wrap_card rv d1" style="position:relative;z-index:1">
 
-    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
-      <div class="card-teacher"><img src="assets/marcos-herrera.jpg" alt="Marcos Herrera"><div><span>Docente a cargo</span><b>Marcos Herrera</b></div></div>
-      <div class="content">
-        <span>01</span>
-        <img src="assets/curso1.jpg" alt="" class="card-bg-img">
-        <div class="card-info">
-          <div class="course-type">Programa fundamental</div>
-          <div class="course-name">Restauración Integral</div>
-          <div class="course-desc">El recorrido completo: leer, desarmar, intervenir y reinterpretar.</div>
-          <span class="lgw course-badge">8 sem · Presencial · BA</span>
-          <div class="course-divider"></div>
-          <div class="card-price">$118.000 <span>ARS/mes</span></div>
-          <ul class="card-highlights">
-            <li>Técnicas históricas con visión contemporánea</li>
-            <li>Taller con piezas reales desde el día 1</li>
-            <li>Certificado profesional avalado</li>
-          </ul>
-        </div>
-      </div>
-    </a>
+  <div class="xct" id="xct">
 
-    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
-      <div class="card-teacher"><img src="assets/valentina-cruz.jpg" alt="Valentina Cruz"><div><span>Docente a cargo</span><b>Valentina Cruz</b></div></div>
-      <div class="content">
-        <span>02</span>
-        <img src="assets/curso2.jpg" alt="" class="card-bg-img">
-        <div class="card-info">
-          <div class="course-type">Especialización</div>
-          <div class="course-name">Materiales y Acabados</div>
-          <div class="course-desc">Maderas, fibras, piedras. El espectro completo del material.</div>
-          <span class="lgw course-badge">6 sem · Híbrido</span>
-          <div class="course-divider"></div>
-          <div class="card-price">$89.000 <span>ARS/mes</span></div>
-          <ul class="card-highlights">
-            <li>Maderas, piedras, fibras y metales en laboratorio</li>
-            <li>Fórmulas de pátinas y acabados exclusivos</li>
-            <li>Aplicación directa en tu propio proyecto</li>
-          </ul>
-        </div>
-      </div>
-    </a>
+    <!-- Partículas de fondo -->
+    <canvas class="xct-particles" id="xctParticles" aria-hidden="true"></canvas>
 
-    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
-      <div class="card-teacher"><img src="assets/pablo-soto.jpg" alt="Pablo Soto"><div><span>Docente a cargo</span><b>Pablo Soto</b></div></div>
-      <div class="content">
-        <span>03</span>
-        <img src="assets/curso3.jpg" alt="" class="card-bg-img">
-        <div class="card-info">
-          <div class="course-type">Cultura del diseño</div>
-          <div class="course-name">Historia del Diseño</div>
-          <div class="course-desc">Brasil, Escandinavia. Cómo cada cultura piensa la forma.</div>
-          <span class="lgw course-badge">6 sem · Online</span>
-          <div class="course-divider"></div>
-          <div class="card-price">$72.000 <span>ARS/mes</span></div>
-          <ul class="card-highlights">
-            <li>Escandinavia y Brasil: cómo el lugar define el objeto</li>
-            <li>Clases en vivo + archivo permanente</li>
-            <li>Lecturas originales con contexto crítico</li>
-          </ul>
-        </div>
-      </div>
-    </a>
-
-    <a href="restauracion-integral.html" class="card" data-step="1" style="text-decoration:none">
-      <div class="card-teacher"><img src="assets/camila-reyes.jpg" alt="Camila Reyes"><div><span>Docente a cargo</span><b>Camila Reyes</b></div></div>
-      <div class="content">
-        <span>04</span>
-        <img src="assets/curso4.jpg" alt="" class="card-bg-img">
-        <div class="card-info">
-          <div class="course-type">Síntesis</div>
-          <div class="course-name">Proyecto Final</div>
-          <div class="course-desc">Tu primera restauración completa con punto de vista propio.</div>
-          <span class="lgw course-badge">16 sem · Intensivo · BA</span>
-          <div class="course-divider"></div>
-          <div class="card-price">$105.000 <span>ARS/mes</span></div>
-          <ul class="card-highlights">
-            <li>Mentoría individual con tu docente</li>
-            <li>Exposición pública al finalizar</li>
-            <li>Portfolio listo para clientes reales</li>
-          </ul>
-        </div>
-      </div>
-    </a>
-
-    <svg style="visibility:hidden;width:0;height:0">
-      <defs>
-        <linearGradient id="cg-full" x1="0%" y1="0%" x2="120%" y2="120%">
-          <stop offset="0%" stop-color="#ffffff"></stop>
-          <stop offset="100%" stop-color="#ffffff00"></stop>
-        </linearGradient>
-      </defs>
-    </svg>
-
-    <div class="clines">
-      <div class="cline"></div>
-      <div class="cline"></div>
+    <!-- Cabecera full-width -->
+    <div class="xct-hero">
+      <div class="ch"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">04</span><span class="ch-l">Cursos</span></div>
+      <h2 class="xct-hero-title">Desde un punto<br><span style="color:var(--acid)">contemporáneo.</span></h2>
     </div>
 
-  </div>
+    <!-- Videos + info lateral -->
+    <div class="xct-content">
 
-  <div class="card-controls">
-    <button class="card-ctrl-btn lgd" id="cardPrev" aria-label="Anterior">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="card-dots">
-      <button class="card-dot active" data-idx="0" aria-label="Curso 1"></button>
-      <button class="card-dot" data-idx="1" aria-label="Curso 2"></button>
-      <button class="card-dot" data-idx="2" aria-label="Curso 3"></button>
-      <button class="card-dot" data-idx="3" aria-label="Curso 4"></button>
+      <div class="xct-item" data-xct="0">
+        <div class="xct-side-info">
+          <span class="xct-meta-code">Restauración Integral</span>
+          <span class="xct-meta-cat">Programa Fundamental</span>
+          <div class="xct-meta-rows">
+            <div class="xct-meta-row"><span class="xct-meta-k">Duración</span><span class="xct-meta-v">08 semanas</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Modalidad</span><span class="xct-meta-v">Presencial · BA</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Precio</span><span class="xct-meta-v xct-meta-price">$118.000</span></div>
+          </div>
+          <a href="restauracion-integral.html" class="xct-media-cta btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+        <div class="xct-media">
+          <img src="assets/curso1.jpg" alt="Restauración Integral" loading="lazy" class="xct-poster">
+          <video class="xct-vid" preload="none" loop playsinline muted>
+            <source src="assets/video 1.mp4" type="video/mp4">
+          </video>
+          <div class="xct-course-name">Restauración Integral</div>
+          <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <div class="xct-avatar">
+            <img src="assets/marcos-herrera.jpg" alt="Marcos Herrera" class="xct-avatar-img">
+            <div class="xct-avatar-info">
+              <span class="xct-avatar-role">Docente</span>
+              <span class="xct-avatar-name">Marcos Herrera</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xct-item" data-xct="1">
+        <div class="xct-side-info">
+          <span class="xct-meta-code">Materiales y Acabados</span>
+          <span class="xct-meta-cat">Laboratorio Material</span>
+          <div class="xct-meta-rows">
+            <div class="xct-meta-row"><span class="xct-meta-k">Duración</span><span class="xct-meta-v">06 semanas</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Modalidad</span><span class="xct-meta-v">Híbrido</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Precio</span><span class="xct-meta-v xct-meta-price">$89.000</span></div>
+          </div>
+          <a href="restauracion-integral.html" class="xct-media-cta btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+        <div class="xct-media">
+          <img src="assets/curso2.jpg" alt="Materiales y Acabados" loading="lazy" class="xct-poster">
+          <video class="xct-vid" preload="none" loop playsinline muted>
+            <source src="assets/video 2.mp4" type="video/mp4">
+          </video>
+          <div class="xct-course-name">Materiales y Acabados</div>
+          <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <div class="xct-avatar">
+            <img src="assets/valentina-cruz.jpg" alt="Valentina Cruz" class="xct-avatar-img">
+            <div class="xct-avatar-info">
+              <span class="xct-avatar-role">Docente</span>
+              <span class="xct-avatar-name">Valentina Cruz</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xct-item" data-xct="2">
+        <div class="xct-side-info">
+          <span class="xct-meta-code">Historia del Diseño</span>
+          <span class="xct-meta-cat">Archivo Cultural</span>
+          <div class="xct-meta-rows">
+            <div class="xct-meta-row"><span class="xct-meta-k">Duración</span><span class="xct-meta-v">06 semanas</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Modalidad</span><span class="xct-meta-v">Online</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Precio</span><span class="xct-meta-v xct-meta-price">$72.000</span></div>
+          </div>
+          <a href="restauracion-integral.html" class="xct-media-cta btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+        <div class="xct-media">
+          <img src="assets/curso3.jpg" alt="Historia del Diseño" loading="lazy" class="xct-poster">
+          <video class="xct-vid" preload="none" loop playsinline muted>
+            <source src="assets/video 3.mp4" type="video/mp4">
+          </video>
+          <div class="xct-course-name">Historia del Diseño</div>
+          <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <div class="xct-avatar">
+            <img src="assets/pablo-soto.jpg" alt="Pablo Soto" class="xct-avatar-img">
+            <div class="xct-avatar-info">
+              <span class="xct-avatar-role">Docente</span>
+              <span class="xct-avatar-name">Pablo Soto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xct-item" data-xct="3">
+        <div class="xct-side-info">
+          <span class="xct-meta-code">Proyecto Final</span>
+          <span class="xct-meta-cat">Proyecto de Investigación</span>
+          <div class="xct-meta-rows">
+            <div class="xct-meta-row"><span class="xct-meta-k">Duración</span><span class="xct-meta-v">16 semanas</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Modalidad</span><span class="xct-meta-v">Presencial · BA</span></div>
+            <div class="xct-meta-row"><span class="xct-meta-k">Precio</span><span class="xct-meta-v xct-meta-price">$105.000</span></div>
+          </div>
+          <a href="restauracion-integral.html" class="xct-media-cta btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+        <div class="xct-media">
+          <img src="assets/curso4.jpg" alt="Proyecto Final" loading="lazy" class="xct-poster">
+          <video class="xct-vid" preload="none" loop playsinline muted>
+            <source src="assets/video 4.mp4" type="video/mp4">
+          </video>
+          <div class="xct-course-name">Proyecto Final</div>
+          <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <div class="xct-avatar">
+            <img src="assets/camila-reyes.jpg" alt="Camila Reyes" class="xct-avatar-img">
+            <div class="xct-avatar-info">
+              <span class="xct-avatar-role">Docente</span>
+              <span class="xct-avatar-name">Camila Reyes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /xct-content -->
+
+    <!-- Cuadro comparativo -->
+    <div class="xct-compare">
+      <div class="xct-compare-head">
+        <span class="xct-compare-label">Compará los programas</span>
+      </div>
+      <div class="xct-compare-table">
+        <!-- Headers -->
+        <div class="xct-compare-row xct-compare-row--header">
+          <div class="xct-compare-cell xct-compare-cell--key"></div>
+          <div class="xct-compare-cell xct-compare-cell--course">
+            <span class="xct-compare-name">Restauración Integral</span>
+          </div>
+          <div class="xct-compare-cell xct-compare-cell--course">
+            <span class="xct-compare-name">Materiales y Acabados</span>
+          </div>
+          <div class="xct-compare-cell xct-compare-cell--course">
+            <span class="xct-compare-name">Historia del Diseño</span>
+          </div>
+          <div class="xct-compare-cell xct-compare-cell--course">
+            <span class="xct-compare-name">Proyecto Final</span>
+          </div>
+        </div>
+        <!-- Categoría -->
+        <div class="xct-compare-row">
+          <div class="xct-compare-cell xct-compare-cell--key">Categoría</div>
+          <div class="xct-compare-cell">Programa Fundamental</div>
+          <div class="xct-compare-cell">Laboratorio Material</div>
+          <div class="xct-compare-cell">Archivo Cultural</div>
+          <div class="xct-compare-cell">Proyecto de Investigación</div>
+        </div>
+        <!-- Duración -->
+        <div class="xct-compare-row">
+          <div class="xct-compare-cell xct-compare-cell--key">Duración</div>
+          <div class="xct-compare-cell">08 semanas</div>
+          <div class="xct-compare-cell">06 semanas</div>
+          <div class="xct-compare-cell">06 semanas</div>
+          <div class="xct-compare-cell">16 semanas</div>
+        </div>
+        <!-- Modalidad -->
+        <div class="xct-compare-row">
+          <div class="xct-compare-cell xct-compare-cell--key">Modalidad</div>
+          <div class="xct-compare-cell">Presencial · BA</div>
+          <div class="xct-compare-cell">Híbrido</div>
+          <div class="xct-compare-cell">Online</div>
+          <div class="xct-compare-cell">Presencial · BA</div>
+        </div>
+        <!-- Docente -->
+        <div class="xct-compare-row">
+          <div class="xct-compare-cell xct-compare-cell--key">Docente</div>
+          <div class="xct-compare-cell">Marcos Herrera</div>
+          <div class="xct-compare-cell">Valentina Cruz</div>
+          <div class="xct-compare-cell">Pablo Soto</div>
+          <div class="xct-compare-cell">Camila Reyes</div>
+        </div>
+        <!-- Precio -->
+        <div class="xct-compare-row xct-compare-row--price">
+          <div class="xct-compare-cell xct-compare-cell--key">Precio</div>
+          <div class="xct-compare-cell xct-compare-cell--price">$118.000</div>
+          <div class="xct-compare-cell xct-compare-cell--price">$89.000</div>
+          <div class="xct-compare-cell xct-compare-cell--price">$72.000</div>
+          <div class="xct-compare-cell xct-compare-cell--price">$105.000</div>
+        </div>
+        <!-- CTA -->
+        <div class="xct-compare-row xct-compare-row--cta">
+          <div class="xct-compare-cell xct-compare-cell--key"></div>
+          <div class="xct-compare-cell"><a href="restauracion-integral.html" class="xct-compare-btn">Inscribirme</a></div>
+          <div class="xct-compare-cell"><a href="restauracion-integral.html" class="xct-compare-btn">Inscribirme</a></div>
+          <div class="xct-compare-cell"><a href="restauracion-integral.html" class="xct-compare-btn">Inscribirme</a></div>
+          <div class="xct-compare-cell"><a href="restauracion-integral.html" class="xct-compare-btn">Inscribirme</a></div>
+        </div>
+      </div>
     </div>
-    <button class="card-ctrl-btn lgd" id="cardNext" aria-label="Siguiente">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-  </div>
+
+  </div><!-- /xct -->
+
 </section>
 
 <!-- ── COMUNIDAD (slider) ─────────────────────── -->
@@ -420,7 +500,7 @@
       <h2 class="sec-title sec-title-lt rv d1">Nuevas Entradas<br>al <em>Atlas.</em></h2>
     </div>
     <div class="rv d2">
-      <p class="sec-sub sec-sub-lt">No testimonios: transformaciones reales, en distintos países, conectadas por el mismo método.</p>
+      <p class="sec-sub sec-sub-lt">Testimonios: transformaciones reales, en distintos países, conectadas por el mismo método.</p>
     </div>
   </div>
   <div class="slider-outer" style="position:relative;z-index:1">
@@ -444,7 +524,6 @@
       <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">06</span><span class="ch-l">Hallazgos</span></div>
       <h2 class="sec-title rv d1">Lo que se descubre al <em>mirar de cerca.</em></h2>
     </div>
-    <p class="sec-sub rv d2">Cada imagen es una evidencia: uniones históricas, superficies en transición, ensambles que revelan la inteligencia del material.</p>
   </div>
   <div class="hall-grid" style="position:relative;z-index:1">
     <div class="hall-row hall-row-1">
@@ -452,10 +531,13 @@
         <img id="h1" alt="Espiga a diente">
         <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-001 · Unión</div><div class="find-name">Espiga a diente</div><div class="find-note">Unión tradicional al descubierto. La memoria del ensamble original.</div></div></div>
       </a>
-      <a href="restauracion-integral.html" class="find sq rv d1" style="text-decoration:none;display:block">
-        <img id="h2" alt="Frente de intervención">
-        <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-002 · Superficie</div><div class="find-name">Frente de intervención</div><div class="find-note">Donde termina la pátina y comienza la restauración.</div></div></div>
-      </a>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <a href="restauracion-integral.html" class="find sq rv d1" style="text-decoration:none;display:block">
+          <img id="h2" alt="Frente de intervención">
+          <div class="find-cap"><div class="find-inner"><div class="find-ref">ARQ-002 · Superficie</div><div class="find-name">Frente de intervención</div><div class="find-note">Donde termina la pátina y comienza la restauración.</div></div></div>
+        </a>
+        <p class="sec-sub rv d2" style="margin:0;padding-left:1.5rem">Cada imagen es una evidencia: uniones históricas, superficies en transición, ensambles que revelan la inteligencia del material.</p>
+      </div>
     </div>
     <div class="hall-row hall-row-2">
       <a href="restauracion-integral.html" class="find sq rv d1" style="text-decoration:none;display:block">
@@ -498,7 +580,7 @@
             <span class="archivo-num">01</span>
             <h4 class="archivo-back-title">Monolitos</h4>
             <p class="archivo-back-body">La materia como origen. Piezas donde el peso y la solidez son el lenguaje.</p>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="fc-btn">Explorar pieza<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -518,7 +600,7 @@
             <span class="archivo-num">02</span>
             <h4 class="archivo-back-title">Ensamblajes</h4>
             <p class="archivo-back-body">La estructura como lenguaje. Uniones que hablan de tiempo y técnica.</p>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar sistema<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="fc-btn">Explorar sistema<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -538,7 +620,7 @@
             <span class="archivo-num">03</span>
             <h4 class="archivo-back-title">Organismos</h4>
             <p class="archivo-back-body">La forma como crecimiento. Objetos que evolucionan entre lo orgánico y lo construido.</p>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar forma<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="fc-btn">Explorar forma<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -558,7 +640,7 @@
             <span class="archivo-num">04</span>
             <h4 class="archivo-back-title">Territorios</h4>
             <p class="archivo-back-body">El espacio como memoria. Piezas que delimitan y definen el lugar que habitamos.</p>
-            <a href="restauracion-integral.html" class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="restauracion-integral.html" class="fc-btn">Explorar pieza<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
         </div>
       </div>
@@ -569,18 +651,90 @@
 </section>
 
 <!-- ── CTA FINAL — independiente, no mover salvo instrucción explícita ── -->
-<div id="cta-final" style="margin:0 3rem 4rem;padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;position:relative;z-index:1">
+<div class="cta-final-wrap">
+<div id="cta-final">
   <div>
     <div class="fc-eye">Próximo recorrido · Julio 2026 · Cupos limitados</div>
     <div class="fc-head">Comenzar el recorrido.</div>
   </div>
   <a href="#cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
 </div>
+</div>
 
-<footer>
-  <img src="assets/white logo.png" alt="RAÍZ" style="height:18px;width:auto;opacity:.35">
-  <a href="ui-library.html" class="fn" style="text-decoration:none">Atlas Vivo de Transformación · Buenos Aires · Est. 2026</a>
-  <span class="fn">34°36'S · 58°22'W</span>
+<section class="newsletter-section noise-bg">
+  <div class="dust" id="nl-dust"></div>
+  <div class="nl-wrap">
+    <div class="nl-inner">
+      <h2 class="nl-title">Recibí nuevas entradas<br>al <em style="font-style:normal;color:var(--acid)">Atlas.</em></h2>
+      <p class="nl-sub">Sin spam. Solo piezas nuevas, técnicas y hallazgos del proceso de restauración.</p>
+      <form class="nl-form" onsubmit="return false">
+        <input class="nl-input" type="email" placeholder="Tu correo electrónico" autocomplete="email">
+        <button class="btn-nav-cta" type="submit">Suscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></button>
+      </form>
+      <p class="nl-note">Más de 200 restauradores en Argentina, Brasil y otros países ya reciben el Atlas.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+
+
+  <div class="sf-inner">
+
+    <!-- Columna 1: marca + redes -->
+    <div class="sf-brand">
+      <a href="#" class="sf-logo" aria-label="RAÍZ inicio">
+        <img src="assets/white logo.png" alt="RAÍZ" style="height:32px;width:auto">
+      </a>
+      <p class="sf-tagline">Atlas Vivo de<br>Transformación</p>
+      <div class="sf-socials">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="sf-social" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 18 19" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 0.366211H5C2.23858 0.366211 0 2.60479 0 5.36621V13.3662C0 16.1276 2.23858 18.3662 5 18.3662H13C15.7614 18.3662 18 16.1276 18 13.3662V5.36621C18 2.60479 15.7614 0.366211 13 0.366211ZM16.25 13.3662C16.2445 15.1588 14.7926 16.6107 13 16.6162H5C3.20735 16.6107 1.75549 15.1588 1.75 13.3662V5.36621C1.75549 3.57356 3.20735 2.1217 5 2.11621H13C14.7926 2.1217 16.2445 3.57356 16.25 5.36621V13.3662ZM13.75 5.61621C14.3023 5.61621 14.75 5.16849 14.75 4.61621C14.75 4.06393 14.3023 3.61621 13.75 3.61621C13.1977 3.61621 12.75 4.06393 12.75 4.61621C12.75 5.16849 13.1977 5.61621 13.75 5.61621ZM9 4.86621C6.51472 4.86621 4.5 6.88093 4.5 9.36621C4.5 11.8515 6.51472 13.8662 9 13.8662C11.4853 13.8662 13.5 11.8515 13.5 9.36621C13.5027 8.17191 13.0294 7.02578 12.1849 6.18129C11.3404 5.3368 10.1943 4.86355 9 4.86621ZM6.25 9.36621C6.25 10.885 7.4812 12.1162 9 12.1162C10.5188 12.1162 11.75 10.885 11.75 9.36621C11.75 7.84741 10.5188 6.61621 9 6.61621C7.4812 6.61621 6.25 7.84741 6.25 9.36621Z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="sf-social" aria-label="TikTok">
+          <svg width="17" height="17" viewBox="0 0 18 19" fill="none"><path d="M12.75 0.366211H9.75V12.6162C9.75 13.8662 8.7 14.8662 7.5 14.8662C6.3 14.8662 5.25 13.8662 5.25 12.6162C5.25 11.3912 6.275 10.4162 7.45 10.3662V7.36621C4.625 7.41621 2.25 9.76621 2.25 12.6162C2.25 15.4912 4.675 17.8662 7.525 17.8662C10.375 17.8662 12.75 15.4662 12.75 12.6162V6.21621C13.8 6.99121 15.1 7.36621 16.5 7.36621V4.36621C14.35 4.29121 12.75 2.54121 12.75 0.366211Z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="sf-social" aria-label="YouTube">
+          <svg width="17" height="14" viewBox="0 0 18 15" fill="none"><path d="M17.6338 2.56336C17.5314 2.14076 17.3312 1.75536 17.0532 1.44553C16.7751 1.13569 16.429 0.91222 16.0491 0.797359C14.6407 0.367359 9.00623 0.360359 9.00623 0.360359C9.00623 0.360359 3.37262 0.353359 1.96331 0.764359C1.58371 0.884505 1.23826 1.11114 0.960131 1.42249C0.681998 1.73385 0.480518 2.11948 0.375036 2.54236C0.00359894 4.10836 1.3177e-06 7.35636 1.3177e-06 7.35636C1.3177e-06 7.35636 -0.00359612 10.6204 0.365143 12.1704C0.571997 13.0274 1.17907 13.7044 1.95072 13.9354C3.37352 14.3654 8.99274 14.3724 8.99274 14.3724C8.99274 14.3724 14.6273 14.3794 16.0357 13.9694C16.4156 13.8547 16.7621 13.6317 17.0408 13.3225C17.3195 13.0133 17.5209 12.6286 17.6248 12.2064C17.9972 10.6414 17.9999 7.39436 17.9999 7.39436C17.9999 7.39436 18.0179 4.12936 17.6338 2.56336ZM7.20391 10.3654L7.2084 4.36536L11.8914 7.37036L7.20391 10.3654Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Columna 2: Explorar -->
+    <div class="sf-col">
+      <p class="sf-col-title">Explorar</p>
+      <a href="#rutas" class="sf-link">Rutas del Atlas</a>
+      <a href="#archivo" class="sf-link">Archivo Vivo</a>
+      <a href="#capas" class="sf-link">Capas de Técnica</a>
+      <a href="#comunidad" class="sf-link">Comunidad</a>
+      <a href="#compass" class="sf-link">El Método</a>
+    </div>
+
+    <!-- Columna 3: Formación -->
+    <div class="sf-col">
+      <p class="sf-col-title">Formación</p>
+      <a href="restauracion-integral.html" class="sf-link">Restauración Integral</a>
+      <a href="#cursos" class="sf-link">Materiales y Acabados</a>
+      <a href="#cursos" class="sf-link">Historia del Diseño</a>
+      <a href="#cursos" class="sf-link">Proyecto Final</a>
+      <a href="#cursos" class="sf-link">Ver todos los cursos</a>
+    </div>
+
+    <!-- Columna 4: CTA -->
+    <div class="sf-col sf-col--cta">
+      <p class="sf-col-title">Inscribirse</p>
+      <p class="sf-cta-text">Próxima cohorte disponible.<br>Plazas limitadas.</p>
+      <a href="#cursos" class="sf-cta-btn btn-dark">Explorar cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="sf-bottom">
+    <span class="sf-copy">© 2026 RAÍZ · Atlas Vivo de Transformación · Buenos Aires</span>
+    <span class="sf-coords">34°36′S · 58°22′O</span>
+  </div>
+
 </footer>
 
 <!-- ── DATA PLACEHOLDER (replaced at build time) ── -->
@@ -590,3 +744,4 @@
 <script src="js/app.js"></script>
 </body>
 </html>
+
