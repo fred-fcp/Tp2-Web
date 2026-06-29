@@ -312,7 +312,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 }
 .h-media video{
   will-change:transform;
-  transform:translate3d(-50%,var(--hero-video-y,0px),0) scale(var(--hero-video-scale,1.08));
+  transform:translate3d(-50%,var(--hero-video-y,0px),0) scale(var(--hero-video-scale,5));
 }
 .h-fg{
   will-change:transform;
@@ -2404,7 +2404,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 }
 #hero .h-media video{
   width:100%!important;height:100%!important;
-  object-fit:cover!important;object-position:center center!important;
+  object-fit:cover!important;object-position:left center!important;
   background:var(--dk);
   left:0!important;
   transform:translate3d(0,var(--hero-video-y,0px),0) scale(var(--hero-video-scale,1.02))!important;

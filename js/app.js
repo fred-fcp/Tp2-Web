@@ -112,7 +112,7 @@ function updateHeroParallax(){
   heroParallaxRoot.style.setProperty('--hero-poster-y',posterY);
   heroParallaxRoot.style.setProperty('--hero-media-y',mediaY);
   heroParallaxRoot.style.setProperty('--hero-content-y',contentY);
-  heroParallaxRoot.style.setProperty('--hero-video-scale',(1.02+raw*.035).toFixed(3));
+  heroParallaxRoot.style.setProperty('--hero-video-scale',(1.25+raw*.035).toFixed(3));
 }
 function requestHeroParallax(){
   if(heroParallaxTick)return;
