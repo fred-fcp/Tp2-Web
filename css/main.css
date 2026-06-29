@@ -1536,6 +1536,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   gap:.35rem;margin-bottom:2.5rem;
   padding-left:3rem;
 }
+.ter-strip-cta{display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;padding-left:3rem;margin-top:3rem;}
 .ter-strip-eyebrow{
   font-family:var(--fm);font-size:.88rem;letter-spacing:.22em;
   text-transform:uppercase;color:var(--wood);
@@ -1917,9 +1918,10 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 }
 
 /* ─── NEWSLETTER ─────────────────────────────── */
-.newsletter-section{padding:5rem 0;display:flex;justify-content:center;position:relative;overflow:hidden;background-image:url('../assets/background-image.png');background-size:cover;background-position:center;}
+.newsletter-section{padding:3rem 0;display:flex;justify-content:center;position:relative;overflow:hidden;background-image:url('../assets/background-image.png');background-size:cover;background-position:center;}
 .nl-wrap{max-width:1400px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;padding:0 6rem;}
 .nl-inner{width:100%;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:1rem;}
+.nl-cta-col{display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem;}
 .nl-map{width:100%;aspect-ratio:4/3;position:relative;}
 .nl-title{font-family:'Fraunces',Georgia,serif;font-style:normal;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:700;line-height:1.1;margin:0;}
 .nl-sub{font-family:var(--fb);font-size:1rem;color:rgba(255,255,255,.82);line-height:1.7;margin:0;max-width:38ch;}
@@ -1930,6 +1932,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 .nl-btn:hover{opacity:.88;}
 .nl-btn .fc-btn-icon{color:var(--dk);border-color:rgba(21,18,16,.2);width:26px;height:26px;}
 .nl-note{font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;color:rgba(255,255,255,.55);text-transform:uppercase;margin:0;}
+.nl-cta-row{max-width:1400px;margin:0 auto;padding:2rem 6rem 0;display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;border-top:1px solid rgba(255,255,255,.07);}
 
 /* ─── FOOTER ─────────────────────────────────── */
 .site-footer{

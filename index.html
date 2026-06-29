@@ -4,9 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>RAÍZ — Atlas Vivo de Transformación</title>
+<!-- Preconnect críticos -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<!-- Preload fuentes locales críticas -->
+<link rel="preload" href="Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="Typography/Manrope-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+<!-- Preload imagen hero (LCP) -->
+<link rel="preload" href="assets/hero.jpg" as="image">
+<link rel="preload" href="assets/white logo.png" as="image">
+<!-- Google Fonts no bloqueante -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="css/main.css">
 <style>
 @font-face{font-family:'Fraunces';src:url('Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
@@ -113,7 +124,7 @@
 <section id="hero">
   <div class="h-media">
     <img id="heroPoster" alt="">
-    <video id="heroVid" muted playsinline autoplay preload="auto"></video>
+    <video id="heroVid" muted playsinline autoplay preload="metadata"></video>
   </div>
   <div class="dust" id="dust"></div>
 
@@ -273,7 +284,7 @@
 <!-- ── COMPASS PIN ───────────────────────────── -->
 <div id="compass-wrap">
   <div id="compass-pin">
-    <img id="compass-img" src="assets/compass.png" alt="Compás">
+    <img id="compass-img" src="assets/compass.png" alt="Compás" loading="lazy" decoding="async">
     <div id="compass-text">
       <span class="compass-label">Antes de actuar, orientate</span>
       <p class="compass-heading">Calibrá <em>tu&nbsp;mirada</em></p>
@@ -318,7 +329,7 @@
           <div class="xct-course-name">Restauración Integral</div>
           <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           <div class="xct-avatar">
-            <img src="assets/marcos-herrera.jpg" alt="Marcos Herrera" class="xct-avatar-img">
+            <img src="assets/marcos-herrera.jpg" alt="Marcos Herrera" class="xct-avatar-img" loading="lazy" decoding="async">
             <div class="xct-avatar-info">
               <span class="xct-avatar-role">Docente</span>
               <span class="xct-avatar-name">Marcos Herrera</span>
@@ -346,7 +357,7 @@
           <div class="xct-course-name">Materiales y Acabados</div>
           <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           <div class="xct-avatar">
-            <img src="assets/valentina-cruz.jpg" alt="Valentina Cruz" class="xct-avatar-img">
+            <img src="assets/valentina-cruz.jpg" alt="Valentina Cruz" class="xct-avatar-img" loading="lazy" decoding="async">
             <div class="xct-avatar-info">
               <span class="xct-avatar-role">Docente</span>
               <span class="xct-avatar-name">Valentina Cruz</span>
@@ -374,7 +385,7 @@
           <div class="xct-course-name">Historia del Diseño</div>
           <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           <div class="xct-avatar">
-            <img src="assets/pablo-soto.jpg" alt="Pablo Soto" class="xct-avatar-img">
+            <img src="assets/pablo-soto.jpg" alt="Pablo Soto" class="xct-avatar-img" loading="lazy" decoding="async">
             <div class="xct-avatar-info">
               <span class="xct-avatar-role">Docente</span>
               <span class="xct-avatar-name">Pablo Soto</span>
@@ -402,7 +413,7 @@
           <div class="xct-course-name">Proyecto Final</div>
           <a href="restauracion-integral.html" class="xct-cta-preview btn-dark">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           <div class="xct-avatar">
-            <img src="assets/camila-reyes.jpg" alt="Camila Reyes" class="xct-avatar-img">
+            <img src="assets/camila-reyes.jpg" alt="Camila Reyes" class="xct-avatar-img" loading="lazy" decoding="async">
             <div class="xct-avatar-info">
               <span class="xct-avatar-role">Docente</span>
               <span class="xct-avatar-name">Camila Reyes</span>
@@ -555,7 +566,7 @@
 <!-- ── TERRITORIOS FUTUROS ─────────────────────── -->
 <section id="territorios" class="noise-bg">
   <div class="hall-tools-bridge" aria-hidden="true">
-    <img src="assets/tools.png" alt="" class="hall-tools-bridge-img">
+    <img src="assets/tools.png" alt="" class="hall-tools-bridge-img" loading="lazy" decoding="async">
   </div>
   <div id="capsula" class="ter-strip" style="position:relative;z-index:1">
     <div class="ter-strip-head rv">
@@ -566,7 +577,7 @@
     <div class="archivo-grid">
 
       <div class="archivo-book rv archivo-book-90">
-        <img class="archivo-interior" src="assets/capsula_01_img.jpg" alt="Monolitos">
+        <img class="archivo-interior" src="assets/capsula_01_img.jpg" alt="Monolitos" loading="lazy" decoding="async">
         <div class="archivo-cover">
           <img src="assets/capsula_01_cover.jpg" alt="Cápsula 01">
           <div class="archivo-label">
@@ -586,7 +597,7 @@
       </div>
 
       <div class="archivo-book rv d1 archivo-book-90">
-        <img class="archivo-interior" src="assets/capsula_02_img.jpg" alt="Ensamblajes">
+        <img class="archivo-interior" src="assets/capsula_02_img.jpg" alt="Ensamblajes" loading="lazy" decoding="async">
         <div class="archivo-cover">
           <img src="assets/capsula_02_cover.jpg" alt="Cápsula 02">
           <div class="archivo-label">
@@ -606,7 +617,7 @@
       </div>
 
       <div class="archivo-book rv d2">
-        <img class="archivo-interior" src="assets/capsula_03_img.jpg" alt="Organismos">
+        <img class="archivo-interior" src="assets/capsula_03_img.jpg" alt="Organismos" loading="lazy" decoding="async">
         <div class="archivo-cover">
           <img src="assets/capsula_03_cover.jpg" alt="Cápsula 03">
           <div class="archivo-label">
@@ -626,7 +637,7 @@
       </div>
 
       <div class="archivo-book rv d3">
-        <img class="archivo-interior" src="assets/capsula_04_img.jpg" alt="Territorios">
+        <img class="archivo-interior" src="assets/capsula_04_img.jpg" alt="Territorios" loading="lazy" decoding="async">
         <div class="archivo-cover">
           <img src="assets/capsula_04_cover.jpg" alt="Cápsula 04">
           <div class="archivo-label">
@@ -650,21 +661,11 @@
 
 </section>
 
-<!-- ── CTA FINAL — independiente, no mover salvo instrucción explícita ── -->
-<div class="cta-final-wrap">
-<div id="cta-final">
-  <div>
-    <div class="fc-eye">Próximo recorrido · Julio 2026 · Cupos limitados</div>
-    <div class="fc-head">Comenzar el recorrido.</div>
-  </div>
-  <a href="#cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-</div>
-</div>
-
-<section class="newsletter-section noise-bg">
+<section class="newsletter-section noise-bg" style="background-image:url('assets/background-imageINX.png');background-size:cover;background-position:center;background-repeat:no-repeat">
   <div class="dust" id="nl-dust"></div>
   <div class="nl-wrap">
     <div class="nl-inner">
+      <p class="fc-eye" style="margin:0 0 .5rem;">Próximo recorrido · Julio 2026 · Cupos limitados</p>
       <h2 class="nl-title">Recibí nuevas entradas<br>al <em style="font-style:normal;color:var(--acid)">Atlas.</em></h2>
       <p class="nl-sub">Sin spam. Solo piezas nuevas, técnicas y hallazgos del proceso de restauración.</p>
       <form class="nl-form" onsubmit="return false">
@@ -672,6 +673,10 @@
         <button class="btn-nav-cta" type="submit">Suscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></button>
       </form>
       <p class="nl-note">Más de 200 restauradores en Argentina, Brasil y otros países ya reciben el Atlas.</p>
+    </div>
+    <div class="nl-cta-col" style="display:none">
+      <p class="fc-head" style="margin:0;">Comenzar el recorrido.</p>
+      <a href="#cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -738,10 +743,11 @@
 </footer>
 
 <!-- ── DATA PLACEHOLDER (replaced at build time) ── -->
-<script src="js/data.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="js/app.js"></script>
+<script src="js/data.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="js/app.js" defer></script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));}</script>
 </body>
 </html>
 

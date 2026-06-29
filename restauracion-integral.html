@@ -14,7 +14,7 @@
 @font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}
 
 /* ── PAGE BASE ────────────────────────────────── */
-html{min-height:100%;background:linear-gradient(180deg,#070604 0%,#090806 20%,#0c0d07 42%,#111508 62%,#182008 78%,#1f2d08 90%,#253506 100%)}
+html{min-height:100%;background:#0c0b08}
 body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-weight:300;overflow-x:hidden}
 
 /* ── TIPOGRAFÍA DEL SISTEMA ───────────────────── */
@@ -24,29 +24,26 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 .ri-sub{font-family:'Manrope',sans-serif;font-size:1rem;line-height:1.75;color:rgba(255,255,255,.72);max-width:54ch;font-weight:300}
 .ri-num{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:rgba(255,255,255,.28);text-transform:uppercase}
 
+/* ── PAGE BACKGROUND ──────────────────────────── */
 /* ── HERO ─────────────────────────────────────── */
-#ri-hero{padding-top:6rem;min-height:100vh;display:flex;flex-direction:column;position:relative;background-image:url('assets/backlanding.png');background-size:cover;background-position:center;background-repeat:no-repeat}
-#ri-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,6,4,.72) 0%,rgba(7,6,4,.55) 50%,rgba(7,6,4,.85) 100%);z-index:0;pointer-events:none}
-#ri-hero>*{position:relative;z-index:1}
-.ri-h-top{max-width:860px;margin:0 auto;padding:2.5rem 3rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center}
-.ri-h-kicker{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1.4rem}
+#ri-hero{padding-top:5rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative}
+.ri-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding:2.5rem 3rem 3rem;align-items:center;max-width:1400px;margin:0 auto;width:100%}
+.ri-hero-left{display:flex;flex-direction:column;align-items:flex-start;gap:1.25rem}
+.ri-h-kicker{display:flex;align-items:center;gap:.75rem}
 .ri-h-kicker-bar{width:32px;height:1.5px;background:var(--acid)}
-.ri-h-ctas{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
-.ri-h-bottom{display:grid;grid-template-columns:1fr 1.6fr;gap:2.5rem;margin:0 2rem;align-items:start}
-.ri-h-video-wrap{border-radius:1rem;overflow:hidden;max-width:360px;margin-left:auto}
-.ri-h-video-wrap video{width:100%;height:auto;display:block;opacity:0;transition:opacity 1.2s ease}
-.ri-h-video-wrap video.rdy{opacity:1}
-.ri-h-video-rule{height:1px;margin:2rem 2rem 0;background:linear-gradient(to right,transparent,rgba(255,255,255,.06),transparent)}
+.ri-h-ctas{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.ri-h-img-wrap{border-radius:1rem;overflow:hidden;aspect-ratio:3/4;min-height:520px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.1);width:100%}
+@media(max-width:900px){.ri-hero-grid{grid-template-columns:1fr;padding:2rem 1.5rem 2.5rem}.ri-h-img-wrap{min-height:300px;aspect-ratio:4/3}}
 
 /* infográfico */
 .ri-h-info{display:flex;flex-direction:column;gap:0;padding:.5rem 0}
-.ri-info-grid{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:.85rem;overflow:hidden;margin-bottom:1.5rem;width:50%}
-.ri-info-cell{background:rgba(255,255,255,.02);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1.25rem;transition:background .3s,transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s}
-.ri-info-cell:hover{background:rgba(255,255,255,.05);transform:translateX(6px);box-shadow:-3px 0 0 0 var(--acid)}
-.ri-info-n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:3rem;color:#fff;line-height:1;letter-spacing:-.03em;min-width:3.5rem}
-.ri-info-unit{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acid)}
-.ri-info-l{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.45);font-weight:400;line-height:1.3}
-.ri-info-right{display:flex;flex-direction:column;gap:.3rem}
+.ri-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:.85rem;overflow:hidden;margin-bottom:1.5rem;width:100%}
+.ri-info-cell{background:rgba(255,255,255,.02);padding:.85rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;aspect-ratio:1;transition:background .3s,box-shadow .4s}
+.ri-info-cell:hover{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--acid)}
+.ri-info-n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2.8rem;color:#fff;line-height:1;letter-spacing:-.03em}
+.ri-info-unit{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acid);margin-top:.2rem}
+.ri-info-l{font-family:'Manrope',sans-serif;font-size:.95rem;color:rgba(255,255,255,.55);font-weight:400;line-height:1.3;margin-top:.3rem}
+.ri-info-right{display:flex;flex-direction:column;gap:.2rem}
 .ri-info-block{padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .ri-info-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.6rem}
 .ri-info-flow{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
@@ -115,6 +112,53 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 .ri-cta-text{font-size:.9rem;color:rgba(255,255,255,.58);line-height:1.7;max-width:48ch}
 .ri-cta-btns{display:flex;flex-direction:column;gap:.85rem;flex-shrink:0;align-items:flex-start}
 
+/* ── JOURNEY GRID (04) ────────────────────────── */
+.ri-constellation{margin-top:2.5rem;width:100%}
+.ri-const-svg{width:100%;height:auto;display:block}
+.ri-journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:2.5rem;background:rgba(255,255,255,.07);border-radius:1rem;overflow:hidden}
+.ri-journey-card{background:rgba(255,255,255,.02);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:.75rem;transition:background .3s}
+.ri-journey-card:hover{background:rgba(255,255,255,.05)}
+.ri-journey-card--acid{background:rgba(199,255,77,.04)}
+.ri-journey-card--acid:hover{background:rgba(199,255,77,.07)}
+.ri-journey-n{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:rgba(255,255,255,.28);text-transform:uppercase}
+.ri-journey-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.2rem;color:#fff;line-height:1.1}
+.ri-journey-desc{font-family:'Manrope',sans-serif;font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
+
+/* ── FAQ (05) ─────────────────────────────────── */
+.ri-faq-list{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.07)}
+.ri-faq-item{border-bottom:1px solid rgba(255,255,255,.07)}
+.ri-faq-q{font-family:'Manrope',sans-serif;font-weight:600;font-size:.95rem;color:rgba(255,255,255,.85);padding:1.25rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.ri-faq-q::after{content:'+';font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--acid);flex-shrink:0;transition:transform .3s}
+.ri-faq-item[open] .ri-faq-q::after{transform:rotate(45deg)}
+.ri-faq-a{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.75;padding-bottom:1.25rem;margin:0;font-weight:300}
+
+/* ── CURSOS GRID (06) ─────────────────────────── */
+.ri-cursos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.ri-curso-card{border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:border-color .3s,background .3s}
+.ri-curso-card:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.04)}
+.ri-curso-card{transition:transform .3s ease,box-shadow .3s ease}
+.ri-curso-card:not(.ri-curso-card--active):hover{transform:scale(1.03);border-color:rgba(199,255,77,.5);box-shadow:0 0 0 1px rgba(199,255,77,.2),0 8px 40px rgba(199,255,77,.12),0 0 24px rgba(199,255,77,.08);animation:card-glow .9s ease-in-out infinite}
+@keyframes card-glow{0%,100%{box-shadow:0 0 0 1px rgba(199,255,77,.2),0 8px 36px rgba(199,255,77,.1)}50%{box-shadow:0 0 0 1px rgba(199,255,77,.5),0 8px 48px rgba(199,255,77,.22),0 0 32px rgba(199,255,77,.14)}}
+.ri-curso-card--active{border-color:var(--acid);background:rgba(199,255,77,.06);box-shadow:0 0 0 1px rgba(199,255,77,.25),0 8px 40px rgba(199,255,77,.08);transition:box-shadow .3s ease}
+.ri-curso-card--active:hover{animation:active-pulse 1.4s ease-in-out infinite}
+@keyframes active-pulse{0%,100%{box-shadow:0 0 0 1px rgba(199,255,77,.25),0 8px 40px rgba(199,255,77,.08)}50%{box-shadow:0 0 0 2px rgba(199,255,77,.55),0 12px 60px rgba(199,255,77,.22)}}
+.ri-curso-card--active .ri-curso-img{height:220px}
+.ri-curso-card--active .ri-curso-name{font-size:1.4rem;color:#fff}
+.ri-curso-card--active .ri-curso-price{font-family:'Fraunces',Georgia,serif;font-size:1.4rem;font-weight:700;color:#fff;margin-top:.75rem}
+.ri-curso-card--active .ri-curso-price{color:var(--acid)}
+.ri-curso-footer{display:flex;align-items:center;gap:1rem;margin-top:.75rem;flex-wrap:wrap}
+.ri-curso-cta{display:inline-block;margin-top:.75rem;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:.15rem;transition:color .2s,border-color .2s}
+.ri-curso-cta:hover{color:#fff;border-color:#fff}
+.ri-curso-cta--active{color:var(--acid);border-color:rgba(199,255,77,.4)}
+.ri-curso-cta--active:hover{color:var(--acid);border-color:var(--acid)}
+.ri-curso-tag{display:inline-flex;align-items:center;gap:.4rem;background:var(--acid);color:#0a0a05;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:.35rem .75rem;border-radius:9999px;font-weight:700;margin-top:.5rem}
+.ri-curso-card--active .ri-curso-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:#0a0a05;display:block}
+.ri-curso-img{height:180px;background-size:cover;background-position:center}
+.ri-curso-body{padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.ri-curso-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.2rem;color:#fff;line-height:1.1}
+.ri-curso-desc{font-family:'Manrope',sans-serif;font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
+.ri-curso-tag{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-top:.5rem}
+
 /* ── RESPONSIVE ────────────────────────────────── */
 @media(max-width:900px){
   .ri-two-col{grid-template-columns:1fr;gap:3rem}
@@ -142,6 +186,12 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
   .ri-cta-block{padding:2rem 1.25rem}
   .ri-info-cell{padding:.85rem 1rem}
   .ri-info-n{font-size:2rem}
+  .ri-journey-grid{grid-template-columns:1fr}
+  .ri-cursos-grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .ri-journey-grid{grid-template-columns:1fr 1fr}
+  .ri-cursos-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -205,15 +255,15 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 
 <!-- ── NAV ─────────────────────────────────────── -->
 <nav id="nav">
-  <div class="lg n-logo" style="padding:.55rem 1.4rem">
+  <a href="index.html" class="lg n-logo" style="text-decoration:none;display:block">
     <img id="navLogo" src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block;transition:opacity .3s">
-  </div>
+  </a>
   <div class="lg n-links">
     <a href="index.html">Atlas</a>
     <a href="index.html#rutas">Rutas</a>
     <a href="index.html#capas">Capas</a>
     <a href="index.html#hallazgos">Hallazgos</a>
-    <a href="index.html#cursos" class="n-cta">Inscribirse ↗</a>
+    <a href="index.html#cursos" class="n-cta">Inscribirse<svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:.35rem;flex-shrink:0"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
   <div class="n-spacer" style="width:80px"></div>
   <button class="n-burger" id="nBurger" aria-label="Menú">
@@ -230,122 +280,58 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 </div>
 <div class="n-drawer-overlay" id="nOverlay"></div>
 
+<div class="ri-page-bg">
 <!-- ══════════════════════════════════════════════ -->
 <!-- HERO                                           -->
 <!-- ══════════════════════════════════════════════ -->
 <section id="ri-hero">
   <div class="dust" id="dust"></div>
 
-  <!-- contenido centrado -->
-  <div class="ri-h-top">
-    <div class="ri-h-kicker rv">
-      <span class="ri-h-kicker-bar"></span>
-      <span class="ri-label">Recorrido · Laboratorio Presencial · Buenos Aires · 2025</span>
-      <span class="ri-h-kicker-bar"></span>
-    </div>
-    <h1 class="ri-title rv d1" style="font-size:clamp(2.4rem,5vw,4.4rem)">Restauración Integral<br>como territorio de exploración.</h1>
-    <p class="ri-sub rv d2" style="margin-top:1rem;text-align:center">Un recorrido presencial para aprender a leer, intervenir y transformar muebles desde una mirada contemporánea, material y cultural.</p>
-    <div class="ri-h-ctas rv d3">
-      <a href="#ri-cta" class="fc-btn">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-      <a href="index.html" class="btn-primary lgs">Ver el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
-  </div>
+  <!-- hero 2 columnas -->
+  <div class="ri-hero-grid">
 
-  <!-- video + infográfico -->
-  <div class="ri-h-bottom rv d2">
-    <!-- video -->
-    <div class="ri-h-video-wrap">
-      <video id="riVid" muted playsinline autoplay preload="auto"></video>
-    </div>
-
-    <!-- infográfico -->
-    <div class="ri-h-info">
-
-      <!-- stats columna -->
-      <div class="ri-info-grid">
+    <!-- columna izquierda: texto + infográfico -->
+    <div class="ri-hero-left rv">
+      <h1 class="ri-title" style="font-size:clamp(2.4rem,4.5vw,4.4rem);line-height:1.12"><em style="font-style:normal;color:var(--acid)">Restauración Integral</em></h1>
+      <p class="ri-sub" style="margin-top:.25rem">Un recorrido presencial para aprender a leer, intervenir y transformar muebles desde una mirada contemporánea, material y cultural.</p>
+      <div class="h-ctas ri-h-ctas">
+        <a href="#ri-faq" class="btn-primary lgs">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        <a href="index.html" class="btn-primary lgs">Ver el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      </div>
+      <!-- stats -->
+      <div class="ri-info-grid" style="width:100%;margin-bottom:0">
         <div class="ri-info-cell">
           <div class="ri-info-n">8</div>
-          <div class="ri-info-right">
-            <div class="ri-info-unit">semanas</div>
-            <div class="ri-info-l">Duración del laboratorio</div>
-          </div>
+          <div><div class="ri-info-unit">semanas</div><div class="ri-info-l">Duración del laboratorio</div></div>
         </div>
         <div class="ri-info-cell">
           <div class="ri-info-n">24</div>
-          <div class="ri-info-right">
-            <div class="ri-info-unit">cupos</div>
-            <div class="ri-info-l">Grupos reducidos por edición</div>
-          </div>
+          <div><div class="ri-info-unit">cupos</div><div class="ri-info-l">Grupos reducidos</div></div>
         </div>
         <div class="ri-info-cell">
           <div class="ri-info-n">6</div>
-          <div class="ri-info-right">
-            <div class="ri-info-unit">capas</div>
-            <div class="ri-info-l">Unidades del recorrido</div>
-          </div>
+          <div><div class="ri-info-unit">etapas</div><div class="ri-info-l">Del objeto al proyecto</div></div>
         </div>
         <div class="ri-info-cell">
           <div class="ri-info-n">1:1</div>
-          <div class="ri-info-right">
-            <div class="ri-info-unit">acompañamiento</div>
-            <div class="ri-info-l">Por proyecto · presencial</div>
-          </div>
+          <div><div class="ri-info-unit">acompañamiento</div><div class="ri-info-l">Por proyecto · presencial</div></div>
         </div>
       </div>
-
-      <!-- proceso -->
-      <div class="ri-info-block">
-        <div class="ri-info-label">Proceso</div>
-        <div class="ri-info-flow">
-          <span class="ri-flow-step">Observar</span>
-          <span class="ri-flow-sep">→</span>
-          <span class="ri-flow-step">Diagnosticar</span>
-          <span class="ri-flow-sep">→</span>
-          <span class="ri-flow-step">Intervenir</span>
-          <span class="ri-flow-sep">→</span>
-          <span class="ri-flow-step ri-flow-step--acid">Documentar</span>
-        </div>
-      </div>
-
-      <!-- materiales -->
-      <div class="ri-info-block">
-        <div class="ri-info-label">Materiales</div>
-        <div class="ri-info-tags">
-          <span class="ri-tag">Madera maciza</span>
-          <span class="ri-tag">Ensambles</span>
-          <span class="ri-tag">Acabados naturales</span>
-          <span class="ri-tag">Fibras textiles</span>
-          <span class="ri-tag">Metales</span>
-          <span class="ri-tag">Pátinas</span>
-        </div>
-      </div>
-
-      <!-- formato -->
-      <div class="ri-info-block" style="border-bottom:none;padding-bottom:0">
-        <div class="ri-info-label">Formato</div>
-        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.6rem">
-          <div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.35rem;font-weight:700;color:#fff">Presencial</div>
-            <div style="font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">Buenos Aires</div>
-          </div>
-          <div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.35rem;font-weight:700;color:var(--acid)">Mar 2025</div>
-            <div style="font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">Próximo inicio</div>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- columna derecha: placeholder imagen -->
+    <div class="ri-h-img-wrap rv d1">
+      <img id="riHeroImg" src="assets%20seccion/herooo.jpg" alt="Laboratorio de restauración" style="width:100%;height:100%;object-fit:cover;display:block;opacity:1">
+    </div>
+
   </div>
-  <div class="ri-h-video-rule"></div>
 </section>
 
 <!-- ══════════════════════════════════════════════ -->
 <!-- TAREA B: INTRO CONCEPTUAL                      -->
 <!-- ══════════════════════════════════════════════ -->
-<section id="ri-intro" class="ri-sec">
+<section id="ri-intro" class="ri-sec" style="padding-bottom:9rem;background:url('assets%20seccion/gurlll.jpeg') center/cover no-repeat">
   <div class="ri-wrap">
-    <div class="ri-intro-rule"></div>
     <div class="ri-two-col">
       <div>
         <div class="ch rv" style="margin-bottom:1.5rem">
@@ -353,23 +339,18 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
           <span class="ch-n" style="color:var(--wood)">01</span>
           <span class="ch-l" style="color:rgba(255,255,255,.7)">Concepto</span>
         </div>
-        <h2 class="ri-sec-title rv d1">No aprendes solo una técnica. Aprendes a mirar.</h2>
-      </div>
-      <div style="padding-top:1rem">
-        <p class="ri-sub rv d2" style="font-size:1.1rem;line-height:1.85;margin-bottom:2rem">Cada objeto guarda una estructura, una historia y una lógica material. Este recorrido enseña a observar esas capas antes de intervenirlas.</p>
-        <p class="ri-sub rv d2" style="color:rgba(255,255,255,.5)">No se trata de aprender a lijar o barnizar. Se trata de desarrollar criterio. De entender por qué ese ensamble fue hecho así, qué madera eligió ese artesano, qué historia porta esa pátina. La intervención viene después.</p>
-        <!-- image placeholder: interior de taller / detalle de objeto -->
-        <div class="rv d3" style="height:240px;margin-top:2rem;border-radius:1rem;overflow:hidden">
-          <img src="assets/detalle.jpg" alt="Interior de laboratorio" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-        <!-- CTA persuasivo: intro -->
+        <h2 class="ri-sec-title rv d1">Un mueble no se interviene.<br><em style="font-style:normal;color:var(--acid);white-space:nowrap">Se descifra.</em></h2>
+        <p class="ri-sub rv d2" style="font-size:1.05rem;line-height:1.8;text-align:left;margin-top:1.5rem">Cada objeto guarda una estructura, una historia y una lógica material. No se trata de lijar o barnizar — se trata de desarrollar criterio. La intervención viene después.</p>
         <div class="rv d3" style="margin-top:1.5rem;padding:1.5rem 2rem;background:rgba(199,255,77,.04);border:1px solid rgba(199,255,77,.12);border-radius:1rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
           <div>
-            <div style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Cupos · Marzo 2025</div>
+            <div style="font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Cupos · Julio 2026</div>
             <div style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;color:#fff">Los lugares se agotan antes de que el recorrido empiece.</div>
           </div>
           <a href="#ri-cta" class="fc-btn" style="flex-shrink:0">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
         </div>
+      </div>
+      <div style="padding-top:1rem">
+        <div class="rv d3" style="height:240px;margin-top:2rem;border-radius:1rem;overflow:hidden"></div>
       </div>
     </div>
   </div>
@@ -477,81 +458,221 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
         <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/></svg>
         <span class="ri-img-ph-label">ilustración · axonométrica explotada del objeto</span>
       </div>
-    <!-- CTA persuasivo: caso -->
-    <div class="rv d3" style="margin-top:2rem;padding:1.75rem 2rem;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap">
-      <p style="font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:500;color:rgba(255,255,255,.75);max-width:460px;margin:0;line-height:1.55">Cada participante llega con su propio objeto. El tuyo ya tiene historia — el recorrido le da lenguaje.</p>
-      <a href="#ri-cta" class="btn-primary lgs" style="flex-shrink:0">Iniciar el proceso<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 04: LO QUE TE LLEVÁS                           -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-resultados" class="ri-sec" style="background:#acc43a url('assets seccion/ri-resultados-bg.jpg') center/cover no-repeat">
+  <div class="ri-wrap">
+    <div class="ch rv" style="margin-bottom:1.25rem;justify-content:center">
+      <span class="ch-bar" style="background:#151510"></span>
+      <span class="ch-n" style="color:#151510">04</span>
+      <span class="ch-l" style="color:rgba(21,21,16,.65)">Lo que te llevás</span>
+    </div>
+    <h2 class="ri-sec-title rv d1" style="max-width:640px;color:#151510;text-align:center;margin-left:auto;margin-right:auto">Pasaste por 6 etapas.<br>Esto es lo que construiste.</h2>
+    <p class="ri-sub rv d2" style="margin-top:1rem;max-width:52ch;color:rgba(21,21,16,.7);text-align:center;margin-left:auto;margin-right:auto">No es solo el objeto restaurado. Es el criterio que desarrollaste en el camino.</p>
+
+    <!-- Constelación SVG -->
+    <div class="ri-constellation rv d2">
+      <svg viewBox="0 0 1200 860" xmlns="http://www.w3.org/2000/svg" class="ri-const-svg" aria-label="Lo que te llevás: constelación de 6 aprendizajes">
+        <g stroke="rgba(21,21,16,.3)" stroke-width="1.5" fill="none" stroke-dasharray="5 7">
+          <line x1="600" y1="430" x2="190" y2="80"/>
+          <line x1="600" y1="430" x2="1090" y2="140"/>
+          <line x1="600" y1="430" x2="148" y2="440"/>
+          <line x1="600" y1="430" x2="1062" y2="420"/>
+          <line x1="600" y1="430" x2="210" y2="670"/>
+          <line x1="600" y1="430" x2="870" y2="650"/>
+        </g>
+        <circle cx="190" cy="80" r="70" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
+        <text x="190" y="70" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Un ojo</text>
+        <text x="190" y="92" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">entrenado</text>
+        <circle cx="1090" cy="140" r="88" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
+        <text x="1090" y="130" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Criterio de</text>
+        <text x="1090" y="152" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">diagnóstico</text>
+        <circle cx="148" cy="440" r="100" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
+        <text x="148" y="430" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Lenguaje</text>
+        <text x="148" y="452" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">constructivo</text>
+        <circle cx="1062" cy="420" r="90" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
+        <text x="1062" y="410" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Dominio de</text>
+        <text x="1062" y="432" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">acabados</text>
+        <circle cx="210" cy="670" r="92" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
+        <text x="210" y="660" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Criterio de</text>
+        <text x="210" y="682" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">intervención</text>
+        <circle cx="870" cy="650" r="100" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
+        <text x="870" y="640" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="19" fill="var(--acid)" font-weight="600">Tu proyecto</text>
+        <text x="870" y="664" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="19" fill="var(--acid)" font-weight="600">documentado</text>
+      </svg>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- TAREA D: RESULTADOS                            -->
+<!-- 05: PREGUNTAS FRECUENTES                       -->
 <!-- ══════════════════════════════════════════════ -->
-<section id="ri-resultados" class="ri-sec">
+<section id="ri-faq" class="ri-sec">
   <div class="ri-wrap">
     <div class="ch rv" style="margin-bottom:1.25rem">
-      <span class="ch-bar" style="background:var(--acid)"></span>
-      <span class="ch-n" style="color:var(--acid)">04</span>
-      <span class="ch-l" style="color:rgba(255,255,255,.7)">Lo que llevás</span>
+      <span class="ch-bar" style="background:var(--wood)"></span>
+      <span class="ch-n" style="color:var(--wood)">05</span>
+      <span class="ch-l" style="color:rgba(255,255,255,.7)">Preguntas frecuentes</span>
     </div>
-    <h2 class="ri-sec-title rv d1">El resultado no es solo un mueble restaurado.</h2>
-    <!-- CTA persuasivo: resultados — debajo del h2 -->
-    <div class="rv d2" style="margin-top:1.75rem;background:linear-gradient(135deg,rgba(199,255,77,.06) 0%,rgba(166,106,68,.06) 100%);border:1px solid rgba(199,255,77,.1);border-radius:1rem;padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap">
-      <p style="font-family:'Manrope',sans-serif;font-size:1rem;font-weight:600;color:#fff;max-width:480px;margin:0;line-height:1.5">El portfolio no se construye después del recorrido. Se construye durante — junto con el objeto.</p>
-      <a href="#ri-cta" class="fc-btn" style="flex-shrink:0">Empezar ahora<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
-    <div class="ri-two-col" style="margin-top:2.5rem">
-      <p class="ri-sub rv d1">Al final del recorrido no tenés solo un objeto terminado. Tenés un criterio, una metodología y un proyecto documentado.</p>
-      <ul class="ri-result-list rv d2">
-        <li class="ri-result-item">
-          <span class="ri-result-bar"></span>
-          <span class="ri-result-text">Criterio de observación material</span>
-        </li>
-        <li class="ri-result-item">
-          <span class="ri-result-bar"></span>
-          <span class="ri-result-text">Conocimiento de maderas, fibras y acabados</span>
-        </li>
-        <li class="ri-result-item">
-          <span class="ri-result-bar"></span>
-          <span class="ri-result-text">Metodología de intervención documentada</span>
-        </li>
-        <li class="ri-result-item">
-          <span class="ri-result-bar"></span>
-          <span class="ri-result-text">Archivo del proceso completo</span>
-        </li>
-        <li class="ri-result-item">
-          <span class="ri-result-bar"></span>
-          <span class="ri-result-text">Proyecto final para portfolio propio</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════ -->
-<!-- TAREA E: CTA FINAL                             -->
-<!-- ══════════════════════════════════════════════ -->
-<section id="ri-cta">
-  <div class="ri-cta-block rv">
-    <div>
-      <div class="ri-cta-eyebrow">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
-      <div class="ri-cta-title">Entrar al próximo territorio.</div>
-      <p class="ri-cta-text">Reservá tu lugar en el próximo recorrido de Restauración Integral. Un laboratorio presencial en Buenos Aires con grupos reducidos y acompañamiento por proyecto.</p>
-    </div>
-    <div class="ri-cta-btns">
-      <a href="#" class="fc-btn">Iniciar inscripción<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-      <a href="index.html#hallazgos" class="btn-dark">Ver Hallazgos del Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    <div class="ri-two-col" style="gap:5rem;align-items:start">
+      <div>
+        <h2 class="ri-sec-title rv d1" style="font-size:clamp(1.8rem,3vw,2.8rem)">Todo lo que querés saber antes de reservar tu lugar.</h2>
+        <p class="ri-sub rv d2" style="margin-top:1rem">Si tu pregunta no está acá, escribinos directamente.</p>
+        <a href="mailto:hola@raiz.ar" class="fc-btn rv d3" style="margin-top:2rem;display:inline-flex">Escribir una consulta<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      </div>
+      <div class="ri-faq-list rv d2">
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿Necesito experiencia previa en restauración?</summary>
+          <p class="ri-faq-a">No. El recorrido está diseñado para personas sin formación técnica específica. Lo único que necesitás es interés genuino por los objetos, los materiales y la historia que portan.</p>
+        </details>
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿Tengo que llevar mi propio objeto?</summary>
+          <p class="ri-faq-a">Sí. Cada participante trabaja sobre una pieza propia durante todo el recorrido. Puede ser un mueble familiar, un objeto encontrado o una compra específica. Si no tenés uno todavía, te ayudamos a encontrarlo.</p>
+        </details>
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿Cuándo y dónde se realizan los encuentros?</summary>
+          <p class="ri-faq-a">Los encuentros son presenciales en Buenos Aires, una vez por semana durante 8 semanas. El próximo recorrido comienza en julio 2026. Los días y horarios exactos se confirman al cerrar el grupo.</p>
+        </details>
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿Cuántos participantes hay por edición?</summary>
+          <p class="ri-faq-a">El grupo es de máximo 24 personas. Eso garantiza acompañamiento real por proyecto y que cada encuentro sea una conversación, no una clase magistral.</p>
+        </details>
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿Qué pasa si no puedo asistir a algún encuentro?</summary>
+          <p class="ri-faq-a">Se puede tolerar hasta una ausencia sin afectar el proceso. Si la situación es más compleja, lo conversamos. El acompañamiento 1:1 existe justamente para sostener el ritmo individual.</p>
+        </details>
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿El recorrido tiene certificado?</summary>
+          <p class="ri-faq-a">Sí. Al completar el recorrido recibís un certificado de participación emitido por RAÍZ y el archivo digital completo del proceso de tu proyecto.</p>
+        </details>
+        <details class="ri-faq-item">
+          <summary class="ri-faq-q">¿Cuál es el costo y cómo se paga?</summary>
+          <p class="ri-faq-a">El valor y las opciones de pago se informan al confirmar el cupo. Aceptamos pago en cuotas. Para reservar el lugar se abona una seña que se descuenta del total.</p>
+        </details>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ───────────────────────────────────── -->
-<footer>
-  <img src="assets/white logo.png" alt="RAÍZ" style="height:18px;width:auto;opacity:.35">
-  <span class="fn">Restauración Integral · Buenos Aires · 2025</span>
-  <span class="fn">34°36'S · 58°22'W</span>
+<!-- ══════════════════════════════════════════════ -->
+<!-- 06: OTROS RECORRIDOS                           -->
+<!-- ══════════════════════════════════════════════ -->
+<section id="ri-cursos" class="ri-sec">
+  <div class="ri-wrap">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="ch rv" style="margin-bottom:1.25rem;justify-content:center">
+        <span class="ch-bar" style="background:var(--acid)"></span>
+        <span class="ch-n" style="color:var(--acid)">06</span>
+        <span class="ch-l" style="color:rgba(255,255,255,.7)">Otros recorridos</span>
+      </div>
+      <h2 class="ri-sec-title rv d1">El Atlas tiene más territorios.</h2>
+      <p class="ri-sub rv d2" style="margin:.75rem auto 0;max-width:46ch;text-align:center">Cada recorrido es una entrada distinta al mismo universo de los objetos y los materiales.</p>
+    </div>
+    <div class="ri-cursos-grid rv d2">
+      <div class="ri-curso-card">
+        <div class="ri-curso-img" style="background-image:url('assets seccion/curso2.jpg')"></div>
+        <div class="ri-curso-body">
+          <div class="ri-label" style="margin-bottom:.5rem">Recorrido · Próximamente</div>
+          <div class="ri-curso-name">Materiales y Acabados</div>
+          <div class="ri-curso-desc">Aceites, ceras, lacas y tintes naturales. El acabado como lenguaje del diseñador.</div>
+          <div class="ri-curso-price">$89.000</div>
+          <a href="#" class="btn-dark" style="margin-top:.75rem;display:inline-flex;padding:.75rem 1.4rem .75rem 1.4rem;align-self:flex-start">Anotarme<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+      </div>
+      <div class="ri-curso-card">
+        <div class="ri-curso-img" style="background-image:url('assets seccion/curso3.jpg')"></div>
+        <div class="ri-curso-body">
+          <div class="ri-label" style="margin-bottom:.5rem">Recorrido · Próximamente</div>
+          <div class="ri-curso-name">Historia del Diseño de Muebles</div>
+          <div class="ri-curso-desc">Estilos, períodos y técnicas que formaron el lenguaje del mueble moderno.</div>
+          <div class="ri-curso-price">$72.000</div>
+          <a href="#" class="btn-dark" style="margin-top:.75rem;display:inline-flex;padding:.75rem 1.4rem .75rem 1.4rem;align-self:flex-start">Anotarme<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+      </div>
+      <div class="ri-curso-card">
+        <div class="ri-curso-img" style="background-image:url('assets seccion/curso4.jpg')"></div>
+        <div class="ri-curso-body">
+          <div class="ri-label" style="margin-bottom:.5rem">Recorrido · Próximamente</div>
+          <div class="ri-curso-name">Proyecto Final de Restauración</div>
+          <div class="ri-curso-desc">Un semestre, un objeto, un archivo completo. La síntesis de todos los recorridos anteriores.</div>
+          <div class="ri-curso-price">$105.000</div>
+          <a href="#" class="btn-dark" style="margin-top:.75rem;display:inline-flex;padding:.75rem 1.4rem .75rem 1.4rem;align-self:flex-start">Anotarme<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /ri-page-bg -->
+
+<section class="newsletter-section noise-bg" style="background-image:url('assets%20seccion/background-image.png');background-size:cover;background-position:center;background-repeat:no-repeat">
+  <div class="dust" id="nl-dust"></div>
+  <div class="nl-wrap" style="grid-template-columns:1fr;max-width:720px">
+    <div class="nl-inner" style="align-items:center;text-align:center">
+      <p class="fc-eye" style="margin:0 0 .5rem;">Próximo recorrido · Julio 2026 · Cupos limitados</p>
+      <h2 class="nl-title">Recibí nuevas entradas<br>al <em style="font-style:normal;color:var(--acid)">Atlas.</em></h2>
+      <p class="nl-sub">Sin spam. Solo piezas nuevas, técnicas y hallazgos del proceso de restauración.</p>
+      <form class="nl-form" onsubmit="return false">
+        <input class="nl-input" type="email" placeholder="Tu correo electrónico" autocomplete="email">
+        <button class="btn-nav-cta" type="submit">Suscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></button>
+      </form>
+      <p class="nl-note">Más de 200 restauradores en Argentina, Brasil y otros países ya reciben el Atlas.</p>
+    </div>
+    <div class="nl-cta-col" style="display:none">
+      <p class="fc-head" style="margin:0;">Comenzar el recorrido.</p>
+      <a href="#ri-cursos" class="fc-btn">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="sf-inner">
+    <div class="sf-brand">
+      <a href="index.html" class="sf-logo" aria-label="RAÍZ inicio">
+        <img src="assets/white logo.png" alt="RAÍZ" style="height:32px;width:auto">
+      </a>
+      <p class="sf-tagline">Atlas Vivo de<br>Transformación</p>
+      <div class="sf-socials">
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="sf-social" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 18 19" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 0.366211H5C2.23858 0.366211 0 2.60479 0 5.36621V13.3662C0 16.1276 2.23858 18.3662 5 18.3662H13C15.7614 18.3662 18 16.1276 18 13.3662V5.36621C18 2.60479 15.7614 0.366211 13 0.366211ZM16.25 13.3662C16.2445 15.1588 14.7926 16.6107 13 16.6162H5C3.20735 16.6107 1.75549 15.1588 1.75 13.3662V5.36621C1.75549 3.57356 3.20735 2.1217 5 2.11621H13C14.7926 2.1217 16.2445 3.57356 16.25 5.36621V13.3662ZM13.75 5.61621C14.3023 5.61621 14.75 5.16849 14.75 4.61621C14.75 4.06393 14.3023 3.61621 13.75 3.61621C13.1977 3.61621 12.75 4.06393 12.75 4.61621C12.75 5.16849 13.1977 5.61621 13.75 5.61621ZM9 4.86621C6.51472 4.86621 4.5 6.88093 4.5 9.36621C4.5 11.8515 6.51472 13.8662 9 13.8662C11.4853 13.8662 13.5 11.8515 13.5 9.36621C13.5027 8.17191 13.0294 7.02578 12.1849 6.18129C11.3404 5.3368 10.1943 4.86355 9 4.86621ZM6.25 9.36621C6.25 10.885 7.4812 12.1162 9 12.1162C10.5188 12.1162 11.75 10.885 11.75 9.36621C11.75 7.84741 10.5188 6.61621 9 6.61621C7.4812 6.61621 6.25 7.84741 6.25 9.36621Z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="sf-social" aria-label="TikTok">
+          <svg width="17" height="17" viewBox="0 0 18 19" fill="none"><path d="M12.75 0.366211H9.75V12.6162C9.75 13.8662 8.7 14.8662 7.5 14.8662C6.3 14.8662 5.25 13.8662 5.25 12.6162C5.25 11.3912 6.275 10.4162 7.45 10.3662V7.36621C4.625 7.41621 2.25 9.76621 2.25 12.6162C2.25 15.4912 4.675 17.8662 7.525 17.8662C10.375 17.8662 12.75 15.4662 12.75 12.6162V6.21621C13.8 6.99121 15.1 7.36621 16.5 7.36621V4.36621C14.35 4.29121 12.75 2.54121 12.75 0.366211Z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="sf-social" aria-label="YouTube">
+          <svg width="17" height="14" viewBox="0 0 18 15" fill="none"><path d="M17.6338 2.56336C17.5314 2.14076 17.3312 1.75536 17.0532 1.44553C16.7751 1.13569 16.429 0.91222 16.0491 0.797359C14.6407 0.367359 9.00623 0.360359 9.00623 0.360359C9.00623 0.360359 3.37262 0.353359 1.96331 0.764359C1.58371 0.884505 1.23826 1.11114 0.960131 1.42249C0.681998 1.73385 0.480518 2.11948 0.375036 2.54236C0.00359894 4.10836 1.3177e-06 7.35636 1.3177e-06 7.35636C1.3177e-06 7.35636 -0.00359612 10.6204 0.365143 12.1704C0.571997 13.0274 1.17907 13.7044 1.95072 13.9354C3.37352 14.3654 8.99274 14.3724 8.99274 14.3724C8.99274 14.3724 14.6273 14.3794 16.0357 13.9694C16.4156 13.8547 16.7621 13.6317 17.0408 13.3225C17.3195 13.0133 17.5209 12.6286 17.6248 12.2064C17.9972 10.6414 17.9999 7.39436 17.9999 7.39436C17.9999 7.39436 18.0179 4.12936 17.6338 2.56336ZM7.20391 10.3654L7.2084 4.36536L11.8914 7.37036L7.20391 10.3654Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="sf-col">
+      <p class="sf-col-title">Explorar</p>
+      <a href="index.html#rutas" class="sf-link">Rutas del Atlas</a>
+      <a href="index.html#archivo" class="sf-link">Archivo Vivo</a>
+      <a href="index.html#capas" class="sf-link">Capas de Técnica</a>
+      <a href="index.html#comunidad" class="sf-link">Comunidad</a>
+      <a href="index.html#compass" class="sf-link">El Método</a>
+    </div>
+    <div class="sf-col">
+      <p class="sf-col-title">Formación</p>
+      <a href="restauracion-integral.html" class="sf-link">Restauración Integral</a>
+      <a href="index.html#cursos" class="sf-link">Materiales y Acabados</a>
+      <a href="index.html#cursos" class="sf-link">Historia del Diseño</a>
+      <a href="index.html#cursos" class="sf-link">Proyecto Final</a>
+      <a href="index.html#cursos" class="sf-link">Ver todos los cursos</a>
+    </div>
+    <div class="sf-col sf-col--cta">
+      <p class="sf-col-title">Inscribirse</p>
+      <p class="sf-cta-text">Próxima cohorte disponible.<br>Plazas limitadas.</p>
+      <a href="index.html#cursos" class="sf-cta-btn btn-dark">Explorar cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+  </div>
+  <div class="sf-bottom">
+    <span class="sf-copy">© 2026 RAÍZ · Atlas Vivo de Transformación · Buenos Aires</span>
+    <span class="sf-coords">34°36′S · 58°22′O</span>
+  </div>
 </footer>
 
 <!-- ══════════════════════════════════════════════ -->
@@ -580,23 +701,10 @@ if(overlay)overlay.addEventListener('click',closeDrawer);
 const dustEl=document.getElementById('dust');
 if(dustEl){for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*2.5+1;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*16+14}s;animation-delay:${Math.random()*-20}s;opacity:${Math.random()*.5+.2}`;dustEl.appendChild(p);}}
 
-/* ── VIDEO SETUP ───────────────────────────────── */
-const FADE_MS=500,FADE_LEAD=0.55;
-function setupVideo(vid,src){
-  if(!vid||!src)return;
-  let raf=null,fadingOut=false;
-  vid.src=src;vid.style.opacity=0;
-  function fadeTo(t,ms){
-    if(raf)cancelAnimationFrame(raf);
-    const s=performance.now(),from=parseFloat(vid.style.opacity)||0;
-    function step(n){const p=Math.min((n-s)/ms,1);vid.style.opacity=from+(t-from)*p;if(p<1)raf=requestAnimationFrame(step);}
-    raf=requestAnimationFrame(step);
-  }
-  vid.addEventListener('loadeddata',()=>{vid.classList.add('rdy');vid.style.opacity=0;vid.play().catch(()=>{});fadeTo(1,FADE_MS);});
-  vid.addEventListener('timeupdate',()=>{if(!fadingOut&&vid.duration&&(vid.duration-vid.currentTime)<=FADE_LEAD&&(vid.duration-vid.currentTime)>0){fadingOut=true;fadeTo(0,FADE_MS);}});
-  vid.addEventListener('ended',()=>{vid.style.opacity=0;setTimeout(()=>{vid.currentTime=0;vid.play().catch(()=>{});fadingOut=false;fadeTo(1,FADE_MS);},100);});
-}
-setupVideo(document.getElementById('riVid'),'assets/human.mp4');
+
+/* ── NEWSLETTER PARTICLES ──────────────────────── */
+const nlDust=document.getElementById('nl-dust');
+if(nlDust){for(let i=0;i<45;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*4+1.5;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*-20}s;opacity:${Math.random()*.5+.4}`;nlDust.appendChild(p);}}
 
 /* ── SCROLL REVEAL ─────────────────────────────── */
 const rvEls=document.querySelectorAll('.rv');
@@ -625,17 +733,23 @@ const navEl=document.getElementById('nav');
     'ri-intro':       'assets/white logo.png',
     'ri-programa':    'assets/acid logo.png',
     'ri-caso':        'assets/white logo.png',
-    'ri-resultados':  'assets/white logo.png',
+    'ri-resultados':  'assets/black logo.png',
+    'ri-faq':         'assets/white logo.png',
+    'ri-cursos':      'assets/white logo.png',
     'ri-modalidad':   'assets/acid logo.png',
     'ri-cta':         'assets/white logo.png',
   };
+  const nav=document.getElementById('nav');
+  const lightSections=new Set(['ri-resultados']);
   const ioLogo=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(!e.isIntersecting)return;
       const src=map[e.target.id];
-      if(!src||logo.getAttribute('src')===src)return;
-      logo.style.opacity='0';
-      setTimeout(()=>{logo.src=src;logo.style.opacity='1';},150);
+      if(src&&logo.getAttribute('src')!==src){
+        logo.style.opacity='0';
+        setTimeout(()=>{logo.src=src;logo.style.opacity='1';},150);
+      }
+      if(nav)nav.classList.toggle('light',lightSections.has(e.target.id));
     });
   },{rootMargin:'-40% 0px -40% 0px',threshold:0});
   document.querySelectorAll('section[id]').forEach(s=>ioLogo.observe(s));
