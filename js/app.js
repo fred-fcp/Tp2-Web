@@ -848,45 +848,46 @@ setTimeout(tryDismiss,2500);
 })();
 
 /* ── COMPASS PIN ────────────────────────────── */
-function initCompass(){
-  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
-    setTimeout(initCompass, 200);
-    return;
+(function(){
+  const wrap = document.getElementById('compass-wrap');
+  const img  = document.getElementById('compass-img');
+  const text = document.getElementById('compass-text');
+  if(!wrap || !img) return;
+
+  img.style.willChange = 'transform';
+
+  let target = 0, current = 0, rafId = null;
+  const EASE = 0.07; // inercia similar a scrub:1.5
+
+  function getProgress(){
+    const rect    = wrap.getBoundingClientRect();
+    const travelH = wrap.offsetHeight - window.innerHeight;
+    if(travelH <= 0) return 0;
+    return Math.max(0, Math.min(1, -rect.top / travelH));
   }
-  if(!document.getElementById('compass-wrap')) return;
-  gsap.registerPlugin(ScrollTrigger);
 
+  function tick(){
+    current += (target - current) * EASE;
+    const diff = Math.abs(target - current);
 
-  gsap.fromTo('#compass-img',
-    { rotateZ: 0 },
-    {
-      rotateZ: 720,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#compass-wrap',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1.5,
-        invalidateOnRefresh: true,
-      }
+    img.style.transform = `rotate(${current * 720}deg)`;
+
+    if(text){
+      const pt = Math.max(0, Math.min(1, current / 0.4));
+      text.style.opacity   = pt;
+      text.style.transform = `translateX(${(1 - pt) * 40}px)`;
     }
-  );
 
-  gsap.fromTo('#compass-text',
-    { opacity: 0, x: 40 },
-    {
-      opacity: 1,
-      x: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#compass-wrap',
-        start: 'top top',
-        end: '40% bottom',
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    }
-  );
-}
-if(document.readyState === 'complete') initCompass();
-else window.addEventListener('load', initCompass);
+    if(diff > 0.0001) rafId = requestAnimationFrame(tick);
+    else rafId = null;
+  }
+
+  function onScroll(){
+    target = getProgress();
+    if(!rafId) rafId = requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+})();
