@@ -31,8 +31,11 @@
 const FADE_MS=500, FADE_LEAD=0.55;
 function setupVideo(vid,src){
   if(!vid||!src)return;
+  const mobile=window.innerWidth<=768;
   let raf=null,fadingOut=false;
-  vid.src=src;vid.style.opacity=0;
+  vid.src=src;
+  if(mobile){vid.style.opacity=1;vid.play().catch(()=>{});return;}
+  vid.style.opacity=0;
   function fadeTo(t,ms){
     if(raf)cancelAnimationFrame(raf);
     const s=performance.now(),from=parseFloat(vid.style.opacity)||0;
@@ -101,6 +104,11 @@ let heroParallaxTick=false;
 function updateHeroParallax(){
   heroParallaxTick=false;
   if(!heroSection)return;
+  if(window.innerWidth<=768){
+    heroParallaxRoot.style.setProperty('--hero-video-scale','1');
+    heroParallaxRoot.style.setProperty('--hero-video-y','0px');
+    return;
+  }
   const rect=heroSection.getBoundingClientRect();
   const vh=window.innerHeight||1;
   const raw=Math.min(Math.max((0-rect.top)/(vh*1.25),0),1);

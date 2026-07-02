@@ -2465,6 +2465,9 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
 
   /* FOOTER */
   footer{flex-direction:column;text-align:center;padding:2rem 1.25rem;gap:.6rem}
+
+  /* HERO VIDEO — forzar visible en mobile */
+  #heroVid{opacity:1!important}
 }
 
 /* ─── TOUCH: hotspot tap ─────────────────────── */
@@ -2534,7 +2537,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   object-fit:cover!important;object-position:left center!important;
   background:var(--dk);
   left:0!important;
-  transform:translate3d(0,var(--hero-video-y,0px),0) scale(var(--hero-video-scale,1.02))!important;
+  transform:translate3d(0,0,0) scale(1)!important;
 }
 #hero .h-media img{object-fit:cover;opacity:.72;}
 #rutas{
