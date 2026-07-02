@@ -37,7 +37,11 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 
 /* infográfico */
 .ri-h-info{display:flex;flex-direction:column;gap:0;padding:.5rem 0}
-.ri-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:.85rem;overflow:hidden;margin-bottom:1.5rem;width:100%}
+.ri-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:.85rem;margin-bottom:1.5rem;width:100%}
+.ri-info-cell:nth-child(1){border-radius:.85rem 0 0 0}
+.ri-info-cell:nth-child(2){border-radius:0 .85rem 0 0}
+.ri-info-cell:nth-child(3){border-radius:0 0 0 .85rem}
+.ri-info-cell:nth-child(4){border-radius:0 0 .85rem 0}
 .ri-info-cell{background:rgba(255,255,255,.02);padding:1rem 1.1rem;display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;transition:background .3s,box-shadow .4s}
 .ri-info-cell:hover{background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--acid)}
 .ri-info-n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2.6rem;color:#fff;line-height:1;letter-spacing:-.03em}
@@ -74,9 +78,9 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 .ri-prog-item:hover{background:rgba(199,255,77,.04)}
 .ri-prog-item:nth-child(even){border-right:none}
 .ri-prog-item:nth-last-child(-n+2){border-bottom:none}
-.ri-prog-num{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:rgba(199,255,77,.45);text-transform:uppercase;margin-bottom:.85rem}
-.ri-prog-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;line-height:1.1;margin-bottom:.6rem}
-.ri-prog-desc{font-size:.82rem;color:rgba(255,255,255,.52);line-height:1.6;font-weight:300}
+.ri-prog-num{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:rgba(199,255,77,.45);text-transform:uppercase;margin-bottom:.85rem}
+.ri-prog-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.45rem;color:#fff;line-height:1.1;margin-bottom:.6rem}
+.ri-prog-desc{font-size:.98rem;color:rgba(255,255,255,.52);line-height:1.65;font-weight:300}
 .ri-prog-accent{position:absolute;top:0;left:0;width:2px;height:0;background:var(--acid);transition:height .4s cubic-bezier(.22,1,.36,1)}
 .ri-prog-item:hover .ri-prog-accent{height:100%}
 
@@ -126,8 +130,10 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 
 /* ── FAQ (05) ─────────────────────────────────── */
 .ri-faq-list{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.07)}
-.ri-faq-item{border-bottom:1px solid rgba(255,255,255,.07)}
-.ri-faq-q{font-family:'Manrope',sans-serif;font-weight:600;font-size:.95rem;color:rgba(255,255,255,.85);padding:1.25rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.ri-faq-item{border-bottom:1px solid rgba(255,255,255,.07);border-left:2px solid transparent;padding-left:0;transition:border-left-color .25s,padding-left .25s}
+.ri-faq-item:hover{border-left-color:var(--acid);padding-left:.85rem}
+.ri-faq-q{font-family:'Manrope',sans-serif;font-weight:600;font-size:.95rem;color:rgba(255,255,255,.85);padding:1.25rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color .25s}
+.ri-faq-item:hover .ri-faq-q{color:#fff}
 .ri-faq-q::after{content:'+';font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--acid);flex-shrink:0;transition:transform .3s}
 .ri-faq-item[open] .ri-faq-q::after{transform:rotate(45deg)}
 .ri-faq-a{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.75;padding-bottom:1.25rem;margin:0;font-weight:300}
@@ -158,6 +164,41 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 .ri-curso-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.2rem;color:#fff;line-height:1.1}
 .ri-curso-desc{font-family:'Manrope',sans-serif;font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.6;font-weight:300}
 .ri-curso-tag{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-top:.5rem}
+
+#ri-hero .h-ctas .btn-primary{min-width:0;justify-content:flex-start}
+#ri-resultados .fc-btn:hover{color:#151510!important}
+
+/* ── CARRUSEL RESULTADOS ───────────────────────── */
+.ri-carousel-wrap{position:relative;margin-top:3.5rem}
+.ri-carousel-track{display:flex;gap:1.25rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.5rem;cursor:grab}
+.ri-carousel-track:active{cursor:grabbing}
+.ri-carousel-track::-webkit-scrollbar{display:none}
+.ri-orb-card{flex:0 0 260px;height:360px;position:relative;border:1px solid rgba(255,255,255,.12);border-radius:1.25rem;overflow:hidden;scroll-snap-align:start;background:#0e0e09}
+.ri-orb-card-bg{position:absolute;inset:0;padding:4px}
+.ri-orb-card-bg-inner{width:100%;height:100%;border-radius:calc(1.25rem - 4px) 0 calc(1.25rem - 4px) calc(1.25rem - 4px);background:#151510}
+.ri-orb-card-orb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ri-orb-card-orb-circle{width:130px;height:130px;border-radius:50%;background:conic-gradient(from 0deg,#c7ff4d,#8a6a00,#c7ff4d 40%,#2a2a00 60%,#c7ff4d);animation:ri-orb-spin 14s linear infinite;filter:blur(2px)}
+@keyframes ri-orb-spin{to{transform:rotate(360deg)}}
+.ri-orb-card-blur{position:absolute;inset:0;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.ri-orb-card-content{position:absolute;inset:0;padding:.85rem;display:flex;justify-content:space-between;gap:.5rem}
+.ri-orb-card-left{width:70%;padding:.85rem .75rem .65rem;display:flex;flex-direction:column;border-radius:.75rem;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(10,10,5,.38);color:#fff}
+.ri-orb-card-num{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acid);margin-bottom:.65rem}
+.ri-orb-card-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.15rem;line-height:1.15;color:#fff;margin:0 0 .5rem}
+.ri-orb-card-desc{font-family:'Manrope',sans-serif;font-size:.78rem;color:rgba(255,255,255,.52);line-height:1.6;font-weight:300;margin:0}
+.ri-orb-card-right{display:flex;flex-direction:column;align-items:flex-end;padding-top:.25rem;color:rgba(255,255,255,.35)}
+.ri-orb-card-label{font-family:'Space Mono',monospace;font-size:.55rem;line-height:1.3;text-align:right}
+.ri-orb-card-btn{width:2rem;height:2rem;margin-top:auto;border-radius:50%;backdrop-filter:blur(10px);background:rgba(199,255,77,.12);border:1px solid rgba(199,255,77,.25);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);transition:background .25s,color .25s;cursor:pointer}
+.ri-orb-card-btn:hover{background:rgba(199,255,77,.25);color:#fff}
+.ri-orb-card--last .ri-orb-card-bg-inner{background:rgba(21,21,16,.95)}
+.ri-orb-card--last .ri-orb-card-orb-circle{background:conic-gradient(from 0deg,#c7ff4d,#c7ff4d 35%,#2a2a00 60%,#c7ff4d)}
+.ri-orb-card--last .ri-orb-card-title{color:var(--acid)}
+.ri-orb-card--last{border-color:rgba(199,255,77,.2)}
+.ri-carousel-nav{display:flex;align-items:center;gap:.85rem;margin-top:1.5rem}
+.ri-carousel-btn{width:2.5rem;height:2.5rem;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,color .2s;flex-shrink:0}
+.ri-carousel-btn:hover{background:rgba(199,255,77,.1);border-color:rgba(199,255,77,.35);color:#fff}
+.ri-carousel-dots{display:flex;gap:.45rem}
+.ri-carousel-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .25s,width .25s;cursor:pointer}
+.ri-carousel-dot.active{background:var(--acid);width:18px;border-radius:9999px}
 
 /* ── RESPONSIVE ────────────────────────────────── */
 @media(max-width:900px){
@@ -284,19 +325,16 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 <!-- ══════════════════════════════════════════════ -->
 <!-- HERO (ex intro conceptual)                     -->
 <!-- ══════════════════════════════════════════════ -->
-<section id="ri-hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:5rem;background:url('assets%20seccion/gurlll.jpeg') center/cover no-repeat;position:relative">
+<section id="ri-hero" style="min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;padding-top:14rem;background:url('assets%20seccion/gurlll.jpg') center/cover no-repeat;position:relative">
   <div class="dust" id="dust"></div>
   <div class="ri-wrap">
     <div class="ri-two-col">
       <div>
-        <h1 class="ri-title rv" style="font-size:clamp(2.8rem,5.5vw,5.2rem);line-height:.95">Un mueble no se interviene.<br><em style="font-style:normal;color:var(--acid);white-space:nowrap">Se descifra.</em></h1>
+        <h1 class="ri-title rv" style="font-size:clamp(2.8rem,5.5vw,5.2rem);line-height:.95">Un mueble<br><em style="font-style:normal;color:var(--acid);white-space:nowrap">se descifra.</em></h1>
         <p class="ri-sub rv d1" style="font-size:1.05rem;line-height:1.8;text-align:left;margin-top:1.5rem">Cada objeto guarda una estructura, una historia y una lógica material. No se trata de lijar o barnizar — se trata de desarrollar criterio. La intervención viene después.</p>
-        <div class="rv d2" style="margin-top:1.5rem;padding:1.5rem 2rem;background:rgba(199,255,77,.04);border:1px solid rgba(199,255,77,.12);border-radius:1rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
-          <div>
-            <div style="font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Cupos · Julio 2026</div>
-            <div style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;color:#fff">Los lugares se agotan antes de que el recorrido empiece.</div>
-          </div>
-          <a href="#ri-cta" class="fc-btn" style="flex-shrink:0">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        <div class="h-ctas ri-h-ctas rv d2" style="display:flex;flex-direction:row;flex-wrap:nowrap;gap:1rem">
+          <a href="#ri-faq" class="btn-primary lgs" style="width:auto">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <a href="index.html" class="btn-primary lgs">Ver el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
         </div>
       </div>
       <div style="padding-top:1rem">
@@ -309,7 +347,7 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 <!-- ══════════════════════════════════════════════ -->
 <!-- 01: PRESENTACIÓN DEL CURSO                     -->
 <!-- ══════════════════════════════════════════════ -->
-<section id="ri-intro" class="ri-sec">
+<section id="ri-intro" class="ri-sec" style="background:url('assets%20seccion/ri-intro-bg.jpg') center/cover no-repeat">
   <div class="ri-wrap">
     <div class="ch rv" style="margin-bottom:1.5rem">
       <span class="ch-bar" style="background:var(--wood)"></span>
@@ -318,15 +356,18 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
     </div>
 
     <!-- hero 2 columnas -->
-    <div class="ri-hero-grid" style="padding:0;max-width:100%">
+    <div class="ri-hero-grid" style="padding:0;max-width:100%;align-items:stretch">
 
       <!-- columna izquierda: texto + infográfico -->
       <div class="ri-hero-left rv d1">
+        <h2 class="ri-sec-title" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;margin-bottom:1rem">Restauración<br><em style="font-style:normal;color:var(--acid)">Integral.</em></h2>
         <p class="ri-sub" style="margin-top:.25rem">Un recorrido presencial para aprender a leer, intervenir y transformar muebles desde una mirada contemporánea, material y cultural.</p>
+        <!-- ctas ocultos temporalmente
         <div class="h-ctas ri-h-ctas">
-          <a href="#ri-faq" class="btn-primary lgs">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-          <a href="index.html" class="btn-primary lgs">Ver el Atlas<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <a href="#ri-faq" class="btn-primary lgs">Reservar lugar</a>
+          <a href="index.html" class="btn-primary lgs">Ver el Atlas</a>
         </div>
+        -->
         <!-- stats -->
         <div class="ri-info-grid" style="width:100%;margin-bottom:0">
           <div class="ri-info-cell">
@@ -346,11 +387,16 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
             <div><div class="ri-info-unit">acompañamiento</div><div class="ri-info-l">Por proyecto · presencial</div></div>
           </div>
         </div>
+        <div style="margin-top:1.5rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Cupos · Julio 2026</div>
+          <div style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;color:#fff">Los lugares se agotan antes de que el recorrido empiece.</div>
+        </div>
+        <a href="#ri-cta" class="fc-btn rv d2" style="margin-top:1rem;display:inline-flex">Reservar lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
       </div>
 
       <!-- columna derecha: imagen -->
-      <div class="ri-h-img-wrap rv d2">
-        <img id="riHeroImg" src="assets%20seccion/herooo.jpg" alt="Laboratorio de restauración" style="width:100%;height:100%;object-fit:cover;display:block;opacity:1">
+      <div class="rv d2" style="border-radius:1rem;overflow:hidden;position:relative;min-height:0;margin-right:-4.5rem">
+        <img src="assets%20seccion/ri-intro-img.jpg" alt="Laboratorio de restauración" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
       </div>
 
     </div>
@@ -411,101 +457,69 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
       </div>
     </div>
 
-    <!-- CTA persuasivo: programa -->
-    <div class="rv d3" style="margin-top:2rem;text-align:center">
-      <div style="font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.75rem">24 participantes · cada edición</div>
-      <p style="font-family:'Manrope',sans-serif;font-size:1.05rem;font-weight:500;color:#fff;max-width:480px;margin:0 auto 1.5rem;line-height:1.55">El grupo reducido no es un detalle menor. Es la condición que hace posible trabajar con tu propio objeto y tu propio ritmo.</p>
-      <a href="#ri-cta" class="fc-btn">Asegurar mi lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════ -->
 <!-- TAREA C: CASO DE ESTUDIO                       -->
 <!-- ══════════════════════════════════════════════ -->
-<section id="ri-caso" class="ri-sec">
+<section id="ri-caso" class="ri-sec" style="background:url('assets%20seccion/ri-caso-bg.jpg') center/cover no-repeat;padding-top:7rem;padding-bottom:7rem;min-height:70vh">
   <div class="ri-wrap">
     <div class="ch rv" style="margin-bottom:1.5rem">
       <span class="ch-bar" style="background:var(--wood)"></span>
       <span class="ch-n" style="color:var(--wood)">03</span>
       <span class="ch-l" style="color:rgba(255,255,255,.7)">Caso de estudio</span>
     </div>
-    <div class="ri-two-col" style="margin-bottom:3rem">
-      <h2 class="ri-sec-title rv d1">Un objeto real como territorio.</h2>
-      <p class="ri-sub rv d2" style="padding-top:.5rem">Cada recorrido trabaja sobre piezas reales. El objeto es el punto de partida, el archivo y el resultado final.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch">
+      <div style="text-align:left">
+        <h2 class="ri-sec-title rv d1" style="text-align:left">Un objeto real<br>como territorio.</h2>
+        <p class="ri-sub rv d2" style="margin-top:1.25rem;font-size:1.15rem;line-height:1.75;max-width:48ch;text-align:left">Cada recorrido trabaja sobre piezas reales.<br>El objeto es el punto de partida, el archivo y el resultado final.</p>
+      </div>
+      <!-- imagen ri-caso (oculta, reservada para mobile)
+      <div class="rv d2" style="border-radius:1rem;overflow:hidden;position:relative;min-height:0">
+        <img src="assets%20seccion/ri-caso-img.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      -->
     </div>
-
-    <!-- antes / después -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:1rem;overflow:hidden;margin-bottom:2px" class="rv d1">
-      <div class="ri-img-ph" style="height:340px;border-radius:0">
-        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span class="ri-img-ph-label">imagen · antes · objeto sin intervenir</span>
-        <span class="ri-num" style="margin-top:.35rem;position:absolute;bottom:1rem;left:1rem">Estado original</span>
-      </div>
-      <div class="ri-img-ph" style="height:340px;border-radius:0">
-        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <span class="ri-img-ph-label">imagen · después · objeto restaurado</span>
-        <span class="ri-num" style="margin-top:.35rem;position:absolute;bottom:1rem;left:1rem">Resultado final</span>
-      </div>
-    </div>
-
-    <!-- macro + axonométrica -->
-    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:2px;border-radius:0 0 1rem 1rem;overflow:hidden" class="rv d2">
-      <div class="ri-img-ph" style="height:220px;border-radius:0">
-        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        <span class="ri-img-ph-label">macro · detalle de ensamble restaurado</span>
-      </div>
-      <div class="ri-img-ph" style="height:220px;border-radius:0;background:rgba(255,255,255,.02)">
-        <svg class="ri-img-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/></svg>
-        <span class="ri-img-ph-label">ilustración · axonométrica explotada del objeto</span>
-      </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════ -->
 <!-- 04: LO QUE TE LLEVÁS                           -->
 <!-- ══════════════════════════════════════════════ -->
-<section id="ri-resultados" class="ri-sec" style="background:#acc43a url('assets seccion/ri-resultados-bg.jpg') center/cover no-repeat">
+<section id="ri-resultados" class="ri-sec" style="background:#acc43a url('assets seccion/ri-resultados-bg.jpg') center/cover no-repeat;padding-top:5.5rem;padding-bottom:5.5rem">
   <div class="ri-wrap">
+
+    <!-- encabezado centrado -->
     <div class="ch rv" style="margin-bottom:1.25rem;justify-content:center">
       <span class="ch-bar" style="background:#151510"></span>
-      <span class="ch-n" style="color:#151510">04</span>
-      <span class="ch-l" style="color:rgba(21,21,16,.65)">Lo que te llevás</span>
+      <span class="ch-n" style="color:#151510;font-size:1rem">04</span>
+      <span class="ch-l" style="color:rgba(21,21,16,.65);font-size:1rem;letter-spacing:.18em">Lo que te llevás</span>
     </div>
-    <h2 class="ri-sec-title rv d1" style="max-width:640px;color:#151510;text-align:center;margin-left:auto;margin-right:auto">Pasaste por 6 etapas.<br>Esto es lo que construiste.</h2>
-    <p class="ri-sub rv d2" style="margin-top:1rem;max-width:52ch;color:rgba(21,21,16,.7);text-align:center;margin-left:auto;margin-right:auto">No es solo el objeto restaurado. Es el criterio que desarrollaste en el camino.</p>
+    <h2 class="ri-sec-title rv d1" style="max-width:680px;color:#151510;text-align:center;margin-left:auto;margin-right:auto;font-size:clamp(2.4rem,5vw,4rem);line-height:1">Terminaste.<br>Esto es tuyo.</h2>
+    <p class="ri-sub rv d2" style="margin-top:1rem;max-width:54ch;color:rgba(21,21,16,.68);text-align:center;margin-left:auto;margin-right:auto;font-size:1.1rem;line-height:1.75">Cada proyecto deja evidencia.<br>Construís un archivo para cada intervención futura.</p>
 
-    <!-- Constelación SVG -->
-    <div class="ri-constellation rv d2">
-      <svg viewBox="0 0 1200 860" xmlns="http://www.w3.org/2000/svg" class="ri-const-svg" aria-label="Lo que te llevás: constelación de 6 aprendizajes">
-        <g stroke="rgba(21,21,16,.3)" stroke-width="1.5" fill="none" stroke-dasharray="5 7">
-          <line x1="600" y1="430" x2="190" y2="80"/>
-          <line x1="600" y1="430" x2="1090" y2="140"/>
-          <line x1="600" y1="430" x2="148" y2="440"/>
-          <line x1="600" y1="430" x2="1062" y2="420"/>
-          <line x1="600" y1="430" x2="210" y2="670"/>
-          <line x1="600" y1="430" x2="870" y2="650"/>
-        </g>
-        <circle cx="190" cy="80" r="70" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
-        <text x="190" y="70" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Un ojo</text>
-        <text x="190" y="92" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">entrenado</text>
-        <circle cx="1090" cy="140" r="88" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
-        <text x="1090" y="130" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Criterio de</text>
-        <text x="1090" y="152" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">diagnóstico</text>
-        <circle cx="148" cy="440" r="100" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
-        <text x="148" y="430" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Lenguaje</text>
-        <text x="148" y="452" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">constructivo</text>
-        <circle cx="1062" cy="420" r="90" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
-        <text x="1062" y="410" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Dominio de</text>
-        <text x="1062" y="432" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">acabados</text>
-        <circle cx="210" cy="670" r="92" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
-        <text x="210" y="660" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">Criterio de</text>
-        <text x="210" y="682" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="17" fill="var(--acid)" font-weight="600">intervención</text>
-        <circle cx="870" cy="650" r="100" fill="rgba(21,21,16,.88)" stroke="#151510" stroke-width="2"/>
-        <text x="870" y="640" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="19" fill="var(--acid)" font-weight="600">Tu proyecto</text>
-        <text x="870" y="664" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="19" fill="var(--acid)" font-weight="600">documentado</text>
-      </svg>
+    <!-- video narrativo -->
+    <div style="margin-top:3rem;border-radius:1.25rem;overflow:hidden;position:relative;aspect-ratio:16/6;background:#0e0e09">
+      <video id="riResVideo" src="assets%20seccion/ri-resultados-video.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block"></video>
+      <!-- overlay gradiente inferior -->
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,9,.85) 0%,transparent 45%);pointer-events:none"></div>
+      <!-- botón play/pause centro -->
+      <button id="riVidPlay" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:3.5rem;height:3.5rem;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45);backdrop-filter:blur(10px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,opacity .2s;opacity:0" aria-label="pausar">
+        <svg id="riPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+      <!-- botón mute esquina inferior derecha -->
+      <button id="riVidMute" style="position:absolute;bottom:1.25rem;right:1.25rem;width:3rem;height:3rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.6);backdrop-filter:blur(12px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s" aria-label="activar sonido">
+        <svg id="riMuteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
     </div>
+
+    <!-- cierre -->
+    <div class="rv d3" style="margin-top:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap">
+      <p style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(1.1rem,2vw,1.5rem);color:#151510;line-height:1.3;max-width:42ch;margin:0">Terminás el recorrido con algo concreto —<br><em style="font-style:normal;font-weight:400">un archivo real que construiste vos.</em></p>
+      <a href="#ri-cta" class="fc-btn" style="background:rgba(21,21,16,.9);color:var(--acid);border-color:rgba(21,21,16,.3);flex-shrink:0">Reservar mi lugar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
+
   </div>
 </section>
 
@@ -609,12 +623,12 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 </section>
 </div><!-- /ri-page-bg -->
 
-<section class="newsletter-section noise-bg" style="background-image:url('assets%20seccion/background-image.png');background-size:cover;background-position:center;background-repeat:no-repeat">
-  <div class="dust" id="nl-dust"></div>
+<section class="newsletter-section noise-bg" style="background-image:url('assets/background-imageINX.png');background-size:cover;background-position:center;background-repeat:no-repeat">
+  <div class="dust" id="nl-dust"><div class="particle" style="width: 4.51334px; height: 4.51334px; left: 28.1828%; bottom: 0px; animation-duration: 19.9464s; animation-delay: -16.9133s; opacity: 0.873047;"></div><div class="particle" style="width: 4.15003px; height: 4.15003px; left: 29.2991%; bottom: 0px; animation-duration: 16.2939s; animation-delay: -0.605262s; opacity: 0.69479;"></div><div class="particle" style="width: 3.42592px; height: 3.42592px; left: 74.6943%; bottom: 0px; animation-duration: 12.0831s; animation-delay: -3.6949s; opacity: 0.834099;"></div><div class="particle" style="width: 4.11583px; height: 4.11583px; left: 39.5505%; bottom: 0px; animation-duration: 10.3512s; animation-delay: -5.10802s; opacity: 0.829132;"></div><div class="particle" style="width: 1.52354px; height: 1.52354px; left: 61.6464%; bottom: 0px; animation-duration: 10.1605s; animation-delay: -6.77425s; opacity: 0.730782;"></div><div class="particle" style="width: 3.16094px; height: 3.16094px; left: 60.9345%; bottom: 0px; animation-duration: 19.8993s; animation-delay: -2.93555s; opacity: 0.606963;"></div><div class="particle" style="width: 3.0764px; height: 3.0764px; left: 4.9285%; bottom: 0px; animation-duration: 14.3117s; animation-delay: -2.04764s; opacity: 0.802407;"></div><div class="particle" style="width: 2.45606px; height: 2.45606px; left: 43.806%; bottom: 0px; animation-duration: 11.3258s; animation-delay: -10.5906s; opacity: 0.827805;"></div><div class="particle" style="width: 3.67461px; height: 3.67461px; left: 6.09047%; bottom: 0px; animation-duration: 8.76767s; animation-delay: -15.414s; opacity: 0.676797;"></div><div class="particle" style="width: 2.99983px; height: 2.99983px; left: 97.6735%; bottom: 0px; animation-duration: 10.0782s; animation-delay: -12.7997s; opacity: 0.799812;"></div><div class="particle" style="width: 3.28248px; height: 3.28248px; left: 63.91%; bottom: 0px; animation-duration: 11.2116s; animation-delay: -11.4303s; opacity: 0.644715;"></div><div class="particle" style="width: 2.29765px; height: 2.29765px; left: 73.8342%; bottom: 0px; animation-duration: 8.77745s; animation-delay: -2.79561s; opacity: 0.62462;"></div><div class="particle" style="width: 4.98563px; height: 4.98563px; left: 95.5338%; bottom: 0px; animation-duration: 10.8781s; animation-delay: -14.2529s; opacity: 0.866306;"></div><div class="particle" style="width: 3.21304px; height: 3.21304px; left: 70.7705%; bottom: 0px; animation-duration: 12.5888s; animation-delay: -14.677s; opacity: 0.671455;"></div><div class="particle" style="width: 3.71779px; height: 3.71779px; left: 30.8918%; bottom: 0px; animation-duration: 8.58783s; animation-delay: -4.83701s; opacity: 0.69441;"></div><div class="particle" style="width: 1.53952px; height: 1.53952px; left: 93.4735%; bottom: 0px; animation-duration: 15.0684s; animation-delay: -13.3195s; opacity: 0.475921;"></div><div class="particle" style="width: 4.39215px; height: 4.39215px; left: 66.7659%; bottom: 0px; animation-duration: 9.79469s; animation-delay: -0.780186s; opacity: 0.672167;"></div><div class="particle" style="width: 1.99984px; height: 1.99984px; left: 92.1987%; bottom: 0px; animation-duration: 8.38264s; animation-delay: -2.59797s; opacity: 0.548689;"></div><div class="particle" style="width: 3.97918px; height: 3.97918px; left: 72.5036%; bottom: 0px; animation-duration: 12.6492s; animation-delay: -12.4818s; opacity: 0.57377;"></div><div class="particle" style="width: 4.37517px; height: 4.37517px; left: 18.6445%; bottom: 0px; animation-duration: 19.1609s; animation-delay: -8.87374s; opacity: 0.801223;"></div><div class="particle" style="width: 2.93508px; height: 2.93508px; left: 47.1508%; bottom: 0px; animation-duration: 18.5151s; animation-delay: -8.19705s; opacity: 0.857594;"></div><div class="particle" style="width: 3.48646px; height: 3.48646px; left: 23.212%; bottom: 0px; animation-duration: 17.5999s; animation-delay: -13.9627s; opacity: 0.881318;"></div><div class="particle" style="width: 3.09865px; height: 3.09865px; left: 38.3067%; bottom: 0px; animation-duration: 19.4891s; animation-delay: -0.674974s; opacity: 0.601255;"></div><div class="particle" style="width: 4.00704px; height: 4.00704px; left: 34.92%; bottom: 0px; animation-duration: 14.9093s; animation-delay: -3.7204s; opacity: 0.702675;"></div><div class="particle" style="width: 2.71441px; height: 2.71441px; left: 18.5662%; bottom: 0px; animation-duration: 17.0588s; animation-delay: -9.94901s; opacity: 0.620238;"></div><div class="particle" style="width: 3.10828px; height: 3.10828px; left: 69.8691%; bottom: 0px; animation-duration: 14.164s; animation-delay: -14.1131s; opacity: 0.523021;"></div><div class="particle" style="width: 2.46377px; height: 2.46377px; left: 99.2239%; bottom: 0px; animation-duration: 11.5778s; animation-delay: -13.4108s; opacity: 0.667692;"></div><div class="particle" style="width: 2.45886px; height: 2.45886px; left: 77.3366%; bottom: 0px; animation-duration: 16.5452s; animation-delay: -8.0993s; opacity: 0.799009;"></div><div class="particle" style="width: 2.55962px; height: 2.55962px; left: 76.1079%; bottom: 0px; animation-duration: 18.6924s; animation-delay: -2.9405s; opacity: 0.525558;"></div><div class="particle" style="width: 3.41252px; height: 3.41252px; left: 12.7165%; bottom: 0px; animation-duration: 8.08433s; animation-delay: -8.8928s; opacity: 0.746843;"></div><div class="particle" style="width: 1.68049px; height: 1.68049px; left: 38.2738%; bottom: 0px; animation-duration: 11.2635s; animation-delay: -1.67929s; opacity: 0.850291;"></div><div class="particle" style="width: 2.16448px; height: 2.16448px; left: 87.1649%; bottom: 0px; animation-duration: 18.4203s; animation-delay: -0.53304s; opacity: 0.456095;"></div><div class="particle" style="width: 4.26064px; height: 4.26064px; left: 18.3786%; bottom: 0px; animation-duration: 11.0272s; animation-delay: -18.2599s; opacity: 0.594908;"></div><div class="particle" style="width: 2.50993px; height: 2.50993px; left: 5.21472%; bottom: 0px; animation-duration: 18.6269s; animation-delay: -11.1765s; opacity: 0.759653;"></div><div class="particle" style="width: 3.37491px; height: 3.37491px; left: 94.4303%; bottom: 0px; animation-duration: 11.9971s; animation-delay: -4.82784s; opacity: 0.534434;"></div><div class="particle" style="width: 4.3774px; height: 4.3774px; left: 6.59317%; bottom: 0px; animation-duration: 10.8861s; animation-delay: -14.2816s; opacity: 0.879689;"></div><div class="particle" style="width: 3.06812px; height: 3.06812px; left: 92.7256%; bottom: 0px; animation-duration: 9.78287s; animation-delay: -0.771369s; opacity: 0.431852;"></div><div class="particle" style="width: 3.42604px; height: 3.42604px; left: 62.7325%; bottom: 0px; animation-duration: 13.3627s; animation-delay: -16.4773s; opacity: 0.465466;"></div><div class="particle" style="width: 2.12691px; height: 2.12691px; left: 42.4658%; bottom: 0px; animation-duration: 9.33976s; animation-delay: -6.17555s; opacity: 0.725185;"></div><div class="particle" style="width: 5.44813px; height: 5.44813px; left: 37.011%; bottom: 0px; animation-duration: 12.4164s; animation-delay: -14.2469s; opacity: 0.803902;"></div><div class="particle" style="width: 3.78287px; height: 3.78287px; left: 98.5589%; bottom: 0px; animation-duration: 14.3402s; animation-delay: -13.8139s; opacity: 0.474229;"></div><div class="particle" style="width: 1.65079px; height: 1.65079px; left: 45.1911%; bottom: 0px; animation-duration: 13.9979s; animation-delay: -3.37559s; opacity: 0.411318;"></div><div class="particle" style="width: 4.78237px; height: 4.78237px; left: 19.3335%; bottom: 0px; animation-duration: 14.2898s; animation-delay: -1.06341s; opacity: 0.622093;"></div><div class="particle" style="width: 4.64092px; height: 4.64092px; left: 28.5148%; bottom: 0px; animation-duration: 9.80617s; animation-delay: -2.08975s; opacity: 0.759867;"></div><div class="particle" style="width: 3.09871px; height: 3.09871px; left: 1.38796%; bottom: 0px; animation-duration: 15.2101s; animation-delay: -2.80226s; opacity: 0.88484;"></div></div>
   <div class="nl-wrap" style="grid-template-columns:1fr;max-width:720px">
     <div class="nl-inner" style="align-items:center;text-align:center">
       <p class="fc-eye" style="margin:0 0 .5rem;">Próximo recorrido · Julio 2026 · Cupos limitados</p>
-      <h2 class="nl-title">Recibí nuevas entradas<br>al <em style="font-style:normal;color:var(--acid)">Atlas.</em></h2>
+      <h2 class="nl-title">Recibí nuevas entradas al <em style="font-style:normal;color:var(--acid)">Atlas.</em></h2>
       <p class="nl-sub">Sin spam. Solo piezas nuevas, técnicas y hallazgos del proceso de restauración.</p>
       <form class="nl-form" onsubmit="return false">
         <input class="nl-input" type="email" placeholder="Tu correo electrónico" autocomplete="email">
@@ -754,6 +768,94 @@ const navEl=document.getElementById('nav');
     });
   },{rootMargin:'-40% 0px -40% 0px',threshold:0});
   document.querySelectorAll('section[id]').forEach(s=>ioLogo.observe(s));
+})();
+
+// ── Video ri-resultados ──────────────────────────
+(function(){
+  const vid      = document.getElementById('riResVideo');
+  const playBtn  = document.getElementById('riVidPlay');
+  const muteBtn  = document.getElementById('riVidMute');
+  const muteIcon = document.getElementById('riMuteIcon');
+  if(!vid) return;
+
+  const iconPlay  = '<path d="M8 5v14l11-7L8 5z"/>';
+  const iconPause = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+  const iconSound = '<path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16.5 12A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/><path d="M14 3.23v2.06A7 7 0 0 1 19 12a7 7 0 0 1-5 6.71v2.06A9 9 0 0 0 21 12 9 9 0 0 0 14 3.23z"/>';
+  const iconMute  = '<path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+
+  // mostrar botón play al hacer hover sobre el contenedor
+  const wrap = vid.closest('div[style]');
+  wrap.addEventListener('mouseenter', () => { playBtn.style.opacity = '1'; });
+  wrap.addEventListener('mouseleave', () => { if(!vid.paused) playBtn.style.opacity = '0'; });
+
+  const playIcon = playBtn.querySelector('svg');
+
+  // play / pause
+  playBtn.addEventListener('click', () => {
+    if(vid.paused){ vid.play(); playBtn.style.opacity='0'; }
+    else { vid.pause(); playBtn.style.opacity='1'; }
+  });
+  vid.addEventListener('click', () => playBtn.click());
+
+  // actualizar icono del botón central según estado
+  vid.addEventListener('play',  () => { playIcon.innerHTML = iconPause; });
+  vid.addEventListener('pause', () => { playIcon.innerHTML = iconPlay; playBtn.style.opacity='1'; });
+
+  // mute / unmute
+  muteBtn.addEventListener('click', () => {
+    vid.muted = !vid.muted;
+    muteIcon.innerHTML = vid.muted ? iconMute : iconSound;
+  });
+})();
+
+// ── Carrusel ri-resultados ───────────────────────
+(function(){
+  const track = document.getElementById('riResTrack');
+  const prev  = document.getElementById('riResPrev');
+  const next  = document.getElementById('riResNext');
+  const dots  = document.querySelectorAll('#riResDots .ri-carousel-dot');
+  const cards = track ? track.querySelectorAll('.ri-orb-card') : [];
+  if(!track || !cards.length) return;
+
+  const cardW = () => cards[0].offsetWidth + 20; // 20 = gap
+  let current = 0;
+
+  function goTo(i){
+    current = Math.max(0, Math.min(cards.length - 1, i));
+    track.scrollTo({left: current * cardW(), behavior:'smooth'});
+    dots.forEach((d,j) => d.classList.toggle('active', j === current));
+  }
+
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
+
+  // botones dentro de cada card avanzan al siguiente
+  track.querySelectorAll('.ri-orb-card-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => goTo(i + 1));
+  });
+
+  // sincronizar dots al scroll libre
+  let scrollTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const idx = Math.round(track.scrollLeft / cardW());
+      dots.forEach((d,j) => d.classList.toggle('active', j === idx));
+      current = idx;
+    }, 80);
+  });
+
+  // drag con mouse
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => { isDown=true; startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; });
+  track.addEventListener('mouseleave', () => isDown=false);
+  track.addEventListener('mouseup', () => isDown=false);
+  track.addEventListener('mousemove', e => {
+    if(!isDown) return;
+    e.preventDefault();
+    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX);
+  });
 })();
 </script>
 </body>
