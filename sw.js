@@ -1,8 +1,7 @@
-const CACHE = 'raiz-v42';
+const CACHE = 'raiz-v44';
 
 const PRECACHE = [
   './index.html',
-  './js/data.js',
   './js/app.js',
   './Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf',
   './Typography/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf',

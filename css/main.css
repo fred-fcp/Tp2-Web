@@ -2330,12 +2330,12 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   .slider-outer{margin-bottom:.5rem}
 
   /* COMPASS */
-  #compass-wrap{height:110vh}
+  #compass-wrap{height:250vh}
   #compass-pin{
     flex-direction:column;
     gap:2rem;padding:0 1.25rem;padding-top:0!important;
     justify-content:center;align-items:center;
-    overflow:visible;clip-path:inset(0);
+    overflow:visible;
   }
   #compass-tunnel{display:none}
   #compass-img{width:220px;height:220px;min-width:220px;min-height:220px;display:block!important;opacity:1!important}

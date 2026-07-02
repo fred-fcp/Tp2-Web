@@ -253,7 +253,9 @@ function initImages(){
   const vid=document.getElementById('heroVid');
   function loadHeroVideo(){
     const isMobile=window.innerWidth<=768;
-    const src=isMobile&&d.heroVidMobile?d.heroVidMobile:d.heroVid;
+    const mobileSrc='assets/herovid_mobile.mp4';
+    const desktopSrc=d.heroVid||'assets/heroVid.mp4';
+    const src=isMobile?(d.heroVidMobile||mobileSrc):desktopSrc;
     if(src&&vid.dataset.loadedSrc!==src){
       vid.dataset.loadedSrc=src;
       setupVideo(vid,src);
