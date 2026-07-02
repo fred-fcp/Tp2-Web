@@ -5,8 +5,10 @@
 window.__D__ = {
   hero:    'assets/hero.jpg',
   heroVid: 'assets/heroVid.mp4',
+  heroVidMobile: 'assets/herovid_mobile.mp4',
   rutas:   'assets/rutas.jpg',
   capas:   'assets/capas.png',
+  capasMobile: 'assets/capasmobile.png',
   h1:      'assets/h1.jpg',
   h2:      'assets/h2.jpg',
   h3:      'assets/h3.jpg',

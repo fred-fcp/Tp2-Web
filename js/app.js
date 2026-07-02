@@ -34,7 +34,15 @@ function setupVideo(vid,src){
   const mobile=window.innerWidth<=768;
   let raf=null,fadingOut=false;
   vid.src=src;
-  if(mobile){vid.style.opacity=1;vid.play().catch(()=>{});return;}
+  if(mobile){
+    vid.style.opacity=1;
+    vid.muted=true;
+    vid.load();
+    const tryPlay=()=>vid.play().catch(()=>{});
+    vid.addEventListener('canplay',tryPlay,{once:true});
+    setTimeout(tryPlay,500);
+    return;
+  }
   vid.style.opacity=0;
   function fadeTo(t,ms){
     if(raf)cancelAnimationFrame(raf);
@@ -235,12 +243,13 @@ function initImages(){
   const set=(id,key)=>{const el=document.getElementById(id);if(el&&d[key])el.src=d[key];};
   set('heroPoster','hero');
   set('rutasBRA','bra01');set('rutasSU','su02');set('rutasDI','di03');
-  set('capasImg','capas');
+  set('capasImg', window.innerWidth<=768 && d.capasMobile ? 'capasMobile' : 'capas');
   set('h1','h1');set('h2','h2');set('h3','h3');set('h4','h4');
   set('cursosImg','cursos');
   set('terCard01','card01');set('terCard02','card02');set('terCard03','card03');
   const vid=document.getElementById('heroVid');
-  if(d.heroVid)setupVideo(vid,d.heroVid);
+  const heroSrc=window.innerWidth<=768&&d.heroVidMobile?d.heroVidMobile:d.heroVid;
+  if(heroSrc)setupVideo(vid,heroSrc);
   buildSlider();
 }
 initImages();
