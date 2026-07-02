@@ -1,8 +1,7 @@
-const CACHE = 'raiz-v31';
+const CACHE = 'raiz-v35';
 
 const PRECACHE = [
   './index.html',
-  './css/main.css',
   './js/data.js',
   './js/app.js',
   './Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf',
@@ -35,11 +34,26 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
-  // Skip videos (demasiado grandes para cachear)
+  // Skip videos
   if (/\.mp4$/.test(url.pathname)) return;
   // Skip cross-origin excepto Google Fonts
   if (url.origin !== self.location.origin && !url.hostname.endsWith('gstatic.com') && !url.hostname.endsWith('googleapis.com') && !url.hostname.endsWith('jsdelivr.net')) return;
 
+  // CSS y JS — network-first: siempre intenta red, cache como fallback
+  if (/\.(css|js)(\?.*)?$/.test(url.pathname)) {
+    e.respondWith(
+      fetch(e.request).then(res => {
+        if (res.ok) {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Todo lo demás — cache-first
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
