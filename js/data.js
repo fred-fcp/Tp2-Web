@@ -6,7 +6,7 @@ window.__D__ = {
   hero:    'assets/hero.jpg',
   heroVid: 'assets/heroVid.mp4',
   rutas:   'assets/rutas.jpg',
-  capas:   'assets/capas.jpg',
+  capas:   'assets/capas.png',
   h1:      'assets/h1.jpg',
   h2:      'assets/h2.jpg',
   h3:      'assets/h3.jpg',

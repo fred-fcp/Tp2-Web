@@ -380,13 +380,15 @@ setTimeout(tryDismiss,2500);
   const logo=document.getElementById('navLogo');
   if(!logo)return;
   const map={
-    'hero':       'assets/white logo.png',
-    'rutas':      'assets/acid logo.png',
-    'capas':      'assets/white logo.png',
-    'hallazgos':  'assets/black logo.png',
-    'comunidad':  'assets/white logo.png',
-    'cursos':     'assets/acid logo.png',
-    'capsula':    'assets/white logo.png',
+    'hero':          'assets/white logo.png',
+    'rutas':         'assets/acid logo.png',
+    'capas':         'assets/white logo.png',
+    'hallazgos':     'assets/black logo.png',
+    'comunidad':     'assets/white logo.png',
+    'cursos':        'assets/acid logo.png',
+    'capsula':       'assets/white logo.png',
+    'aprender-leer': 'assets/white logo.png',
+    'atlas-mental':  'assets/white logo.png',
   };
   const io=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
@@ -513,70 +515,99 @@ setTimeout(tryDismiss,2500);
   ro.observe(canvas.parentElement);
 })();
 
-/* ── CURSOS · CASES TEASER ATLAS ─────── */
+/* ── HALLAZGOS · VIDEO SWAP ─────── */
 (function(){
-  const items = document.querySelectorAll('.xct-item');
-  if(!items.length) return;
+  const row = document.getElementById('hallRow1');
+  const f1  = row && row.querySelector('.hall-find-1');
+  const f2  = row && row.querySelector('.hall-find-2');
+  if(!row || !f1 || !f2) return;
+  const v1  = f1.querySelector('.hall-vid');
+  const v2  = f2.querySelector('.hall-vid');
 
-  /* Hover: activa el curso, panel permanece hasta que el scroll lo reemplace */
-  items.forEach(item => {
-    const vid = item.querySelector('.xct-vid');
-    item.addEventListener('mouseenter', () => {
-      items.forEach(i => {
-        if(i === item) return;
-        const v = i.querySelector('.xct-vid');
-        i.classList.remove('is-active','is-playing','xct-focused');
-        if(v){ v.pause(); v.currentTime = 0; }
-      });
-      item.classList.add('is-active','is-playing','xct-focused');
-      if(vid) vid.play().catch(()=>{});
-    });
-    /* sin mouseleave — el panel persiste hasta que otro curso tome el foco */
+  function playVid(v){ if(v){ v.currentTime=0; v.play().catch(()=>{}); } }
+  function stopVid(v){ if(v){ v.pause(); v.currentTime=0; } }
+
+  let t1, t2;
+  f1.addEventListener('mouseenter', ()=>{ clearTimeout(t1); playVid(v1); f1.classList.add('cap-active'); });
+  f1.addEventListener('mouseleave', ()=>{ stopVid(v1); t1=setTimeout(()=>f1.classList.remove('cap-active'), 100); });
+
+  f2.addEventListener('mouseenter', ()=>{ clearTimeout(t2); playVid(v2); f2.classList.add('cap-active'); row.classList.add('swapped'); });
+  f2.addEventListener('mouseleave', ()=>{ stopVid(v2); t2=setTimeout(()=>{ f2.classList.remove('cap-active'); row.classList.remove('swapped'); }, 100); });
+})();
+
+/* ── CURSOS · CAROUSEL ─────── */
+(function(){
+  const track   = document.querySelector('.xct-content');
+  const items   = document.querySelectorAll('.xct-item');
+  const dotsWrap= document.querySelector('.xct-dots');
+  const prevBtn = document.querySelector('.xct-prev');
+  const nextBtn = document.querySelector('.xct-next');
+  if(!track || !items.length) return;
+
+  let current = 0;
+  const total  = items.length;
+
+  /* Dots */
+  const dots = Array.from({length:total}, (_,i) => {
+    const d = document.createElement('span');
+    d.className = 'xct-dot' + (i===0?' active':'');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+    return d;
   });
 
-  /* Scroll focus: item centrado se agranda, los demás se reducen */
-  function initXctScroll(){
+  function getItemWidth(){
+    return items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
+  }
+
+  function setFocus(idx){
+    items.forEach((item,i) => {
+      const vid = item.querySelector('.xct-vid');
+      const active = i === idx;
+      item.classList.toggle('xct-focused', active);
+      item.classList.toggle('is-active', active);
+      item.classList.toggle('is-playing', active);
+      if(vid){
+        if(active) vid.play().catch(()=>{});
+        else { vid.pause(); vid.currentTime = 0; }
+      }
+    });
+    dots.forEach((d,i) => d.classList.toggle('active', i===idx));
+  }
+
+  function goTo(idx){
+    current = Math.max(0, Math.min(idx, total-1));
+    const itemW  = getItemWidth();
+    const offset = current * itemW;
+    track.style.transform = `translateX(-${offset}px)`;
+    setFocus(current);
+  }
+
+  prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  /* Hover mantiene foco visual */
+  items.forEach((item,i) => {
+    item.addEventListener('mouseenter', () => goTo(i));
+  });
+
+  /* Animación de entrada */
+  function initXctAnim(){
     if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
-      setTimeout(initXctScroll, 150);
-      return;
+      setTimeout(initXctAnim, 150); return;
     }
     gsap.registerPlugin(ScrollTrigger);
-
     gsap.from('.xct-hero > *', {
       opacity:0, y:28, duration:1, ease:'power2.out', stagger:.14,
       scrollTrigger:{ trigger:'.xct-hero', start:'top 82%' }
     });
-
-    items.forEach(item => {
-      ScrollTrigger.create({
-        trigger: item,
-        start: 'top 58%',
-        end:   'bottom 42%',
-        onEnter:      () => setFocus(item),
-        onEnterBack:  () => setFocus(item),
-        onLeave:      () => clearFocus(item),
-        onLeaveBack:  () => clearFocus(item),
-      });
-    });
-
-    function setFocus(el){
-      items.forEach(i => {
-        i.classList.remove('xct-focused','is-active','is-playing');
-        const v = i.querySelector('.xct-vid');
-        if(v){ v.pause(); v.currentTime = 0; }
-      });
-      el.classList.add('xct-focused','is-active','is-playing');
-      const vid = el.querySelector('.xct-vid');
-      if(vid) vid.play().catch(()=>{});
-    }
-    function clearFocus(el){
-      el.classList.remove('xct-focused','is-active','is-playing');
-      const vid = el.querySelector('.xct-vid');
-      if(vid){ vid.pause(); vid.currentTime = 0; }
-    }
   }
-  if(document.readyState === 'complete') initXctScroll();
-  else window.addEventListener('load', initXctScroll);
+  if(document.readyState === 'complete') initXctAnim();
+  else window.addEventListener('load', initXctAnim);
+
+  /* Init */
+  goTo(0);
+  window.addEventListener('resize', () => goTo(current));
 })();
 
 /* ── OLD CAROUSEL (inactivo — HTML eliminado) ── */
