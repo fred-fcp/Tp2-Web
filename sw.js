@@ -1,4 +1,4 @@
-const CACHE = 'raiz-v45';
+const CACHE = 'raiz-v46';
 
 const PRECACHE = [
   './index.html',
