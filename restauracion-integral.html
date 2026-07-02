@@ -508,10 +508,22 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
       <button id="riVidPlay" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:3.5rem;height:3.5rem;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45);backdrop-filter:blur(10px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,opacity .2s;opacity:0" aria-label="pausar">
         <svg id="riPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
-      <!-- botón mute esquina inferior derecha -->
-      <button id="riVidMute" style="position:absolute;bottom:1.25rem;right:1.25rem;width:3rem;height:3rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.6);backdrop-filter:blur(12px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s" aria-label="activar sonido">
-        <svg id="riMuteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-      </button>
+      <!-- barra de progreso inferior -->
+      <div id="riVidBar" style="position:absolute;bottom:0;left:0;right:0;padding:.75rem 1rem .9rem;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 100%);display:flex;align-items:center;gap:.75rem;opacity:0;transition:opacity .25s">
+        <!-- tiempo actual -->
+        <span id="riVidTime" style="font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.8);white-space:nowrap;min-width:3.2rem">0:00</span>
+        <!-- scrubber -->
+        <div id="riVidTrack" style="flex:1;height:3px;background:rgba(255,255,255,.25);border-radius:2px;position:relative;cursor:pointer">
+          <div id="riVidFill" style="height:100%;width:0%;background:var(--acid);border-radius:2px;pointer-events:none;transition:width .1s linear"></div>
+          <div id="riVidThumb" style="position:absolute;top:50%;width:10px;height:10px;background:#fff;border-radius:50%;transform:translate(-50%,-50%);left:0%;pointer-events:none;box-shadow:0 0 4px rgba(0,0,0,.5)"></div>
+        </div>
+        <!-- duración total -->
+        <span id="riVidDur" style="font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.45);white-space:nowrap;min-width:3.2rem;text-align:right">0:00</span>
+        <!-- botón mute integrado -->
+        <button id="riVidMute" style="width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);backdrop-filter:blur(12px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0" aria-label="activar sonido">
+          <svg id="riMuteIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        </button>
+      </div>
     </div>
 
     <!-- cierre -->
@@ -776,6 +788,12 @@ const navEl=document.getElementById('nav');
   const playBtn  = document.getElementById('riVidPlay');
   const muteBtn  = document.getElementById('riVidMute');
   const muteIcon = document.getElementById('riMuteIcon');
+  const bar      = document.getElementById('riVidBar');
+  const fill     = document.getElementById('riVidFill');
+  const thumb    = document.getElementById('riVidThumb');
+  const track    = document.getElementById('riVidTrack');
+  const timeEl   = document.getElementById('riVidTime');
+  const durEl    = document.getElementById('riVidDur');
   if(!vid) return;
 
   const iconPlay  = '<path d="M8 5v14l11-7L8 5z"/>';
@@ -783,25 +801,67 @@ const navEl=document.getElementById('nav');
   const iconSound = '<path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M16.5 12A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/><path d="M14 3.23v2.06A7 7 0 0 1 19 12a7 7 0 0 1-5 6.71v2.06A9 9 0 0 0 21 12 9 9 0 0 0 14 3.23z"/>';
   const iconMute  = '<path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
 
-  // mostrar botón play al hacer hover sobre el contenedor
+  function fmt(s){ const m=Math.floor(s/60); return m+':'+(Math.floor(s%60)+'').padStart(2,'0'); }
+
+  function setProgress(pct){
+    fill.style.width = pct+'%';
+    thumb.style.left = pct+'%';
+  }
+
+  // actualizar barra cada animationFrame mientras corre
+  vid.addEventListener('timeupdate', () => {
+    if(!vid.duration) return;
+    const pct = (vid.currentTime / vid.duration) * 100;
+    setProgress(pct);
+    timeEl.textContent = fmt(vid.currentTime);
+  });
+
+  vid.addEventListener('loadedmetadata', () => {
+    durEl.textContent = fmt(vid.duration);
+  });
+
+  // seek al hacer click/drag en el track
+  let dragging = false;
+
+  function seekTo(e){
+    const rect = track.getBoundingClientRect();
+    const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    vid.currentTime = pct * vid.duration;
+    setProgress(pct * 100);
+    timeEl.textContent = fmt(vid.currentTime);
+  }
+
+  track.addEventListener('mousedown', e => { dragging = true; seekTo(e); });
+  window.addEventListener('mousemove', e => { if(dragging) seekTo(e); });
+  window.addEventListener('mouseup',   () => { dragging = false; });
+
+  // touch seek
+  track.addEventListener('touchstart', e => { dragging = true; seekTo(e.touches[0]); }, {passive:true});
+  window.addEventListener('touchmove',  e => { if(dragging) seekTo(e.touches[0]); }, {passive:true});
+  window.addEventListener('touchend',   () => { dragging = false; });
+
+  // mostrar barra y botón play al hover
   const wrap = vid.closest('div[style]');
-  wrap.addEventListener('mouseenter', () => { playBtn.style.opacity = '1'; });
-  wrap.addEventListener('mouseleave', () => { if(!vid.paused) playBtn.style.opacity = '0'; });
+  wrap.addEventListener('mouseenter', () => { playBtn.style.opacity='1'; bar.style.opacity='1'; });
+  wrap.addEventListener('mouseleave', () => {
+    if(!vid.paused) playBtn.style.opacity='0';
+    bar.style.opacity='0';
+  });
+
+  // en mobile: mostrar siempre la barra
+  if('ontouchstart' in window){ bar.style.opacity='1'; bar.style.transition='none'; }
 
   const playIcon = playBtn.querySelector('svg');
 
-  // play / pause
   playBtn.addEventListener('click', () => {
     if(vid.paused){ vid.play(); playBtn.style.opacity='0'; }
     else { vid.pause(); playBtn.style.opacity='1'; }
   });
   vid.addEventListener('click', () => playBtn.click());
 
-  // actualizar icono del botón central según estado
   vid.addEventListener('play',  () => { playIcon.innerHTML = iconPause; });
   vid.addEventListener('pause', () => { playIcon.innerHTML = iconPlay; playBtn.style.opacity='1'; });
 
-  // mute / unmute
   muteBtn.addEventListener('click', () => {
     vid.muted = !vid.muted;
     muteIcon.innerHTML = vid.muted ? iconMute : iconSound;
