@@ -2237,28 +2237,19 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   .rf-chip{padding:.45rem .9rem;font-size:.62rem;letter-spacing:.12em;margin-top:.6rem}
 
   /* CAPAS */
-  #capas{padding:10rem 0 6rem}
-  .capas-head{padding:0 1.25rem;margin-bottom:2rem;gap:1rem}
+  #capas{padding:4rem 0 0}
+  .capas-head{padding:0 1.25rem;margin-bottom:1rem;gap:.75rem}
   .capas-title{font-size:clamp(2.4rem,11vw,3.8rem)}
   .capas-stage{
     padding:0 1.25rem;
     display:flex;flex-direction:column-reverse;gap:0;
   }
-  .capas-img-inner{min-height:90vw;overflow:visible!important}
+  .capas-img-inner{min-height:0;overflow:visible!important}
   .capas-img{max-height:none!important;height:auto!important;width:100%!important;margin-left:0;object-fit:contain;object-position:center center;transform:none!important}
   .hall-tools-bridge-img{width:100%;object-fit:cover;object-position:center}
-  .cp-cluster{
-    position:relative!important;inset:auto!important;
-    display:flex;flex-direction:row;justify-content:center;
-    gap:.75rem;padding:.75rem 1.25rem;
-    pointer-events:auto;z-index:4;margin-top:.5rem;
-  }
-  .cp-frame{
-    position:relative!important;
-    width:90px!important;height:90px!important;
-    top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
-    transform:none!important;flex-shrink:0;
-  }
+  .cp-cluster{display:none!important}
+  /* Patas dot — reubicado para capasmobile.png */
+  .capas-img-outer > :nth-child(6){top:78%!important;left:40%!important}
   /* hotspot cards: centradas encima del dot en mobile */
   .hs-card{
     width:155px;padding:.65rem .75rem;
@@ -2321,10 +2312,10 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   .slider-outer{margin-bottom:1.5rem}
 
   /* COMPASS */
-  #compass-wrap{height:160vh}
+  #compass-wrap{height:110vh}
   #compass-pin{
     flex-direction:column;
-    gap:2rem;padding:2rem 1.25rem;
+    gap:2rem;padding:0 1.25rem;padding-top:0!important;
     justify-content:center;align-items:center;
   }
   #compass-img{width:220px;height:220px;min-width:220px;min-height:220px}
