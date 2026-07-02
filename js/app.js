@@ -517,9 +517,7 @@ setTimeout(tryDismiss,2500);
   let rt;
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(setup, 200); }, { passive: true });
 
-  // Keep old DOMContentLoaded stub so no reference errors
   document.addEventListener('DOMContentLoaded', ()=>{});
-  window.addEventListener('resize',initFlip);
 })();
 
 /* ── PARALLAX DEPTH SHIFT — #rutas ────────────── */

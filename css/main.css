@@ -2698,16 +2698,40 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   }
   /* Ocultar dots de cards en desktop */
   .xct-cards-dots{display:none!important;}
-  /* Restaurar find-caps dentro del find en desktop */
-  #hallazgos .find-cap{
-    position:absolute!important;bottom:0!important;left:0!important;right:0!important;
-    transform:translateY(100%)!important;opacity:1!important;padding:1rem 1.5rem!important;
-    background:none;
-  }
-  #hallazgos .find:hover .find-cap,
-  #hallazgos .find.cap-active .find-cap{transform:translateY(0)!important;}
   .hall-play-btn{display:none!important;}
-  .hall-sub-inner,.hall-sub-outer{display:block!important;}
+
+  /* ── HALLAZGOS desktop restoration ── */
+  .hall-row-1{grid-template-columns:1.65fr 1fr!important}
+  .hall-row-2{grid-template-columns:1fr 1.65fr!important}
+  #hallRow1{transition:grid-template-columns .5s cubic-bezier(.25,.46,.45,.94)!important}
+  #hallRow1.swapped{grid-template-columns:1fr 1.65fr!important}
+  .find-cap{
+    position:absolute!important;bottom:0!important;left:0!important;right:0!important;
+    padding:1rem 1.5rem!important;
+    transform:translateY(100%)!important;
+    background:linear-gradient(to top,rgba(21,18,16,.88) 0%,rgba(21,18,16,0) 100%)!important;
+    opacity:1!important;
+  }
+  .find:hover .find-cap,.find.cap-active .find-cap{transform:translateY(0)!important}
+  .find:hover .hall-vid{opacity:1!important}
+  .find:hover img{opacity:0!important}
+  .hall-sub-inner{display:block!important}
+  .hall-sub-outer{display:block!important}
+  #hallRow1.swapped .hall-sub-inner{opacity:1!important;pointer-events:auto!important}
+  #hallRow1.swapped .hall-sub-outer{opacity:0!important;pointer-events:none!important}
+
+  /* ── COMPASS desktop restoration ── */
+  #compass-wrap{height:140vh!important}
+  #compass-pin{
+    flex-direction:row!important;gap:6rem!important;
+    padding:0!important;overflow:hidden!important;
+    align-items:center!important;justify-content:center!important;
+  }
+  #compass-tunnel{display:block!important}
+  #compass-img{width:auto!important;height:auto!important;min-width:unset!important;min-height:unset!important;}
+
+  /* ── XCT desktop restoration ── */
+  .xct-item{display:block!important;gap:0!important;}
 }
 #hero .h-media img{object-fit:cover;opacity:.72;}
 #rutas{
