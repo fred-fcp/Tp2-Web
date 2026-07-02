@@ -44,15 +44,13 @@ function setupVideo(vid,src){
     return;
   }
   vid.style.opacity=0;
-  function fadeTo(t,ms){
-    if(raf)cancelAnimationFrame(raf);
-    const s=performance.now(),from=parseFloat(vid.style.opacity)||0;
-    function step(n){const p=Math.min((n-s)/ms,1);vid.style.opacity=from+(t-from)*p;if(p<1)raf=requestAnimationFrame(step);}
-    raf=requestAnimationFrame(step);
-  }
-  vid.addEventListener('loadeddata',()=>{vid.classList.add('rdy');vid.style.opacity=0;vid.play().catch(()=>{});fadeTo(1,FADE_MS);});
-  vid.addEventListener('timeupdate',()=>{if(!fadingOut&&vid.duration&&(vid.duration-vid.currentTime)<=FADE_LEAD&&(vid.duration-vid.currentTime)>0){fadingOut=true;fadeTo(0,FADE_MS);}});
-  vid.addEventListener('ended',()=>{vid.style.opacity=0;setTimeout(()=>{vid.currentTime=0;vid.play().catch(()=>{});fadingOut=false;fadeTo(1,FADE_MS);},100);});
+  vid.loop=true;
+  vid.addEventListener('loadeddata',()=>{
+    vid.classList.add('rdy');
+    vid.play().catch(()=>{});
+    vid.style.transition='opacity 1.2s ease';
+    vid.style.opacity=1;
+  });
 }
 
 /* ── HERO CTA SMOOTH SCROLL ──────────── */
@@ -243,13 +241,30 @@ function initImages(){
   const set=(id,key)=>{const el=document.getElementById(id);if(el&&d[key])el.src=d[key];};
   set('heroPoster','hero');
   set('rutasBRA','bra01');set('rutasSU','su02');set('rutasDI','di03');
-  set('capasImg', window.innerWidth<=768 && d.capasMobile ? 'capasMobile' : 'capas');
+  const capasEl=document.getElementById('capasImg');
+  function loadCapasImg(){
+    const src=window.innerWidth<=768&&d.capasMobile?d.capasMobile:d.capas;
+    if(capasEl&&capasEl.src!==new URL(src,location.href).href)capasEl.src=src;
+  }
+  loadCapasImg();
   set('h1','h1');set('h2','h2');set('h3','h3');set('h4','h4');
   set('cursosImg','cursos');
   set('terCard01','card01');set('terCard02','card02');set('terCard03','card03');
   const vid=document.getElementById('heroVid');
-  const heroSrc=window.innerWidth<=768&&d.heroVidMobile?d.heroVidMobile:d.heroVid;
-  if(heroSrc)setupVideo(vid,heroSrc);
+  function loadHeroVideo(){
+    const isMobile=window.innerWidth<=768;
+    const src=isMobile&&d.heroVidMobile?d.heroVidMobile:d.heroVid;
+    if(src&&vid.dataset.loadedSrc!==src){
+      vid.dataset.loadedSrc=src;
+      setupVideo(vid,src);
+    }
+  }
+  loadHeroVideo();
+  let resizeTimer;
+  window.addEventListener('resize',()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{loadHeroVideo();loadCapasImg();},200);
+  },{passive:true});
   buildSlider();
 }
 initImages();
@@ -421,23 +436,87 @@ setTimeout(tryDismiss,2500);
   if(capsula)io.observe(capsula);
 })();
 
-/* ── HALLAZGOS FLIP (mobile viewport) ─────────────── */
+/* ── HALLAZGOS MOBILE ─────────────── */
 (function(){
-  function initFlip(){
-    if(window.innerWidth>768)return;
-    document.querySelectorAll('#hallazgos .find').forEach(card=>{
-      if(card._flipBound)return;
-      card._flipBound=true;
-      card.addEventListener('click',function(e){
-        if(!this.classList.contains('flipped')){
-          e.preventDefault();
-          document.querySelectorAll('#hallazgos .find.flipped').forEach(c=>c.classList.remove('flipped'));
-          this.classList.add('flipped');
+  const finds = Array.from(document.querySelectorAll('.hall-find-1, .hall-find-2'));
+  if(!finds.length) return;
+
+  // Store original positions of find-caps for desktop restore
+  const capData = finds.map(find => {
+    const cap = find.querySelector('.find-cap');
+    return { find, cap, origParent: cap ? cap.parentElement : null };
+  });
+
+  let mobileOn = false;
+  const playBtns = [];
+
+  function makeSvg(playing){
+    return playing
+      ? `<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><circle cx="20" cy="20" r="19" fill="rgba(0,0,0,.5)" stroke="rgba(255,255,255,.6)" stroke-width="1.2"/><rect x="13" y="12" width="5" height="16" rx="2" fill="#fff"/><rect x="22" y="12" width="5" height="16" rx="2" fill="#fff"/></svg>`
+      : `<svg viewBox="0 0 40 40" width="40" height="40" fill="none"><circle cx="20" cy="20" r="19" fill="rgba(0,0,0,.5)" stroke="rgba(255,255,255,.6)" stroke-width="1.2"/><polygon points="15,11 32,20 15,29" fill="#fff"/></svg>`;
+  }
+
+  function initMobile(){
+    capData.forEach(({ find, cap, origParent }) => {
+      // Move cap outside: insert after find element
+      if(cap && origParent) find.after(cap);
+
+      // Add play/pause button
+      const vid = find.querySelector('.hall-vid');
+      const img = find.querySelector('img');
+      const btn = document.createElement('button');
+      btn.className = 'hall-play-btn';
+      btn.setAttribute('aria-label', 'Reproducir');
+      btn.innerHTML = makeSvg(false);
+      find.appendChild(btn);
+      playBtns.push(btn);
+
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        if(!vid) return;
+        if(vid.paused){
+          vid.play().catch(()=>{});
+          if(vid) vid.style.opacity = '1';
+          if(img) img.style.opacity = '0';
+          btn.innerHTML = makeSvg(true);
+        } else {
+          vid.pause();
+          if(vid) vid.style.opacity = '0';
+          if(img) img.style.opacity = '1';
+          btn.innerHTML = makeSvg(false);
         }
       });
     });
+
+    mobileOn = true;
   }
-  document.addEventListener('DOMContentLoaded',initFlip);
+
+  function destroyMobile(){
+    // Restore caps inside their original parents
+    capData.forEach(({ find, cap, origParent }) => {
+      if(cap && origParent && cap.parentElement !== origParent) origParent.appendChild(cap);
+      const vid = find.querySelector('.hall-vid');
+      const img = find.querySelector('img');
+      if(vid){ vid.pause(); vid.style.opacity = ''; }
+      if(img) img.style.opacity = '';
+    });
+    playBtns.forEach(b => b.remove());
+    playBtns.length = 0;
+    mobileOn = false;
+  }
+
+  function setup(){
+    if(window.innerWidth <= 768){ if(!mobileOn) initMobile(); }
+    else { if(mobileOn) destroyMobile(); }
+  }
+
+  setup();
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(setup, 200); }, { passive: true });
+
+  // Keep old DOMContentLoaded stub so no reference errors
+  document.addEventListener('DOMContentLoaded', ()=>{});
   window.addEventListener('resize',initFlip);
 })();
 
@@ -578,8 +657,11 @@ setTimeout(tryDismiss,2500);
   }
 
   function setFocus(idx){
+    const mobile = window.innerWidth <= 768;
     items.forEach((item,i) => {
       const vid = item.querySelector('.xct-vid');
+      const avatar = item.querySelector('.xct-avatar');
+      const cta = item.querySelector('.xct-cta-preview');
       const active = i === idx;
       item.classList.toggle('xct-focused', active);
       item.classList.toggle('is-active', active);
@@ -587,6 +669,13 @@ setTimeout(tryDismiss,2500);
       if(vid){
         if(active) vid.play().catch(()=>{});
         else { vid.pause(); vid.currentTime = 0; }
+      }
+      if(mobile){
+        if(avatar) avatar.style.opacity = active ? '1' : '0.35';
+        if(cta){ cta.style.opacity = active ? '1' : '0.3'; cta.style.pointerEvents = active ? 'auto' : 'none'; }
+      } else {
+        if(avatar){ avatar.style.opacity = ''; }
+        if(cta){ cta.style.opacity = ''; cta.style.pointerEvents = ''; }
       }
     });
     dots.forEach((d,i) => d.classList.toggle('active', i===idx));
@@ -624,7 +713,189 @@ setTimeout(tryDismiss,2500);
 
   /* Init */
   goTo(0);
-  window.addEventListener('resize', () => goTo(current));
+  window.addEventListener('resize', () => {
+    if(window.innerWidth<=768) initMobileScroll();
+    else goTo(current);
+  });
+
+  /* ── MOBILE: scroll-based active card ── */
+  let mobileObserver = null;
+  function initMobileScroll(){
+    if(mobileObserver) mobileObserver.disconnect();
+    // reset carousel transform
+    track.style.transform = 'none';
+    mobileObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const idx = [...items].indexOf(entry.target);
+          setFocus(idx);
+        }
+      });
+    },{threshold:0.55});
+    items.forEach(item => mobileObserver.observe(item));
+  }
+
+  if(window.innerWidth<=768) initMobileScroll();
+})();
+
+/* ── COMUNIDAD SLIDER DOTS ── */
+(function(){
+  const dots = Array.from(document.querySelectorAll('.slider-dot'));
+  const track = document.getElementById('sliderTrack');
+  if(!dots.length || !track) return;
+
+  const TOTAL = 7;
+  let activeDot = 0;
+  let desktopTimer = null;
+
+  function setDot(i){
+    activeDot = ((i % TOTAL) + TOTAL) % TOTAL;
+    dots.forEach((d,j) => d.classList.toggle('active', j === activeDot));
+  }
+
+  /* ── DESKTOP: timer cycling dots alongside CSS animation ── */
+  function startDesktopCycle(){
+    clearInterval(desktopTimer);
+    desktopTimer = setInterval(() => setDot(activeDot + 1), 35000 / TOTAL);
+  }
+
+  /* ── MOBILE: RAF transform-driven infinite scroll ── */
+  let offset = 0;       // px scrolled into the track
+  let halfW = 0;        // width of one full set (7 slides)
+  let slideW = 0;       // width of one slide
+  let speed = 0;        // px per tick (0.5s per slide @ ~60fps = slideW/30)
+  let paused = false;
+  let touchStartX = 0;
+  let offsetAtTouch = 0;
+  let mobileInited = false;
+  let mobileTicker = null;
+
+  function calcSizes(){
+    const slide = track.querySelector('.slide');
+    const gap = slide ? parseInt(getComputedStyle(track).gap) || 0 : 0;
+    slideW = slide ? slide.offsetWidth + gap : window.innerWidth;
+    halfW = slideW * TOTAL;
+    speed = slideW / 210;
+  }
+
+  function syncDot(){
+    setDot(Math.floor(((offset % halfW) + halfW) % halfW / slideW));
+  }
+
+  function stopMobileTicker(){
+    if(mobileTicker){ clearInterval(mobileTicker); mobileTicker = null; }
+  }
+
+  function initMobile(){
+    stopMobileTicker();
+    calcSizes();
+    offset = 0;
+    paused = false;
+    track.style.transform = 'translateX(0px)';
+
+    if(!mobileInited){
+      mobileInited = true;
+
+      track.addEventListener('touchstart', e => {
+        paused = true;
+        touchStartX = e.touches[0].clientX;
+        offsetAtTouch = offset;
+      }, { passive: true });
+
+      track.addEventListener('touchmove', e => {
+        const dx = touchStartX - e.touches[0].clientX;
+        offset = ((offsetAtTouch + dx) % halfW + halfW) % halfW;
+        track.style.transform = `translateX(-${offset}px)`;
+        syncDot();
+      }, { passive: true });
+
+      track.addEventListener('touchend', () => {
+        const nearest = Math.round(offset / slideW);
+        offset = ((nearest * slideW) % halfW + halfW) % halfW;
+        track.style.transform = `translateX(-${offset}px)`;
+        syncDot();
+        paused = false;
+      }, { passive: true });
+
+      dots.forEach((dot, i) => {
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('click', () => {
+          offset = i * slideW;
+          track.style.transform = `translateX(-${offset}px)`;
+          syncDot();
+        });
+      });
+    }
+
+    mobileTicker = setInterval(() => {
+      if(paused) return;
+      offset += speed;
+      if(offset >= halfW) offset -= halfW;
+      track.style.transform = `translateX(-${offset}px)`;
+      syncDot();
+    }, 16);
+  }
+
+  function initDesktop(){
+    stopMobileTicker();
+    track.style.transform = '';
+    clearInterval(desktopTimer);
+    setDot(0);
+    startDesktopCycle();
+  }
+
+  function setup(){
+    clearInterval(desktopTimer);
+    if(window.innerWidth <= 768) initMobile();
+    else initDesktop();
+  }
+
+  setup();
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(setup, 200); }, { passive: true });
+})();
+
+/* ── CARDS CAROUSEL DOTS ── */
+(function(){
+  const grid = document.querySelector('.xct-cards-grid');
+  const dots = document.querySelectorAll('.xct-cards-dot');
+  if(!grid || !dots.length) return;
+  const cards = grid.querySelectorAll('.xct-card');
+
+  function getCardStep(){
+    return cards[0] ? cards[0].offsetWidth + parseInt(getComputedStyle(grid).gap) : 1;
+  }
+
+  function updateCardActive(){
+    const mobile = window.innerWidth <= 768;
+    const idx = mobile ? Math.round(grid.scrollLeft / getCardStep()) : -1;
+    dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    cards.forEach((c,i) => {
+      c.classList.toggle('is-active', mobile && i === idx);
+      c.style.borderColor = (mobile && i === idx) ? 'var(--acid)' : '';
+    });
+  }
+
+  grid.addEventListener('scroll', updateCardActive, {passive:true});
+  updateCardActive();
+
+  dots.forEach((dot,i) => {
+    dot.style.cursor = 'pointer';
+    dot.addEventListener('click', () => {
+      grid.scrollTo({left: i * getCardStep(), behavior:'smooth'});
+    });
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateCardActive, 200);
+  }, {passive:true});
+  window.addEventListener('resize', () => {
+    const show = window.innerWidth <= 768;
+    const dotsWrap = document.querySelector('.xct-cards-dots');
+    if(dotsWrap) dotsWrap.style.display = show ? 'flex' : 'none';
+  });
 })();
 
 /* ── OLD CAROUSEL (inactivo — HTML eliminado) ── */
