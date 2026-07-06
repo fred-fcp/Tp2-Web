@@ -691,7 +691,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   font-size:.72rem;line-height:1.5;color:rgba(255,255,255,.72);margin:0;opacity:1;
 }
 .rut-card-bottom .rf-chip{
-  font-size:.65rem;padding:.3rem .75rem;margin-top:.2rem;
+  font-size:.6rem;padding:.3rem .75rem;margin-top:.2rem;
   color:rgba(255,255,255,.88)!important;
 }
 
@@ -2312,7 +2312,8 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
   .rutas-foot .rf-chip{text-align:center}
   .rutas-foot .rf-tag{font-size:.88rem;letter-spacing:.16em}
   .rutas-foot .rf-desc{font-size:1rem;line-height:1.65}
-  .rutas-foot .rf-chip{font-size:.75rem!important;letter-spacing:.13em;padding:.55rem 1.2rem!important}
+  #rutas .rf-chip{font-size:.7rem!important;letter-spacing:.13em!important;padding:.55rem 1.2rem!important}
+  .rf-chip-pre{display:none}
   .rf-chip{padding:.45rem .9rem;font-size:.62rem;letter-spacing:.12em;margin-top:.6rem}
 
   /* CAPAS */

@@ -1254,7 +1254,8 @@ setTimeout(tryDismiss,2500);
     current += (target - current) * EASE;
     const diff = Math.abs(target - current);
 
-    img.style.transform = `rotate(${current * 720}deg)`;
+    const turns = window.innerWidth <= 768 ? 480 : 720;
+    img.style.transform = `rotate(${current * turns}deg)`;
 
     if(text){
       const pt = Math.max(0, Math.min(1, current / 0.4));
