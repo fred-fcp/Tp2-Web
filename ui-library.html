@@ -5,137 +5,66 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>RAÍZ — Sistema Visual</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 <style>
-@font-face{font-family:'EBGaramond';src:url('Typography/EBGaramond-VariableFont_wght.ttf') format('truetype');font-weight:400 800;font-style:normal;font-display:swap}
-@font-face{font-family:'EBGaramond';src:url('Typography/EBGaramond-Italic-VariableFont_wght.ttf') format('truetype');font-weight:400 800;font-style:italic;font-display:swap}
-@font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
 @font-face{font-family:'Fraunces';src:url('Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
 @font-face{font-family:'Fraunces';src:url('Typography/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
 
-/* ─── TOKENS ─────────────────── */
+/* ─── TOKENS ───── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#F6F1E8;--layer:#E7D7C9;--ink:#151515;--wood:#A66A44;
   --acid:#C7FF4D;--gr:#9A9288;--dk:#151210;--dk2:#1c1a12;
+  --xct:#acc43a;
   --fi:'Instrument Serif',Georgia,serif;
   --fp:'Playfair Display',Georgia,serif;
   --fb:'Manrope',sans-serif;
   --fm:'Space Mono',monospace;
 }
 html{scroll-behavior:smooth}
-body{
-  background:#090705;color:#fff;
-  font-family:var(--fb);font-weight:300;
-  overflow-x:hidden;
-  display:block;
-}
+body{background:#090705;color:#fff;font-family:var(--fb);font-weight:300;overflow-x:hidden}
 
-/* Grid bg */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:
-    linear-gradient(rgba(199,255,77,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(199,255,77,.035) 1px,transparent 1px);
-  background-size:48px 48px;
-  pointer-events:none;z-index:0;
-}
+/* ─── LIB LAYOUT ─── */
+.lib-wrap{max-width:1320px;margin:0 auto;padding:0 3rem}
+.lib-sec{padding:6rem 0}
 
-/* ─── LIB LAYOUT ─────────────── */
-.lib-sec{padding:5rem 0}
-.lib-bento-wrap{max-width:1400px;margin:0 auto;padding:0 3rem}
+/* ─── BENTO ─── */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:1.25rem;overflow:hidden;margin-top:2.5rem}
+.mod{background:#090705;border-right:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:1.75rem 2rem 2rem;position:relative;overflow:hidden;transition:background .3s}
+.mod-accent{position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--acid),transparent 60%);opacity:0;transition:opacity .3s}
+.mod:hover .mod-accent{opacity:.45}
+.mod-label{font-family:var(--fm);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem}
+.mod-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+.mod-desc{font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.5);max-width:56ch;margin-bottom:.85rem;font-weight:300}
+.ann{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;color:rgba(255,255,255,.32);text-transform:uppercase;display:flex;align-items:center;gap:.4rem;margin-top:.65rem}
+.ann::before{content:'';display:inline-block;width:14px;height:1px;background:rgba(255,255,255,.2)}
 
-/* Transición hero → primera sección */
-#hero{min-height:68vh!important}
-#hero .h-fg{padding-top:5rem!important;padding-bottom:3rem!important;justify-content:space-between!important}
-#hero .h-coords{position:static!important;writing-mode:initial!important;transform:none!important;padding:0!important;margin-top:auto}
-#hero .h-scroll{display:none}
-#hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:10rem;background:linear-gradient(to bottom,transparent,#090705);z-index:5;pointer-events:none}
-#fundamentos{margin-top:-5rem;padding-top:9rem;position:relative;z-index:1}
-#contenido{position:relative}
-#contenido::after{content:'';position:absolute;bottom:0;left:0;right:0;height:12rem;background:linear-gradient(to bottom,transparent 0%,rgba(9,7,5,.7) 55%,#090705 100%);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 55%,black 100%);mask-image:linear-gradient(to bottom,transparent 0%,black 55%,black 100%);z-index:5;pointer-events:none}
-#sistema{margin-top:-5rem;padding-top:9rem;position:relative;z-index:1}
-#fundamentos .ch-l,#interaccion .ch-l,#contenido .ch-l,#sistema .ch-l,#recursos .ch-l{color:rgba(255,255,255,.82)}
-#hero .h-title{font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700}
+/* ─── SECTION HEADER ─── */
+.lib-head{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:3.5rem}
+.lib-eyebrow{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acid);margin-bottom:.75rem}
+.lib-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2.2rem,4vw,3.6rem);color:#fff;line-height:.95;letter-spacing:-.025em;margin-bottom:1.25rem}
+.lib-title em{color:var(--acid);font-style:normal}
+.lib-sub{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.75;max-width:48ch;font-weight:300}
 
-/* Fraunces + contraste blanco para títulos de sección */
-.lib-sec .sec-title,.lib-sec .capas-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.55)}
-.lib-sec .sec-title em,.lib-sec .capas-title em{color:var(--acid)}
+/* ─── SWATCHES ─── */
+.swatch-group{margin-bottom:1.1rem}
+.swatch-gl{font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.5rem}
+.swatch-row{display:flex;gap:.4rem;flex-wrap:wrap}
+.swatch{border-radius:.4rem;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.3);flex-shrink:0;width:68px}
+.swatch-color{height:42px}
+.swatch-info{padding:.3rem .4rem;background:rgba(255,255,255,.05)}
+.swatch-name{font-family:var(--fm);font-size:.5rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.6);display:block}
+.swatch-val{font-family:var(--fm);font-size:.46rem;color:rgba(255,255,255,.35);margin-top:.08rem;display:block}
 
-/* Vidrio en módulos del bento */
-.sys-mod{background:rgba(255,255,255,.025);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.sys-mod::before{content:none}
-.sys-bento{gap:1px;background:rgba(255,255,255,.05);border-radius:1.25rem;overflow:hidden;margin-top:2rem}
+/* ─── TYPE SCALE ─── */
+.type-scale{display:flex;flex-direction:column;gap:.85rem}
+.type-row{padding-bottom:.85rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.type-meta{font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:.3rem;display:flex;gap:.65rem}
+.type-meta span{color:rgba(199,255,77,.55)}
 
-/* Intro glass pill (usado en sección headers) */
-.lib-intro-pill{display:inline-block;padding:1.2rem 1.4rem;border-radius:1.5rem;background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09);margin-bottom:2rem}
-.lib-intro-pill .sec-sub,.lib-intro-pill .sec-sub-lt{margin-bottom:0}
-
-/* ─── BENTO GRID ─────────────── */
-.sys-bento{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-}
-
-/* ─── MODULE BASE ────────────── */
-.sys-mod{
-  border-right:1px solid rgba(255,255,255,.06);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  padding:1.5rem 1.75rem 2rem;
-  position:relative;overflow:hidden;
-  transition:background .3s;
-}
-.sys-mod::before{
-  content:attr(data-id);
-  position:absolute;top:.7rem;left:.7rem;
-  font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;
-  color:rgba(199,255,77,.4);text-transform:uppercase;
-}
-/* corner node dot */
-.sys-mod::after{
-  content:'';position:absolute;top:-3px;right:-3px;
-  width:5px;height:5px;border-radius:50%;
-  background:rgba(199,255,77,.25);
-}
-
-.mod-title{
-  font-family:var(--fm);font-size:.68rem;letter-spacing:.2em;
-  color:rgba(255,255,255,.7);text-transform:uppercase;
-  margin:1.3rem 0 .9rem;
-  display:flex;align-items:center;gap:.65rem;
-}
-.mod-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
-
-.mod-accent-line{
-  position:absolute;top:0;left:0;width:100%;height:2px;
-  background:linear-gradient(90deg,var(--acid) 0%,transparent 60%);
-  opacity:0;transition:opacity .3s;
-}
-.sys-mod:hover .mod-accent-line{opacity:.4}
-
-/* annotation label */
-.ann{
-  font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;
-  color:rgba(255,255,255,.38);text-transform:uppercase;
-  display:flex;align-items:center;gap:.4rem;margin-top:.65rem;
-}
-.ann::before{content:'';display:inline-block;width:16px;height:1px;background:rgba(255,255,255,.2)}
-
-/* ─── GRID SPANS ─────────────── */
-.mod-color    {grid-column:1/8}
-.mod-type     {grid-column:8/13}
-.mod-glass    {grid-column:1/13}
-.mod-buttons  {grid-column:1/13}
-.mod-cards    {grid-column:1/7}
-.mod-slide    {grid-column:7/13}
-.mod-comps    {grid-column:7/13}
-.mod-courses  {grid-column:1/13}
-.mod-mobile   {grid-column:1/7}
-.mod-cta      {grid-column:7/13}
-.mod-anim     {grid-column:1/13}
-
-/* ─── LIQUID GLASS ───────────── */
+/* ─── GLASS ─── */
 .lg,.lgs,.lgw,.lgd{position:relative;overflow:hidden}
 .lg{background:rgba(255,255,255,0.04);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 1px rgba(255,255,255,0.12)}
 .lgs{background:rgba(255,255,255,0.06);backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px);box-shadow:4px 4px 4px rgba(0,0,0,.08),inset 0 1px 1px rgba(255,255,255,0.18)}
@@ -146,28 +75,7 @@ body::before{
 .lgw::before{background:linear-gradient(180deg,rgba(166,106,68,.4) 0%,rgba(166,106,68,.12) 30%,rgba(166,106,68,0) 50%,rgba(166,106,68,.12) 70%,rgba(166,106,68,.4) 100%)}
 .dark-glass{background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09)}
 
-/* ─── COLOUR TOKENS ──────────── */
-.swatch-group{margin-bottom:1.1rem}
-.swatch-group-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.55rem}
-.swatch-row{display:flex;gap:.45rem;flex-wrap:wrap}
-.swatch{border-radius:.4rem;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.3);flex-shrink:0;width:72px}
-.swatch-color{height:44px}
-.swatch-info{padding:.35rem .45rem;background:rgba(255,255,255,.05)}
-.swatch-name{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.65);display:block}
-.swatch-val{font-family:var(--fm);font-size:.5rem;color:rgba(255,255,255,.4);margin-top:.1rem;display:block}
-
-/* ─── TYPOGRAPHY ─────────────── */
-.type-scale{display:flex;flex-direction:column;gap:.9rem}
-.type-row{padding-bottom:.9rem;border-bottom:1px solid rgba(255,255,255,.06)}
-.type-meta{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:.3rem;display:flex;gap:.75rem}
-.type-meta span{color:rgba(199,255,77,.6)}
-.h-title-demo{font-family:'Fraunces',Georgia,serif;font-style:normal;font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
-.sec-title-demo{font-family:'Manrope',sans-serif;font-size:clamp(1.4rem,2vw,1.9rem);font-weight:600;color:#fff;line-height:1.1}
-.capas-title-demo{font-family:'Manrope',sans-serif;font-size:clamp(1.2rem,1.8vw,1.6rem);font-weight:600;color:#fff;line-height:1.05}
-.body-demo{font-family:'Manrope',sans-serif;font-size:.9rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.65}
-.mono-demo{font-family:var(--fm);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-
-/* ─── BUTTONS ────────────────── */
+/* ─── BUTTONS (usados en ambas webs) ─── */
 .btn-primary,.btn-nav-cta,.btn-acid,.btn-dark{
   position:relative;isolation:isolate;overflow:hidden;
   display:inline-flex;align-items:center;gap:.65rem;
@@ -183,174 +91,125 @@ body::before{
   transition:left .6s cubic-bezier(.22,1,.36,1),scale .6s;scale:0;
 }
 .btn-primary:hover::after,.btn-nav-cta:hover::after,.btn-acid:hover::after,.btn-dark:hover::after{left:-10%;scale:1.5}
-.btn-primary{background:rgba(255,255,255,.06);backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px);box-shadow:4px 4px 4px rgba(0,0,0,.08),inset 0 1px 1px rgba(255,255,255,.18);color:rgba(255,255,255,.85);border:1px solid transparent;transition:color .4s,border-color .4s}
-.btn-primary::before{content:"";position:absolute;inset:0;border-radius:9999px;padding:1.2px;background:linear-gradient(180deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,.15) 20%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.15) 80%,rgba(255,255,255,.45) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:1}
+.btn-primary{background:rgba(255,255,255,.06);backdrop-filter:blur(50px);color:rgba(255,255,255,.85);border:1px solid transparent;transition:color .4s}
+.btn-primary::before{content:"";position:absolute;inset:0;border-radius:9999px;padding:1.2px;background:linear-gradient(180deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.45) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:1}
 .btn-primary::after{background:var(--acid)}
 .btn-primary:hover{color:var(--dk)}
 .btn-nav-cta{background:#fff;color:var(--dk);transition:color .4s}
 .btn-nav-cta::after{background:var(--acid)}
-.btn-nav-cta:hover{color:var(--dk)}
 .btn-acid{background:var(--acid);color:var(--dk);transition:color .4s}
 .btn-acid::after{background:#b8ef2a}
-.btn-acid:hover{color:var(--dk)}
-.btn-dark{background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.85);transition:color .4s,border-color .4s}
+.btn-dark{background:rgba(10,7,4,.48);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.85);transition:color .4s,border-color .4s}
 .btn-dark::after{background:var(--acid)}
 .btn-dark:hover{color:var(--dk);border-color:transparent}
-.btn-primary .fc-btn-icon,.btn-dark .fc-btn-icon{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.18)}
-.btn-nav-cta .fc-btn-icon,.btn-acid .fc-btn-icon{color:var(--dk);border-color:rgba(21,18,16,.18)}
-.btn-primary:hover .fc-btn-icon,.btn-nav-cta:hover .fc-btn-icon,.btn-acid:hover .fc-btn-icon,.btn-dark:hover .fc-btn-icon{color:var(--dk);border-color:rgba(21,18,16,.18);background:rgba(21,18,16,.08)}
-.btn-primary:hover .fc-btn-icon,.btn-nav-cta:hover .fc-btn-icon,.btn-acid:hover .fc-btn-icon,.btn-dark:hover .fc-btn-icon,.fc-btn:hover .fc-btn-icon{transform:rotate(45deg)}
-.fc-btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.6rem;padding:.7rem .7rem .7rem 1.4rem;border-radius:9999px;border:1px solid rgba(255,255,255,.15);background:rgba(10,7,4,.48);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);font-family:var(--fm);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:color .4s,border-color .4s;flex-shrink:0}
-.fc-btn::before{content:'';position:absolute;width:130%;aspect-ratio:1;left:-110%;top:50%;transform:translateY(-50%);background:var(--acid);border-radius:50%;z-index:-1;transition:left .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1),scale .65s;scale:0}
+.fc-btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.6rem;padding:.7rem .7rem .7rem 1.4rem;border-radius:9999px;border:1px solid rgba(255,255,255,.15);background:rgba(10,7,4,.48);backdrop-filter:blur(22px);font-family:var(--fm);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85);cursor:pointer;text-decoration:none;transition:color .4s,border-color .4s;flex-shrink:0}
+.fc-btn::before{content:'';position:absolute;width:130%;aspect-ratio:1;left:-110%;top:50%;transform:translateY(-50%);background:var(--acid);border-radius:50%;z-index:-1;transition:left .65s cubic-bezier(.22,1,.36,1),scale .65s;scale:0}
 .fc-btn:hover::before{left:-10%;scale:1.5}
 .fc-btn:hover{color:var(--dk);border-color:transparent}
 .fc-btn:hover .fc-btn-icon{background:rgba(21,18,16,.15);border-color:transparent;transform:rotate(45deg)}
 .fc-btn-icon{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);transition:transform .35s cubic-bezier(.22,1,.36,1),background .35s,border-color .35s}
+.btn-primary:hover .fc-btn-icon,.btn-nav-cta:hover .fc-btn-icon,.btn-acid:hover .fc-btn-icon,.btn-dark:hover .fc-btn-icon,.fc-btn:hover .fc-btn-icon{transform:rotate(45deg);color:var(--dk)}
 .m-full{width:100%;justify-content:space-between}
 
-/* Button grid */
-.btn-grid{display:flex;flex-direction:column;gap:.7rem}
-.btn-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.btn-context{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);min-width:80px;margin-bottom:.35rem}
+/* ─── CARDS ─── */
+/* XCT course card */
+.xct-card-demo{position:relative;width:180px;height:270px;border-radius:1.25rem;overflow:hidden;border:1.5px solid rgba(21,18,16,.35);flex-shrink:0}
+.xct-card-demo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(.85)}
+.xct-card-body-demo{position:absolute;top:48%;left:0;right:0;bottom:0;background:rgba(10,7,4,.58);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;text-align:center;padding:1rem 1rem 1.25rem;gap:.35rem}
 
-/* ─── CARDS ──────────────────── */
-.ter-card-demo{position:relative;width:200px;height:300px;border-radius:1.25rem;overflow:hidden;flex-shrink:0;background:linear-gradient(160deg,#2a1f14,#1a1208);cursor:pointer;transition:transform .4s,box-shadow .4s}
-.ter-card-demo:hover{transform:translateY(-10px) rotate(-0.7deg);box-shadow:0 32px 72px rgba(0,0,0,.35)}
-.ter-c-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,18,16,.08) 20%,rgba(21,18,16,.88) 100%)}
-.ter-c-caption{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.1rem 1.1rem}
-.ter-sub{font-family:var(--fm);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-bottom:.4rem}
-.ter-name-h{font-family:'Manrope',sans-serif;font-weight:600;font-size:1.2rem;color:#fff;margin-bottom:.7rem;line-height:1.1}
-.ter-cta{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.65rem;background:rgba(10,7,4,.48);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.85);font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem .55rem .55rem 1.1rem;border-radius:9999px;cursor:pointer;transition:color .4s,border-color .4s;text-decoration:none}
-.ter-cta::after{content:'';position:absolute;width:130%;aspect-ratio:1;left:-110%;top:50%;transform:translateY(-50%);background:var(--acid);border-radius:50%;z-index:-1;transition:left .6s cubic-bezier(.22,1,.36,1),scale .6s;scale:0}
-.ter-cta:hover::after{left:-10%;scale:1.5}
-.ter-cta:hover{color:var(--dk);border-color:transparent}
-.ter-cta .fc-btn-icon{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.18)}
-.ter-cta:hover .fc-btn-icon{color:var(--dk);border-color:rgba(21,18,16,.18);background:rgba(21,18,16,.08);transform:rotate(45deg)}
+/* Archivo flip card */
+.archivo-front{position:relative;width:180px;height:240px;border-radius:1rem;overflow:hidden;flex-shrink:0}
+.archivo-back-demo{position:relative;width:180px;height:240px;border-radius:1rem;overflow:hidden;flex-shrink:0}
+.archivo-back-demo-inner{position:absolute;inset:0;background:rgba(10,7,4,.6);backdrop-filter:blur(18px);display:flex;flex-direction:column;justify-content:flex-end;padding:.85rem .75rem;gap:.4rem}
 
-.slide-demo{position:relative;width:240px;height:320px;border-radius:1rem;overflow:hidden;flex-shrink:0;background:linear-gradient(160deg,#3a2a1c 0%,#1c1208 50%,#0f0c08 100%)}
+/* Slide / Egresado */
+.slide-demo{position:relative;width:220px;height:300px;border-radius:1rem;overflow:hidden;flex-shrink:0;background:linear-gradient(160deg,#3a2a1c,#1c1208)}
 .slide-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(21,18,16,.08) 20%,rgba(21,18,16,.88) 100%)}
-.slide-coord{font-family:var(--fm);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-bottom:.4rem}
 .slide-info{position:absolute;bottom:0;left:0;right:0;padding:1.4rem 1.25rem 1.25rem}
-.slide-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:1.15rem;color:#fff;line-height:1.1;margin-bottom:.75rem}
-.slide-loc{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.find-demo{position:relative;border-radius:1rem;overflow:hidden;background:linear-gradient(160deg,#2a1f14,#1a1208);cursor:pointer;height:240px}
-.find-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(21,18,16,.9) 0%,transparent 100%);padding:2rem 1.25rem 1.25rem;transform:translateY(2.5rem);transition:transform .4s}
-.find-demo:hover .find-cap{transform:translateY(0)}
-.find-ref{font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.4rem}
-.find-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:1.1rem;color:#fff;line-height:1.1;margin-bottom:.5rem}
-.find-note{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.6}
+.slide-quote{font-family:'Manrope',sans-serif;font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.5;margin-bottom:.6rem;font-weight:300;font-style:italic}
+.slide-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:1rem;color:#fff;line-height:1.1;margin-bottom:.2rem}
+.slide-loc{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 
-/* ─── STAT CARD ──────────────── */
-.stat-card{display:flex;flex-direction:column;gap:.6rem;padding:1.1rem 1.25rem;border-radius:1rem;min-width:140px;text-decoration:none;transition:all .3s;cursor:pointer}
-.stat-card:hover{background:rgba(199,255,77,.14);border-color:rgba(199,255,77,.35) !important}
-.stat-icon{width:36px;height:36px;border-radius:.5rem;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.stat-card:hover .stat-icon{background:rgba(199,255,77,.12)}
-.stat-card:hover .stat-icon svg{stroke:#C7FF4D}
-.stat-bottom{display:flex;flex-direction:column;gap:.15rem}
-.stat-n{font-family:'Manrope',sans-serif;font-size:1.75rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
-.stat-l{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.5;max-width:14ch}
+/* RI curso card */
+.ri-curso-demo{border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02);width:200px;flex-shrink:0;transition:border-color .3s,transform .3s}
+.ri-curso-demo:hover{border-color:rgba(199,255,77,.4);transform:scale(1.03);box-shadow:0 0 0 1px rgba(199,255,77,.2),0 8px 40px rgba(199,255,77,.1)}
+.ri-curso-demo .ri-curso-img{height:160px;background:linear-gradient(160deg,#2a1f14,#1a1208);background-size:cover;background-position:center}
+.ri-curso-demo .ri-curso-body{padding:1.25rem;display:flex;flex-direction:column;gap:.4rem}
+.ri-curso-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.1rem;color:#fff;line-height:1.1}
+.ri-curso-desc{font-size:.8rem;color:rgba(255,255,255,.48);line-height:1.6;font-weight:300}
+.ri-curso-cta{font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:.12rem;display:inline-block;margin-top:.5rem;transition:color .2s,border-color .2s}
+.ri-curso-cta:hover{color:#fff;border-color:#fff}
 
-/* ─── COURSE ROW ─────────────── */
-.course-row{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:1.1rem 1.4rem;background:transparent;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;transition:background .3s;position:relative;overflow:hidden}
-.course-row::after{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--acid);transform:scaleY(0);transform-origin:top;transition:transform .4s}
-.course-row:hover{background:rgba(255,255,255,.04)}
-.course-row:hover::after{transform:scaleY(1)}
-.course-type{font-family:var(--fm);font-size:.62rem;letter-spacing:.16em;color:var(--acid);text-transform:uppercase;margin-bottom:.3rem}
-.course-name{font-family:'Manrope',sans-serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.05;margin-bottom:.25rem}
-.course-desc{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.6;max-width:38ch}
-.course-price{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0;gap:.1rem}
-.course-price-amt{font-family:'Manrope',sans-serif;font-size:1.25rem;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1}
-.course-price-cur{font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+/* Stat card */
+.stat-card{display:flex;flex-direction:column;gap:.55rem;padding:1rem 1.2rem;border-radius:.85rem;min-width:120px;text-decoration:none;transition:all .3s;cursor:pointer}
+.stat-card:hover{background:rgba(199,255,77,.12)!important;border-color:rgba(199,255,77,.35)!important}
+.stat-icon{width:32px;height:32px;border-radius:.5rem;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center}
+.stat-n{font-family:'Manrope',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
+.stat-l{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1.5;max-width:12ch}
 
-/* ─── FINAL CTA ──────────────── */
-.fc-eye{font-family:var(--fm);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.5rem}
+/* Hotspot */
+.hs-dot{width:16px;height:16px;border-radius:50%;background:rgba(199,255,77,.22);border:1.5px solid var(--acid);position:relative;cursor:pointer;box-shadow:0 0 0 4px rgba(199,255,77,.08);transition:all .3s}
+.hs-dot::before{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--acid)}
+.hs-dot:hover{transform:scale(1.2)}
+.hs-card{padding:.85rem 1rem;border-radius:.65rem;background:rgba(10,7,4,.82);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);min-width:180px}
+.hs-num{font-family:var(--fm);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-bottom:.2rem}
+.hs-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:.95rem;color:#fff;margin-bottom:.25rem}
+.hs-desc{font-size:.7rem;line-height:1.6;color:rgba(255,255,255,.55)}
+
+/* RI prog item */
+.ri-prog-demo{padding:1.5rem;border:1px solid rgba(255,255,255,.07);border-radius:.75rem;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.ri-prog-demo:hover{background:rgba(199,255,77,.04)}
+.ri-prog-accent{position:absolute;top:0;left:0;width:2px;height:0;background:var(--acid);transition:height .4s cubic-bezier(.22,1,.36,1)}
+.ri-prog-demo:hover .ri-prog-accent{height:100%}
+.ri-prog-num{font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;color:rgba(199,255,77,.45);text-transform:uppercase;margin-bottom:.65rem}
+.ri-prog-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;line-height:1.1;margin-bottom:.45rem}
+.ri-prog-desc{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.65;font-weight:300}
+
+/* CTA block */
+.fc-eye{font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.5rem}
 .fc-head{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2rem,3.5vw,3rem);color:#fff;line-height:1}
 
-/* ─── SCROLL REVEAL ──────────── */
+/* ─── SCROLL REVEAL ─── */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
 .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
 .rv.on{opacity:1;transform:translateY(0)}
 
-/* ─── HOTSPOT ────────────────── */
-.hs-dot{width:18px;height:18px;border-radius:50%;background:rgba(199,255,77,.25);border:1.5px solid var(--acid);position:relative;cursor:pointer;transition:all .3s;box-shadow:0 0 0 4px rgba(199,255,77,.08)}
-.hs-dot::before{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--acid)}
-.hs-dot:hover{transform:scale(1.2);box-shadow:0 0 0 8px rgba(199,255,77,.12)}
-.hs-card-demo{padding:.9rem 1rem;border-radius:.75rem;background:rgba(10,7,4,.82);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);min-width:180px;max-width:220px}
-.hs-num{font-family:var(--fm);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);margin-bottom:.25rem}
-.hs-name{font-family:'Manrope',sans-serif;font-weight:600;font-size:1rem;color:#fff;margin-bottom:.3rem}
-.hs-desc{font-size:.7rem;line-height:1.6;color:rgba(255,255,255,.6)}
+/* ─── CHIPS ─── */
+.lgw-chip{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:.5rem 1rem;border-radius:9999px;cursor:pointer;transition:all .25s;text-decoration:none;position:relative;overflow:hidden;background:rgba(166,106,68,.07);backdrop-filter:blur(8px)}
+.lgw-chip::before{content:"";position:absolute;inset:0;border-radius:9999px;padding:1.2px;background:linear-gradient(180deg,rgba(166,106,68,.4) 0%,rgba(166,106,68,0) 50%,rgba(166,106,68,.4) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.lgw-chip:hover{background:rgba(199,255,77,.1);color:var(--acid)}
 
-/* ─── MOBILE PREVIEW ─────────── */
-.m-device-wrap{display:flex;justify-content:center;padding:2rem 0 1rem}
-.m-device{width:320px;flex-shrink:0;background:#0d0b09;border-radius:2.5rem;border:1px solid rgba(255,255,255,.12);box-shadow:0 0 0 5px rgba(255,255,255,.04),0 30px 60px rgba(0,0,0,.6);overflow:hidden;position:relative}
-.m-status-bar{display:flex;justify-content:space-between;align-items:center;padding:.55rem 1.2rem .25rem;font-family:var(--fm);font-size:.6rem;letter-spacing:.06em;color:rgba(255,255,255,.7)}
-.m-nav{display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem .6rem;border-bottom:1px solid rgba(255,255,255,.07)}
-.m-nav-logo{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1rem;color:#fff;letter-spacing:-.01em}
-.m-burger-demo{display:flex;flex-direction:column;gap:3px;cursor:pointer;background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.18);border-radius:.35rem;padding:.3rem .35rem}
-.m-burger-demo span{display:block;height:1.5px;width:18px;background:rgba(255,255,255,.85);border-radius:1px}
-.m-screen-body{display:flex;flex-direction:column;overflow-y:auto;max-height:560px}
-.m-block{display:flex;flex-direction:column;gap:.65rem;padding:.9rem;border-bottom:1px solid rgba(255,255,255,.05)}
-.m-label{font-family:var(--fm);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.05rem}
-.m-h-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2.2rem;color:#fff;line-height:.95;letter-spacing:-.02em}
-.m-sec-title{font-family:'Manrope',sans-serif;font-weight:600;font-size:1rem;color:#fff;letter-spacing:-.01em}
-.m-body-text{font-family:'Manrope',sans-serif;font-size:.75rem;color:rgba(255,255,255,.6);line-height:1.6}
-.m-mono-text{font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;color:var(--acid);text-transform:uppercase}
+/* ─── MOD on #acc43a bg ─── */
+.mod-on-xct{background:#acc43a!important}
+.mod-on-xct .mod-label{color:rgba(21,18,16,.55)}
+.mod-on-xct .mod-label::after{background:rgba(21,18,16,.18)}
+.mod-on-xct .mod-accent{background:linear-gradient(90deg,rgba(21,18,16,.4),transparent 60%)}
+.mod-on-xct .mod-desc{color:rgba(21,18,16,.65)}
+.mod-on-xct .ann{color:rgba(21,18,16,.5)}
+.mod-on-xct .ann::before{background:rgba(21,18,16,.25)}
+.bento-xct{background:rgba(21,18,16,.14)!important}
 
-/* ─── CONNECTION DECORATIONS ─── */
-.conn-line{stroke:rgba(199,255,77,.18);stroke-width:1;fill:none;stroke-dasharray:4 6}
-.conn-dot{fill:rgba(199,255,77,.35)}
-.conn-label{font-family:var(--fm);font-size:8px;fill:rgba(199,255,77,.4);letter-spacing:.08em}
+/* ─── BUTTON CONTEXT LABEL ─── */
+.btn-ctx{font-family:var(--fm);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:.4rem}
+.btn-ctx-dk{color:rgba(21,18,16,.5)}
 
-/* data-viz decorations */
-.dv-ruler{display:flex;align-items:center;gap:0;margin-bottom:1rem;}
-.dv-ruler-tick{width:1px;background:rgba(255,255,255,.12);flex-shrink:0}
-.dv-ruler-tick:nth-child(5n){background:rgba(199,255,77,.3)}
-.dv-tag{
-  display:inline-flex;align-items:center;gap:.35rem;
-  font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(199,255,77,.7);padding:.22rem .55rem;
-  border:1px solid rgba(199,255,77,.25);border-radius:.25rem;
-  margin-bottom:.55rem;
-}
-.dv-tag::before{content:'◈';font-size:.52rem}
+/* ─── FAQ line ─── */
+.ri-faq-demo{border-top:1px solid rgba(255,255,255,.07)}
+.ri-faq-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-family:'Manrope',sans-serif;font-size:.9rem;color:rgba(255,255,255,.75);cursor:pointer;border-left:2px solid transparent;padding-left:0;transition:border-left-color .25s,padding-left .25s,color .25s}
+.ri-faq-row:hover{border-left-color:var(--acid);padding-left:.75rem;color:#fff}
+.ri-faq-row span{font-family:var(--fm);font-size:1rem;color:var(--acid)}
 
-/* rf-chip preserved */
-.rf-chip{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:.5rem 1rem;border-radius:9999px;cursor:pointer;transition:all .25s;text-decoration:none;position:relative;overflow:hidden}
-.rf-chip::before{content:"";position:absolute;inset:0;border-radius:9999px;padding:1.2px;background:linear-gradient(180deg,rgba(166,106,68,.4) 0%,rgba(166,106,68,.12) 30%,rgba(166,106,68,0) 50%,rgba(166,106,68,.12) 70%,rgba(166,106,68,.4) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.rf-chip:hover{background:rgba(199,255,77,.1);color:var(--acid)}
-
-/* rf-tag / route */
-.rf-tag{font-family:var(--fm);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acid);display:inline-block;margin-bottom:.5rem}
-.rf-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.6rem;color:#fff;line-height:1.1;margin-bottom:.4rem}
-.rf-desc{font-size:.9rem;color:rgba(255,255,255,.72);line-height:1.7;max-width:38ch;margin-bottom:.75rem}
-
-/* ─── EDITORIAL HIERARCHY ────── */
-.mod-num{font-family:'Fraunces',Georgia,serif;font-size:3rem;font-weight:700;color:rgba(199,255,77,.06);position:absolute;bottom:.75rem;right:1.25rem;letter-spacing:-.05em;line-height:1;pointer-events:none;user-select:none}
-.mod-desc{font-size:.88rem;line-height:1.7;color:rgba(255,255,255,.52);max-width:58ch;margin-bottom:.85rem;font-weight:300}
-.mod-rels{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem}
-.rel-chip{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(199,255,77,.6);padding:.22rem .6rem;border:1px solid rgba(199,255,77,.22);border-radius:.25rem;text-decoration:none;transition:background .2s,color .2s;cursor:pointer}
-.rel-chip:hover{background:rgba(199,255,77,.1);color:rgba(199,255,77,.9)}
-.rel-chip::before{content:'→ ';opacity:.7}
-
-
-/* ─── ASSET SECTION ──────────── */
-.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-top:.25rem}
-.img-item{border-radius:.6rem;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:border-color .25s,transform .3s;position:relative;display:flex;flex-direction:column}
-.img-item:hover{border-color:rgba(199,255,77,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
-.img-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:rgba(26,18,8,.8);flex-shrink:0}
-.img-thumb.portrait{aspect-ratio:3/4}
-.img-meta{padding:.5rem .6rem .65rem;flex:1;display:flex;flex-direction:column;gap:.2rem}
-.img-path{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;color:rgba(199,255,77,.65);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.img-use{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.5;margin:.1rem 0}
-.img-tag{display:inline-block;font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);padding:.12rem .4rem;border:1px solid rgba(255,255,255,.1);border-radius:.2rem;margin-top:auto}
-.img-cat{font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);margin:1.25rem 0 .6rem;display:flex;align-items:center;gap:.65rem}
-.img-cat::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
-.img-cat:first-child{margin-top:0}
+/* ─── INFO GRID (RI hero) ─── */
+.ri-info-cell{background:rgba(255,255,255,.03);padding:.85rem 1rem;display:flex;flex-direction:column;gap:.25rem;border:1px solid rgba(255,255,255,.07);border-radius:.65rem;transition:background .3s,box-shadow .4s}
+.ri-info-cell:hover{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--acid)}
+.ri-info-n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2.2rem;color:#fff;line-height:1;letter-spacing:-.03em}
+.ri-info-unit{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acid)}
+.ri-info-l{font-size:.8rem;color:rgba(255,255,255,.5);font-weight:400}
 </style>
 </head>
 <body>
 
-<!-- ── SVG FILTER DEFINITIONS ─────────────────── -->
+<!-- ── SVG FILTERS ── -->
 <svg class="svg-filters" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="octave1">
@@ -358,1034 +217,609 @@ body::before{
       <feTurbulence type="fractalNoise" baseFrequency="0.0001" numOctaves="8" seed="4" result="o3"/>
       <feMerge result="finalIsland"><feMergeNode in="o1"/><feMergeNode in="o3"/><feMergeNode in="o1"/><feMergeNode in="o3"/></feMerge>
       <feGaussianBlur in="finalIsland" stdDeviation="5" result="noiseo"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0008" numOctaves="8" seed="4" result="o1"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0018" numOctaves="8" seed="4" result="o4"/>
-      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o4"/><feMergeNode in="noiseo"/></feMerge>
-      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0016" numOctaves="8" seed="4" result="o1"/>
-      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o1"/><feMergeNode in="noiseo"/></feMerge>
-      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
-      <feDiffuseLighting in="noiseo" surfaceScale="12" diffuseConstant="1" lighting-color="#d7bb98" result="lit">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0016" numOctaves="8" seed="4" result="o1b"/>
+      <feMerge result="noiseo"><feMergeNode in="o1b"/><feMergeNode in="o1b"/><feMergeNode in="noiseo"/></feMerge>
+      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo2"/>
+      <feDiffuseLighting in="noiseo2" surfaceScale="12" diffuseConstant="1" lighting-color="#d7bb98" result="lit">
         <feDistantLight azimuth="90" elevation="45"/>
-      </feDiffuseLighting>
-      <feBlend in="lit" in2="SourceGraphic" mode="overlay"/>
-    </filter>
-    <filter id="octave2">
-      <feTurbulence type="fractalNoise" baseFrequency="0.0004" numOctaves="8" seed="4" result="o1"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0001" numOctaves="8" seed="4" result="o3"/>
-      <feMerge result="finalIsland"><feMergeNode in="o1"/><feMergeNode in="o3"/><feMergeNode in="o1"/><feMergeNode in="o3"/></feMerge>
-      <feGaussianBlur in="finalIsland" stdDeviation="5" result="noiseo"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0008" numOctaves="8" seed="4" result="o1"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0018" numOctaves="8" seed="4" result="o4"/>
-      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o4"/><feMergeNode in="noiseo"/></feMerge>
-      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
-      <feTurbulence type="fractalNoise" baseFrequency="0.0016" numOctaves="8" seed="4" result="o1"/>
-      <feMerge result="noiseo"><feMergeNode in="o1"/><feMergeNode in="o1"/><feMergeNode in="noiseo"/></feMerge>
-      <feGaussianBlur in="noiseo" stdDeviation="5" result="noiseo"/>
-      <feDiffuseLighting in="noiseo" surfaceScale="12" diffuseConstant="1" lighting-color="#d1bf96" result="lit">
-        <feDistantLight azimuth="-90" elevation="45"/>
       </feDiffuseLighting>
       <feBlend in="lit" in2="SourceGraphic" mode="overlay"/>
     </filter>
   </defs>
 </svg>
 
-<!-- ── BANTER LOADER ─────────────────────────── -->
+<!-- ── LOADER ── -->
 <div id="loader">
   <img src="assets/white logo.png" alt="RAÍZ" style="height:36px;width:auto;opacity:.9">
   <div class="banter-loader">
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
-    <div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
+    <div class="banter-loader__box"></div><div class="banter-loader__box"></div>
     <div class="banter-loader__box"></div>
   </div>
 </div>
 
-<!-- ── NAV ──────────────────────────────────── -->
+<!-- ── NAV ── -->
 <nav id="nav">
   <div class="lg n-logo" style="padding:.55rem 1.4rem">
     <img id="navLogo" src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block;transition:opacity .3s">
   </div>
   <div class="lg n-links">
     <a href="#fundamentos">Fundamentos</a>
-    <a href="#interaccion">Interacción</a>
-    <a href="#contenido">Contenido</a>
-    <a href="#sistema">Sistema</a>
-    <a href="#recursos" class="n-cta">Recursos ↗</a>
+    <a href="#componentes">Componentes</a>
+    <a href="#patrones">Patrones</a>
+    <a href="index.html" class="n-cta">Ver web ↗</a>
   </div>
   <div class="n-spacer" style="width:80px"></div>
-  <button class="n-burger" id="nBurger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="n-burger" id="nBurger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 <div class="n-drawer" id="nDrawer">
   <button class="n-drawer-close" id="nDrawerClose" aria-label="Cerrar">✕</button>
   <a href="#fundamentos" class="n-drawer-link">Fundamentos</a>
-  <a href="#interaccion" class="n-drawer-link">Interacción</a>
-  <a href="#contenido" class="n-drawer-link">Contenido</a>
-  <a href="#sistema" class="n-drawer-link">Sistema</a>
-  <a href="#recursos" class="n-drawer-cta">Recursos ↗</a>
+  <a href="#componentes" class="n-drawer-link">Componentes</a>
+  <a href="#patrones" class="n-drawer-link">Patrones</a>
+  <a href="index.html" class="n-drawer-cta">Ver web ↗</a>
 </div>
 <div class="n-drawer-overlay" id="nOverlay"></div>
 
-<!-- ── HERO ─────────────────────────────────────── -->
+<!-- ── HERO ── -->
 <section id="hero">
   <div class="dust" id="dust"></div>
   <div class="h-grad"></div>
   <div class="h-fg">
     <div class="ch rv" style="margin-bottom:1.2rem">
       <span class="ch-bar" style="background:var(--acid)"></span>
-      <span class="ch-n" style="color:var(--acid)">01</span>
+      <span class="ch-n" style="color:var(--acid)">SYS</span>
       <span class="ch-l">Sistema Visual</span>
     </div>
     <h1 class="h-title rv d1">Sistema<br>Visual.</h1>
-    <p class="h-sub rv d2">Componentes, tokens y patrones que construyen la identidad de RAÍZ.</p>
+    <p class="h-sub rv d2">Tokens, componentes y patrones que construyen la identidad de RAÍZ — index.html y restauracion-integral.html.</p>
     <div class="h-stats rv d3">
       <a href="#fundamentos" class="lg h-stat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        <div class="h-stat-n">11</div>
-        <div class="h-stat-l">Módulos documentados</div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div class="h-stat-n">3</div><div class="h-stat-l">Familias tipográficas</div>
       </a>
-      <a href="#interaccion" class="lg h-stat">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-        <div class="h-stat-n">5</div>
-        <div class="h-stat-l">Capítulos del sistema</div>
+      <a href="#componentes" class="lg h-stat">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <div class="h-stat-n">5</div><div class="h-stat-l">Variantes de botón</div>
+      </a>
+      <a href="#patrones" class="lg h-stat">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        <div class="h-stat-n">8+</div><div class="h-stat-l">Patrones documentados</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ═══ SECCIÓN 01 — FUNDAMENTOS ════════════════ -->
-<section id="fundamentos" class="lib-sec noise-bg">
-  <div class="lib-bento-wrap">
-    <div class="rutas-hero" style="margin-bottom:3rem">
-      <div class="rutas-text">
-        <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">CAP·01</span><span class="ch-l">Fundamentos</span></div>
-        <h2 class="sec-title rv d1">Los fundamentos del sistema.</h2>
-        <div class="lib-intro-pill rv d2">
-          <p class="sec-sub">Color, tipografía y vidrio líquido: las tres capas base que definen el carácter visual de RAÍZ. Todo lo demás se construye sobre esto.</p>
-        </div>
-        <a href="#tokens" class="fc-btn rv d2">Explorar tokens<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-      </div>
-      <div class="rv d2" style="display:flex;flex-direction:column;gap:.65rem;justify-content:flex-end">
-        <span class="lgw rf-chip">Color · Paleta de 3 familias</span>
-        <span class="lgw rf-chip">Tipografía · Fraunces · Manrope · Space Mono</span>
-        <span class="lgw rf-chip">Vidrio líquido · 4 variantes</span>
-      </div>
-    </div>
-    <div class="sys-bento">
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 01 — FUNDAMENTOS
+     bg: #090705 (negro base)
+═══════════════════════════════════════════════════ -->
+<section id="fundamentos" class="lib-sec" style="background:#090705">
+  <div class="lib-wrap">
 
-    <!-- ══ 01 COLOR TOKENS ════════════════════════ -->
-    <section class="sys-mod mod-color" id="tokens">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Tokens</div>
-      <div class="mod-title">Paleta · Tones</div>
-      <p class="mod-desc">Tres familias cromáticas que definen el carácter de la marca: lo oscuro como base, lo crema como calidez, y el ácido como pulso de acción. Cada color tiene un rol específico — no son intercambiables.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('typography').scrollIntoView({behavior:'smooth'})">SYS·02 Tipografía</span>
-        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio</span>
-        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 Botones</span>
-      </div>
-
-      <!-- SVG ruler decoration -->
-      <svg width="100%" height="8" viewBox="0 0 400 8" preserveAspectRatio="none" style="margin-bottom:1.25rem;opacity:.4">
-        <line x1="0" y1="4" x2="400" y2="4" stroke="rgba(199,255,77,.3)" stroke-width=".5"/>
-        <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(199,255,77,.5)" stroke-width="1"/>
-        <line x1="100" y1="2" x2="100" y2="6" stroke="rgba(199,255,77,.3)" stroke-width=".5"/>
-        <line x1="200" y1="0" x2="200" y2="8" stroke="rgba(199,255,77,.4)" stroke-width=".5"/>
-        <line x1="300" y1="2" x2="300" y2="6" stroke="rgba(199,255,77,.3)" stroke-width=".5"/>
-        <line x1="400" y1="0" x2="400" y2="8" stroke="rgba(199,255,77,.5)" stroke-width="1"/>
-      </svg>
-
-      <div class="swatch-group">
-        <div class="swatch-group-label">Dark — base oscura</div>
-        <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#090705"></div><div class="swatch-info"><span class="swatch-name">Black</span><span class="swatch-val">#090705</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#151210"></div><div class="swatch-info"><span class="swatch-name">Dk</span><span class="swatch-val">#151210</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#1c1a12"></div><div class="swatch-info"><span class="swatch-name">Dk2</span><span class="swatch-val">#1c1a12</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#2a261e"></div><div class="swatch-info"><span class="swatch-name">Dk3</span><span class="swatch-val">#2a261e</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#3d3830"></div><div class="swatch-info"><span class="swatch-name">Dk4</span><span class="swatch-val">#3d3830</span></div></div>
-        </div>
-      </div>
-      <div class="swatch-group">
-        <div class="swatch-group-label">Cream — fondo claro</div>
-        <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#F6F1E8"></div><div class="swatch-info"><span class="swatch-name">Cream</span><span class="swatch-val">#F6F1E8</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#E7D7C9"></div><div class="swatch-info"><span class="swatch-name">Layer</span><span class="swatch-val">#E7D7C9</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#D4C3B0"></div><div class="swatch-info"><span class="swatch-name">Warm</span><span class="swatch-val">#D4C3B0</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#A66A44"></div><div class="swatch-info"><span class="swatch-name">Wood</span><span class="swatch-val">#A66A44</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#7a4f33"></div><div class="swatch-info"><span class="swatch-name">Wood2</span><span class="swatch-val">#7a4f33</span></div></div>
-        </div>
-      </div>
-      <div class="swatch-group">
-        <div class="swatch-group-label">Acid — acento</div>
-        <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#C7FF4D"></div><div class="swatch-info"><span class="swatch-name">Acid</span><span class="swatch-val">#C7FF4D</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#d4ff6a"></div><div class="swatch-info"><span class="swatch-name">Acid+</span><span class="swatch-val">#d4ff6a</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#b8ef2a"></div><div class="swatch-info"><span class="swatch-name">Acid−</span><span class="swatch-val">#b8ef2a</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:rgba(199,255,77,.35)"></div><div class="swatch-info"><span class="swatch-name">35%</span><span class="swatch-val">rgba .35</span></div></div>
-          <div class="swatch"><div class="swatch-color" style="background:rgba(199,255,77,.12)"></div><div class="swatch-info"><span class="swatch-name">12%</span><span class="swatch-val">rgba .12</span></div></div>
-        </div>
-      </div>
-      <div class="ann">Uso · Dark→oscuro, Cream→claro, Acid→acento/CTA</div>
-    </section>
-
-    <!-- ══ 02 TYPOGRAPHY ══════════════════════════ -->
-    <section class="sys-mod mod-type" id="typography">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Tipografía</div>
-      <div class="mod-title">Escala tipográfica</div>
-      <p class="mod-desc">Fraunces para los momentos de peso y emoción. Manrope para lectura funcional. Space Mono para datos, coordenadas y eyebrows. Las tres trabajan juntas sin competir.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('tokens').scrollIntoView({behavior:'smooth'})">SYS·01 Color</span>
-        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
-      </div>
-      <div class="type-scale">
-        <div class="type-row">
-          <div class="type-meta">
-            <span>Título hero</span>
-            <span>Fraunces · 700 · normal</span>
-          </div>
-          <div class="h-title-demo">El Atlas<br>Vivo.</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta">
-            <span>Título de sección</span>
-            <span>Manrope · 600</span>
-          </div>
-          <div class="sec-title-demo">Territorios</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta">
-            <span>Título secundario</span>
-            <span>Manrope · 600</span>
-          </div>
-          <div class="capas-title-demo">Capas</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><span>Cuerpo de texto</span><span>Manrope · 300 · 16px</span></div>
-          <div class="body-demo">El recorrido completo: leer, desarmar, intervenir y reinterpretar la materia.</div>
-        </div>
-        <div class="type-row" style="border-bottom:none">
-          <div class="type-meta"><span>Mono · Subtítulo</span><span>Space Mono · 400</span></div>
-          <div class="mono-demo">SYS · 001 · ATLAS VIVO</div>
-        </div>
-      </div>
-    </section>
-
-    </div><!-- /sys-bento -->
-  </div><!-- /lib-bento-wrap -->
-
-  <!-- ══ 03 GLASS SHOWCASE ════════════════════════ -->
-  <div id="glass" style="padding:3rem 0 0">
-    <div class="lib-bento-wrap" style="margin-bottom:2rem">
-      <div class="dv-tag rv">Vidrio Líquido · SYS·03</div>
-      <h3 class="rv d1" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;line-height:1;margin:.6rem 0 .8rem;letter-spacing:-.02em">Cuatro variantes,<br>una misma lógica.</h3>
-      <p class="rv d2" style="font-size:.9rem;color:rgba(255,255,255,.52);max-width:52ch;line-height:1.7;margin-bottom:1.25rem">Siempre sobre foto o gradiente oscuro — nunca sobre fondo plano. La opacidad y el blur varían según el contexto de uso.</p>
-      <div class="mod-rels rv d2">
-        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 Botones</span>
-        <span class="rel-chip" onclick="document.getElementById('assets').scrollIntoView({behavior:'smooth'})">SYS·11 Recursos</span>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;overflow:hidden">
-      <!-- lgs -->
-      <div class="rv" style="background:url('assets/capas.jpg') center/cover;position:relative;min-height:380px">
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,.28)"></div>
-        <div class="lgs" style="position:absolute;inset:1.5rem;border-radius:.75rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem">
-          <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)">Clase · 01</span>
-          <div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem">.lgs</div>
-            <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.55);line-height:1.7">blur(50px) · bg 6%<br>Nav · CTAs sobre foto</div>
-          </div>
-        </div>
-      </div>
-      <!-- dark-glass -->
-      <div class="rv d1" style="background:url('assets/capas.jpg') center 30%/cover;position:relative;min-height:380px">
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,.28)"></div>
-        <div class="dark-glass" style="position:absolute;inset:1.5rem;border-radius:.75rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem">
-          <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)">Clase · 02</span>
-          <div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem">.dark-glass</div>
-            <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.55);line-height:1.7">blur(22px) · bg 48%<br>Botones · tarjetas sobre foto</div>
-          </div>
-        </div>
-      </div>
-      <!-- lg -->
-      <div class="rv d2" style="background:url('assets/hero.jpg') center/cover;position:relative;min-height:380px">
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,.22)"></div>
-        <div class="lg" style="position:absolute;inset:1.5rem;border-radius:.75rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem">
-          <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)">Clase · 03</span>
-          <div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem">.lg</div>
-            <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.55);line-height:1.7">blur(8px) · bg 4%<br>Tarjetas de datos · elementos leves</div>
-          </div>
-        </div>
-      </div>
-      <!-- lgw -->
-      <div class="rv d3" style="background:url('assets/cursos.jpg') center/cover;position:relative;min-height:380px">
-        <div style="position:absolute;inset:0;background:rgba(0,0,0,.22)"></div>
-        <div class="lgw" style="position:absolute;inset:1.5rem;border-radius:.75rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.25rem">
-          <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)">Clase · 04</span>
-          <div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:.4rem">.lgw</div>
-            <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.55);line-height:1.7">blur(8px) · tono madera<br>Chips de ruta · etiquetas</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lib-bento-wrap" style="padding-top:1rem;padding-bottom:.5rem">
-      <div class="ann">Siempre sobre foto, gradiente o fondo oscuro — nunca sobre fondo plano</div>
-    </div>
-  </div>
-
-</section><!-- /#fundamentos -->
-
-<!-- ═══ SECCIÓN 02 — INTERACCIÓN ════════════════ -->
-<section id="interaccion" class="lib-sec island-bg">
-  <div class="island-layer"></div>
-  <div class="island-layer2"></div>
-  <div class="capas-head rv" style="position:relative;z-index:1">
-    <div>
-      <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">CAP·02</span><span class="ch-l">Interacción</span></div>
-      <h2 class="capas-title rv d1">La capa de <span style="color:var(--acid)">interacción.</span></h2>
-    </div>
-    <div class="rv d2">
-      <div class="lib-intro-pill">
-        <p class="capas-sub">Cinco variantes de botón, todas compartiendo la misma animación de expansión ácida. El hover no es decorativo: es información sobre qué va a pasar.</p>
-      </div>
-      <a href="#buttons" class="fc-btn">Ver sistema de botones<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
-  </div>
-  <div class="lib-bento-wrap" style="position:relative;z-index:1">
-    <div class="sys-bento">
-
-    <!-- ══ 04 BUTTONS ══════════════════════════════ -->
-    <section class="sys-mod mod-buttons" id="buttons" style="grid-column:1/13">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Botones</div>
-      <div class="mod-title">Sistema · 5 variantes</div>
-      <p class="mod-desc">Todos los botones comparten la misma animación de expansión — un círculo ácido que emerge desde la izquierda y se expande hasta cubrir el botón. El ícono-flecha rota 45° al hover. La jerarquía va de Vidrio Primario (más sutil) a Relleno Ácido (más directo).</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('tokens').scrollIntoView({behavior:'smooth'})">SYS·01 Color</span>
-        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio</span>
-        <span class="rel-chip" onclick="document.getElementById('anim').scrollIntoView({behavior:'smooth'})">SYS·10 Animaciones</span>
-      </div>
-      <div class="btn-grid">
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <!-- Glass primary -->
-          <div>
-            <div class="btn-context">Vidrio primario</div>
-            <div style="background:linear-gradient(135deg,#2a1f14,#1a1208);padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-              <a class="btn-primary lgs">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-              <a class="btn-primary lgs" style="background:var(--acid);border-color:transparent;color:var(--dk)">Hover<span class="fc-btn-icon" style="color:var(--dk);border-color:rgba(21,18,16,.22);background:rgba(21,18,16,.1)"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            </div>
-          </div>
-          <!-- Nav CTA -->
-          <div>
-            <div class="btn-context">CTA de navegación</div>
-            <div style="background:rgba(255,255,255,.03);backdrop-filter:blur(12px);padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-              <a class="btn-nav-cta">Inscribirse<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-              <a class="btn-nav-cta" style="background:var(--acid)">Hover<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            </div>
-          </div>
-          <!-- Acid fill -->
-          <div>
-            <div class="btn-context">Relleno ácido</div>
-            <div style="background:var(--dk);padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-              <a class="btn-acid">Comenzar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-              <a class="btn-acid" style="background:#d4ff6a">Hover<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            </div>
-          </div>
-          <!-- Dark glass pill -->
-          <div>
-            <div class="btn-context">Píldora oscura</div>
-            <div style="background:url('assets/capas.jpg') center/cover;padding:1.25rem;border-radius:.75rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;position:relative">
-              <div style="position:absolute;inset:0;background:rgba(0,0,0,.4);border-radius:.75rem"></div>
-              <a class="btn-dark" style="position:relative">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-              <a class="btn-dark" style="position:relative;background:var(--acid);border-color:transparent;color:var(--dk)">Hover<span class="fc-btn-icon" style="color:var(--dk);border-color:rgba(21,18,16,.15);background:rgba(21,18,16,.08)"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Animated expand -->
-        <div>
-          <div class="btn-context">Expansión animada · CTA principal</div>
-          <div style="background:linear-gradient(135deg,#1c1208,#0f0c08);padding:1.25rem;border-radius:.75rem;display:flex;gap:1rem;align-items:center">
-            <a class="fc-btn">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            <span style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.35)">← pasar el mouse para ver</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── LOGO SYSTEM ──────────────────────────── -->
-      <div style="margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.07)">
-        <div class="mod-title" style="font-size:1.1rem;margin-bottom:.5rem">Logo · 3 variantes</div>
-        <p class="mod-desc" style="font-size:.9rem;color:rgba(255,255,255,.65);max-width:52ch;margin-bottom:1.5rem">El logo cambia según el fondo sobre el que se aplica. Nunca usar la variante incorrecta — el contraste define la legibilidad de la marca.</p>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem">
-
-          <div style="border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
-            <div style="background:linear-gradient(135deg,#1a1208,#090705);padding:3rem 2rem;display:flex;align-items:center;justify-content:center;min-height:140px">
-              <img src="assets/white logo.png" alt="Logo blanco" style="height:40px;width:auto">
-            </div>
-            <div style="background:rgba(255,255,255,.04);padding:1rem 1.25rem">
-              <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:.4rem;font-weight:600">white logo.png</div>
-              <div style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.55;font-family:var(--fb)">Sobre fondos oscuros · hero, noise-bg, módulos</div>
-            </div>
-          </div>
-
-          <div style="border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
-            <div style="background:url('assets/capas.jpg') center/cover;padding:3rem 2rem;display:flex;align-items:center;justify-content:center;min-height:140px;position:relative">
-              <div style="position:absolute;inset:0;background:rgba(0,0,0,.55)"></div>
-              <img src="assets/acid logo.png" alt="Logo ácido" style="height:40px;width:auto;position:relative;z-index:1">
-            </div>
-            <div style="background:rgba(255,255,255,.04);padding:1rem 1.25rem">
-              <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acid);margin-bottom:.4rem;font-weight:600">acid logo.png</div>
-              <div style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.55;font-family:var(--fb)">Sobre island-bg y fondos texturizados oscuros</div>
-            </div>
-          </div>
-
-          <div style="border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
-            <div style="background:#F6F1E8;padding:3rem 2rem;display:flex;align-items:center;justify-content:center;min-height:140px">
-              <img src="assets/black logo.png" alt="Logo negro" style="height:40px;width:auto">
-            </div>
-            <div style="background:rgba(255,255,255,.04);padding:1rem 1.25rem">
-              <div style="font-family:var(--fm);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:.4rem;font-weight:600">black logo.png</div>
-              <div style="font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.55;font-family:var(--fb)">Sobre fondos claros · cream, blanco, layer</div>
-            </div>
-          </div>
-
-        </div>
-        <div class="ann" style="margin-top:1rem;font-size:.78rem;color:rgba(255,255,255,.45)">El nav cambia automáticamente entre variantes según la sección activa en el scroll</div>
-      </div>
-
-    </section>
-
-    </div><!-- /sys-bento -->
-  </div><!-- /lib-bento-wrap -->
-</section><!-- /#interaccion -->
-
-<!-- ═══ SECCIÓN 03 — CONTENIDO ══════════════════ -->
-<section id="contenido" class="lib-sec noise-bg">
-  <div class="hall-head lib-bento-wrap rv" style="margin-bottom:3rem">
-    <div>
-      <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">CAP·03</span><span class="ch-l">Contenido</span></div>
-      <h2 class="sec-title rv d1">Los bloques de contenido.</h2>
-      <a href="#cards" class="fc-btn rv d2" style="margin-top:1.5rem">Ver tarjetas y cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
-    <div class="lib-intro-pill rv d2">
-      <p class="sec-sub">Tarjetas de territorio, hallazgos con hover, puntos activos sobre imagen, carrusel de rutas y lista de cursos. Cada patrón resuelve una necesidad específica de la narrativa.</p>
-    </div>
-  </div>
-  <div class="lib-bento-wrap">
-    <div class="sys-bento">
-
-    <!-- ══ 05 CARDS — TER ══════════════════════════ -->
-    <section class="sys-mod mod-cards" id="cards">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Cards</div>
-      <div class="mod-title">Tarjetas de contenido</div>
-      <p class="mod-desc">Tres familias de tarjetas: Territorios (verticales, foto + CTA), Hallazgos (aparición al pasar el mouse), Estadísticas (datos compactos con ícono). Todas usan la misma lógica de gradiente oscuro inferior.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('assets').scrollIntoView({behavior:'smooth'})">SYS·11 Recursos</span>
-        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio</span>
-      </div>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
-        <!-- ter card -->
-        <div>
-          <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.5rem;text-transform:uppercase">Territorio</div>
-          <div class="ter-card-demo">
-            <div class="ter-c-ov"></div>
-            <div class="ter-c-caption">
-              <div class="ter-sub">La materia como origen</div>
-              <div class="ter-name-h">Monolitos</div>
-              <a class="ter-cta">Explorar pieza<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            </div>
-          </div>
-        </div>
-        <!-- hallazgo card -->
-        <div style="flex:1;min-width:200px">
-          <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:.5rem;text-transform:uppercase">Hallazgo</div>
-          <div class="find-demo" style="height:220px">
-            <div class="find-cap">
-              <div class="find-ref">Japón · Wabi-sabi</div>
-              <div class="find-name">Imperfección esencial</div>
-              <div class="find-note">El arte de aceptar lo incompleto como fundamento.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stat cards -->
-      <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:.6rem;text-transform:uppercase">Tarjetas de datos</div>
-      <div style="display:flex;gap:.65rem;flex-wrap:wrap">
-        <a class="stat-card lg" style="border-radius:.85rem">
-          <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="3.8"/><line x1="12" y1="8.2" x2="12" y2="3.2"/><line x1="15.3" y1="13.9" x2="19.6" y2="16.4"/><line x1="8.7" y1="13.9" x2="4.4" y2="16.4"/><circle cx="12" cy="3.2" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="19.6" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/><circle cx="4.4" cy="16.4" r="1.3" fill="rgba(255,255,255,.7)" stroke="none"/></svg></div>
-          <div class="stat-bottom"><div class="stat-n">3+</div><div class="stat-l">Culturas conectadas</div></div>
-        </a>
-        <a class="stat-card lg" style="border-radius:.85rem">
-          <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-          <div class="stat-bottom"><div class="stat-n">8 sem</div><div class="stat-l">Duración del programa</div></div>
-        </a>
-        <a class="stat-card lg" style="border-radius:.85rem">
-          <div class="stat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div class="stat-bottom"><div class="stat-n">24</div><div class="stat-l">Cupos por edición</div></div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ══ 06 SLIDE CARD ══════════════════════════ -->
-    <section class="sys-mod mod-slide" id="slide">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Carrusel · Ruta</div>
-      <div class="mod-title">Tarjetas de ruta</div>
-      <p class="mod-desc">Fotos de egresados y rutas geográficas. Usan coordenadas como encabezado pequeño y el sistema de hotspot para marcar puntos de interés dentro de una imagen.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('assets').scrollIntoView({behavior:'smooth'})">SYS·11 Egresados</span>
-        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 Btn-dark</span>
-      </div>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem">
-        <div class="slide-demo">
-          <div class="slide-ov"></div>
-          <div class="slide-info">
-            <div class="slide-coord">ENTRADA-07 · 34°36'S</div>
-            <div class="slide-name">Sofía Aramburu</div>
-            <div class="slide-loc">Buenos Aires · Cartografía</div>
-            <a class="btn-dark" style="margin-top:.75rem">Buenos Aires<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-          </div>
-        </div>
-        <!-- Route card -->
-        <div style="flex:1;padding:1.5rem;background:rgba(255,255,255,.03);border-radius:1rem;min-width:180px">
-          <div class="rf-tag">Brasil · Modernismo</div>
-          <div class="rf-name">La Ruta Brasileña</div>
-          <div class="rf-desc">Curvatura, sensualidad y madera tropical.</div>
-          <a class="btn-dark">Explorar ruta<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-        </div>
-      </div>
-      <!-- Hotspot -->
-      <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.4);margin-bottom:.6rem;text-transform:uppercase">Punto activo</div>
-      <div style="display:flex;gap:1.5rem;align-items:center">
-        <div class="hs-dot"></div>
-        <div class="hs-card-demo">
-          <div class="hs-num">PUNTO · 03</div>
-          <div class="hs-name">Mortaja y espiga</div>
-          <div class="hs-desc">Unión sin clavos. La técnica que define al maestro.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ 07 COURSES ══════════════════════════════ -->
-    <section class="sys-mod mod-courses" id="courses">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Cursos</div>
-      <div class="mod-title">Fila de programa · Lista de cursos</div>
-      <p class="mod-desc">Patrón de lista para programas y talleres. El borde izquierdo ácido aparece al hover como indicador de selección. El precio queda siempre alineado a la derecha para facilitar la comparación rápida.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('typography').scrollIntoView({behavior:'smooth'})">SYS·02 Type scale</span>
-        <span class="rel-chip" onclick="document.getElementById('tokens').scrollIntoView({behavior:'smooth'})">SYS·01 --acid</span>
-      </div>
-      <div style="border-radius:.75rem;overflow:hidden;background:rgba(255,255,255,.02)">
-        <div class="course-row">
-          <div>
-            <div class="course-type">Programa fundamental</div>
-            <div class="course-name">Restauración Integral</div>
-            <div class="course-desc">El recorrido completo: leer, desarmar, intervenir y reinterpretar.</div>
-          </div>
-          <div class="course-price"><span class="course-price-cur">ARS</span><span class="course-price-amt">$ 89.000</span></div>
-        </div>
-        <div class="course-row">
-          <div>
-            <div class="course-type">Taller intensivo</div>
-            <div class="course-name">Materiales y Acabados</div>
-            <div class="course-desc">Maderas, fibras, piedras. El espectro completo del material.</div>
-          </div>
-          <div class="course-price"><span class="course-price-cur">ARS</span><span class="course-price-amt">$ 72.000</span></div>
-        </div>
-        <div class="course-row">
-          <div>
-            <div class="course-type">Seminario</div>
-            <div class="course-name">Diseño y Territorio</div>
-            <div class="course-desc">Cómo el lugar moldea el objeto y el objeto moldea el lugar.</div>
-          </div>
-          <div class="course-price"><span class="course-price-cur">ARS</span><span class="course-price-amt">$ 64.000</span></div>
-        </div>
-      </div>
-    </section>
-
-    </div><!-- /sys-bento -->
-  </div><!-- /lib-bento-wrap -->
-</section><!-- /#contenido -->
-
-<!-- ═══ SECCIÓN 04 — SISTEMA ════════════════════ -->
-<section id="sistema" class="lib-sec island-bg">
-  <div class="island-layer" style="opacity:.08"></div>
-  <div class="island-layer2" style="opacity:.05"></div>
-  <div class="com-head lib-bento-wrap rv" style="position:relative;z-index:1;margin-bottom:3rem">
-    <div>
-      <div class="ch rv"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">CAP·04</span><span class="ch-l">Sistema</span></div>
-      <h2 class="sec-title sec-title-lt rv d1">El sistema<br><em>completo.</em></h2>
-      <a href="#mobile" class="fc-btn rv d2" style="margin-top:1.5rem">Ver móvil y animaciones<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-    </div>
-    <div class="rv d2">
-      <div class="lib-intro-pill">
-        <p class="sec-sub sec-sub-lt">Vista móvil, bloque final CTA y el sistema de animaciones de scroll. Todo lo que hace que la experiencia sea coherente de principio a fin.</p>
-      </div>
-    </div>
-  </div>
-  <div class="lib-bento-wrap" style="position:relative;z-index:1">
-    <div class="sys-bento">
-
-    <!-- ══ 08 MOBILE PREVIEW ═══════════════════════ -->
-    <section class="sys-mod mod-mobile" id="mobile">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Móvil · 390px</div>
-      <div class="mod-title">Vista móvil · 390px</div>
-      <p class="mod-desc">Todos los componentes deben funcionar en 390px. El nav colapsa a hamburger, los botones se expanden full-width, las cards se apilan en columna.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 .m-full</span>
-        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
-      </div>
-      <div class="m-device-wrap" style="padding:1.5rem 0 0">
-        <div class="m-device">
-          <div class="m-status-bar">
-            <span>9:41</span>
-            <span style="display:flex;gap:.35rem;align-items:center">
-              <svg width="14" height="10" viewBox="0 0 16 12" fill="rgba(255,255,255,.7)"><rect x="0" y="4" width="3" height="8" rx=".5"/><rect x="4.5" y="2.5" width="3" height="9.5" rx=".5"/><rect x="9" y="1" width="3" height="11" rx=".5"/><rect x="13.5" y="0" width="2.5" height="12" rx=".5"/></svg>
-              <svg width="20" height="10" viewBox="0 0 25 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="2.5" stroke="rgba(255,255,255,.4)"/><rect x="23" y="4" width="2" height="4" rx="1" fill="rgba(255,255,255,.4)"/><rect x="1.5" y="1.5" width="16" height="9" rx="1.5" fill="rgba(255,255,255,.85)"/></svg>
-            </span>
-          </div>
-          <div class="m-nav">
-            <span class="m-nav-logo">RAÍZ</span>
-            <div class="m-burger-demo"><span></span><span></span><span></span></div>
-          </div>
-          <div class="m-screen-body">
-            <div class="m-block">
-              <div class="m-label">Tipografía</div>
-              <div class="m-h-title">El Atlas<br>Vivo.</div>
-              <div class="m-mono-text">ATLAS VIVO · 2026</div>
-            </div>
-            <div class="m-block">
-              <div class="m-label">Botones</div>
-              <a class="btn-acid m-full">Comenzar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-              <a class="btn-primary lgs m-full">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-            </div>
-            <div class="m-block">
-              <div class="m-label">Estadísticas</div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
-                <a class="stat-card lg" style="border-radius:.65rem;min-width:auto;padding:1rem">
-                  <div class="stat-icon" style="width:32px;height:32px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                  <div class="stat-bottom"><div class="stat-n" style="font-size:1.5rem">8sem</div><div class="stat-l">Duración</div></div>
-                </a>
-                <a class="stat-card lg" style="border-radius:.65rem;min-width:auto;padding:1rem">
-                  <div class="stat-icon" style="width:32px;height:32px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-                  <div class="stat-bottom"><div class="stat-n" style="font-size:1.5rem">24</div><div class="stat-l">Cupos</div></div>
-                </a>
-              </div>
-            </div>
-            <div class="m-block" style="background:var(--dk)">
-              <div class="m-label">Fila de curso</div>
-              <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:.65rem">
-                <div class="course-type" style="font-size:.65rem">Programa fundamental</div>
-                <div style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.9rem;color:#fff;margin-bottom:.3rem">Restauración Integral</div>
-                <div style="display:flex;justify-content:space-between;align-items:center">
-                  <div class="course-price"><span class="course-price-cur">ARS</span><span class="course-price-amt" style="font-size:1.1rem">$ 89.000</span></div>
-                  <a class="btn-dark" style="font-size:.55rem;padding:.4rem .4rem .4rem .75rem">Ver<span class="fc-btn-icon" style="width:24px;height:24px"><svg width="11" height="11" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ 09 FINAL CTA ════════════════════════════ -->
-    <section class="sys-mod mod-cta" id="cta">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Final CTA</div>
-      <div class="mod-title">Llamada a la acción</div>
-      <p class="mod-desc">Bloque de cierre de sección. Gradiente oscuro cálido, título grande en Fraunces, encabezado pequeño en mono ácido y el botón fc-btn como único punto de acción.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('buttons').scrollIntoView({behavior:'smooth'})">SYS·04 fc-btn</span>
-        <span class="rel-chip" onclick="document.getElementById('typography').scrollIntoView({behavior:'smooth'})">SYS·02 Fraunces</span>
-      </div>
-      <div style="padding:2.5rem;background:linear-gradient(135deg,rgba(21,18,16,.98) 0%,rgba(28,22,17,.96) 58%,rgba(77,48,32,.96) 100%);border-radius:1rem;border:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap">
-        <div>
-          <div class="fc-eye">Próximo recorrido · Marzo 2025 · Cupos limitados</div>
-          <div class="fc-head">Comenzar el recorrido.</div>
-        </div>
-        <a class="fc-btn">Explorar<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-      </div>
-    </section>
-
-    <!-- ══ 10 ANIMACIONES ══════════════════════════ -->
-    <section class="sys-mod mod-anim" id="anim" style="grid-column:1/13">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Animaciones</div>
-      <div class="mod-title">Revelación al scroll · Estados</div>
-      <p class="mod-desc">Los elementos con <code style="font-family:var(--fm);font-size:.75em;color:rgba(199,255,77,.6);background:rgba(199,255,77,.06);padding:.1em .3em;border-radius:.2em">.rv</code> aparecen al entrar en viewport. Los delays <code style="font-family:var(--fm);font-size:.75em;color:rgba(199,255,77,.6);background:rgba(199,255,77,.06);padding:.1em .3em;border-radius:.2em">.d1 .d2 .d3</code> crean efecto en cascada para grupos de elementos relacionados.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
-        <span class="rel-chip" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">SYS·07 Cursos</span>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
-        <div>
-          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv · sin demora</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">opacity:0 → 1<br>translateY(28px) → 0<br><span style="color:rgba(199,255,77,.6)">.9s ease</span></div>
-        </div>
-        <div>
-          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv.d1 · demora .12s</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">transition-delay: .12s</div>
-        </div>
-        <div>
-          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv.d2 · demora .24s</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">transition-delay: .24s</div>
-        </div>
-        <div>
-          <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:.5rem;text-transform:uppercase">.rv.d3 · demora .36s</div>
-          <div class="rv on" style="padding:1rem 1.25rem;background:rgba(255,255,255,.05);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:rgba(255,255,255,.6)">transition-delay: .36s</div>
-        </div>
-      </div>
-      <!-- scroll reveal live demo -->
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
-        <div class="rv" style="padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">.rv</div>
-        <div class="rv d1" style="padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">.rv.d1</div>
-        <div class="rv d2" style="padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">.rv.d2</div>
-        <div class="rv d3" style="padding:1rem 1.5rem;background:rgba(255,255,255,.04);border-radius:.65rem;font-family:var(--fm);font-size:.65rem;letter-spacing:.12em;color:rgba(255,255,255,.5)">.rv.d3</div>
-      </div>
-    </section>
-
-    </div><!-- /sys-bento -->
-  </div><!-- /lib-bento-wrap -->
-</section><!-- /#sistema -->
-
-<!-- ═══ SECCIÓN 05 — RECURSOS ═══════════════════ -->
-<section id="recursos" class="lib-sec noise-bg">
-  <div class="lib-bento-wrap">
-    <div class="rutas-hero" style="margin-bottom:3rem">
-      <div class="rutas-text">
-        <div class="ch rv"><span class="ch-bar" style="background:var(--wood)"></span><span class="ch-n" style="color:var(--wood)">CAP·05</span><span class="ch-l">Recursos</span></div>
-        <h2 class="sec-title rv d1">El banco de imágenes.</h2>
-        <div class="lib-intro-pill rv d2">
-          <p class="sec-sub">Cada imagen tiene un rol definido — no son intercambiables. Paleta cálida oscura, siempre con overlay de gradiente o vidrio encima.</p>
-        </div>
-        <a href="#assets" class="fc-btn rv d2">Ver todos los recursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
-      </div>
-      <div class="rv d2" style="display:flex;flex-direction:column;gap:.65rem;justify-content:flex-end">
-        <span class="lgw rf-chip">Hero · Video · Poster</span>
-        <span class="lgw rf-chip">Capas · CP1 · CP2 · CP3</span>
-        <span class="lgw rf-chip">Hallazgos · h1–h4</span>
-        <span class="lgw rf-chip">Territorios · CARD 01–03</span>
-        <span class="lgw rf-chip">Egresados · al1–al7</span>
-      </div>
-    </div>
-    <div class="sys-bento">
-
-    <!-- ══ 11 ASSETS ══════════════════════════════ -->
-    <section class="sys-mod" id="assets" style="grid-column:1/13;padding-bottom:3rem">
-      <div class="mod-accent-line"></div>
-      <div class="dv-tag">Imágenes</div>
-      <div class="mod-title">Mapa visual · Todos los recursos</div>
-      <p class="mod-desc">Cada imagen tiene un rol definido en la narrativa visual. No son intercambiables — la paleta, el encuadre y la atmósfera de cada foto fue elegida para su sección específica. Al incorporar nuevas imágenes, respetar el mismo tratamiento: tonos cálidos oscuros, materia visible, textura presente.</p>
-      <div class="mod-rels">
-        <span class="rel-chip" onclick="document.getElementById('glass').scrollIntoView({behavior:'smooth'})">SYS·03 Vidrio sobre foto</span>
-        <span class="rel-chip" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">SYS·05 Cards</span>
-        <span class="rel-chip" onclick="document.getElementById('slide').scrollIntoView({behavior:'smooth'})">SYS·06 Carrusel</span>
-      </div>
-
-      <!-- HERO -->
-      <div class="img-cat">Hero · Apertura</div>
-      <div class="img-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
-        <div class="img-item">
-          <img class="img-thumb" src="assets/hero.jpg" alt="Hero poster" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/hero.jpg</span>
-            <span class="img-use">Poster del video hero. Visible mientras carga el video. Encuadre vertical oscuro, materia central.</span>
-            <span class="img-tag">id="heroPoster" · #hero</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <video class="img-thumb" src="assets/heroVid.mp4" muted autoplay loop playsinline style="object-fit:cover"></video>
-          <div class="img-meta">
-            <span class="img-path">assets/heroVid.mp4</span>
-            <span class="img-use">Video de apertura. Se reproduce en loop con fade-in/out. Parallax leve al scroll.</span>
-            <span class="img-tag">id="heroVid" · setupVideo()</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/FONDO.jpg" alt="Fondo" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/FONDO.jpg</span>
-            <span class="img-use">Fondo general de la web. Textura de madera y materia como base cromática.</span>
-            <span class="img-tag">background · body</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CAPAS -->
-      <div class="img-cat">Capas · Sección de técnicas</div>
-      <div class="img-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
-        <div class="img-item">
-          <img class="img-thumb" src="assets/capas.jpg" alt="Capas" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/capas.jpg</span>
-            <span class="img-use">Imagen central de la sección Capas. También usada como demo del sistema de vidrio en botones y variantes.</span>
-            <span class="img-tag">id="capasImg" · #capas · demos de vidrio</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/CP1 .jpg" alt="CP1" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/CP1 .jpg</span>
-            <span class="img-use">Detalle de técnica artesanal. Complementa la narrativa de capas y procesos.</span>
-            <span class="img-tag">#capas · detalle</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/CP2.jpg" alt="CP2" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/CP2.jpg</span>
-            <span class="img-use">Proceso visible. La imagen muestra las capas del hacer como narrativa visual.</span>
-            <span class="img-tag">#capas · proceso</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/CP3.jpg" alt="CP3" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/CP3.jpg</span>
-            <span class="img-use">Cierre visual de la sección. Textura final, objeto terminado.</span>
-            <span class="img-tag">#capas · resultado</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- HALLAZGOS -->
-      <div class="img-cat">Hallazgos · Descubrimientos</div>
-      <div class="img-grid">
-        <div class="img-item">
-          <img class="img-thumb" src="assets/h1.jpg" alt="Hallazgo 1" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/h1.jpg</span>
-            <span class="img-use">Primer hallazgo. Objeto o detalle que condensa un descubrimiento conceptual.</span>
-            <span class="img-tag">id="h1" · #hallazgos</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/h2.jpg" alt="Hallazgo 2" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/h2.jpg</span>
-            <span class="img-use">Segundo hallazgo. Encuadre cercano, foco en materia o gesto.</span>
-            <span class="img-tag">id="h2" · #hallazgos</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/h3.jpg" alt="Hallazgo 3" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/h3.jpg</span>
-            <span class="img-use">Tercer hallazgo. Puede ser un lugar, una unión, un acabado.</span>
-            <span class="img-tag">id="h3" · #hallazgos</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/h4.jpg" alt="Hallazgo 4" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/h4.jpg</span>
-            <span class="img-use">Cuarto hallazgo. Cierra la secuencia visual de la sección.</span>
-            <span class="img-tag">id="h4" · #hallazgos</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- TERRITORIOS -->
-      <div class="img-cat">Territorios · Cards de contenido</div>
-      <div class="img-grid">
-        <div class="img-item">
-          <img class="img-thumb portrait" src="assets/CARD 01.jpg" alt="Card 01" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/CARD 01.jpg</span>
-            <span class="img-use">Tarjeta de territorio 01. Formato vertical, fondo de foto con gradiente oscuro inferior para legibilidad del texto.</span>
-            <span class="img-tag">id="terCard01" · .ter-card</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb portrait" src="assets/CARD 02.jpg" alt="Card 02" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/CARD 02.jpg</span>
-            <span class="img-use">Tarjeta de territorio 02. Misma proporción, atmósfera diferente.</span>
-            <span class="img-tag">id="terCard02" · .ter-card</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb portrait" src="assets/CARD 03.jpg" alt="Card 03" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/CARD 03.jpg</span>
-            <span class="img-use">Tarjeta de territorio 03. Cierra el set de tres en el carrusel horizontal.</span>
-            <span class="img-tag">id="terCard03" · .ter-card</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- RUTAS -->
-      <div class="img-cat">Rutas · Triptych geográfico</div>
-      <div class="img-grid">
-        <div class="img-item">
-          <img class="img-thumb" src="assets/rutas.jpg" alt="Rutas" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/rutas.jpg</span>
-            <span class="img-use">Imagen de fondo de la sección Rutas. Atmósfera de viaje y materialidad.</span>
-            <span class="img-tag">id="rutasBG" · #rutas</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/BRA 01.jpg" alt="Brasil" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/BRA 01.jpg</span>
-            <span class="img-use">Panel Brasil. Primera ruta del tríptico. Usa pixel-reveal al entrar en viewport.</span>
-            <span class="img-tag">id="rutasBRA" · .rut-panel</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/SU 02.jpg" alt="Sudamérica" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/SU 02.jpg</span>
-            <span class="img-use">Panel Sudamérica. Segunda ruta. Pixel-reveal con delay escalonado.</span>
-            <span class="img-tag">id="rutasSU" · .rut-panel</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/DI 03.jpg" alt="Diseño" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/DI 03.jpg</span>
-            <span class="img-use">Panel Diseño interior / tercer destino. Cierra el recorrido visual.</span>
-            <span class="img-tag">id="rutasDI" · .rut-panel</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- EGRESADOS -->
-      <div class="img-cat">Egresados · Carrusel de recorridos</div>
-      <div class="img-grid">
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al1.jpg" alt="Egresado 1" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al1.jpg</span>
-            <span class="img-use">Slide destacado (feat). Sofía Aramburu — Buenos Aires. Incluye cita y datos de coordenada.</span>
-            <span class="img-tag">al1 · .slide.feat</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al2.jpg" alt="Egresado 2" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al2.jpg</span>
-            <span class="img-use">Martín F. — Córdoba. Slide estándar sin cita.</span>
-            <span class="img-tag">al2 · .slide</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al3.jpg" alt="Egresado 3" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al3.jpg</span>
-            <span class="img-use">Laura G. — Rosario.</span>
-            <span class="img-tag">al3 · .slide</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al4.jpg" alt="Egresado 4" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al4.jpg</span>
-            <span class="img-use">Diego M. — Montevideo.</span>
-            <span class="img-tag">al4 · .slide</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al5.jpg" alt="Egresado 5" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al5.jpg</span>
-            <span class="img-use">Ana P. — Santiago.</span>
-            <span class="img-tag">al5 · .slide</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al6.jpg" alt="Egresado 6" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al6.jpg</span>
-            <span class="img-use">Carolina V. — Buenos Aires. El Atlas Personal.</span>
-            <span class="img-tag">al6 · .slide</span>
-          </div>
-        </div>
-        <div class="img-item">
-          <img class="img-thumb" src="assets/al7.jpg" alt="Egresado 7" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/al7.jpg</span>
-            <span class="img-use">Tomás R. — Lima. Cierra el carousel antes de que se duplique en loop.</span>
-            <span class="img-tag">al7 · .slide</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- CURSOS -->
-      <div class="img-cat">Cursos · Sección de programas</div>
-      <div class="img-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
-        <div class="img-item">
-          <img class="img-thumb" src="assets/cursos.jpg" alt="Cursos" loading="lazy">
-          <div class="img-meta">
-            <span class="img-path">assets/cursos.jpg</span>
-            <span class="img-use">Imagen lateral de la sección Cursos. Se aplica parallax vertical leve sincronizado con el scroll. Fondo de la biblioteca curatorial.</span>
-            <span class="img-tag">id="cursosImg" · #cursos · .cur-lib</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nota de uso -->
-      <div style="margin-top:2.5rem;padding:1.25rem 1.5rem;background:rgba(199,255,77,.04);border:1px solid rgba(199,255,77,.12);border-radius:.65rem;display:flex;gap:1.5rem;flex-wrap:wrap">
-        <div style="flex:1;min-width:220px">
-          <div style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:.5rem">Criterio de selección</div>
-          <div style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7">Todas las imágenes comparten una paleta cálida oscura: marrones, tierras, negros con sutiles reflejos de luz natural. Evitar imágenes con dominante fría, blanca o saturada — rompen la coherencia cromática del sistema.</div>
-        </div>
-        <div style="flex:1;min-width:220px">
-          <div style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:.5rem">Reglas de uso</div>
-          <div style="font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.7">Las fotos nunca se muestran crudas — siempre llevan un overlay de gradiente oscuro inferior o un componente glass encima. Las proporciones de las cards (4:3 horizontal, 3:4 vertical) deben respetarse para no distorsionar el encuadre original.</div>
-        </div>
-        <div style="flex:1;min-width:220px">
-          <div style="font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(199,255,77,.5);margin-bottom:.5rem">Paths · Convención</div>
-          <div style="font-family:var(--fm);font-size:.55rem;color:rgba(255,255,255,.35);line-height:1.9">assets/hero.jpg<br>assets/capas.jpg<br>assets/h[1-4].jpg<br>assets/CARD 0[1-3].jpg<br>assets/BRA 01.jpg · SU 02.jpg · DI 03.jpg<br>assets/al[1-7].jpg<br>assets/cursos.jpg · FONDO.jpg</div>
-        </div>
-      </div>
-
-      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center">
-        <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;color:rgba(255,255,255,.18);text-transform:uppercase">RAÍZ · Design System · Atlas Vivo de Transformación · v2.0 · 2026</div>
-        <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.12em;color:rgba(199,255,77,.3);text-transform:uppercase">SYS·END · ◈</div>
-      </div>
-    </section>
-
-    </div><!-- /sys-bento -->
-
-    <div class="rv" style="margin-top:3rem;padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap">
+    <div class="lib-head rv">
       <div>
-        <div class="fc-eye">Sistema Visual · v2.0 · 2026</div>
-        <div class="fc-head" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2rem,3.5vw,3rem);color:#fff;line-height:1">El sistema, completo.</div>
+        <div class="lib-eyebrow">CAP · 01</div>
+        <h2 class="lib-title">Los fundamentos<br>del sistema.</h2>
+        <a href="#componentes" class="fc-btn" style="margin-top:1.25rem">Ver componentes<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
       </div>
-      <a href="#fundamentos" class="fc-btn">Recorrer sistema<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <div>
+        <p class="lib-sub">Color, tipografía y vidrio líquido — las tres capas que definen el carácter visual. Todo lo demás se construye sobre esto. Válido tanto para la home como para las páginas de curso.</p>
+        <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:1.5rem">
+          <span class="lgw-chip">Dark · base oscura</span>
+          <span class="lgw-chip">Fraunces · Manrope · Space Mono</span>
+          <span class="lgw-chip">Glass · 4 variantes de profundidad</span>
+        </div>
+      </div>
     </div>
 
-  </div><!-- /lib-bento-wrap -->
-</section><!-- /#recursos -->
+    <!-- BENTO fundamentos -->
+    <div class="bento">
+
+      <!-- COLOR -->
+      <div class="mod rv" style="grid-column:1/7">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·01 · Color · Tokens</div>
+        <p class="mod-desc">Cuatro familias cromáticas con roles específicos — no intercambiables.</p>
+        <div class="swatch-group">
+          <div class="swatch-gl">Dark — base oscura</div>
+          <div class="swatch-row">
+            <div class="swatch"><div class="swatch-color" style="background:#090705"></div><div class="swatch-info"><span class="swatch-name">Black</span><span class="swatch-val">#090705</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#151210"></div><div class="swatch-info"><span class="swatch-name">Dk</span><span class="swatch-val">#151210</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#1c1a12"></div><div class="swatch-info"><span class="swatch-name">Dk2</span><span class="swatch-val">#1c1a12</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#2a261e"></div><div class="swatch-info"><span class="swatch-name">Dk3</span><span class="swatch-val">#2a261e</span></div></div>
+          </div>
+        </div>
+        <div class="swatch-group">
+          <div class="swatch-gl">Cream — fondos claros</div>
+          <div class="swatch-row">
+            <div class="swatch"><div class="swatch-color" style="background:#F6F1E8"></div><div class="swatch-info"><span class="swatch-name">Cream</span><span class="swatch-val">#F6F1E8</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#E7D7C9"></div><div class="swatch-info"><span class="swatch-name">Layer</span><span class="swatch-val">#E7D7C9</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#A66A44"></div><div class="swatch-info"><span class="swatch-name">Wood</span><span class="swatch-val">#A66A44</span></div></div>
+          </div>
+        </div>
+        <div class="swatch-group">
+          <div class="swatch-gl">Acid — acento / CTA</div>
+          <div class="swatch-row">
+            <div class="swatch"><div class="swatch-color" style="background:#C7FF4D"></div><div class="swatch-info"><span class="swatch-name">Acid</span><span class="swatch-val">#C7FF4D</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#d4ff6a"></div><div class="swatch-info"><span class="swatch-name">Acid+</span><span class="swatch-val">#d4ff6a</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#b8ef2a"></div><div class="swatch-info"><span class="swatch-name">Acid−</span><span class="swatch-val">#b8ef2a</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:rgba(199,255,77,.3)"></div><div class="swatch-info"><span class="swatch-name">30%</span><span class="swatch-val">rgba .30</span></div></div>
+          </div>
+        </div>
+        <div class="swatch-group" style="margin-bottom:0">
+          <div class="swatch-gl">XCT Green — sección cursos exclusivo</div>
+          <div class="swatch-row">
+            <div class="swatch"><div class="swatch-color" style="background:#acc43a"></div><div class="swatch-info"><span class="swatch-name">XCT</span><span class="swatch-val">#acc43a</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:#c0db44"></div><div class="swatch-info"><span class="swatch-name">XCT+</span><span class="swatch-val">#c0db44</span></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:rgba(172,196,58,.15)"></div><div class="swatch-info"><span class="swatch-name">15%</span><span class="swatch-val">rgba .15</span></div></div>
+          </div>
+        </div>
+        <div class="ann">Acid → CTA/acento · XCT → fondo #xct y arcos decorativos únicamente</div>
+      </div>
+
+      <!-- TIPOGRAFÍA -->
+      <div class="mod rv d1" style="grid-column:7/13">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·02 · Tipografía · Escala</div>
+        <p class="mod-desc">Fraunces para peso emocional. Manrope para lectura. Space Mono para datos, coordenadas y labels.</p>
+        <div class="type-scale">
+          <div class="type-row">
+            <div class="type-meta"><span>Hero / Título grande</span><span>Fraunces · 700 · normal</span></div>
+            <div style="font-family:'Fraunces',Georgia,serif;font-style:normal;font-weight:700;font-size:clamp(2rem,3vw,2.8rem);color:#fff;line-height:.95;letter-spacing:-.025em">El Atlas Vivo.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><span>Título de sección</span><span>Manrope · 600 · clamp</span></div>
+            <div style="font-family:'Manrope',sans-serif;font-size:clamp(1.4rem,2vw,1.8rem);font-weight:600;color:#fff;line-height:1.05">Territorios Futuros</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><span>Cuerpo · párrafo</span><span>Manrope · 300 · 1rem</span></div>
+            <div style="font-family:'Manrope',sans-serif;font-size:1rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.75;max-width:40ch">El recorrido completo: leer, desarmar, intervenir y reinterpretar la materia desde el origen.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta"><span>Mono · label / coord</span><span>Space Mono · 400</span></div>
+            <div style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45)">SYS · 001 · ATLAS VIVO · 2026</div>
+          </div>
+          <div class="type-row" style="border-bottom:none">
+            <div class="type-meta"><span>ri-label · page label</span><span>Space Mono · acid · .62rem</span></div>
+            <div style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid)">Programa Fundamental · Restauración</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GLASS -->
+      <div class="mod rv" style="grid-column:1/13;padding:0">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;overflow:hidden">
+          <div style="background:url('assets/capas.png') center/cover;position:relative;min-height:320px">
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.25)"></div>
+            <div class="lgs" style="position:absolute;inset:1.25rem;border-radius:.65rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem">
+              <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)">SYS·03 · A</span>
+              <div>
+                <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.3rem">.lgs</div>
+                <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.5);line-height:1.6">blur(50px) · bg 6%<br>Nav · pills sobre foto</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:url('assets/capas.png') center 30%/cover;position:relative;min-height:320px">
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.25)"></div>
+            <div class="dark-glass" style="position:absolute;inset:1.25rem;border-radius:.65rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem">
+              <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)">SYS·03 · B</span>
+              <div>
+                <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.3rem">.dark-glass</div>
+                <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.5);line-height:1.6">blur(22px) · bg 48%<br>Botones · panel darkglass XCT</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:url('assets/hero.jpg') center/cover;position:relative;min-height:320px">
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.2)"></div>
+            <div class="lg" style="position:absolute;inset:1.25rem;border-radius:.65rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem">
+              <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)">SYS·03 · C</span>
+              <div>
+                <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.3rem">.lg</div>
+                <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.5);line-height:1.6">blur(8px) · bg 4%<br>Stat cards · h-stat hero</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:url('assets/curso1.jpg') center/cover;position:relative;min-height:320px">
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.2)"></div>
+            <div class="lgw" style="position:absolute;inset:1.25rem;border-radius:.65rem;display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem">
+              <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)">SYS·03 · D</span>
+              <div>
+                <div style="font-family:'Fraunces',Georgia,serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.3rem">.lgw</div>
+                <div style="font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.5);line-height:1.6">blur(8px) · tono madera<br>rf-chip · rutas tags</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:1rem 2rem">
+          <div class="ann">Siempre sobre foto, gradiente o fondo oscuro — nunca sobre fondo plano</div>
+        </div>
+      </div>
+
+    </div><!-- /bento -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 02 — COMPONENTES
+     bg: #acc43a (XCT green — sección principal)
+═══════════════════════════════════════════════════ -->
+<section id="componentes" class="lib-sec" style="background:#acc43a;position:relative">
+  <!-- Arch top -->
+  <div style="position:absolute;top:-70px;left:-25%;width:150%;height:140px;background:#acc43a;border-radius:50%;pointer-events:none;z-index:0"></div>
+  <div style="position:absolute;bottom:-70px;left:-25%;width:150%;height:140px;background:#acc43a;border-radius:50%;pointer-events:none;z-index:0"></div>
+
+  <div class="lib-wrap" style="position:relative;z-index:1">
+
+    <div class="lib-head rv">
+      <div>
+        <div class="lib-eyebrow" style="color:rgba(21,18,16,.55)">CAP · 02</div>
+        <h2 class="lib-title" style="color:rgba(21,18,16,.9)">Botones,<br>logo y nav.</h2>
+        <a href="#patrones" class="fc-btn" style="margin-top:1.25rem;background:rgba(21,18,16,.12);border-color:rgba(21,18,16,.25);color:rgba(21,18,16,.85)">Ver patrones<span class="fc-btn-icon" style="border-color:rgba(21,18,16,.25)"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      </div>
+      <div>
+        <p class="lib-sub" style="color:rgba(21,18,16,.65)">Cinco variantes de botón con la misma animación de expansión ácida desde la izquierda. El ícono-flecha rota 45° al hover. Logo en 3 versiones según el fondo — swap automático por sección.</p>
+      </div>
+    </div>
+
+    <!-- BENTO componentes -->
+    <div class="bento" style="background:rgba(21,18,16,.14)">
+
+      <!-- BOTONES -->
+      <div class="mod rv" style="grid-column:1/8;background:#acc43a">
+        <div class="mod-accent" style="background:linear-gradient(90deg,rgba(21,18,16,.35),transparent 60%);opacity:1"></div>
+        <div class="mod-label" style="color:rgba(21,18,16,.55)">SYS·04 · Botones · 5 variantes<span style="flex:1;height:1px;background:rgba(21,18,16,.18);display:inline-block;margin-left:.6rem"></span></div>
+        <p class="mod-desc" style="color:rgba(21,18,16,.6)">Todos comparten la animación de expansión — círculo que emerge desde izquierda. El fc-btn es el botón principal de CTA en ambas webs.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:.5rem">
+          <div>
+            <div class="btn-ctx btn-ctx-dk">Glass primario</div>
+            <div style="background:linear-gradient(135deg,#2a1f14,#1a1208);padding:1.1rem;border-radius:.65rem;display:flex;gap:.65rem;align-items:center;flex-wrap:wrap">
+              <a class="btn-primary lgs">Explorar<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            </div>
+          </div>
+          <div>
+            <div class="btn-ctx btn-ctx-dk">Nav CTA (blanco)</div>
+            <div style="background:rgba(21,18,16,.12);padding:1.1rem;border-radius:.65rem;display:flex;gap:.65rem;align-items:center">
+              <a class="btn-nav-cta">Inscribirse<span class="fc-btn-icon" style="color:var(--dk);border-color:rgba(21,18,16,.18)"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            </div>
+          </div>
+          <div>
+            <div class="btn-ctx btn-ctx-dk">Relleno ácido</div>
+            <div style="background:rgba(21,18,16,.12);padding:1.1rem;border-radius:.65rem;display:flex;gap:.65rem;align-items:center">
+              <a class="btn-acid">Comenzar<span class="fc-btn-icon" style="color:var(--dk);border-color:rgba(21,18,16,.18)"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            </div>
+          </div>
+          <div>
+            <div class="btn-ctx btn-ctx-dk">Píldora oscura</div>
+            <div style="background:url('assets/capas.png') center/cover;padding:1.1rem;border-radius:.65rem;display:flex;gap:.65rem;align-items:center;position:relative">
+              <div style="position:absolute;inset:0;background:rgba(0,0,0,.4);border-radius:.65rem"></div>
+              <a class="btn-dark" style="position:relative">Explorar<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            </div>
+          </div>
+        </div>
+        <!-- fc-btn principal -->
+        <div style="margin-top:1.1rem">
+          <div class="btn-ctx btn-ctx-dk">fc-btn · CTA principal (ambas webs)</div>
+          <div style="background:linear-gradient(135deg,#1c1208,#0f0c08);padding:1.1rem;border-radius:.65rem;display:flex;gap:1rem;align-items:center">
+            <a class="fc-btn">Explorar recorrido<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <span style="font-family:var(--fm);font-size:.55rem;letter-spacing:.1em;color:rgba(255,255,255,.3)">← hover para ver expansión</span>
+          </div>
+        </div>
+        <div class="ann" style="color:rgba(21,18,16,.45)">Animación · círculo ácido left:-110% → left:-10% · scale 0→1.5 · 0.6s cubic-bezier(.22,1,.36,1)</div>
+      </div>
+
+      <!-- LOGO + NAV ADAPTIVE -->
+      <div class="mod rv d1" style="grid-column:8/13;background:#acc43a">
+        <div class="mod-accent" style="background:linear-gradient(90deg,rgba(21,18,16,.35),transparent 60%);opacity:1"></div>
+        <div class="mod-label" style="color:rgba(21,18,16,.55)">SYS·05 · Logo · 3 variantes + Nav adaptativo<span style="flex:1;height:1px;background:rgba(21,18,16,.18);display:inline-block;margin-left:.6rem"></span></div>
+        <p class="mod-desc" style="color:rgba(21,18,16,.6)">El nav detecta la sección bajo el punto (w/2, 90px) y aplica <code style="font-family:var(--fm);font-size:.75em;color:rgba(21,18,16,.8);background:rgba(21,18,16,.12);padding:.1em .3em;border-radius:.2em">.nav--on-light</code> en #xct y #hallazgos.</p>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:.85rem;margin-bottom:1.5rem">
+          <div style="border-radius:.65rem;overflow:hidden;border:1px solid rgba(21,18,16,.15)">
+            <div style="background:linear-gradient(135deg,#1a1208,#090705);padding:2rem;display:flex;align-items:center;justify-content:center;min-height:80px">
+              <img src="assets/white logo.png" alt="Logo blanco" style="height:28px;width:auto">
+            </div>
+            <div style="background:rgba(21,18,16,.08);padding:.75rem 1rem">
+              <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(21,18,16,.7);font-weight:600">white logo.png</div>
+              <div style="font-size:.78rem;color:rgba(21,18,16,.55);font-family:var(--fb);margin-top:.2rem">Fondos oscuros · hero, secciones dark</div>
+            </div>
+          </div>
+          <div style="border-radius:.65rem;overflow:hidden;border:1px solid rgba(21,18,16,.15)">
+            <div style="background:url('assets/capas.png') center/cover;padding:2rem;display:flex;align-items:center;justify-content:center;min-height:80px;position:relative">
+              <div style="position:absolute;inset:0;background:rgba(0,0,0,.5)"></div>
+              <img src="assets/acid logo.png" alt="Logo ácido" style="height:28px;width:auto;position:relative;z-index:1">
+            </div>
+            <div style="background:rgba(21,18,16,.08);padding:.75rem 1rem">
+              <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acid);font-weight:600">acid logo.png</div>
+              <div style="font-size:.78rem;color:rgba(21,18,16,.55);font-family:var(--fb);margin-top:.2rem">Fondos texturizados oscuros · island-bg</div>
+            </div>
+          </div>
+          <div style="border-radius:.65rem;overflow:hidden;border:1px solid rgba(21,18,16,.15)">
+            <div style="background:#F6F1E8;padding:2rem;display:flex;align-items:center;justify-content:center;min-height:80px">
+              <img src="assets/black logo.png" alt="Logo negro" style="height:28px;width:auto">
+            </div>
+            <div style="background:rgba(21,18,16,.08);padding:.75rem 1rem">
+              <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(21,18,16,.7);font-weight:600">black logo.png</div>
+              <div style="font-size:.78rem;color:rgba(21,18,16,.55);font-family:var(--fb);margin-top:.2rem">Fondos claros · #xct · .nav--on-light</div>
+            </div>
+          </div>
+        </div>
+        <div class="ann" style="color:rgba(21,18,16,.45)">Swap automático · elementFromPoint(w/2, 90) · .nav--on-light en xct + hallazgos</div>
+      </div>
+
+    </div><!-- /bento -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECCIÓN 03 — PATRONES
+     bg: #111009 (oscuro cálido)
+═══════════════════════════════════════════════════ -->
+<section id="patrones" class="lib-sec" style="background:#111009">
+  <div class="lib-wrap">
+
+    <div class="lib-head rv">
+      <div>
+        <div class="lib-eyebrow">CAP · 03</div>
+        <h2 class="lib-title">Patrones<br><em>del sistema.</em></h2>
+        <a href="#fundamentos" class="fc-btn" style="margin-top:1.25rem">Volver al inicio<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      </div>
+      <div>
+        <p class="lib-sub">Cards de curso (darkglass), flip de archivo, slide de egresados, infografía de programa RI, FAQ accordion, grid de modalidad, CTA final y animación de scroll reveal.</p>
+      </div>
+    </div>
+
+    <div class="bento" style="background:rgba(255,255,255,.05)">
+
+      <!-- XCT CARD + ARCH -->
+      <div class="mod rv" style="grid-column:1/7;background:#111009">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·06 · XCT Card · darkglass + arco decorativo</div>
+        <p class="mod-desc">Card 2:3 con imagen full-bleed y panel darkglass desde top:48%. Sección #xct usa fondo #acc43a con arcos elípticos (border-radius:50%) en top y bottom para transición suave entre secciones oscuras.</p>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-start">
+          <div>
+            <div class="btn-ctx">Card · aspect-ratio 2/3</div>
+            <div class="xct-card-demo">
+              <img src="assets/curso1.jpg" alt="">
+              <div class="xct-card-body-demo">
+                <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)">Programa Fundamental</span>
+                <span style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:.95rem;color:#fff;line-height:1.1">Restauración Integral</span>
+                <div style="display:flex;gap:.3rem;font-family:var(--fm);font-size:.48rem;color:rgba(255,255,255,.42);letter-spacing:.08em;flex-wrap:wrap;justify-content:center"><span>08 semanas</span><span>·</span><span>Presencial · BA</span></div>
+                <div style="width:100%;text-align:center;margin-top:.2rem">
+                  <span style="font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:600;color:rgba(255,255,255,.5);text-decoration:line-through">$148.000</span>
+                  <span style="display:block;font-family:'Manrope',sans-serif;font-size:1rem;font-weight:700;color:#fff">$118.000</span>
+                </div>
+                <a style="display:inline-flex;align-items:center;justify-content:center;width:100%;margin-top:.3rem;padding:.85rem 1rem;background:rgba(10,7,4,.48);border:1px solid rgba(255,255,255,.09);border-radius:9999px;font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none">Explorar recorrido ↗</a>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <div class="btn-ctx">Sección #xct · fondo + arcos</div>
+            <div style="position:relative;background:#acc43a;border-radius:1rem;overflow:hidden;min-height:160px;padding:2rem 1.25rem;display:flex;flex-direction:column;justify-content:center;gap:.6rem">
+              <div style="position:absolute;top:-35px;left:-25%;width:150%;height:80px;background:#111009;border-radius:50%"></div>
+              <div style="position:absolute;bottom:-35px;left:-25%;width:150%;height:80px;background:#111009;border-radius:50%"></div>
+              <div style="position:relative;z-index:1;font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(21,18,16,.55)">.xct-arch-top</div>
+              <div style="position:relative;z-index:1;font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.3rem;color:rgba(21,18,16,.85)">Territorios Futuros.</div>
+              <div style="position:relative;z-index:1;font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(21,18,16,.55)">.xct-arch-bot</div>
+            </div>
+            <div class="ann">border-radius:50% · posición absolute top/bottom:-70px · mismo color que sección</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARCHIVO FLIP + SLIDE -->
+      <div class="mod rv d1" style="grid-column:7/13;background:#111009">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·07 · Archivo flip + Slide egresados</div>
+        <p class="mod-desc">Flip card 3D al tap. Frente: cover + label. Reverso: darkglass con contenido al fondo. Mobile: 1 columna, botón full-width. Slide de egresados: quote + nombre + ciudad, todas el mismo tamaño (260×340px).</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
+          <!-- Archivo frente -->
+          <div>
+            <div class="btn-ctx">Frente</div>
+            <div class="archivo-front">
+              <img src="assets/capsula_01_cover.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85">
+              <div style="position:absolute;bottom:0;left:0;right:0;padding:.75rem;background:linear-gradient(to top,rgba(10,7,4,.85),transparent)">
+                <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid);display:block">01</span>
+                <span style="font-family:'Manrope',sans-serif;font-weight:600;font-size:.95rem;color:#fff;display:block">Monolitos</span>
+                <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;color:rgba(255,255,255,.5);text-transform:uppercase;display:block">La materia como origen</span>
+              </div>
+            </div>
+          </div>
+          <!-- Archivo reverso -->
+          <div>
+            <div class="btn-ctx">Reverso</div>
+            <div class="archivo-back-demo">
+              <img src="assets/capsula_01_img.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5)">
+              <div class="archivo-back-demo-inner">
+                <span style="font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acid)">01</span>
+                <span style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.1rem;color:#fff">Monolitos</span>
+                <span style="font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.45">La materia como origen. Piezas donde el peso y la solidez son el lenguaje.</span>
+                <a style="display:flex;align-items:center;justify-content:space-between;width:100%;padding:.45rem .45rem .45rem .85rem;background:rgba(10,7,4,.55);border:1px solid rgba(255,255,255,.15);border-radius:9999px;font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);text-decoration:none">Explorar pieza<span style="width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem">↑</span></a>
+              </div>
+            </div>
+          </div>
+          <!-- Slide -->
+          <div>
+            <div class="btn-ctx">Slide egresado</div>
+            <div class="slide-demo">
+              <img src="assets/al1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+              <div class="slide-ov"></div>
+              <div class="slide-info">
+                <div class="slide-quote">"Descubrí que restaurar no era reparar."</div>
+                <div class="slide-name">Alexis Aramburu</div>
+                <div class="slide-loc">Buenos Aires · Cartografía</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ann">Flip: rotateY(180deg) · 0.7s ease · tap mobile / hover desktop · 1 col en mobile</div>
+      </div>
+
+      <!-- INFOGRAFÍA RI + PROG ITEM -->
+      <div class="mod rv" style="grid-column:1/7;background:#111009">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·08 · RI · Infografía + Grid de programa</div>
+        <p class="mod-desc">Bloque de datos estadísticos (Fraunces grande + unit ácido) y grid de unidades del programa. Hover en info-cell → glow ácido. Hover en prog-item → barra ácida vertical desde top.</p>
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-start">
+          <!-- Info cells -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem;flex:0 0 220px">
+            <div class="ri-info-cell"><div class="ri-info-n">8</div><div class="ri-info-unit">semanas</div><div class="ri-info-l">Duración</div></div>
+            <div class="ri-info-cell"><div class="ri-info-n">24</div><div class="ri-info-unit">cupos</div><div class="ri-info-l">Por edición</div></div>
+            <div class="ri-info-cell"><div class="ri-info-n">6</div><div class="ri-info-unit">módulos</div><div class="ri-info-l">Del programa</div></div>
+            <div class="ri-info-cell"><div class="ri-info-n">3+</div><div class="ri-info-unit">culturas</div><div class="ri-info-l">Conectadas</div></div>
+          </div>
+          <!-- Prog item -->
+          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:.65rem">
+            <div class="ri-prog-demo">
+              <div class="ri-prog-accent"></div>
+              <div class="ri-prog-num">01 · Módulo</div>
+              <div class="ri-prog-name">Lectura de objeto</div>
+              <div class="ri-prog-desc">Metodología para descifrar un mueble como documento material de su época.</div>
+            </div>
+            <div class="ri-prog-demo">
+              <div class="ri-prog-accent"></div>
+              <div class="ri-prog-num">02 · Módulo</div>
+              <div class="ri-prog-name">Intervención técnica</div>
+              <div class="ri-prog-desc">Materiales, procesos y criterios para intervenir sin borrar la historia del objeto.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CURSO CARD RI + STAT + HOTSPOT -->
+      <div class="mod rv d1" style="grid-column:7/13;background:#111009">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·09 · RI Curso card + Stat + Hotspot</div>
+        <p class="mod-desc">Card de curso en restauracion-integral.html: hover con glow ácido animado. Card activa: border ácido permanente + pulse animation. Stat card: ícono + número Fraunces + label. Hotspot: punto con anillo acid sobre imagen.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
+          <!-- RI curso normal -->
+          <div class="ri-curso-demo">
+            <div class="ri-curso-img" style="background-image:url('assets/curso2.jpg')"></div>
+            <div class="ri-curso-body">
+              <div class="ri-curso-name">Laboratorio Material</div>
+              <div class="ri-curso-desc">Materiales y procesos: maderas, fibras, acabados.</div>
+              <a class="ri-curso-cta">Explorar sistema ↗</a>
+            </div>
+          </div>
+          <!-- RI curso active -->
+          <div class="ri-curso-demo" style="border-color:var(--acid);background:rgba(199,255,77,.06);box-shadow:0 0 0 1px rgba(199,255,77,.25)">
+            <div class="ri-curso-img" style="background-image:url('assets/curso1.jpg');height:200px"></div>
+            <div class="ri-curso-body">
+              <div class="ri-curso-name" style="font-size:1.3rem">Restauración Integral</div>
+              <div style="font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.35rem;background:var(--acid);color:#0a0a05;padding:.3rem .7rem;border-radius:9999px;margin-top:.25rem">● Activo</div>
+              <div class="ri-curso-desc" style="margin-top:.4rem">El recorrido completo de lectura, intervención y relectura.</div>
+              <div style="font-family:'Fraunces',Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--acid);margin-top:.4rem">$118.000</div>
+            </div>
+          </div>
+        </div>
+        <!-- Stat + Hotspot -->
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem;align-items:center">
+          <a class="stat-card lg" style="border-radius:.75rem">
+            <div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div><div class="stat-n">8 sem</div><div class="stat-l">Duración</div></div>
+          </a>
+          <a class="stat-card lg" style="border-radius:.75rem">
+            <div class="stat-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div><div class="stat-n">24</div><div class="stat-l">Cupos</div></div>
+          </a>
+          <div style="display:flex;align-items:center;gap:1rem">
+            <div class="hs-dot"></div>
+            <div class="hs-card">
+              <div class="hs-num">PUNTO · 03</div>
+              <div class="hs-name">Mortaja y espiga</div>
+              <div class="hs-desc">Unión sin clavos — la técnica que define al maestro.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ + MODALIDAD RI -->
+      <div class="mod rv" style="grid-column:1/7;background:#111009">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·10 · FAQ accordion + Modalidad grid</div>
+        <p class="mod-desc">FAQ: border-left ácido aparece al hover, icon + rotates to ×. Grid de modalidad: 3 celdas con valor Fraunces grande + key label.</p>
+        <!-- FAQ demo -->
+        <div class="ri-faq-demo" style="margin-bottom:1.25rem">
+          <div class="ri-faq-row">¿Necesito experiencia previa en restauración? <span>+</span></div>
+          <div class="ri-faq-row">¿El programa es presencial o online? <span>+</span></div>
+          <div class="ri-faq-row">¿Qué materiales necesito tener? <span>+</span></div>
+        </div>
+        <!-- Modalidad grid -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);border-radius:.75rem;overflow:hidden">
+          <div style="background:rgba(0,0,0,.18);padding:1.5rem 1.25rem;transition:background .3s" onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background='rgba(0,0,0,.18)'">
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:2rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.4rem">Presencial</div>
+            <div style="font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35)">Modalidad</div>
+          </div>
+          <div style="background:rgba(0,0,0,.18);padding:1.5rem 1.25rem;transition:background .3s" onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background='rgba(0,0,0,.18)'">
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:2rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.4rem">Bs. As.</div>
+            <div style="font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35)">Ubicación</div>
+          </div>
+          <div style="background:rgba(0,0,0,.18);padding:1.5rem 1.25rem;transition:background .3s" onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background='rgba(0,0,0,.18)'">
+            <div style="font-family:'Fraunces',Georgia,serif;font-size:2rem;font-weight:700;color:#fff;line-height:1;margin-bottom:.4rem">Agosto</div>
+            <div style="font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35)">Próxima edición</div>
+          </div>
+        </div>
+        <div class="ann">ri-modal-val · Fraunces 700 · hover → rgba(255,255,255,.04)</div>
+      </div>
+
+      <!-- CTA FINAL + ANIMACIONES -->
+      <div class="mod rv d1" style="grid-column:7/13;background:#111009">
+        <div class="mod-accent"></div>
+        <div class="mod-label">SYS·11 · CTA final + Scroll reveal</div>
+        <p class="mod-desc">Bloque de cierre en ambas webs. Gradiente oscuro cálido, título Fraunces grande, eyebrow mono ácido. Sistema .rv: opacity 0→1 + translateY(28px→0) al entrar en viewport.</p>
+        <!-- CTA block -->
+        <div style="padding:2rem;background:linear-gradient(135deg,rgba(21,18,16,.98) 0%,rgba(77,48,32,.96) 100%);border-radius:.85rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.75rem">
+          <div>
+            <div class="fc-eye">Próximo recorrido · Agosto 2026</div>
+            <div class="fc-head" style="font-size:clamp(1.5rem,2.5vw,2.2rem)">Comenzar el recorrido.</div>
+          </div>
+          <a class="fc-btn">Explorar<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        </div>
+        <!-- Scroll reveal -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem">
+          <div style="padding:.75rem 1rem;background:rgba(255,255,255,.04);border-radius:.5rem">
+            <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.12em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:.35rem">.rv · base</div>
+            <div class="rv on" style="font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.55)">opacity:0→1<br>translateY(28px→0)<br><span style="color:rgba(199,255,77,.6)">.9s ease</span></div>
+          </div>
+          <div style="padding:.75rem 1rem;background:rgba(255,255,255,.04);border-radius:.5rem">
+            <div style="font-family:var(--fm);font-size:.5rem;letter-spacing:.12em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:.35rem">.rv.d1 / .d2 / .d3</div>
+            <div style="font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.55)">delay .12s / .24s / .36s<br>Cascada para grupos<br><span style="color:rgba(199,255,77,.6)">IntersectionObserver</span></div>
+          </div>
+        </div>
+        <div class="ann">Criterio imágenes · paleta cálida oscura · siempre con glass o gradiente encima</div>
+      </div>
+
+    </div><!-- /bento -->
+  </div>
+
+  <!-- CTA CIERRE -->
+  <div class="lib-wrap" style="margin-top:4rem">
+    <div class="rv" style="padding:3.5rem;background:linear-gradient(135deg,#1c1208,#0f0c08);border-radius:1.25rem;border:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap">
+      <div>
+        <div class="fc-eye">Sistema Visual · v3.0 · 2026</div>
+        <div class="fc-head">El sistema, completo.</div>
+      </div>
+      <div style="display:flex;gap:.85rem;flex-wrap:wrap">
+        <a href="index.html" class="fc-btn">Ver index.html<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+        <a href="restauracion-integral.html" class="btn-dark">Ver RI ↗</a>
+      </div>
+    </div>
+  </div>
+
+</section>
 
 <footer>
   <span class="fl">Raíz</span>
-  <span class="fn">Sistema Visual · Atlas Vivo de Transformación · Buenos Aires · Est. 2024</span>
-  <span class="fn">v2.0 · 2026</span>
+  <span class="fn">Sistema Visual · v3.0 · 2026</span>
+  <span class="fn">index.html + restauracion-integral.html</span>
 </footer>
 
 <script>
-// Loader dismiss
 setTimeout(()=>{const l=document.getElementById('loader');if(l)l.classList.add('hidden');},2400);
 
-// Nav burger
 const burger=document.getElementById('nBurger');
 const drawer=document.getElementById('nDrawer');
 const overlay=document.getElementById('nOverlay');
@@ -1396,39 +830,9 @@ if(burger)burger.addEventListener('click',openDrawer);
 if(drawerClose)drawerClose.addEventListener('click',closeDrawer);
 if(overlay)overlay.addEventListener('click',closeDrawer);
 
-// Dust particles
 const dustEl=document.getElementById('dust');
-if(dustEl){for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*2.5+1;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*16+14}s;animation-delay:${Math.random()*-20}s;opacity:${Math.random()*.5+.2}`;dustEl.appendChild(p);}}
+if(dustEl){for(let i=0;i<22;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*2.5+1;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*16+14}s;animation-delay:${Math.random()*-20}s;opacity:${Math.random()*.5+.2}`;dustEl.appendChild(p);}}
 
-// Logo swap por sección
-(function(){
-  const logo = document.getElementById('navLogo');
-  if(!logo) return;
-  // noise-bg = fondo claro → logo negro
-  // island-bg = fondo crema oscura → logo ácido
-  // hero / dark sections → logo blanco
-  const sectionLogos = {
-    'hero':        'assets/white logo.png',
-    'fundamentos': 'assets/white logo.png',
-    'interaccion': 'assets/acid logo.png',
-    'contenido':   'assets/white logo.png',
-    'sistema':     'assets/acid logo.png',
-    'recursos':    'assets/white logo.png',
-  };
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(!e.isIntersecting) return;
-      const src = sectionLogos[e.target.id];
-      if(src && logo.src !== location.origin + '/' + src){
-        logo.style.opacity = '0';
-        setTimeout(()=>{ logo.src = src; logo.style.opacity = '1'; }, 150);
-      }
-    });
-  }, {rootMargin:'-40% 0px -40% 0px', threshold:0});
-  document.querySelectorAll('section[id], #hero').forEach(s => io.observe(s));
-})();
-
-// Scroll reveal
 const rvEls=document.querySelectorAll('.rv');
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07,rootMargin:'0px 0px -25px 0px'});
 rvEls.forEach(el=>io.observe(el));

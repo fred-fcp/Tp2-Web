@@ -1,0 +1,78 @@
+══════════════════════════════════════════════
+  RAÍZ · Sistema Visual — Regla Responsiva
+══════════════════════════════════════════════
+
+BREAKPOINT: 768px
+  Mobile  → ≤ 768px  (teléfonos)
+  Desktop → ≥ 769px  (tablets y computadoras)
+
+
+──────────────────────────────────────────────
+  CSS · Aplicar estilos SOLO en mobile
+──────────────────────────────────────────────
+
+@media(max-width:768px) {
+  /* estilos que se aplican SOLO en mobile */
+  .mi-clase { propiedad: valor; }
+}
+
+
+──────────────────────────────────────────────
+  CSS · Restaurar en desktop
+──────────────────────────────────────────────
+
+@media(min-width:769px) {
+  /* restaurar el valor original de desktop */
+  .mi-clase { propiedad: valor-original; }
+}
+
+
+──────────────────────────────────────────────
+  JS · Detectar mobile
+──────────────────────────────────────────────
+
+if (window.innerWidth <= 768) {
+  // código que corre SOLO en mobile
+}
+
+
+──────────────────────────────────────────────
+  USOS COMUNES
+──────────────────────────────────────────────
+
+1. Cambiar columnas de grid
+   .mi-grid { grid-template-columns: 1fr; }
+
+2. Ocultar elementos en mobile
+   .solo-desktop { display: none; }
+
+3. Mostrar elementos solo en mobile
+   .solo-mobile { display: block; }
+   (en desktop: .solo-mobile { display: none; })
+
+4. Ajustar tipografía
+   .titulo { font-size: 1.5rem; }
+
+5. Botones de ancho completo
+   .btn { width: 100%; }
+
+6. Cambiar dirección de flex
+   .fila { flex-direction: column; }
+
+7. Pausar animaciones
+   .animado { animation: none; }
+
+
+──────────────────────────────────────────────
+  DÓNDE ESTÁ EN EL PROYECTO RAÍZ
+──────────────────────────────────────────────
+
+Archivo: css/main.css
+Ubicación: al final del archivo
+Bloque: @media(max-width:768px) { ... }
+
+REGLA DE ORO: si algo se rompe en desktop después
+de editar mobile, siempre revisá que el bloque
+@media(min-width:769px) lo restaura.
+
+══════════════════════════════════════════════

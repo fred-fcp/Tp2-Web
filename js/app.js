@@ -371,11 +371,9 @@ document.querySelectorAll('.course').forEach(c=>{
   const burger=document.getElementById('nBurger');
   const drawer=document.getElementById('nDrawer');
   const overlay=document.getElementById('nOverlay');
-  const close=document.getElementById('nDrawerClose');
   function open(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
   function shut(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
-  burger?.addEventListener('click',open);
-  close?.addEventListener('click',shut);
+  burger?.addEventListener('click',()=>{drawer.classList.contains('open')?shut():open();});
   overlay?.addEventListener('click',shut);
   drawer?.querySelectorAll('a').forEach(a=>a.addEventListener('click',shut));
 })();
@@ -413,29 +411,80 @@ setTimeout(tryDismiss,2500);
 (function(){
   const logo=document.getElementById('navLogo');
   if(!logo)return;
-  const map={
-    'hero':          'assets/white logo.png',
-    'rutas':         'assets/acid logo.png',
-    'capas':         'assets/white logo.png',
-    'hallazgos':     'assets/black logo.png',
-    'comunidad':     'assets/white logo.png',
-    'cursos':        'assets/acid logo.png',
-    'capsula':       'assets/white logo.png',
-    'aprender-leer': 'assets/white logo.png',
-    'atlas-mental':  'assets/white logo.png',
+  const nav=document.getElementById('nav');
+  const sectionMap={
+    'hero':          {src:'assets/white logo.png', light:false},
+    'rutas':         {src:'assets/acid logo.png',  light:false},
+    'capas':         {src:'assets/white logo.png', light:false},
+    'xct':           {src:'assets/black logo.png', light:true },
+    'hallazgos':     {src:'assets/black logo.png', light:true },
+    'comunidad':     {src:'assets/white logo.png', light:false},
+    'capsula':       {src:'assets/white logo.png', light:false},
+    'aprender-leer': {src:'assets/white logo.png', light:false},
+    'atlas-mental':  {src:'assets/white logo.png', light:false},
   };
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(!e.isIntersecting)return;
-      const src=map[e.target.id];
-      if(!src||logo.getAttribute('src')===src)return;
+  const ids=Object.keys(sectionMap);
+  const setNav=({src,light})=>{
+    if(src&&logo.getAttribute('src')!==src){
       logo.style.opacity='0';
       setTimeout(()=>{logo.src=src;logo.style.opacity='1';},150);
+    }
+    if(nav) nav.classList.toggle('nav--on-light',!!light);
+  };
+  const idSet=new Set(ids);
+  let lastId=null;
+  const getActiveSection=()=>{
+    /* sample center of viewport horizontally, just below nav */
+    const el=document.elementFromPoint(window.innerWidth/2,90);
+    if(!el)return null;
+    /* walk up DOM until we find a mapped section id */
+    let node=el;
+    while(node&&node!==document.body){
+      if(node.id&&idSet.has(node.id))return node.id;
+      node=node.parentElement;
+    }
+    return null;
+  };
+  const update=()=>{
+    const active=getActiveSection();
+    if(active&&active!==lastId){lastId=active;setNav(sectionMap[active]);}
+  };
+  let ticking=false;
+  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{update();ticking=false;});ticking=true;}},{passive:true});
+  setTimeout(update,200);
+})();
+
+/* ── HALLAZGOS MUTE ─────────────── */
+(function(){
+  const ICON_OFF=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+  const ICON_ON=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>`;
+  const vids=Array.from(document.querySelectorAll('.hall-vid'));
+  const btns=Array.from(document.querySelectorAll('.hall-mute-btn'));
+  if(!vids.length)return;
+  vids.forEach(v=>{v.muted=true;});
+  let hallMuted=true;
+  const updateAll=()=>{
+    vids.forEach(v=>{v.muted=hallMuted;});
+    btns.forEach(b=>{
+      b.innerHTML=hallMuted?ICON_OFF:ICON_ON;
+      b.setAttribute('aria-label',hallMuted?'Activar sonido':'Silenciar');
     });
-  },{rootMargin:'-40% 0px -40% 0px',threshold:0});
-  document.querySelectorAll('section[id],#hero').forEach(s=>io.observe(s));
-  const capsula=document.getElementById('capsula');
-  if(capsula)io.observe(capsula);
+  };
+  btns.forEach(b=>{
+    b.addEventListener('click',e=>{
+      e.preventDefault();e.stopPropagation();
+      hallMuted=!hallMuted;
+      updateAll();
+    });
+  });
+  const section=document.getElementById('hallazgos');
+  if(section){
+    new IntersectionObserver(([entry])=>{
+      if(!entry.isIntersecting){
+        hallMuted=true;updateAll();
+      }
+    },{threshold:0.05}).observe(section);
+  }
 })();
 
 /* ── HALLAZGOS MOBILE ─────────────── */
@@ -736,6 +785,53 @@ setTimeout(tryDismiss,2500);
   }
 
   if(window.innerWidth<=768) initMobileScroll();
+
+  /* ── MUTE TOGGLE ── */
+  const ICON_ON  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
+  const ICON_OFF = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
+
+  let globalMuted = true;
+
+  items.forEach(item => {
+    const vid = item.querySelector('.xct-vid');
+    if(!vid) return;
+    vid.muted = true;
+    const btn = document.createElement('button');
+    btn.className = 'xct-mute-btn';
+    btn.innerHTML = ICON_OFF;
+    btn.setAttribute('aria-label','Activar sonido');
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      globalMuted = !globalMuted;
+      items.forEach(it => {
+        const v = it.querySelector('.xct-vid');
+        if(v) v.muted = globalMuted;
+      });
+      document.querySelectorAll('.xct-mute-btn').forEach(b => {
+        b.innerHTML = globalMuted ? ICON_OFF : ICON_ON;
+        b.setAttribute('aria-label', globalMuted ? 'Activar sonido' : 'Silenciar');
+      });
+    });
+    item.querySelector('.xct-media').appendChild(btn);
+  });
+
+  /* Auto-mute al salir de la sección */
+  const xctSection = document.getElementById('xct');
+  if(xctSection){
+    new IntersectionObserver(([entry]) => {
+      if(!entry.isIntersecting){
+        globalMuted = true;
+        items.forEach(item => {
+          const v = item.querySelector('.xct-vid');
+          if(v) v.muted = true;
+        });
+        document.querySelectorAll('.xct-mute-btn').forEach(b => {
+          b.innerHTML = ICON_OFF;
+          b.setAttribute('aria-label','Activar sonido');
+        });
+      }
+    },{threshold:0.05}).observe(xctSection);
+  }
 })();
 
 /* ── COMUNIDAD SLIDER DOTS ── */
