@@ -1241,7 +1241,7 @@ setTimeout(tryDismiss,2500);
   img.style.willChange = 'transform';
 
   let target = 0, current = 0, rafId = null;
-  const EASE = 0.07; // inercia similar a scrub:1.5
+  const EASE = window.innerWidth <= 768 ? 0.18 : 0.07;
 
   function getProgress(){
     const rect    = wrap.getBoundingClientRect();
