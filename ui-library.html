@@ -6,64 +6,395 @@
 <title>Sistema Visual — RAÍZ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 <style>
 @font-face{font-family:'Fraunces';src:url('Typography/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:'Fraunces';src:url('Typography/Fraunces-Italic-VariableFont_SOFT,WONK,opsz,wght.ttf') format('truetype');font-weight:100 900;font-style:italic;font-display:swap}
 @font-face{font-family:'Manrope';src:url('Typography/Manrope-VariableFont_wght.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}
 
-html{background:#0c0b08;color:#fff;font-family:'Manrope',sans-serif}
+html{background:#0c0b08;color:#fff;font-family:'Manrope',sans-serif;scroll-behavior:smooth}
 body{background:transparent;overflow-x:hidden}
 
-/* ── LIBRARY LAYOUT ──────────────────────── */
-.lib-wrap{max-width:1200px;margin:0 auto;padding:0 2rem}
+/* ── BASE ─────────────────────────────────── */
+.l-inner{max-width:1240px;margin:0 auto;padding:0 2.5rem}
+.ls{position:relative;overflow:hidden}
+.ls-fade-b{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,#0c0b08);pointer-events:none;z-index:3}
+.ls-fade-t{position:absolute;top:0;left:0;right:0;height:200px;background:linear-gradient(to top,transparent,#0c0b08);pointer-events:none;z-index:3}
 
-/* ── SECTION HEADER ──────────────────────── */
-.lib-sh{
-  display:flex;align-items:center;gap:.75rem;
-  padding:3rem 0 1.5rem;
-  border-top:1px solid rgba(255,255,255,.07);
+/* ── REVEAL ───────────────────────────────── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.18s}.d2{transition-delay:.36s}.d3{transition-delay:.54s}.d4{transition-delay:.72s}
+.rv-demo{opacity:1!important;transform:none!important}
+
+/* ── EYEBROW ──────────────────────────────── */
+.eyebrow{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acid)}
+
+/* ── LIB HOVER ────────────────────────────── */
+.lh{transition:transform .4s cubic-bezier(.25,.46,.45,.94),box-shadow .4s ease}
+.lh:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 20px 60px rgba(0,0,0,.55)}
+
+/* ── HERO ─────────────────────────────────── */
+#lib-hero{height:100vh;min-height:640px;display:flex;align-items:flex-end;position:relative}
+#lib-hero-bg{position:absolute;inset:0;background:url('ui assets/hero.jpg') center/cover no-repeat;filter:brightness(.7) saturate(.6);will-change:transform}
+#lib-hero-grad{position:absolute;inset:0;background:linear-gradient(170deg,transparent 40%,rgba(12,11,8,.55) 75%,rgba(12,11,8,.75) 100%)}
+.hero-scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,rgba(199,255,77,.7),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ── TYPO CARDS ───────────────────────────── */
+.typo-card{display:grid;grid-template-columns:1.1fr 1fr;border-radius:16px;overflow:hidden;margin-bottom:1rem;position:relative}
+.typo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--acid) 0%,transparent 55%);z-index:2}
+.typo-card-sample{padding:3.5rem 2.75rem;border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;justify-content:flex-end;gap:1.25rem;min-height:300px;position:relative;overflow:hidden}
+.typo-card-num{position:absolute;top:-.1em;right:-.05em;font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;font-size:14rem;line-height:1;letter-spacing:-.05em;color:rgba(255,255,255,.03);pointer-events:none;user-select:none}
+.typo-card-info{padding:3.5rem 2.75rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.typo-card-head{display:flex;flex-direction:column;gap:.5rem}
+.typo-card-family{font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;font-size:clamp(2rem,3vw,2.8rem);color:#fff;line-height:.9;letter-spacing:-.03em}
+.typo-card-tag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:.4rem}
+.typo-card-sizes{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--acid);padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.07)}
+.typo-card-uses{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.typo-card-uses li{font-family:'Manrope',sans-serif;font-size:.82rem;line-height:1.6;color:rgba(255,255,255,.48);padding-left:1.1rem;position:relative}
+.typo-card-uses li::before{content:'·';position:absolute;left:0;color:var(--acid);font-size:1rem;line-height:1.4}
+/* ── TYPE SCALE RULER ───────────────────── */
+.ts-row{display:flex;align-items:center;gap:.75rem;padding:.45rem 0}
+.ts-label{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;color:var(--c);opacity:.9;width:5rem;flex-shrink:0;text-align:right}
+.ts-line{flex:1;height:1px;background:var(--c);opacity:.35}
+.ts-desc{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c);opacity:.45;white-space:nowrap}
+/* ── TC-CARD interactiva ─────────────────── */
+.tc-card{border-radius:16px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;gap:1.25rem;position:relative;overflow:hidden;cursor:default;transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+.tc-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.tc-watermark{position:absolute;bottom:-1rem;right:-1rem;font-weight:700;font-style:normal;font-size:8rem;line-height:1;letter-spacing:-.06em;color:rgba(255,255,255,.04);pointer-events:none;transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .45s,color .45s;white-space:nowrap;user-select:none}
+.tc-card:hover .tc-watermark{transform:translateY(-8px) scale(1.06);opacity:1;color:rgba(255,255,255,.07)}
+.tc-name{font-weight:700;font-style:normal;font-size:1.9rem;color:#fff;line-height:.9;letter-spacing:-.03em;transition:letter-spacing .45s cubic-bezier(.22,1,.36,1)}
+.tc-card:hover .tc-name{letter-spacing:-.01em}
+.tc-tag{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:.6rem;transition:color .3s}
+.tc-card:hover .tc-tag{color:rgba(199,255,77,.5)}
+.tc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.tc-list li{font-family:'Manrope',sans-serif;font-size:.82rem;line-height:1.5;color:rgba(255,255,255,.38);padding-left:1rem;position:relative;transition:color .35s,transform .4s cubic-bezier(.22,1,.36,1)}
+.tc-list li::before{content:'·';position:absolute;left:0;color:var(--acid);opacity:.4;transition:opacity .35s}
+.tc-card:hover .tc-list li{color:rgba(255,255,255,.6);transform:translateX(4px)}
+.tc-card:hover .tc-list li::before{opacity:1}
+.tc-card:hover .tc-list li:nth-child(2){transition-delay:.05s}
+.tc-card:hover .tc-list li:nth-child(3){transition-delay:.1s}
+/* ── BTN-WOOD ─────────────────────────────── */
+.btn-wood{background:var(--wood);color:rgba(255,255,255,.92);transition:color .4s;position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.75rem;padding:.75rem .75rem .75rem 1.4rem;border-radius:9999px;font-family:var(--fm);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none}
+.btn-wood::after{content:'';position:absolute;width:130%;aspect-ratio:1;left:-110%;top:50%;transform:translateY(-50%);border-radius:50%;z-index:-1;transition:left .6s cubic-bezier(.22,1,.36,1),scale .6s;scale:0;background:#8a5535}
+.btn-wood:hover::after{left:-10%;scale:1.5}
+.btn-wood:hover{color:#fff}
+.btn-wood .fc-btn-icon{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.2)}
+.btn-wood:hover .fc-btn-icon{color:#fff;border-color:rgba(255,255,255,.3)}
+/* ── N-CTA DARK VARIANT ───────────────────── */
+#lib-buttons .n-cta--dark{background:var(--dk)!important;color:rgba(255,255,255,.85)!important;transition:background .3s,color .3s}
+#lib-buttons .n-cta--dark:hover{background:var(--wood)!important;color:#fff!important}
+/* ── XCT-CARD-OFF OVERRIDE ────────────────── */
+#lib-buttons .xct-card-off{font-size:1rem!important;padding:.35rem 1rem!important}
+/* ── RF-CHIP COLOR OVERRIDE ───────────────── */
+#lib-buttons .rf-chip{color:#F6F1E8!important;margin-top:0}
+/* ── BTN GROUP LABEL ──────────────────────── */
+.btn-group-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.85rem}
+/* ── COLOR ACCORDION ──────────────────────── */
+.color-card{display:flex;flex-direction:column;gap:4px;height:600px;overflow:hidden;width:100%;margin-bottom:6rem}
+.cc-panel{width:100%;flex:1;overflow:hidden;cursor:pointer;border-radius:6px;transition:flex .52s cubic-bezier(.4,0,.2,1);background:var(--c);border:1px solid var(--bdr);display:flex;align-items:center;padding:0 3rem;position:relative}
+.cc-panel:hover{flex:5}
+.cc-col{display:flex;align-items:center;transition:opacity .2s;position:absolute;inset:0;padding:0 3rem}
+.cc-panel:hover .cc-col{opacity:0;pointer-events:none}
+.cc-name-rot{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--txt);white-space:nowrap}
+.cc-expand{position:absolute;inset:0;display:flex;align-items:center;padding:0 3rem;gap:3rem;opacity:0;transition:opacity .3s .1s;pointer-events:none}
+.cc-panel:hover .cc-expand{opacity:1;pointer-events:auto}
+.cc-token{font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--txt);opacity:.8;min-width:80px}
+.cc-big-name{font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;font-size:2.8rem;color:var(--txt);line-height:.95;flex:1}
+.cc-meta{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem}
+.cc-hex{font-family:'Space Mono',monospace;font-size:.85rem;letter-spacing:.1em;color:var(--txt);opacity:.85}
+.cc-uses{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem;text-align:left}
+.cc-uses li{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--txt);opacity:.7}
+.cc-uses li::before{content:'· '}
+/* Acid Green desplegado por defecto */
+.cc-panel:first-child{flex:5}
+.cc-panel:first-child .cc-col{opacity:0;pointer-events:none}
+.cc-panel:first-child .cc-expand{opacity:1;pointer-events:auto}
+/* Al entrar en el acordeón, colapsa el primero */
+.color-card:hover .cc-panel:first-child{flex:1}
+.color-card:hover .cc-panel:first-child .cc-col{opacity:1;pointer-events:auto}
+.color-card:hover .cc-panel:first-child .cc-expand{opacity:0;pointer-events:none}
+/* Si el hover vuelve al primero, se re-expande */
+.color-card:hover .cc-panel:first-child:hover{flex:5}
+.color-card:hover .cc-panel:first-child:hover .cc-col{opacity:0;pointer-events:none}
+.color-card:hover .cc-panel:first-child:hover .cc-expand{opacity:1;pointer-events:auto}
+
+/* opacity row */
+.opaq-list{display:flex;flex-direction:column;gap:4px}
+.opaq-panel{height:60px;border-radius:6px;display:flex;align-items:center;gap:1.75rem;overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.opaq-swatch{height:100%;width:72px;flex-shrink:0}
+.opaq-label{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);flex:1}
+.opaq-val{font-family:'Space Mono',monospace;font-size:.85rem;letter-spacing:.06em;color:rgba(255,255,255,.65);padding-right:1.5rem}
+
+/* glass cards */
+.gcard{flex:1;min-width:140px;border-radius:.875rem;padding:1.1rem 1rem;display:flex;flex-direction:column;gap:.3rem;transition:transform .35s ease}
+.gcard:hover{transform:translateY(-5px)}
+.gcard-name{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.gcard-desc{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.4}
+
+/* ── TYPOGRAPHY ───────────────────────────── */
+.typo-sep{width:100%;height:1px;background:linear-gradient(to right,rgba(255,255,255,.1),transparent);margin:3.5rem 0}
+
+/* ── XCT CARD overrides ───────────────────── */
+.xct-card-offset{position:absolute;bottom:-2.5rem;right:-1.5rem;z-index:2;width:220px}
+
+/* ── STATS ────────────────────────────────── */
+.stat-n{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(3rem,7vw,6rem);color:var(--acid);line-height:.9}
+.stat-unit{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.3rem}
+.stat-label{font-size:.88rem;color:rgba(255,255,255,.5);margin-top:.2rem}
+
+/* ── MOTION CELLS ─────────────────────────── */
+.motion-cell{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:1.25rem;padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:210px;gap:1.5rem;transition:border-color .3s}
+.ri-prog-item{transition:background .35s}
+.ri-prog-item:hover{background:rgba(255,255,255,.07) !important}
+.ri-prog-accent{transition:height .4s cubic-bezier(.22,1,.36,1)}
+.ri-prog-item:hover .ri-prog-accent{height:100% !important}
+.ri-prog-item:hover .ri-prog-name{color:rgba(199,255,77,.95)}
+.ri-prog-name{transition:color .35s}
+/* ri-faq */
+.ri-faq-list{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.07)}
+.ri-faq-item{border-bottom:1px solid rgba(255,255,255,.07);border-left:2px solid transparent;padding-left:0;transition:border-left-color .25s,padding-left .25s}
+.ri-faq-item:hover{border-left-color:var(--acid);padding-left:.85rem}
+.ri-faq-q{font-family:'Manrope',sans-serif;font-weight:600;font-size:.95rem;color:rgba(255,255,255,.85);padding:1.25rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:color .25s}
+.ri-faq-item:hover .ri-faq-q{color:#fff}
+.ri-faq-q::after{content:'+';font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--acid);flex-shrink:0;transition:transform .3s}
+.ri-faq-item[open] .ri-faq-q::after{transform:rotate(45deg)}
+.ri-faq-a{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.75;padding-bottom:1.25rem;margin:0;font-weight:300}
+/* grain demo exagerado */
+.noise-demo::after{opacity:.32 !important;mix-blend-mode:screen !important;animation:grainFlow 3s steps(1) infinite !important}
+/* galería zoom hover */
+#lib-media img{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+#lib-media div:hover > img{transform:scale(1.07)}
+.motion-cell:hover{border-color:rgba(199,255,77,.18)}
+.motion-label{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);text-align:center;line-height:1.6}
+
+/* ── CHIP ROW ─────────────────────────────── */
+.chip-row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+
+/* ── BTN HINT PULSE ──────────────────────── */
+@keyframes bp-ring{0%{box-shadow:0 0 0 0 rgba(199,255,77,.55)}70%{box-shadow:0 0 0 8px rgba(199,255,77,0)}100%{box-shadow:0 0 0 0 rgba(199,255,77,0)}}
+.bp-hint{animation:bp-ring 1.4s ease infinite!important;position:relative;z-index:2}
+
+/* ── BTN PREVIEW PANEL ────────────────────── */
+#btn-preview{
+  background:linear-gradient(145deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.03) 50%,rgba(255,255,255,.06) 100%);
+  border:1px solid rgba(255,255,255,.18);
+  border-top-color:rgba(255,255,255,.32);
+  border-left-color:rgba(255,255,255,.22);
+  border-radius:1.5rem;
+  padding:2.5rem;
+  opacity:0;
+  transform:translateX(14px);
+  transition:opacity .38s cubic-bezier(.22,1,.36,1),transform .38s cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+  backdrop-filter:blur(40px) saturate(160%) brightness(1.08);
+  -webkit-backdrop-filter:blur(40px) saturate(160%) brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 -1px 0 rgba(0,0,0,.18),
+    inset 1px 0 0 rgba(255,255,255,.1),
+    0 8px 32px rgba(0,0,0,.35),
+    0 2px 8px rgba(0,0,0,.2);
+  position:relative;
+  overflow:hidden;
 }
-.lib-sh:first-child{border-top:none;padding-top:5rem}
-.lib-sh-num{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acid)}
-.lib-sh-title{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:1.4rem;color:#fff}
-
-/* ── BENTO GRID ──────────────────────────── */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:.75rem;margin-bottom:.75rem}
-.mod{
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);
-  border-radius:.875rem;padding:1.25rem;overflow:hidden;
-  display:flex;flex-direction:column;gap:.75rem;
+#btn-preview::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(160deg,rgba(255,255,255,.12) 0%,transparent 45%);
+  pointer-events:none;
 }
-.mod-label{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+#btn-preview.bp-visible{opacity:1;transform:translateX(0);pointer-events:auto}
+.bp-name{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acid);margin-bottom:1.35rem;display:flex;align-items:center;gap:.6rem}
+.bp-name::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--acid)}
+.bp-tabs{display:flex;gap:0;margin-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.bp-tab{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:.5rem 1.1rem .5rem 0;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s;background:none;border-top:none;border-left:none;border-right:none}
+.bp-tab.bp-tab-active{color:var(--acid);border-bottom-color:var(--acid)}
+.bp-pane{display:none}.bp-pane.bp-pane-active{display:block}
+.bp-code{font-family:'Space Mono',monospace;font-size:.72rem;line-height:1.8;color:rgba(255,255,255,.65);background:rgba(0,0,0,.35);border-radius:.75rem;padding:1.5rem;overflow-x:auto;white-space:pre;max-height:420px;overflow-y:auto;margin:0}
+.bp-copy-row{margin-top:.85rem;display:flex;justify-content:flex-end}
+.bp-copy-btn{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9999px;padding:.38rem .85rem;cursor:pointer;transition:color .2s,background .2s,border-color .2s}
+.bp-copy-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
+.bp-copy-btn.bp-copied{color:var(--acid);border-color:rgba(199,255,77,.3);background:rgba(199,255,77,.06)}
+/* syntax */
+.sh-tag{color:#7dd3fc}.sh-attr{color:#86efac}.sh-val{color:#fca5a5}.sh-str{color:#fdba74}.sh-prop{color:#c4b5fd}.sh-sel{color:#7dd3fc}.sh-cmt{color:rgba(255,255,255,.28)}
 
-/* ── SWATCH ──────────────────────────────── */
-.sw{display:flex;flex-direction:column;gap:0;border-radius:.5rem;overflow:hidden;flex:1;min-width:80px}
-.sw-c{height:48px}
-.sw-i{padding:.35rem .5rem;background:rgba(255,255,255,.04)}
-.sw-n{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:#fff}
-.sw-v{font-family:'Space Mono',monospace;font-size:.42rem;color:rgba(255,255,255,.3);margin-top:.1rem}
+/* ── FOOTER ───────────────────────────────── */
+footer.lib-foot{border-top:1px solid rgba(255,255,255,.06);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+footer.lib-foot a{color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
+footer.lib-foot a:hover{color:#fff}
 
-/* ── GLASS PILL ──────────────────────────── */
-.glass-pill{
-  padding:.5rem 1rem;border-radius:9999px;
-  font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+/* ── RUTAS SECTION ────────────────────────── */
+.rut-stack{position:relative;display:flex;gap:1.5rem;align-items:flex-end;padding-bottom:1rem}
+.rut-stack .rut-card:nth-child(2){transform:translateY(-20px)}
+.rut-stack .rut-card:nth-child(3){transform:translateY(-8px)}
+
+/* ── HALLAZGOS ────────────────────────────── */
+.hall-editorial{display:grid;grid-template-columns:1.5fr 1fr .75fr;gap:1.25rem;align-items:end}
+.hall-editorial .find{border-radius:1.25rem}
+
+/* ── AL-FRAGMENT scene ────────────────────── */
+.al-scene-editorial{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:.75rem}
+.al-scene-editorial .al-f1{grid-row:1/3;aspect-ratio:2/3}
+.al-scene-editorial .al-f2,.al-scene-editorial .al-f3,.al-scene-editorial .al-f4{aspect-ratio:1}
+.al-sq{position:relative;overflow:hidden;border-radius:.75rem;transition:transform .35s ease}
+.al-sq:hover{transform:scale(1.04)}
+
+/* ── OVERLAY CONTENT ──────────────────────── */
+.find-overlay-strong{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,11,8,.92) 0%,rgba(12,11,8,.35) 55%,transparent 100%);z-index:2}
+
+/* ── INFO GRID wrapper ────────────────────── */
+.ri-info-grid-wrap{border-radius:1rem;overflow:hidden}
+
+/* ── WIDE BUTTON ──────────────────────────── */
+.btn-wide{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem .55rem .55rem 1.25rem;border-radius:9999px;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media(max-width:768px){
+  .l-inner{padding:0 1.25rem}
+  #lib-hero{height:100svh}
+  .hall-editorial{grid-template-columns:1fr 1fr;gap:.75rem}
+  .hall-editorial .col-right{display:none}
+  .xct-card-offset{display:none}
+  .stats-4{grid-template-columns:1fr 1fr}
+  .prog-split-2{grid-template-columns:1fr}
+  .res-split{grid-template-columns:1fr}
+  .media-split-2{grid-template-columns:1fr}
+  .motion-grid-3{grid-template-columns:1fr 1fr}
+  .typo-two{grid-template-columns:1fr;gap:2.5rem}
+  .atlas-grid-2{grid-template-columns:1fr}
+  .al-scene-editorial{grid-template-columns:1fr 1fr}
+  .al-scene-editorial .al-f1{grid-row:auto;aspect-ratio:1}
+  .rut-stack{flex-wrap:wrap}
+  .rut-stack .rut-card{transform:none!important}
+
+  /* ── ui-library sections ─────────────────── */
+
+  /* COLOR — accordion tap en mobile */
+  #lib-color{scroll-margin-top:4rem;overflow:visible!important}
+  .color-card{
+    height:auto!important;overflow:visible!important;
+    flex-direction:column!important;gap:4px!important;margin-top:2rem
+  }
+  /* Todos los paneles: altura fija colapsada, sin flex */
+  .color-card .cc-panel{
+    flex:none!important;height:80px;
+    padding:0 1.25rem!important;
+    overflow:hidden;transition:height .42s cubic-bezier(.4,0,.2,1)
+  }
+  .color-card .cc-panel.cc-open{height:220px}
+  /* Mostrar label en todos los paneles cerrados (incluido :first-child) */
+  .color-card .cc-panel .cc-col{opacity:1!important;pointer-events:auto!important}
+  .color-card .cc-panel .cc-expand{opacity:0!important;pointer-events:none!important;padding:0 1.25rem;gap:1.25rem}
+  /* cc-open: mostrar expand, ocultar label */
+  .color-card .cc-panel.cc-open .cc-col{opacity:0!important;pointer-events:none!important}
+  .color-card .cc-panel.cc-open .cc-expand{opacity:1!important;pointer-events:auto!important}
+  #lib-color .l-inner > div[style*="gap:5rem"]{
+    grid-template-columns:1fr!important;gap:2.5rem!important
+  }
+
+  /* LOGO — variantes y reglas */
+  #lib-logo .l-inner > div[style*="repeat(3"]{
+    grid-template-columns:1fr!important;gap:1.25rem!important
+  }
+  #lib-logo .rv.d2[style*="grid"]{
+    grid-template-columns:1fr!important
+  }
+
+  /* TIPOGRAFÍA — typo-card y 3 cards */
+  #lib-typo{padding:3rem 0 2.5rem!important}
+  .typo-card{grid-template-columns:1fr!important}
+  #lib-typo .l-inner > div[style*="repeat(3"]{
+    grid-template-columns:1fr!important;gap:1.25rem!important
+  }
+  /* Composiciones font+escala: apilar en columna */
+  #typo-stage > div[style*="align-items:center"]{
+    flex-direction:column!important;align-items:center!important;
+    gap:.75rem!important;padding:1.25rem 0!important;text-align:center!important
+  }
+  #typo-stage .typo-split-line{font-size:clamp(2.2rem,11vw,3.2rem)!important;justify-content:center!important}
+  #typo-stage > div > div[style*="flex:1"]{align-items:center!important}
+  .typo-sep{margin:1.5rem 0!important}
+
+  /* HERO — imagen mobile */
+  #lib-hero-bg{background-image:url('ui assets/hero_uimobile.jpg')!important;background-position:center top!important}
+
+  /* ENCABEZADOS — centrado en mobile */
+  #lib-buttons .rv.on:has(.eyebrow),
+  #lib-buttons h2.rv,
+  #lib-typo .rv.on,
+  #lib-logo .rv.on{
+    text-align:center;display:flex;flex-direction:column;align-items:center
+  }
+
+  /* BOTONES — ocultar panel y conector, columna única */
+  #btn-preview{display:none!important}
+  #btn-connector{display:none!important}
+  #lib-buttons .l-inner > div[style*="460px"]{
+    grid-template-columns:1fr!important
+  }
+  #lib-buttons h2{margin-bottom:2rem!important}
+  #lib-buttons .rv.d2[style*="margin-bottom"],
+  #lib-buttons .rv.d3[style*="margin-bottom"]{margin-bottom:2rem!important}
+  #lib-buttons .btn-group-label{text-align:center}
+  #lib-buttons .rv > div[style*="flex-wrap"]{justify-content:center!important}
+  #lib-buttons .rv > div[style*="gap:1rem"]{justify-content:center!important}
+  #lib-buttons .chip-row{justify-content:center!important}
+  /* Dots — contraste mejorado en mobile */
+  #lib-buttons .xct-cards-dot{
+    width:7px!important;height:7px!important;border-radius:50%!important;
+    background:rgba(255,255,255,.45)!important;display:inline-block!important
+  }
+  #lib-buttons .xct-cards-dot.active{
+    background:var(--acid)!important;width:18px!important;border-radius:9999px!important
+  }
+  #lib-buttons .slider-dot{
+    width:7px!important;height:7px!important;border-radius:50%!important;
+    background:rgba(255,255,255,.4)!important;display:inline-block!important
+  }
+  #lib-buttons .slider-dot.active{background:#fff!important;transform:scale(1.3)!important}
+  #lib-buttons .ri-carousel-dot{
+    width:7px!important;height:7px!important;border-radius:50%!important;
+    background:rgba(199,255,77,.4)!important;display:inline-block!important
+  }
+  #lib-buttons .ri-carousel-dot.active{background:var(--acid)!important;transform:scale(1.4)!important}
+
+  /* CARDS · MOTION — columna única */
+  #lib-xct .l-inner > div[style*="1fr 1fr 1fr"]{
+    grid-template-columns:1fr!important;gap:1.5rem!important
+  }
+  #lib-xct .xct-card{max-width:100%!important}
+
+  /* GALERÍA — columna única vertical */
+  #lib-media .rv.d1[style*="1fr 1.5fr"]{
+    display:flex!important;
+    flex-direction:column!important;
+    overflow-x:visible!important;
+    scroll-snap-type:none!important;
+    gap:6px!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding:0!important
+  }
+  #lib-media .rv.d1[style*="1fr 1.5fr"] > *{
+    flex:unset!important;
+    width:100%!important;
+    scroll-snap-align:none!important;
+    min-width:0
+  }
+  #lib-media .rv.d1[style*="1fr 1.5fr"] img{height:220px!important}
 }
-
-/* ── FOOTER ──────────────────────────────── */
-footer{
-  border-top:1px solid rgba(255,255,255,.07);
-  padding:1.5rem 2rem;margin-top:4rem;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;
-  font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);
+@media(min-width:769px){
+  #lib-logo .rv.on:first-child{text-align:center;display:flex;flex-direction:column;align-items:center}
 }
-footer a{color:rgba(255,255,255,.4);text-decoration:none}
-footer a:hover{color:#fff}
 </style>
 </head>
 <body>
 
+<!-- SVG FILTERS -->
 <svg height="0" width="0" xmlns="http://www.w3.org/2000/svg" style="position:absolute">
   <defs>
     <filter id="octave1">
@@ -77,200 +408,555 @@ footer a:hover{color:#fff}
       <feDiffuseLighting in="n" surfaceScale="12" diffuseConstant="1" lighting-color="#d7bb98" result="lit"><feDistantLight azimuth="90" elevation="45"/></feDiffuseLighting>
       <feBlend in="lit" in2="SourceGraphic" mode="overlay"/>
     </filter>
+    <filter id="octave2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0004" numOctaves="8" seed="4" result="o1"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0001" numOctaves="8" seed="4" result="o3"/>
+      <feMerge result="fi"><feMergeNode in="o1"/><feMergeNode in="o3"/><feMergeNode in="o1"/><feMergeNode in="o3"/></feMerge>
+      <feGaussianBlur in="fi" stdDeviation="5" result="n"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.0008" numOctaves="8" seed="4" result="o1"/>
+      <feMerge result="n"><feMergeNode in="o1"/><feMergeNode in="n"/></feMerge>
+      <feGaussianBlur in="n" stdDeviation="5" result="n"/>
+      <feDiffuseLighting in="n" surfaceScale="12" diffuseConstant="1" lighting-color="#d1bf96" result="lit"><feDistantLight azimuth="-90" elevation="45"/></feDiffuseLighting>
+      <feBlend in="lit" in2="SourceGraphic" mode="overlay"/>
+    </filter>
   </defs>
 </svg>
 
-<!-- ── NAV (igual a index.html) ─────────────────── -->
+<!-- NAV -->
 <nav id="nav">
   <a href="index.html" class="lg n-logo" style="text-decoration:none;display:block">
     <img src="assets/white logo.png" alt="RAÍZ" style="height:20px;width:auto;display:block">
   </a>
   <div class="lg n-links">
-    <a href="#fundamentos">Fundamentos</a>
-    <a href="#componentes">Componentes</a>
+    <a href="#lib-color">Color</a>
+    <a href="#lib-logo">Logo</a>
+    <a href="#lib-typo">Tipografía</a>
+    <a href="#lib-buttons">Botones</a>
+    <a href="#lib-xct">Cards · Motion</a>
+    <a href="#lib-footer">Footer</a>
     <a href="index.html" class="n-cta">Ver web<svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:.35rem;flex-shrink:0"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
   </div>
   <div class="n-spacer" style="width:80px"></div>
   <button class="n-burger" id="nBurger" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 <div class="n-drawer" id="nDrawer">
-  <a href="#fundamentos" class="n-drawer-link">Fundamentos</a>
-  <a href="#componentes" class="n-drawer-link">Componentes</a>
+  <a href="#lib-color" class="n-drawer-link">Color</a>
+  <a href="#lib-logo" class="n-drawer-link">Logo</a>
+  <a href="#lib-typo" class="n-drawer-link">Tipografía</a>
+  <a href="#lib-buttons" class="n-drawer-link">Botones</a>
+  <a href="#lib-xct" class="n-drawer-link">Cards · Motion</a>
+  <a href="#lib-footer" class="n-drawer-link">Footer</a>
   <a href="index.html" class="n-drawer-cta">Ver web<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
 </div>
 <div class="n-drawer-overlay" id="nOverlay"></div>
 
-<!-- ── HEADER ───────────────────────────── -->
-<div class="lib-wrap" style="padding-top:7rem;padding-bottom:2rem">
-  <div style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2.5rem,5vw,4rem);color:#fff;line-height:.95;letter-spacing:-.03em">
-    Sistema <span style="color:var(--acid)">Visual</span>
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section id="lib-hero" class="ls">
+  <div id="lib-hero-bg"></div>
+  <div id="lib-hero-grad"></div>
+  <div class="noise-bg" style="position:absolute;inset:0;pointer-events:none;z-index:2;opacity:.55"></div>
+
+  <div class="l-inner" style="position:relative;z-index:4;padding-bottom:8rem;width:100%">
+    <h1 class="h-title rv d1" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;font-size:clamp(2.6rem,6vw,5rem);line-height:1.08;letter-spacing:-.01em;color:#fff;margin:0;max-width:13ch">
+      El lenguaje<br>que da forma<br>al <span style="color:var(--acid)">Atlas.</span>
+    </h1>
+    <div class="rv d2" style="display:flex;gap:1.25rem;margin-top:2.5rem;flex-wrap:wrap;align-items:center">
+      <a class="btn-primary lgs btn-wide" href="#lib-color">Explorar<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <a class="btn-acid btn-wide" href="index.html">Ver el Atlas<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    </div>
   </div>
-  <div style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:1rem">
-    v3.1 · index.html + restauracion-integral.html · main.css
-  </div>
-</div>
+
+  <div class="ls-fade-b"></div>
+</section>
 
 <!-- ══════════════════════════════════════════
-     FUNDAMENTOS
+     COLOR + GLASS
      ══════════════════════════════════════════ -->
-<div class="lib-wrap" id="fundamentos">
+<section id="lib-color" class="ls" style="padding:10rem 0 8rem;background:#0c0b08">
+  <div class="l-inner">
+    <div class="rv" style="text-align:center"><span class="eyebrow">Foundations · Color</span></div>
+    <h2 class="rv d1" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;line-height:1.08;letter-spacing:-.03em;margin:.75rem auto 5rem;max-width:16ch;text-align:center">Los colores que<br>construyen el <span style="color:var(--acid)">universo.</span></h2>
 
-  <div class="lib-sh"><span class="lib-sh-num">01</span><span class="lib-sh-title">Color</span></div>
-  <div class="bento">
-    <!-- Fondos -->
-    <div class="mod" style="grid-column:1/5">
-      <div class="mod-label">Fondos</div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-        <div class="sw"><div class="sw-c" style="background:#151210"></div><div class="sw-i"><div class="sw-n">--dk</div><div class="sw-v">#151210</div></div></div>
-        <div class="sw"><div class="sw-c" style="background:#1c1a12"></div><div class="sw-i"><div class="sw-n">--dk2</div><div class="sw-v">#1c1a12</div></div></div>
-        <div class="sw"><div class="sw-c" style="background:#F6F1E8"></div><div class="sw-i"><div class="sw-n">--bg</div><div class="sw-v">#F6F1E8</div></div></div>
-        <div class="sw"><div class="sw-c" style="background:#9A9288"></div><div class="sw-i"><div class="sw-n">--gr</div><div class="sw-v">#9A9288</div></div></div>
+    <!-- tokens accordion -->
+    <div class="color-card rv d1">
+
+      <div class="cc-panel" style="--c:#C7FF4D;--txt:#0a0a05;--bdr:rgba(0,0,0,.1)">
+        <div class="cc-col"><span class="cc-name-rot">Acid Green</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Acid<br>Green</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#C7FF4D</div>
+            <ul class="cc-uses">
+              <li>CTA y botones principales</li>
+              <li>Textos y spans de acento</li>
+              <li>Estados hover e interacción</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Acentos -->
-    <div class="mod" style="grid-column:5/9">
-      <div class="mod-label">Acentos</div>
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-        <div class="sw"><div class="sw-c" style="background:#C7FF4D"></div><div class="sw-i"><div class="sw-n">--acid</div><div class="sw-v">#C7FF4D</div></div></div>
-        <div class="sw"><div class="sw-c" style="background:#acc43a"></div><div class="sw-i"><div class="sw-n">acid dark</div><div class="sw-v">#acc43a</div></div></div>
-        <div class="sw"><div class="sw-c" style="background:#A66A44"></div><div class="sw-i"><div class="sw-n">--wood</div><div class="sw-v">#A66A44</div></div></div>
+
+      <div class="cc-panel" style="--c:#A66A44;--txt:rgba(255,255,255,.88);--bdr:rgba(255,255,255,.1)">
+        <div class="cc-col"><span class="cc-name-rot">Madera Viva</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Madera<br>Viva</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#A66A44</div>
+            <ul class="cc-uses">
+              <li>Tags y chips de categoría</li>
+              <li>Acento cálido frente al acid green</li>
+              <li>Contraste en botones secundarios</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      <div class="cc-panel" style="--c:#F6F1E8;--txt:#1c1a12;--bdr:rgba(0,0,0,.08)">
+        <div class="cc-col"><span class="cc-name-rot">Pergamino</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Perga-<br>mino</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#F6F1E8</div>
+            <ul class="cc-uses">
+              <li>Títulos sobre fondos oscuros</li>
+              <li>Texto de cuerpo en dark mode</li>
+              <li>Labels y captions cálidos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+<div class="cc-panel" style="--c:#9A9288;--txt:rgba(255,255,255,.88);--bdr:rgba(255,255,255,.1)">
+        <div class="cc-col"><span class="cc-name-rot">Arcilla</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Arcilla</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#9A9288</div>
+            <ul class="cc-uses">
+              <li>Texto secundario y metadatos</li>
+              <li>Captions y etiquetas</li>
+              <li>Líneas y bordes suaves</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-panel" style="--c:#151515;--txt:rgba(255,255,255,.75);--bdr:rgba(255,255,255,.08)">
+        <div class="cc-col"><span class="cc-name-rot">Grafito</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Grafito</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#151515</div>
+            <ul class="cc-uses">
+              <li>Texto de cuerpo oscuro</li>
+              <li>Superficies de cards dark</li>
+              <li>Fills de iconos y UI elementos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-panel" style="--c:#1c1a12;--txt:rgba(255,255,255,.75);--bdr:rgba(255,255,255,.08)">
+        <div class="cc-col"><span class="cc-name-rot">Turba</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Turba</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#1c1a12</div>
+            <ul class="cc-uses">
+              <li>Capas glass y overlays</li>
+              <li>Fondos de cards en dark</li>
+              <li>Segundas superficies oscuras</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-panel" style="--c:#151210;--txt:rgba(255,255,255,.75);--bdr:rgba(255,255,255,.08)">
+        <div class="cc-col"><span class="cc-name-rot">Tierra Negra</span></div>
+        <div class="cc-expand">
+          <div class="cc-big-name">Tierra<br>Negra</div>
+          <div class="cc-meta">
+            <div class="cc-hex">#151210</div>
+            <ul class="cc-uses">
+              <li>Hero, nav y secciones base</li>
+              <li>Fondo oscuro principal</li>
+              <li>Contexto para colores vivos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <!-- Opacidades -->
-    <div class="mod" style="grid-column:9/13">
-      <div class="mod-label">Opacidades sobre oscuro</div>
-      <div style="display:flex;flex-direction:column;gap:.4rem">
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:32px;height:12px;border-radius:2px;background:rgba(255,255,255,.85)"></div>
-          <span style="font-family:'Space Mono',monospace;font-size:.45rem;color:rgba(255,255,255,.45)">.85 · texto</span>
+
+    <!-- opacity + glass split -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start">
+      <div class="rv d2">
+        <div style="font-family:'Space Mono',monospace;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.25rem">Opacidades</div>
+        <div class="opaq-list">
+          <div class="opaq-panel"><div class="opaq-swatch" style="background:rgba(255,255,255,.85)"></div><span class="opaq-label">Texto principal</span><span class="opaq-val">.85</span></div>
+          <div class="opaq-panel"><div class="opaq-swatch" style="background:rgba(255,255,255,.72)"></div><span class="opaq-label">Cuerpo</span><span class="opaq-val">.72</span></div>
+          <div class="opaq-panel"><div class="opaq-swatch" style="background:rgba(255,255,255,.55)"></div><span class="opaq-label">Secundario</span><span class="opaq-val">.55</span></div>
+          <div class="opaq-panel"><div class="opaq-swatch" style="background:rgba(255,255,255,.28)"></div><span class="opaq-label">Metadata</span><span class="opaq-val">.28</span></div>
+          <div class="opaq-panel"><div class="opaq-swatch" style="background:rgba(255,255,255,.09)"></div><span class="opaq-label">Bordes glass</span><span class="opaq-val">.09</span></div>
+          <div class="opaq-panel"><div class="opaq-swatch" style="background:rgba(199,255,77,.2)"></div><span class="opaq-label">Acid · glow / hover</span><span class="opaq-val">.20</span></div>
         </div>
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:32px;height:12px;border-radius:2px;background:rgba(255,255,255,.55)"></div>
-          <span style="font-family:'Space Mono',monospace;font-size:.45rem;color:rgba(255,255,255,.45)">.55 · secundario</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:32px;height:12px;border-radius:2px;background:rgba(255,255,255,.28)"></div>
-          <span style="font-family:'Space Mono',monospace;font-size:.45rem;color:rgba(255,255,255,.45)">.28 · metadata</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:32px;height:12px;border-radius:2px;background:rgba(255,255,255,.07)"></div>
-          <span style="font-family:'Space Mono',monospace;font-size:.45rem;color:rgba(255,255,255,.45)">.07 · bordes</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:.6rem">
-          <div style="width:32px;height:12px;border-radius:2px;background:rgba(199,255,77,.2)"></div>
-          <span style="font-family:'Space Mono',monospace;font-size:.45rem;color:rgba(255,255,255,.45)">.2 acid · hover</span>
+      </div>
+      <div class="rv d3">
+        <div style="font-family:'Space Mono',monospace;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1.5rem">Glass system</div>
+        <div style="position:relative;border-radius:1.25rem;overflow:hidden">
+          <div style="position:absolute;inset:0;background:url('ui assets/glass-bg.jpg') center/cover;filter:brightness(.5) saturate(.8)"></div>
+          <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:.75rem;padding:1.5rem">
+            <div class="lg gcard"><span class="gcard-name">.lg</span><span class="gcard-desc">blur 8px · nav, logos, pills</span></div>
+            <div class="lgs gcard"><span class="gcard-name">.lgs</span><span class="gcard-desc">blur 50px · hero CTAs</span></div>
+            <div class="lgd gcard"><span class="gcard-name">.lgd</span><span class="gcard-desc">blur 12px · dark · slider-btn</span></div>
+            <div class="dark-glass gcard"><span class="gcard-name">.dark-glass</span><span class="gcard-desc">blur 22px · drawer</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="lib-sh"><span class="lib-sh-num">02</span><span class="lib-sh-title">Tipografía</span></div>
-  <div class="bento">
-    <!-- Fraunces -->
-    <div class="mod" style="grid-column:1/5">
-      <div class="mod-label">Fraunces 700 — títulos hero + RI</div>
-      <div style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2.4rem;color:#fff;line-height:.95;letter-spacing:-.03em">Restaurar es<br><span style="color:var(--acid)">comprender.</span></div>
-      <div style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:2rem;color:#fff;line-height:1;letter-spacing:-.03em">8<span style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acid);margin-left:.35rem">semanas</span></div>
-    </div>
-    <!-- Manrope + Space Mono -->
-    <div class="mod" style="grid-column:5/13">
-      <div class="mod-label">Manrope · Space Mono</div>
-      <div style="font-family:'Manrope',sans-serif;font-size:1rem;line-height:1.7;color:rgba(255,255,255,.72);font-weight:300">Explora las culturas, materiales y técnicas que transforman los muebles.</div>
-      <div class="ch" style="opacity:1;transform:none;margin-bottom:0"><span class="ch-bar" style="background:var(--acid)"></span><span class="ch-n" style="color:var(--acid)">04</span><span class="ch-l">Cursos</span></div>
-      <div class="ri-label">Programa Fundamental</div>
-      <div class="fc-eye">Próximo recorrido · Agosto 2026</div>
-    </div>
-  </div>
-
-  <div class="lib-sh"><span class="lib-sh-num">03</span><span class="lib-sh-title">Glass System</span></div>
-  <div class="bento" style="margin-bottom:3rem">
-    <div class="mod" style="grid-column:1/13;flex-direction:row;flex-wrap:wrap;gap:.75rem;padding:2rem;background:rgba(166,106,68,.1)">
-      <div class="glass-box lg" style="flex:1;min-width:160px;border-radius:.75rem;padding:1rem">
-        <div style="font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.2rem">.lg</div>
-        <div style="color:rgba(255,255,255,.7);font-size:.75rem">Base · nav, logos</div>
-      </div>
-      <div class="glass-box lgs" style="flex:1;min-width:160px;border-radius:.75rem;padding:1rem">
-        <div style="font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.2rem">.lgs</div>
-        <div style="color:rgba(255,255,255,.7);font-size:.75rem">Strong · hero CTAs</div>
-      </div>
-      <div class="glass-box lgw" style="flex:1;min-width:160px;border-radius:.75rem;padding:1rem">
-        <div style="font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.2rem">.lgw</div>
-        <div style="color:rgba(255,255,255,.7);font-size:.75rem">Warm · rf-chip, rutas</div>
-      </div>
-      <div class="glass-box lgd" style="flex:1;min-width:160px;border-radius:.75rem;padding:1rem">
-        <div style="font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.2rem">.lgd</div>
-        <div style="color:rgba(255,255,255,.7);font-size:.75rem">Dark · secciones</div>
-      </div>
-      <div class="dark-glass" style="flex:1;min-width:160px;padding:1rem">
-        <div style="font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.2rem">.dark-glass</div>
-        <div style="color:rgba(255,255,255,.7);font-size:.75rem">Panel · nav drawer</div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /fundamentos -->
+</section>
 
 <!-- ══════════════════════════════════════════
-     COMPONENTES
+     LOGO · IDENTIDAD
      ══════════════════════════════════════════ -->
-<div class="lib-wrap" id="componentes">
+<section id="lib-logo" class="ls" style="padding:5rem 0;background:#0c0b08;border-top:1px solid rgba(255,255,255,.05)">
+  <div class="l-inner">
+    <div class="rv">
+      <span class="eyebrow" style="display:block;margin-bottom:1rem">Logo · Identidad · Variantes</span>
+      <h2 style="font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.2rem,4vw,3.5rem);line-height:1.05;color:#fff;margin:0 0 3rem">La marca en<br><span style="color:var(--acid)">su contexto.</span></h2>
+    </div>
 
-  <div class="lib-sh"><span class="lib-sh-num">04</span><span class="lib-sh-title">Botones</span></div>
-  <div class="bento">
-    <div class="mod" style="grid-column:1/13;flex-direction:row;flex-wrap:wrap;align-items:center;gap:1rem">
-      <a class="btn-primary lgs" style="display:inline-flex;align-items:center;gap:.6rem;padding:.55rem .55rem .55rem 1.25rem;border-radius:9999px;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">
-        btn-primary<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span>
-      </a>
-      <a class="btn-acid" style="display:inline-flex;align-items:center;gap:.6rem;padding:.55rem .55rem .55rem 1.25rem;border-radius:9999px;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">
-        btn-acid<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span>
-      </a>
-      <a class="btn-dark" style="display:inline-flex;align-items:center;gap:.6rem;padding:.55rem .55rem .55rem 1.25rem;border-radius:9999px;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">
-        btn-dark<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span>
-      </a>
-      <a class="fc-btn">fc-btn<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+    <!-- grid de variantes -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem" class="rv d1">
+
+      <!-- blanco sobre oscuro -->
+      <div style="border-radius:1.25rem;overflow:hidden">
+        <div style="background:#0c0b08;border:1px solid rgba(255,255,255,.07);border-radius:1.25rem 1.25rem 0 0;padding:2.5rem;display:flex;align-items:center;justify-content:center;min-height:160px">
+          <img src="assets/white logo.png" alt="Logo RAÍZ blanco" style="height:32px;width:auto">
+        </div>
+        <div style="padding:1rem 1.25rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-top:none;border-radius:0 0 1.25rem 1.25rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Variante · White</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.5)">Sobre fondos oscuros — uso principal</div>
+        </div>
+      </div>
+
+      <!-- acid sobre oscuro -->
+      <div style="border-radius:1.25rem;overflow:hidden">
+        <div style="background:#111009;border:1px solid rgba(255,255,255,.07);border-radius:1.25rem 1.25rem 0 0;padding:2.5rem;display:flex;align-items:center;justify-content:center;min-height:160px">
+          <img src="assets/acid logo.png" alt="Logo RAÍZ acid" style="height:32px;width:auto">
+        </div>
+        <div style="padding:1rem 1.25rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-top:none;border-radius:0 0 1.25rem 1.25rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Variante · Acid</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.5)">Sobre fondos muy oscuros — acento primario</div>
+        </div>
+      </div>
+
+      <!-- negro sobre claro -->
+      <div style="border-radius:1.25rem;overflow:hidden">
+        <div style="background:#F6F1E8;border:1px solid rgba(0,0,0,.08);border-radius:1.25rem 1.25rem 0 0;padding:2.5rem;display:flex;align-items:center;justify-content:center;min-height:160px">
+          <img src="assets/black logo.png" alt="Logo RAÍZ negro" style="height:32px;width:auto">
+        </div>
+        <div style="padding:1rem 1.25rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-top:none;border-radius:0 0 1.25rem 1.25rem">
+          <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:.3rem">Variante · Black</div>
+          <div style="font-size:.78rem;color:rgba(255,255,255,.5)">Sobre fondos claros — materiales impresos</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- reglas de uso -->
+    <div class="rv d2" style="margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+
+      <div style="border:1px solid rgba(255,255,255,.07);border-radius:1.25rem;padding:1.5rem;background:rgba(255,255,255,.02)">
+        <div style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(199,255,77,.6);margin-bottom:1rem">✓ Usos correctos</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem">
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:var(--acid)">—</span>Logo blanco sobre fondos #0c0b08 o más oscuros</li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:var(--acid)">—</span>Logo acid como acento sobre fondo muy oscuro</li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:var(--acid)">—</span>Logo negro sobre crema (#F6F1E8) o blanco puro</li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:var(--acid)">—</span>Mínimo 20px de alto en digital, 6mm en impresión</li>
+        </ul>
+      </div>
+
+      <div style="border:1px solid rgba(255,80,80,.15);border-radius:1.25rem;padding:1.5rem;background:rgba(255,50,50,.03)">
+        <div style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,100,100,.6);margin-bottom:1rem">✗ Usos incorrectos</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem">
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:rgba(255,100,100,.7)">—</span>No rotar ni deformar el logotipo</li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:rgba(255,100,100,.7)">—</span>No usar sobre fondos con contraste insuficiente</li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:rgba(255,100,100,.7)">—</span>No aplicar efectos de sombra o gradiente sobre el logo</li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.6);display:flex;gap:.6rem"><span style="color:rgba(255,100,100,.7)">—</span>No usar la variante acid sobre fondos claros</li>
+        </ul>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <div class="lib-sh"><span class="lib-sh-num">05</span><span class="lib-sh-title">Chips · Nav drawer</span></div>
-  <div class="bento">
-    <!-- rf-chip -->
-    <div class="mod" style="grid-column:1/5;background:linear-gradient(135deg,#2a2318,#1c1a12);border-color:rgba(255,255,255,.1)">
-      <div class="mod-label">rf-chip · rutas</div>
-      <div style="display:flex;flex-direction:column;gap:.5rem;align-items:flex-start">
-        <a class="lgw rf-chip" style="text-decoration:none"><span class="rf-chip-pre">Expresividad · </span>Materialidad cálida</a>
-        <a class="lgw rf-chip" style="text-decoration:none">Geometría · Vacío funcional</a>
-        <a class="lgw rf-chip" style="text-decoration:none">Craft · Ensambles · Precisión</a>
-      </div>
+<!-- ══════════════════════════════════════════
+     TYPOGRAPHY
+     ══════════════════════════════════════════ -->
+<section id="lib-typo" class="ls" style="padding:5rem 0 4rem;background:#0c0b08;border-top:1px solid rgba(255,255,255,.05)">
+  <div class="l-inner">
+    <div class="rv">
+      <span class="eyebrow" style="display:block;margin-bottom:1rem">Tipografía · Escala visual</span>
+      <h2 style="font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.2rem,4vw,3.5rem);line-height:1.05;color:#fff;margin:0 0 2.5rem">Voces del<br><span style="color:var(--acid)">sistema.</span></h2>
     </div>
-    <!-- hall-chip -->
-    <div class="mod" style="grid-column:5/8;background:#acc43a">
-      <div class="mod-label" style="color:rgba(21,18,16,.5)">hall-chip · hallazgos</div>
-      <div style="display:flex;flex-wrap:wrap;gap:.5rem">
-        <span class="hall-chip">Materiales</span>
-        <span class="hall-chip">Artesanía</span>
-        <span class="hall-chip">Restauración</span>
+
+    <!-- char-split stage -->
+    <div id="typo-stage" style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0">
+
+      <!-- Fraunces row -->
+      <div style="display:flex;align-items:center;gap:3rem;padding:.75rem 0">
+        <div class="typo-split-line" data-font="fraunces" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-style:normal;font-size:clamp(2.2rem,5.5vw,5rem);line-height:.88;letter-spacing:-.04em;color:#F6F1E8;overflow:hidden;display:flex;flex-shrink:0">Fraunces</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:0">
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">5rem</span><span class="ts-line"></span><span class="ts-desc">Hero · .h-title</span></div>
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">3.5rem</span><span class="ts-line"></span><span class="ts-desc">Sec. title</span></div>
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">2rem</span><span class="ts-line"></span><span class="ts-desc">Sub. title</span></div>
+        </div>
       </div>
+
+      <!-- divider -->
+      <div style="height:1px;background:rgba(255,255,255,.1);width:100%"></div>
+
+      <!-- Manrope row -->
+      <div style="display:flex;align-items:center;gap:3rem;padding:.75rem 0">
+        <div class="typo-split-line" data-font="manrope" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:clamp(2.2rem,5.5vw,5rem);line-height:.88;letter-spacing:-.04em;color:#F6F1E8;overflow:hidden;display:flex;flex-shrink:0">Manrope</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:0">
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">1.05rem</span><span class="ts-line"></span><span class="ts-desc">Body</span></div>
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">0.88rem</span><span class="ts-line"></span><span class="ts-desc">UI · Botones</span></div>
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">0.82rem</span><span class="ts-line"></span><span class="ts-desc">Cards meta</span></div>
+        </div>
+      </div>
+
+      <!-- divider -->
+      <div style="height:1px;background:rgba(255,255,255,.1);width:100%"></div>
+
+      <!-- Space Mono row -->
+      <div style="display:flex;align-items:center;gap:3rem;padding:.75rem 0">
+        <div class="typo-split-line" data-font="mono" style="font-family:'Space Mono',monospace;font-weight:700;font-size:clamp(2.2rem,5.5vw,5rem);line-height:.88;letter-spacing:-.04em;color:#F6F1E8;overflow:hidden;display:flex;flex-shrink:0">Space Mono</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:0">
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">0.85rem</span><span class="ts-line"></span><span class="ts-desc">Labels</span></div>
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">0.72rem</span><span class="ts-line"></span><span class="ts-desc">Chips · Nav</span></div>
+          <div class="ts-row" style="--c:rgba(246,241,232,1)"><span class="ts-label">0.55rem</span><span class="ts-line"></span><span class="ts-desc">Eyebrows</span></div>
+        </div>
+      </div>
+
     </div>
-    <!-- drawer -->
-    <div class="mod" style="grid-column:8/13">
-      <div class="mod-label">n-drawer · n-drawer-cta</div>
-      <div style="display:flex;flex-direction:column;gap:0">
-        <a class="n-drawer-link" style="position:relative;pointer-events:none">Fundamentos</a>
-        <a class="n-drawer-link" style="position:relative;pointer-events:none">Componentes</a>
+
+    <div class="typo-sep" style="height:1px;background:rgba(255,255,255,.07);margin:2.5rem 0"></div>
+
+    <!-- 3 cards interactivas -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem">
+
+      <!-- Fraunces -->
+      <div class="tc-card lgd rv d1">
+        <div>
+          <div class="tc-name" style="font-family:'Fraunces',Georgia,serif">Fraunces</div>
+          <div class="tc-tag">Display · Serif · 700</div>
+        </div>
+        <ul class="tc-list">
+          <li>Hero y títulos principales — el tamaño más grande del sistema, establece el tono visual desde el primer scroll</li>
+          <li>Cabezales de programa en Restauración Integral — organiza módulos y capas con autoridad sin itálica</li>
+          <li>Secciones editoriales — frases cortas de alto impacto con clamp para escalar entre mobile y desktop</li>
+        </ul>
       </div>
-      <a class="n-drawer-cta" style="position:relative;margin-top:.75rem">
-        Ver web<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span>
-      </a>
+
+      <!-- Manrope -->
+      <div class="tc-card lgd rv d2">
+        <div>
+          <div class="tc-name" style="font-family:'Manrope',sans-serif;letter-spacing:-.02em">Manrope</div>
+          <div class="tc-tag">Body · Sans-serif · 300–700</div>
+        </div>
+        <ul class="tc-list">
+          <li>Cuerpo de texto largo — weight 300 a 1rem–1.05rem con line-height 1.78 en módulos de RI y rutas XCT</li>
+          <li>Botones e interacciones — weight 500–700 en .btn-* y .n-cta donde la legibilidad a tamaño pequeño es crítica</li>
+          <li>Metadatos de cards — subtítulos, fechas y datos secundarios a 0.82–0.9rem en sliders, footers y fichas</li>
+        </ul>
+      </div>
+
+      <!-- Space Mono -->
+      <div class="tc-card lgd rv d3">
+        <div>
+          <div class="tc-name" style="font-family:'Space Mono',monospace;letter-spacing:-.03em">Space Mono</div>
+          <div class="tc-tag">Monospace · UI · 400</div>
+        </div>
+        <ul class="tc-list">
+          <li>Labels de programa — .ri-label, .ri-num numeran módulos y marcan estados con opacidad escalonada</li>
+          <li>Tokens de color — hex codes y variables CSS en el acordeón de paleta del sistema visual</li>
+          <li>Chips y navegación — 0.72rem con letter-spacing .16em en .btn-*, .rf-chip, .n-cta y eyebrows</li>
+        </ul>
+      </div>
+
     </div>
   </div>
+</section>
+<script>
+(function(){
+  var stage = document.getElementById('typo-stage');
+  if(!stage) return;
 
-  <div class="lib-sh"><span class="lib-sh-num">06</span><span class="lib-sh-title">XCT Card</span></div>
-  <div class="bento">
-    <!-- Card desktop -->
-    <div class="mod" style="grid-column:1/4;padding:.75rem;background:transparent;border:none">
-      <div class="mod-label">desktop</div>
-      <div class="xct-card" style="width:100%">
-        <div class="xct-card-img"><img src="assets/curso1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+  // Split each line into char spans
+  var lines = stage.querySelectorAll('.typo-split-line');
+  var allChars = [];
+  lines.forEach(function(line, li){
+    var text = line.textContent;
+    line.textContent = '';
+    // line offset so chars of line 2 start after line 1 finishes
+    var lineOffset = li * 60;
+    for(var i = 0; i < text.length; i++){
+      var span = document.createElement('span');
+      span.textContent = text[i] === ' ' ? ' ' : text[i];
+      span.style.cssText = 'display:inline-block;transform:translateY(80px);opacity:0;will-change:transform,opacity';
+      span.dataset.delay = lineOffset + i * 28;
+      line.appendChild(span);
+      allChars.push(span);
+    }
+  });
+
+  var timers = [];
+  function runAnim(){
+    timers.forEach(clearTimeout);
+    timers = [];
+    allChars.forEach(function(ch){
+      ch.style.transition = 'none';
+      ch.style.transform = 'translateY(80px)';
+      ch.style.opacity = '0';
+    });
+    allChars.forEach(function(ch){
+      var d = parseInt(ch.dataset.delay);
+      timers.push(setTimeout(function(){
+        ch.style.transition = 'transform .6s cubic-bezier(.22,1,.36,1), opacity .4s ease';
+        ch.style.transform = 'translateY(0)';
+        ch.style.opacity = '1';
+      }, d + 40));
+    });
+  }
+  function resetAnim(){
+    timers.forEach(clearTimeout);
+    timers = [];
+    allChars.forEach(function(ch){
+      ch.style.transition = 'transform .3s ease, opacity .2s ease';
+      ch.style.transform = 'translateY(80px)';
+      ch.style.opacity = '0';
+    });
+  }
+
+  var obs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting) runAnim();
+    else resetAnim();
+  }, {threshold: 0.25});
+  obs.observe(stage);
+})();
+</script>
+
+<!-- ══════════════════════════════════════════
+     BUTTONS + NAVIGATION
+     ══════════════════════════════════════════ -->
+<section id="lib-buttons" class="ls" style="padding:9rem 0 8rem;background:linear-gradient(180deg,#0c0b08 0%,#111009 100%);border-top:1px solid rgba(255,255,255,.05);position:relative">
+  <!-- SVG connector overlay -->
+  <svg id="btn-connector" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;opacity:0;transition:opacity .3s">
+    <path id="btn-connector-path" fill="none" stroke="rgba(199,255,77,.35)" stroke-width="1.5" stroke-dasharray="4 5" stroke-linecap="round"/>
+    <circle id="btn-connector-dot-start" r="3" fill="var(--acid)" opacity="0.7"/>
+    <circle id="btn-connector-dot-end" r="3" fill="var(--acid)" opacity="0.7"/>
+  </svg>
+
+  <div class="l-inner">
+    <!-- grid: botones (izq) + panel (der) -->
+    <div style="display:grid;grid-template-columns:1fr 460px;gap:3rem;align-items:start">
+
+      <!-- columna izquierda: título + grupos de botones -->
+      <div>
+        <div class="rv"><span class="eyebrow">Botones · Navegación · Chips</span></div>
+        <h2 class="rv d1" style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(2rem,4vw,3.5rem);color:#fff;line-height:1;letter-spacing:-.03em;margin:.75rem 0 4rem">Cada acción<br>tiene una <span style="color:var(--acid)">forma.</span></h2>
+        <!-- grupo: acciones principales -->
+        <div class="rv d2" style="margin-bottom:3rem">
+          <div class="btn-group-label">Acciones · CTA</div>
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center">
+            <a class="btn-primary lgs btn-wide" data-preview="btn-primary" style="text-decoration:none">btn-primary<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a class="btn-acid btn-wide" data-preview="btn-acid" style="text-decoration:none">btn-acid<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a class="btn-dark btn-wide" data-preview="btn-dark" style="text-decoration:none">btn-dark<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          </div>
+        </div>
+
+        <!-- grupo: navegación y texto -->
+        <div class="rv d2" style="margin-bottom:3rem">
+          <div class="btn-group-label">Navegación · Texto</div>
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center">
+            <a class="fc-btn" data-preview="fc-btn" style="text-decoration:none">fc-btn<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <button class="btn-nav-cta" data-preview="btn-nav-cta" type="button">btn-nav-cta<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></button>
+            <a class="n-cta" data-preview="n-cta" style="text-decoration:none">n-cta<svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:.35rem"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a class="n-cta n-cta--dark" data-preview="n-cta-dark" style="text-decoration:none">n-cta<svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:.35rem"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <!-- grupo: controles de carrusel -->
+        <div class="rv d3" style="margin-bottom:3rem">
+          <div class="btn-group-label">Controles · Carrusel · Dots</div>
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+            <button class="lgd slider-btn" data-preview="slider-btn" aria-label="Anterior"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="lgd slider-btn" data-preview="slider-btn" aria-label="Siguiente"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="xct-prev xct-sb" data-preview="xct-sb" aria-label="Anterior"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="xct-next xct-sb" data-preview="xct-sb" aria-label="Siguiente"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <span style="width:1px;height:28px;background:rgba(255,255,255,.1)"></span>
+            <span class="xct-cards-dot active" data-preview="dot-xct"></span><span class="xct-cards-dot" data-preview="dot-xct"></span><span class="xct-cards-dot" data-preview="dot-xct"></span>
+            <span class="slider-dot active" data-preview="dot-slider"></span><span class="slider-dot" data-preview="dot-slider"></span><span class="slider-dot" data-preview="dot-slider"></span>
+            <span class="ri-carousel-dot active" data-preview="dot-ri"></span><span class="ri-carousel-dot" data-preview="dot-ri"></span><span class="ri-carousel-dot" data-preview="dot-ri"></span>
+          </div>
+        </div>
+
+        <!-- grupo: chips y etiquetas -->
+        <div class="rv d3">
+          <div class="btn-group-label">Chips · Tags · Etiquetas</div>
+          <div class="chip-row">
+            <a class="lgw rf-chip" data-preview="rf-chip" style="text-decoration:none"><span class="rf-chip-pre">Expresividad · </span>Materialidad cálida</a>
+            <a class="lgw rf-chip" data-preview="rf-chip" style="text-decoration:none">Geometría · Vacío funcional</a>
+            <span class="xct-card-off" data-preview="xct-card-off">20% off</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- columna derecha: panel de código -->
+      <div style="position:sticky;top:100px">
+        <div id="btn-preview">
+          <div class="bp-name" id="bp-title">btn-primary</div>
+          <div class="bp-tabs">
+            <button class="bp-tab bp-tab-active" data-tab="html">HTML</button>
+            <button class="bp-tab" data-tab="css">CSS</button>
+          </div>
+          <div class="bp-pane bp-pane-active" id="bp-pane-html">
+            <pre class="bp-code" id="bp-html-code"></pre>
+          </div>
+          <div class="bp-pane" id="bp-pane-css">
+            <pre class="bp-code" id="bp-css-code"></pre>
+          </div>
+          <div class="bp-copy-row">
+            <button class="bp-copy-btn" id="bp-copy">Copiar código</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     XCT · PROGRAMA · MOTION
+     ══════════════════════════════════════════ -->
+<section id="lib-xct" class="ls" style="padding:5rem 0;background:#0c0b08;border-top:1px solid rgba(255,255,255,.05)">
+  <span id="lib-hallazgos" style="position:absolute;visibility:hidden"></span>
+  <div class="l-inner">
+    <div class="rv" style="text-align:center">
+      <span class="eyebrow" style="display:block;margin-bottom:1rem">Cards · Programa · Motion</span>
+      <h2 style="font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.2rem,4vw,3.5rem);line-height:1.05;color:#fff;margin:0 auto 2.5rem">Componentes de<br><span style="color:var(--acid)">contenido.</span></h2>
+    </div>
+
+    <!-- fila 1: cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem;align-items:start">
+
+      <!-- COL 1: xct-card -->
+      <div class="xct-card rv d1" style="max-width:340px">
+        <div class="xct-card-img"><img src="assets/curso1.jpg" alt="Restauración Integral" loading="lazy"></div>
         <div class="xct-card-body">
           <span class="xct-card-cat">Programa Fundamental</span>
           <h3 class="xct-card-title">Restauración Integral</h3>
@@ -280,215 +966,512 @@ footer a:hover{color:#fff}
             <span class="xct-card-original">$148.000</span>
             <div class="xct-card-price">$118.000</div>
           </div>
-          <a class="btn-dark xct-card-cta" style="text-decoration:none">Explorar recorrido<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <a href="javascript:void(0)" class="btn-dark xct-card-cta" style="text-decoration:none">Explorar recorrido<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
         </div>
       </div>
-    </div>
-    <!-- Card mobile darkglass -->
-    <div class="mod" style="grid-column:4/6;padding:.75rem;background:transparent;border:none">
-      <div class="mod-label">mobile · darkglass</div>
-      <div style="aspect-ratio:2/3;position:relative;overflow:hidden;border-radius:.875rem">
-        <img src="assets/curso2.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;top:45%;left:0;right:0;bottom:0;background:rgba(10,7,4,.62);backdrop-filter:blur(18px);border-top:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:.6rem .6rem .75rem;text-align:center">
-          <div>
-            <div style="font-family:'Space Mono',monospace;font-size:.4rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)">Lab Material</div>
-            <div style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:.75rem;color:#fff;line-height:1.1;margin-top:.15rem">Materiales y Acabados</div>
-            <div style="font-family:'Manrope',sans-serif;font-size:.5rem;color:rgba(255,255,255,.42);margin-top:.15rem">06 sem · Híbrido</div>
+
+      <!-- COL 2: ri-prog-items + banter-loader -->
+      <div class="rv d2" style="display:flex;flex-direction:column;gap:1.25rem">
+        <div style="border:1px solid rgba(255,255,255,.1);border-radius:.875rem;overflow:hidden">
+          <div class="ri-prog-item" style="padding:1.25rem;position:relative;background:rgba(255,255,255,.04)">
+            <div class="ri-prog-accent" style="position:absolute;top:0;left:0;width:2px;height:100%;background:var(--acid)"></div>
+            <div class="ri-prog-num" style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:rgba(199,255,77,.7);text-transform:uppercase;margin-bottom:.6rem">01 · Módulo</div>
+            <div class="ri-prog-name" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;color:#fff;line-height:1.1;margin-bottom:.4rem">Lectura de objeto</div>
+            <div class="ri-prog-desc" style="font-size:.82rem;color:rgba(255,255,255,.55)">Descifrar un mueble como documento material.</div>
           </div>
-          <div style="text-align:center">
-            <div style="font-family:'Manrope',sans-serif;font-size:.58rem;font-weight:600;color:rgba(255,255,255,.5);text-decoration:line-through">$115.000</div>
-            <div style="font-family:'Manrope',sans-serif;font-size:.85rem;font-weight:700;color:#fff">$89.000</div>
+          <div class="ri-prog-item" style="padding:1.25rem;position:relative;border-top:1px solid rgba(255,255,255,.08)">
+            <div class="ri-prog-accent" style="position:absolute;top:0;left:0;width:2px;height:0;background:var(--acid)"></div>
+            <div class="ri-prog-num" style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:rgba(199,255,77,.5);text-transform:uppercase;margin-bottom:.6rem">02 · Módulo</div>
+            <div class="ri-prog-name" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;color:#fff;line-height:1.1;margin-bottom:.4rem">Materiales</div>
+            <div class="ri-prog-desc" style="font-size:.82rem;color:rgba(255,255,255,.45)">Maderas, metales, textiles y acabados históricos.</div>
           </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;align-self:stretch;background:rgba(10,7,4,.48);border:1px solid rgba(255,255,255,.09);border-radius:9999px;padding:.35rem .35rem .35rem .65rem">
-            <span style="font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);white-space:nowrap">Explorar recorrido</span>
-            <span class="fc-btn-icon" style="width:18px;height:18px;flex-shrink:0"><svg width="9" height="9" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span>
+          <div class="ri-prog-item" style="padding:1.25rem;position:relative;border-top:1px solid rgba(255,255,255,.08)">
+            <div class="ri-prog-accent" style="position:absolute;top:0;left:0;width:2px;height:0;background:var(--acid)"></div>
+            <div class="ri-prog-num" style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:rgba(199,255,77,.4);text-transform:uppercase;margin-bottom:.6rem">03 · Módulo</div>
+            <div class="ri-prog-name" style="font-family:'Manrope',sans-serif;font-weight:700;font-size:1rem;color:#fff;line-height:1.1;margin-bottom:.4rem">Técnicas de intervención</div>
+            <div class="ri-prog-desc" style="font-size:.82rem;color:rgba(255,255,255,.45)">Restaurar con criterio y método histórico.</div>
           </div>
         </div>
+        <div class="motion-cell">
+          <div class="banter-loader" id="motion-banter"></div>
+          <div class="motion-label">banter-loader<br>3×3 · page intro</div>
+        </div>
       </div>
-    </div>
-    <!-- xct-item carousel -->
-    <div class="mod" style="grid-column:6/13">
-      <div class="mod-label">xct carousel item (focused)</div>
-      <div class="xct-item xct-focused" style="flex:none;width:100%;transform:scale(1);filter:brightness(1)">
-        <div class="xct-media" style="aspect-ratio:16/9">
-          <img src="assets/curso1.jpg" alt="" class="xct-poster" style="filter:brightness(.82) saturate(.9)">
-          <div class="xct-course-name">Restauración Integral</div>
-          <div class="xct-avatar">
-            <img src="assets/CP3.jpg" alt="" class="xct-avatar-img">
-            <div class="xct-avatar-info">
-              <span class="xct-avatar-role">Docente</span>
-              <span class="xct-avatar-name">Marcos Herrera</span>
+
+      <!-- COL 3: ri-faq + hotspot -->
+      <div class="rv d3" style="display:flex;flex-direction:column;gap:1.25rem">
+        <div>
+          <span class="eyebrow" style="display:block;margin-bottom:1.25rem">FAQ · ri-faq</span>
+          <div class="ri-faq-list">
+            <details class="ri-faq-item" open>
+              <summary class="ri-faq-q">¿Necesito experiencia previa en restauración?</summary>
+              <p class="ri-faq-a">No es necesario. El programa está diseñado para iniciarse desde cero con criterio.</p>
+            </details>
+            <details class="ri-faq-item">
+              <summary class="ri-faq-q">¿Es presencial o online?</summary>
+              <p class="ri-faq-a">100% presencial en Buenos Aires. El formato en persona es parte del método.</p>
+            </details>
+            <details class="ri-faq-item">
+              <summary class="ri-faq-q">¿Cuándo es la próxima edición?</summary>
+              <p class="ri-faq-a">Agosto 2026. Plazas limitadas a 24 participantes.</p>
+            </details>
+            <details class="ri-faq-item">
+              <summary class="ri-faq-q">¿Qué incluye el programa?</summary>
+              <p class="ri-faq-a">8 semanas, 3 módulos, acompañamiento 1:1 y acceso al archivo de materiales.</p>
+            </details>
+          </div>
+        </div>
+        <div class="motion-cell" style="flex-direction:row;gap:.75rem;align-items:center;padding:.75rem 1rem;min-height:0">
+          <div style="position:relative;width:36px;height:36px;display:flex;align-items:center;justify-content:center;overflow:visible;flex-shrink:0">
+            <div class="hotspot" style="position:relative;top:auto;left:auto;overflow:visible">
+              <div class="hs-dot"></div>
+              <div class="hs-card" style="opacity:1;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;width:180px">
+                <div class="hs-num">Capa 01 · Superficie</div>
+                <div class="hs-name">Historia</div>
+                <div class="hs-desc">Marcas de uso y acabados previos.</div>
+              </div>
             </div>
           </div>
-          <a class="xct-cta-preview btn-dark" style="text-decoration:none">Explorar recorrido<span class="fc-btn-icon"><svg width="12" height="12" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+          <div class="motion-label" style="text-align:left;margin:0">Hotspot · sobre imagen</div>
         </div>
       </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     MEDIA — CP-FRAMES + AL-FRAGMENTS + VIDEO
+     ══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     GALERÍA VISUAL
+     ══════════════════════════════════════════ -->
+<section id="lib-media" class="ls" style="padding:5rem 0 0;background:#0f0d09;border-top:1px solid rgba(255,255,255,.05);overflow:hidden">
+  <div class="l-inner">
+    <div class="rv" style="text-align:center;max-width:600px;margin:0 auto 3rem">
+      <span class="eyebrow" style="display:block;margin-bottom:1rem">Imágenes · Sistema visual</span>
+      <h2 style="font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,3.5vw,3rem);color:#fff;line-height:1.05;letter-spacing:-.03em;margin:0">La textura visual<br>del <span style="color:var(--acid)">sistema.</span></h2>
     </div>
   </div>
 
-  <div class="lib-sh"><span class="lib-sh-num">07</span><span class="lib-sh-title">Rutas · Hallazgos · Slider</span></div>
-  <div class="bento">
-    <!-- rut-card -->
-    <div class="mod" style="grid-column:1/4;background:#1c1a12;border-color:rgba(255,255,255,.08);padding:.75rem">
-      <div class="mod-label">rut-card</div>
-      <div class="rut-card" style="position:relative;width:100%;height:180px;border-radius:14px;overflow:hidden">
-        <div style="position:absolute;inset:0;background-image:url('assets/BRA 01.jpg');background-size:cover;background-position:center;filter:brightness(.7) saturate(.9)"></div>
-        <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:.9rem 1rem;font-family:'Space Mono',monospace">
-          <span style="display:flex;align-items:center;gap:.4rem;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85)">
-            <span style="width:5px;height:5px;border-radius:50%;background:var(--wood);display:inline-block"></span>23°S · Brasil
-          </span>
-          <div>
-            <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;color:#fff;line-height:1;margin-bottom:.4rem">Fluidez</div>
-            <a class="lgw rf-chip" style="text-decoration:none;font-size:.52rem;padding:.22rem .6rem"><span class="rf-chip-pre">Expresividad · </span>Materialidad cálida</a>
+  <!-- galería mosaico full-bleed -->
+  <div class="rv d1" style="display:grid;grid-template-columns:1fr 1.5fr 1fr 1.5fr 1fr;gap:6px;margin-top:1rem">
+
+    <!-- col 1: 2 apiladas -->
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="overflow:hidden">
+        <img src="ui assets/g1 (1).jpg" alt="" style="width:100%;height:280px;object-fit:cover;display:block">
+      </div>
+      <div style="overflow:hidden">
+        <img src="ui assets/g1 (5).jpg" alt="" style="width:100%;height:260px;object-fit:cover;display:block">
+      </div>
+    </div>
+
+    <!-- col 2: tall -->
+    <div style="overflow:hidden">
+      <img src="ui assets/g1 (2).jpg" alt="" style="width:100%;height:546px;object-fit:cover;display:block">
+    </div>
+
+    <!-- col 3: 2 apiladas desiguales -->
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="overflow:hidden">
+        <img src="ui assets/g1 (6).jpg" alt="" style="width:100%;height:320px;object-fit:cover;display:block">
+      </div>
+      <div style="overflow:hidden">
+        <img src="ui assets/g1 (7).jpg" alt="" style="width:100%;height:220px;object-fit:cover;display:block">
+      </div>
+    </div>
+
+    <!-- col 4: tall -->
+    <div style="overflow:hidden">
+      <img src="ui assets/g1 (3).jpg" alt="" style="width:100%;height:546px;object-fit:cover;object-position:center;display:block">
+    </div>
+
+    <!-- col 5: 2 apiladas -->
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="overflow:hidden">
+        <img src="ui assets/g1 (4).jpg" alt="" style="width:100%;height:280px;object-fit:cover;display:block">
+      </div>
+      <div style="overflow:hidden">
+        <img src="ui assets/g1 (8).jpg" alt="" style="width:100%;height:260px;object-fit:cover;display:block">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER
+     ══════════════════════════════════════════ -->
+
+<!-- ══════════════════════════════════════════
+     SITE FOOTER DEMO
+     ══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════ -->
+<section id="lib-footer" class="ls" style="padding:6rem 0 0;background:#0c0b08;border-top:1px solid rgba(255,255,255,.05)">
+  <div class="l-inner">
+    <div class="rv" style="text-align:center">
+      <span class="eyebrow" style="display:block;margin-bottom:1rem">Footer · site-footer</span>
+      <h2 style="font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.2rem,4vw,3.5rem);line-height:1.05;color:#fff;margin:0 auto 3rem">Cierre del sistema</h2>
+    </div>
+
+    <!-- Footer completo en vivo -->
+    <div class="rv d1">
+      <footer class="site-footer" style="margin:0;border-top:none;padding-top:0">
+
+        <div class="sf-inner">
+
+          <!-- Columna 1: marca + redes -->
+          <div class="sf-brand">
+            <a href="#" class="sf-logo" aria-label="RAÍZ inicio">
+              <img src="assets/white logo.png" alt="RAÍZ" style="height:32px;width:auto">
+            </a>
+            <p class="sf-tagline">Atlas Vivo de<br>Transformación</p>
+            <div class="sf-socials">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="sf-social" aria-label="Instagram">
+                <svg width="17" height="17" viewBox="0 0 18 19" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 0.366211H5C2.23858 0.366211 0 2.60479 0 5.36621V13.3662C0 16.1276 2.23858 18.3662 5 18.3662H13C15.7614 18.3662 18 16.1276 18 13.3662V5.36621C18 2.60479 15.7614 0.366211 13 0.366211ZM16.25 13.3662C16.2445 15.1588 14.7926 16.6107 13 16.6162H5C3.20735 16.6107 1.75549 15.1588 1.75 13.3662V5.36621C1.75549 3.57356 3.20735 2.1217 5 2.11621H13C14.7926 2.1217 16.2445 3.57356 16.25 5.36621V13.3662ZM13.75 5.61621C14.3023 5.61621 14.75 5.16849 14.75 4.61621C14.75 4.06393 14.3023 3.61621 13.75 3.61621C13.1977 3.61621 12.75 4.06393 12.75 4.61621C12.75 5.16849 13.1977 5.61621 13.75 5.61621ZM9 4.86621C6.51472 4.86621 4.5 6.88093 4.5 9.36621C4.5 11.8515 6.51472 13.8662 9 13.8662C11.4853 13.8662 13.5 11.8515 13.5 9.36621C13.5027 8.17191 13.0294 7.02578 12.1849 6.18129C11.3404 5.3368 10.1943 4.86355 9 4.86621ZM6.25 9.36621C6.25 10.885 7.4812 12.1162 9 12.1162C10.5188 12.1162 11.75 10.885 11.75 9.36621C11.75 7.84741 10.5188 6.61621 9 6.61621C7.4812 6.61621 6.25 7.84741 6.25 9.36621Z" fill="currentColor"/></svg>
+              </a>
+              <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="sf-social" aria-label="TikTok">
+                <svg width="17" height="17" viewBox="0 0 18 19" fill="none"><path d="M12.75 0.366211H9.75V12.6162C9.75 13.8662 8.7 14.8662 7.5 14.8662C6.3 14.8662 5.25 13.8662 5.25 12.6162C5.25 11.3912 6.275 10.4162 7.45 10.3662V7.36621C4.625 7.41621 2.25 9.76621 2.25 12.6162C2.25 15.4912 4.675 17.8662 7.525 17.8662C10.375 17.8662 12.75 15.4662 12.75 12.6162V6.21621C13.8 6.99121 15.1 7.36621 16.5 7.36621V4.36621C14.35 4.29121 12.75 2.54121 12.75 0.366211Z" fill="currentColor"/></svg>
+              </a>
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="sf-social" aria-label="YouTube">
+                <svg width="17" height="14" viewBox="0 0 18 15" fill="none"><path d="M17.6338 2.56336C17.5314 2.14076 17.3312 1.75536 17.0532 1.44553C16.7751 1.13569 16.429 0.91222 16.0491 0.797359C14.6407 0.367359 9.00623 0.360359 9.00623 0.360359C9.00623 0.360359 3.37262 0.353359 1.96331 0.764359C1.58371 0.884505 1.23826 1.11114 0.960131 1.42249C0.681998 1.73385 0.480518 2.11948 0.375036 2.54236C0.00359894 4.10836 1.3177e-06 7.35636 1.3177e-06 7.35636C1.3177e-06 7.35636 -0.00359612 10.6204 0.365143 12.1704C0.571997 13.0274 1.17907 13.7044 1.95072 13.9354C3.37352 14.3654 8.99274 14.3724 8.99274 14.3724C8.99274 14.3724 14.6273 14.3794 16.0357 13.9694C16.4156 13.8547 16.7621 13.6317 17.0408 13.3225C17.3195 13.0133 17.5209 12.6286 17.6248 12.2064C17.9972 10.6414 17.9999 7.39436 17.9999 7.39436C17.9999 7.39436 18.0179 4.12936 17.6338 2.56336ZM7.20391 10.3654L7.2084 4.36536L11.8914 7.37036L7.20391 10.3654Z" fill="currentColor"/></svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- rutas foot -->
-    <div class="mod" style="grid-column:4/8;background:linear-gradient(135deg,#2a2318,#1c1a12);border-color:rgba(255,255,255,.1)">
-      <div class="mod-label">rutas-foot panel</div>
-      <div class="rf-tag" style="color:var(--acid)">23°S · Brasil</div>
-      <div style="font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;color:#fff;line-height:1">Fluidez</div>
-      <div class="rf-desc" style="font-size:.8rem;color:rgba(255,255,255,.55)">Curvas orgánicas, libertad formal.</div>
-      <a class="lgw rf-chip" style="text-decoration:none"><span class="rf-chip-pre">Expresividad · </span>Materialidad cálida</a>
-    </div>
-    <!-- find card -->
-    <div class="mod" style="grid-column:8/10;padding:0;border:none;background:transparent">
-      <div class="mod-label" style="padding:.5rem .75rem">find card</div>
-      <div class="find" style="height:160px;border-radius:.875rem">
-        <img src="assets/CP1 .jpg" alt="" style="width:100%;height:100%;object-fit:cover">
-        <div class="find-cap">
-          <div class="find-inner">
-            <div class="find-ref">BRA · 01</div>
-            <div class="find-name" style="font-size:1.2rem">Fluidez</div>
+
+          <!-- Columna 2: Explorar -->
+          <div class="sf-col">
+            <p class="sf-col-title">Explorar</p>
+            <a href="#rutas" class="sf-link">Rutas del Atlas</a>
+            <a href="#archivo" class="sf-link">Archivo Vivo</a>
+            <a href="#capas" class="sf-link">Capas de Técnica</a>
+            <a href="#comunidad" class="sf-link">Comunidad</a>
+            <a href="#compass" class="sf-link">El Método</a>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- slide -->
-    <div class="mod" style="grid-column:10/13;padding:0;border:none;background:transparent">
-      <div class="mod-label" style="padding:.5rem .75rem">slide egresado</div>
-      <div class="slide" style="width:100%;height:160px;border-radius:.875rem">
-        <img src="assets/CP2.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
-        <div class="slide-ov"></div>
-        <div class="slide-info" style="padding:.75rem">
-          <div class="slide-quote" style="font-size:.75rem;margin-bottom:.4rem">"El programa cambió mi manera de ver."</div>
-          <div class="slide-name" style="font-size:.75rem">María González</div>
-          <div class="slide-loc">Buenos Aires</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="lib-sh"><span class="lib-sh-num">08</span><span class="lib-sh-title">Hotspot · Infografía RI · Programa RI</span></div>
-  <div class="bento">
-    <!-- hotspot -->
-    <div class="mod" style="grid-column:1/4;min-height:160px;position:relative;justify-content:center;align-items:center">
-      <div class="mod-label">hotspot</div>
-      <div class="hotspot" style="position:relative;top:auto;left:auto" title="hover">
-        <div class="hs-dot"></div>
-        <div class="hs-card">
-          <div class="hs-num">Capa 01 · Superficie</div>
-          <div class="hs-name">Historia</div>
-          <div class="hs-desc">La tapa guarda marcas de uso.</div>
-        </div>
-      </div>
-    </div>
-    <!-- ri-info-grid -->
-    <div class="mod" style="grid-column:4/8">
-      <div class="mod-label">ri-info-grid</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07);border-radius:.65rem;overflow:hidden">
-        <div class="ri-info-cell" style="border-radius:.65rem 0 0 0;padding:.75rem .85rem"><div class="ri-info-n" style="font-size:1.8rem">8</div><div class="ri-info-unit">semanas</div><div class="ri-info-l">Duración</div></div>
-        <div class="ri-info-cell" style="border-radius:0 .65rem 0 0;padding:.75rem .85rem"><div class="ri-info-n" style="font-size:1.8rem">24</div><div class="ri-info-unit">cupos</div><div class="ri-info-l">Edición</div></div>
-        <div class="ri-info-cell" style="border-radius:0 0 0 .65rem;padding:.75rem .85rem"><div class="ri-info-n" style="font-size:1.8rem">6</div><div class="ri-info-unit">módulos</div><div class="ri-info-l">Programa</div></div>
-        <div class="ri-info-cell" style="border-radius:0 0 .65rem 0;padding:.75rem .85rem"><div class="ri-info-n" style="font-size:1.8rem">3+</div><div class="ri-info-unit">culturas</div><div class="ri-info-l">Conectadas</div></div>
-      </div>
-    </div>
-    <!-- ri-prog-item -->
-    <div class="mod" style="grid-column:8/13">
-      <div class="mod-label">ri-prog-item</div>
-      <div style="border:1px solid rgba(255,255,255,.07);border-radius:.75rem;overflow:hidden">
-        <div class="ri-prog-item" style="padding:1rem 1.1rem;position:relative;transition:background .3s">
-          <div class="ri-prog-accent" style="position:absolute;top:0;left:0;width:2px;height:0;background:var(--acid);transition:height .4s"></div>
-          <div class="ri-prog-num">01 · Módulo</div>
-          <div class="ri-prog-name" style="font-size:1rem">Lectura de objeto</div>
-          <div class="ri-prog-desc" style="font-size:.78rem">Descifrar un mueble como documento material.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="lib-sh"><span class="lib-sh-num">09</span><span class="lib-sh-title">FAQ · Modalidad · Orb Card</span></div>
-  <div class="bento" style="margin-bottom:4rem">
-    <!-- FAQ -->
-    <div class="mod" style="grid-column:1/5">
-      <div class="mod-label">ri-faq</div>
-      <div style="border-top:1px solid rgba(255,255,255,.07)">
-        <details class="ri-faq-item">
-          <summary class="ri-faq-q">¿Necesito experiencia previa?</summary>
-          <p class="ri-faq-a">No es necesario. El programa está diseñado para iniciarse desde cero con criterio.</p>
-        </details>
-        <details class="ri-faq-item">
-          <summary class="ri-faq-q">¿Es presencial o online?</summary>
-          <p class="ri-faq-a">100% presencial en Buenos Aires.</p>
-        </details>
-      </div>
-    </div>
-    <!-- modalidad -->
-    <div class="mod" style="grid-column:5/8">
-      <div class="mod-label">ri-modal-grid</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.07);border-radius:.75rem;overflow:hidden">
-        <div class="ri-modal-cell" style="padding:1rem .85rem"><div class="ri-modal-val" style="font-size:1.2rem">Presencial</div><div class="ri-modal-key">Modalidad</div></div>
-        <div class="ri-modal-cell" style="padding:1rem .85rem"><div class="ri-modal-val" style="font-size:1.2rem">Bs. As.</div><div class="ri-modal-key">Ubicación</div></div>
-        <div class="ri-modal-cell" style="padding:1rem .85rem"><div class="ri-modal-val" style="font-size:1.2rem">Agosto</div><div class="ri-modal-key">Edición</div></div>
-      </div>
-    </div>
-    <!-- orb card -->
-    <div class="mod" style="grid-column:8/13;padding:0;border:none;background:transparent">
-      <div class="mod-label" style="padding:.5rem .75rem">ri-orb-card</div>
-      <div class="ri-orb-card" style="width:100%;height:220px;border-radius:1rem">
-        <div class="ri-orb-card-bg"><div class="ri-orb-card-bg-inner"></div></div>
-        <div class="ri-orb-card-orb"><div class="ri-orb-card-orb-circle"></div></div>
-        <div class="ri-orb-card-blur"></div>
-        <div class="ri-orb-card-content">
-          <div class="ri-orb-card-left">
-            <div class="ri-orb-card-num">01</div>
-            <div class="ri-orb-card-title">Lectura del objeto</div>
-            <p class="ri-orb-card-desc">Ves lo que nadie más ve antes de tocar.</p>
+          <!-- Columna 3: Formación -->
+          <div class="sf-col">
+            <p class="sf-col-title">Formación</p>
+            <a href="restauracion-integral.html" class="sf-link">Restauración Integral</a>
+            <a href="#cursos" class="sf-link">Materiales y Acabados</a>
+            <a href="#cursos" class="sf-link">Historia del Diseño</a>
+            <a href="#cursos" class="sf-link">Proyecto Final</a>
+            <a href="#cursos" class="sf-link">Ver todos los cursos</a>
           </div>
-          <div class="ri-orb-card-right">
-            <div class="ri-orb-card-label">Res<br>ul<br>ta<br>do</div>
-            <div class="ri-orb-card-btn">↗</div>
+
+          <!-- Columna 4: CTA -->
+          <div class="sf-col sf-col--cta">
+            <p class="sf-col-title">Inscribirse</p>
+            <p class="sf-cta-text">Próxima cohorte disponible.<br>Plazas limitadas.</p>
+            <a href="javascript:void(0)" class="sf-cta-btn btn-dark">Explorar cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+            <a href="ui-library.html" class="sf-cta-btn sf-ui-btn btn-dark">Biblioteca UI<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
           </div>
+
         </div>
-      </div>
+
+        <!-- Bottom bar -->
+        <div class="sf-bottom">
+          <a href="ui-library.html" class="sf-copy" style="text-decoration:none;cursor:pointer">© 2026 RAÍZ · Atlas Vivo de Transformación · Buenos Aires</a>
+          <span class="sf-coords">34°36′S · 58°22′O</span>
+        </div>
+
+      </footer>
     </div>
   </div>
-
-</div><!-- /componentes -->
-
-<footer class="lib-wrap">
-  <div style="border-top:1px solid rgba(255,255,255,.07);padding:1.5rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22)">
-    <span>RAÍZ · Sistema Visual · v3.1 · 2026</span>
-    <div style="display:flex;gap:1rem">
-      <a href="index.html" style="color:rgba(255,255,255,.4);text-decoration:none">index.html</a>
-      <a href="restauracion-integral.html" style="color:rgba(255,255,255,.4);text-decoration:none">restauracion-integral.html</a>
-    </div>
-  </div>
-</footer>
+</section>
 
 <script>
+/* Burger */
 const burger=document.getElementById('nBurger');
 const drawer=document.getElementById('nDrawer');
 const overlay=document.getElementById('nOverlay');
-function open(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
-function shut(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
-burger?.addEventListener('click',()=>{drawer.classList.contains('open')?shut():open();});
-overlay?.addEventListener('click',shut);
-drawer?.querySelectorAll('a').forEach(a=>a.addEventListener('click',shut));
-const rvEls=document.querySelectorAll('.rv');
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07,rootMargin:'0px 0px -25px 0px'});
-rvEls.forEach(el=>io.observe(el));
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');document.body.style.overflow='hidden';}
+function shutDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');document.body.style.overflow='';}
+burger?.addEventListener('click',()=>drawer.classList.contains('open')?shutDrawer():openDrawer());
+overlay?.addEventListener('click',shutDrawer);
+drawer?.querySelectorAll('a').forEach(a=>a.addEventListener('click',shutDrawer));
+
+/* Parallax hero */
+const heroBg=document.getElementById('lib-hero-bg');
+function onScroll(){
+  const sy=window.scrollY;
+  if(heroBg) heroBg.style.transform=`translateY(${sy*.35}px)`;
+  const cell=document.getElementById('rv-demo-cell');
+  const el=document.getElementById('rv-demo-el');
+  if(cell&&el){
+    const r=cell.getBoundingClientRect();
+    if(r.top<window.innerHeight*.8) el.classList.add('on');
+    else el.classList.remove('on');
+  }
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+
+/* archivo-book flip */
+document.querySelectorAll('.archivo-book').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('flipped')));
+
+/* Banter boxes in motion section */
+const mb=document.getElementById('motion-banter');
+if(mb) mb.innerHTML='<div class="banter-loader__box"></div>'.repeat(9);
+
+/* IntersectionObserver */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
+},{threshold:.07,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.rv:not(.rv-demo)').forEach(el=>io.observe(el));
+
+/* Above-fold hero reveal */
+requestAnimationFrame(()=>{
+  document.querySelectorAll('#lib-hero .rv').forEach(el=>el.classList.add('on'));
+});
+
+/* ── BTN PREVIEW PANEL ────────────────────── */
+(function(){
+  const panel = document.getElementById('btn-preview');
+  const title = document.getElementById('bp-title');
+  const htmlCode = document.getElementById('bp-html-code');
+  const cssCode = document.getElementById('bp-css-code');
+  const copyBtn = document.getElementById('bp-copy');
+  let currentTab = 'html';
+  let currentData = null;
+
+  const snippets = {
+    'btn-primary': {
+      name: 'btn-primary',
+      html: `<a class="btn-primary" href="#">\n  Explorar\n  <span class="fc-btn-icon">\n    <!-- SVG arrow -->\n  </span>\n</a>`,
+      css: `.btn-primary {\n  background: transparent;\n  color: #fff;\n  border: 1px solid rgba(255,255,255,.25);\n  display: inline-flex;\n  align-items: center;\n  gap: .75rem;\n  padding: .75rem .75rem .75rem 1.4rem;\n  border-radius: 9999px;\n  font-family: var(--fm);\n  font-size: .72rem;\n  letter-spacing: .16em;\n  text-transform: uppercase;\n  text-decoration: none;\n  transition: background .4s, color .4s;\n  position: relative;\n  isolation: isolate;\n  overflow: hidden;\n}\n.btn-primary::after {\n  content: '';\n  position: absolute;\n  width: 130%; aspect-ratio: 1;\n  left: -110%; top: 50%;\n  transform: translateY(-50%);\n  border-radius: 50%; z-index: -1;\n  transition: left .6s cubic-bezier(.22,1,.36,1), scale .6s;\n  scale: 0; background: rgba(255,255,255,.08);\n}\n.btn-primary:hover::after { left: -10%; scale: 1.5; }\n.btn-primary:hover { color: #fff; }`
+    },
+    'btn-acid': {
+      name: 'btn-acid',
+      html: `<a class="btn-acid" href="#">\n  Ver el Atlas\n  <span class="fc-btn-icon">\n    <!-- SVG arrow -->\n  </span>\n</a>`,
+      css: `.btn-acid {\n  background: var(--acid); /* #C7FF4D */\n  color: #0a0a05;\n  display: inline-flex;\n  align-items: center;\n  gap: .75rem;\n  padding: .75rem .75rem .75rem 1.4rem;\n  border-radius: 9999px;\n  font-family: var(--fm);\n  font-size: .72rem;\n  letter-spacing: .16em;\n  text-transform: uppercase;\n  text-decoration: none;\n  position: relative;\n  isolation: isolate;\n  overflow: hidden;\n  transition: color .4s;\n}\n.btn-acid::after {\n  content: '';\n  position: absolute;\n  width: 130%; aspect-ratio: 1;\n  left: -110%; top: 50%;\n  transform: translateY(-50%);\n  border-radius: 50%; z-index: -1;\n  transition: left .6s cubic-bezier(.22,1,.36,1), scale .6s;\n  scale: 0; background: #a8e000;\n}\n.btn-acid:hover::after { left: -10%; scale: 1.5; }`
+    },
+    'btn-dark': {
+      name: 'btn-dark',
+      html: `<a class="btn-dark" href="#">\n  Explorar recorrido\n  <span class="fc-btn-icon">\n    <!-- SVG arrow -->\n  </span>\n</a>`,
+      css: `.btn-dark {\n  background: var(--dk); /* #1a1812 */\n  color: rgba(255,255,255,.85);\n  display: inline-flex;\n  align-items: center;\n  gap: .75rem;\n  padding: .75rem .75rem .75rem 1.4rem;\n  border-radius: 9999px;\n  font-family: var(--fm);\n  font-size: .72rem;\n  letter-spacing: .16em;\n  text-transform: uppercase;\n  text-decoration: none;\n  position: relative;\n  isolation: isolate;\n  overflow: hidden;\n  transition: color .4s;\n}\n.btn-dark::after {\n  content: '';\n  position: absolute;\n  width: 130%; aspect-ratio: 1;\n  left: -110%; top: 50%;\n  transform: translateY(-50%);\n  border-radius: 50%; z-index: -1;\n  transition: left .6s cubic-bezier(.22,1,.36,1), scale .6s;\n  scale: 0; background: rgba(255,255,255,.06);\n}\n.btn-dark:hover::after { left: -10%; scale: 1.5; }`
+    },
+    'fc-btn': {
+      name: 'fc-btn',
+      html: `<a class="fc-btn" href="#">\n  fc-btn\n  <span class="fc-btn-icon">\n    <!-- SVG arrow -->\n  </span>\n</a>`,
+      css: `.fc-btn {\n  display: inline-flex;\n  align-items: center;\n  gap: .6rem;\n  padding: .45rem .45rem .45rem 1.1rem;\n  border-radius: 9999px;\n  border: 1px solid rgba(255,255,255,.18);\n  font-family: var(--fm);\n  font-size: .65rem;\n  letter-spacing: .14em;\n  text-transform: uppercase;\n  color: rgba(255,255,255,.75);\n  text-decoration: none;\n  transition: border-color .3s, color .3s;\n}\n.fc-btn:hover {\n  border-color: rgba(255,255,255,.4);\n  color: #fff;\n}\n.fc-btn-icon {\n  width: 28px; height: 28px;\n  border-radius: 50%;\n  border: 1px solid rgba(255,255,255,.18);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}`
+    },
+    'btn-nav-cta': {
+      name: 'btn-nav-cta',
+      html: `<button class="btn-nav-cta" type="button">\n  Inscribirse\n  <span class="fc-btn-icon">\n    <!-- SVG arrow -->\n  </span>\n</button>`,
+      css: `.btn-nav-cta {\n  display: inline-flex;\n  align-items: center;\n  gap: .6rem;\n  padding: .45rem .45rem .45rem 1.1rem;\n  border-radius: 9999px;\n  background: var(--wood); /* #A66A44 */\n  border: none;\n  font-family: var(--fm);\n  font-size: .65rem;\n  letter-spacing: .14em;\n  text-transform: uppercase;\n  color: #fff;\n  cursor: pointer;\n  transition: background .3s;\n}\n.btn-nav-cta:hover { background: #8a5535; }`
+    },
+    'n-cta': {
+      name: 'n-cta',
+      html: `<a class="n-cta" href="#">\n  Ver web\n  <svg width="10" height="10" viewBox="0 0 10 10">\n    <path d="M1 9L9 1M9 1H3M9 1V7"\n      stroke="currentColor" stroke-width="1.5"\n      stroke-linecap="round"/>\n  </svg>\n</a>`,
+      css: `.n-cta {\n  display: inline-flex;\n  align-items: center;\n  gap: .35rem;\n  padding: .42rem .95rem;\n  border-radius: 9999px;\n  background: #fff;\n  color: #0c0b08;\n  font-family: var(--fm);\n  font-size: .65rem;\n  letter-spacing: .12em;\n  text-transform: uppercase;\n  text-decoration: none;\n  transition: background .25s, color .25s;\n}\n.n-cta:hover {\n  background: var(--acid); /* #C7FF4D */\n}`
+    },
+    'n-cta-dark': {
+      name: 'n-cta · variante dark',
+      html: `<a class="n-cta n-cta--dark" href="#">\n  n-cta\n  <svg width="10" height="10" viewBox="0 0 10 10">\n    <path d="M1 9L9 1M9 1H3M9 1V7"\n      stroke="currentColor" stroke-width="1.5"\n      stroke-linecap="round"/>\n  </svg>\n</a>`,
+      css: `/* Agregar clase n-cta--dark\n   sobre el elemento .n-cta base */\n.n-cta--dark {\n  background: var(--dk); /* #1a1812 */\n  color: rgba(255,255,255,.85);\n}\n.n-cta--dark:hover {\n  background: var(--wood); /* #A66A44 */\n  color: #fff;\n}`
+    },
+    'slider-btn': {
+      name: 'slider-btn · lgd',
+      html: `<button class="lgd slider-btn" aria-label="Anterior">\n  <svg width="16" height="16" viewBox="0 0 16 16">\n    <path d="M10 3L5 8L10 13"\n      stroke="currentColor" stroke-width="1.5"\n      stroke-linecap="round" stroke-linejoin="round"/>\n  </svg>\n</button>`,
+      css: `.slider-btn {\n  width: 44px; height: 44px;\n  border-radius: 50%;\n  background: rgba(255,255,255,.06);\n  border: 1px solid rgba(255,255,255,.1);\n  color: rgba(255,255,255,.7);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background .3s, color .3s;\n}\n.slider-btn:hover {\n  background: rgba(255,255,255,.12);\n  color: #fff;\n}\n/* .lgd = variante con blur backdrop */\n.lgd {\n  backdrop-filter: blur(6px);\n  background: rgba(255,255,255,.08);\n}`
+    },
+    'xct-sb': {
+      name: 'xct-sb · control tarjetas',
+      html: `<button class="xct-prev xct-sb" aria-label="Anterior">\n  <svg width="16" height="16" viewBox="0 0 16 16">\n    <path d="M10 3L5 8L10 13"\n      stroke="currentColor" stroke-width="1.5"\n      stroke-linecap="round" stroke-linejoin="round"/>\n  </svg>\n</button>\n<button class="xct-next xct-sb" aria-label="Siguiente">\n  <!-- SVG chevron right -->\n</button>`,
+      css: `.xct-sb {\n  width: 40px; height: 40px;\n  border-radius: 50%;\n  background: rgba(255,255,255,.05);\n  border: 1px solid rgba(255,255,255,.1);\n  color: rgba(255,255,255,.6);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: background .3s;\n}\n.xct-sb:hover {\n  background: rgba(255,255,255,.1);\n}`
+    },
+    'dot-xct': {
+      name: 'xct-cards-dot',
+      html: `<span class="xct-cards-dot active"></span>\n<span class="xct-cards-dot"></span>\n<span class="xct-cards-dot"></span>`,
+      css: `.xct-cards-dot {\n  width: 5px; height: 5px;\n  border-radius: 50%;\n  background: rgba(255,255,255,.25);\n  display: inline-block;\n  transition: background .3s, width .3s;\n}\n.xct-cards-dot.active {\n  background: var(--acid);\n  width: 16px;\n  border-radius: 9999px;\n}`
+    },
+    'dot-slider': {
+      name: 'slider-dot',
+      html: `<span class="slider-dot active"></span>\n<span class="slider-dot"></span>\n<span class="slider-dot"></span>`,
+      css: `.slider-dot {\n  width: 6px; height: 6px;\n  border-radius: 50%;\n  background: rgba(255,255,255,.2);\n  display: inline-block;\n  transition: background .3s;\n}\n.slider-dot.active {\n  background: #fff;\n}`
+    },
+    'dot-ri': {
+      name: 'ri-carousel-dot',
+      html: `<span class="ri-carousel-dot active"></span>\n<span class="ri-carousel-dot"></span>\n<span class="ri-carousel-dot"></span>`,
+      css: `.ri-carousel-dot {\n  width: 5px; height: 5px;\n  border-radius: 50%;\n  background: rgba(199,255,77,.2);\n  display: inline-block;\n  transition: background .3s, transform .3s;\n}\n.ri-carousel-dot.active {\n  background: var(--acid); /* #C7FF4D */\n  transform: scale(1.4);\n}`
+    },
+    'rf-chip': {
+      name: 'rf-chip · tag',
+      html: `<a class="lgw rf-chip" href="#">\n  <span class="rf-chip-pre">Expresividad · </span>\n  Materialidad cálida\n</a>`,
+      css: `.rf-chip {\n  display: inline-flex;\n  align-items: center;\n  padding: .42rem 1rem;\n  border-radius: 9999px;\n  border: 1px solid rgba(255,255,255,.15);\n  font-family: var(--fm);\n  font-size: .6rem;\n  letter-spacing: .1em;\n  text-transform: uppercase;\n  color: rgba(255,255,255,.6);\n  text-decoration: none;\n  transition: border-color .3s, color .3s;\n  white-space: nowrap;\n}\n.rf-chip:hover {\n  border-color: rgba(255,255,255,.3);\n  color: #fff;\n}\n.rf-chip-pre { opacity: .45; margin-right: .2em; }\n/* .lgw = glass light variant */\n.lgw { background: rgba(255,255,255,.04); backdrop-filter: blur(6px); }`
+    },
+    'xct-card-off': {
+      name: 'xct-card-off · badge descuento',
+      html: `<span class="xct-card-off">20% OFF</span>`,
+      css: `.xct-card-off {\n  display: inline-block;\n  background: var(--acid); /* #C7FF4D */\n  color: #0a0a05;\n  font-family: var(--fm);\n  font-size: .58rem;\n  font-weight: 700;\n  letter-spacing: .14em;\n  text-transform: uppercase;\n  padding: .22rem .65rem;\n  border-radius: 9999px;\n}`
+    }
+  };
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderPanel(key) {
+    const d = snippets[key];
+    if (!d) return;
+    currentData = d;
+    title.textContent = d.name;
+    htmlCode.textContent = d.html;
+    cssCode.textContent = d.css;
+    copyBtn.textContent = 'Copiar código';
+    copyBtn.classList.remove('bp-copied');
+    panel.classList.add('bp-visible');
+  }
+
+  // Tab switching
+  document.querySelectorAll('.bp-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      currentTab = this.dataset.tab;
+      document.querySelectorAll('.bp-tab').forEach(t => t.classList.remove('bp-tab-active'));
+      document.querySelectorAll('.bp-pane').forEach(p => p.classList.remove('bp-pane-active'));
+      this.classList.add('bp-tab-active');
+      document.getElementById('bp-pane-' + currentTab).classList.add('bp-pane-active');
+    });
+  });
+
+  // Copy button
+  copyBtn.addEventListener('click', function() {
+    const text = currentTab === 'html' ? currentData.html : currentData.css;
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = '¡Copiado!';
+      copyBtn.classList.add('bp-copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copiar código';
+        copyBtn.classList.remove('bp-copied');
+      }, 1800);
+    });
+  });
+
+  // Connector line
+  const svg = document.getElementById('btn-connector');
+  const path = document.getElementById('btn-connector-path');
+  const dotStart = document.getElementById('btn-connector-dot-start');
+  const dotEnd = document.getElementById('btn-connector-dot-end');
+
+  function updateConnector(btnEl) {
+    const section = document.getElementById('lib-buttons');
+    const sr = section.getBoundingClientRect();
+    const br = btnEl.getBoundingClientRect();
+    const pr = panel.getBoundingClientRect();
+
+    // coords relative to section (which is position:relative)
+    const x1 = br.right - sr.left;
+    const y1 = br.top + br.height / 2 - sr.top;
+    const x2 = pr.left - sr.left;
+    const y2 = pr.top + 28 - sr.top; // panel top edge + small offset
+
+    // cubic bezier: horizontal departure then curve to panel
+    const cx1 = x1 + (x2 - x1) * 0.55;
+    const cx2 = x2 - (x2 - x1) * 0.25;
+
+    path.setAttribute('d', `M${x1},${y1} C${cx1},${y1} ${cx2},${y2} ${x2},${y2}`);
+    dotStart.setAttribute('cx', x1);
+    dotStart.setAttribute('cy', y1);
+    dotEnd.setAttribute('cx', x2);
+    dotEnd.setAttribute('cy', y2);
+    svg.style.opacity = '1';
+  }
+
+  function hideConnector() {
+    svg.style.opacity = '0';
+  }
+
+  // Hover triggers
+  const allPreviews = Array.from(document.querySelectorAll('[data-preview]'));
+  let userHovering = false;
+  allPreviews.forEach(el => {
+    el.addEventListener('mouseenter', function() {
+      userHovering = true;
+      clearAutoCycle();
+      clearHints();
+      renderPanel(this.dataset.preview);
+      updateConnector(this);
+    });
+    el.addEventListener('mouseleave', () => {
+      userHovering = false;
+      hideConnector();
+    });
+  });
+
+  // Auto-demo on scroll into view
+  const demoKeys = ['btn-acid', 'btn-primary', 'btn-dark', 'fc-btn', 'btn-nav-cta'];
+  let demoIdx = 0;
+  let cycleTimer = null;
+  let hasPlayed = false;
+
+  function clearHints() {
+    allPreviews.forEach(el => el.classList.remove('bp-hint'));
+  }
+
+  function clearAutoCycle() {
+    clearTimeout(cycleTimer);
+    cycleTimer = null;
+  }
+
+  function runDemoStep() {
+    if (userHovering) return;
+    const key = demoKeys[demoIdx % demoKeys.length];
+    const el = allPreviews.find(e => e.dataset.preview === key);
+    if (el) {
+      clearHints();
+      renderPanel(key);
+      updateConnector(el);
+      el.classList.add('bp-hint');
+    }
+    demoIdx++;
+    cycleTimer = setTimeout(runDemoStep, 2200);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasPlayed) {
+        hasPlayed = true;
+        demoIdx = 0;
+        setTimeout(() => {
+          if (!userHovering) runDemoStep();
+        }, 600);
+      }
+      if (!entry.isIntersecting) {
+        clearAutoCycle();
+        clearHints();
+        hasPlayed = false;
+        if (!userHovering) {
+          panel.classList.remove('bp-visible');
+          hideConnector();
+        }
+      }
+    });
+  }, { threshold: 0.25 });
+
+  const libButtons = document.getElementById('lib-buttons');
+  if (libButtons) observer.observe(libButtons);
+})();
+
+// Color accordion — tap en mobile
+if(window.innerWidth <= 768){
+  document.querySelectorAll('.color-card').forEach(card => {
+    const panels = Array.from(card.querySelectorAll('.cc-panel'));
+    panels[0]?.classList.add('cc-open');
+    panels.forEach(panel => {
+      panel.addEventListener('click', () => {
+        const wasOpen = panel.classList.contains('cc-open');
+        panels.forEach(p => p.classList.remove('cc-open'));
+        if(!wasOpen) panel.classList.add('cc-open');
+        else panels[0].classList.add('cc-open');
+      });
+    });
+  });
+}
 </script>
 </body>
 </html>

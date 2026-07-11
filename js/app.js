@@ -569,6 +569,68 @@ setTimeout(tryDismiss,2500);
   document.addEventListener('DOMContentLoaded', ()=>{});
 })();
 
+/* ── HALLAZGOS DESKTOP PLAY/PAUSE ─────────────── */
+(function(){
+  const ICON_PLAY  = `<svg viewBox="0 0 40 40" width="36" height="36" fill="none"><circle cx="20" cy="20" r="19" fill="rgba(0,0,0,.45)" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/><polygon points="16,12 30,20 16,28" fill="#fff"/></svg>`;
+  const ICON_PAUSE = `<svg viewBox="0 0 40 40" width="36" height="36" fill="none"><circle cx="20" cy="20" r="19" fill="rgba(0,0,0,.45)" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/><rect x="13" y="12" width="5" height="16" rx="2" fill="#fff"/><rect x="22" y="12" width="5" height="16" rx="2" fill="#fff"/></svg>`;
+
+  const deskBtns = [];
+
+  // Block navigation from these <a> cards immediately — no timing dependency
+  document.querySelectorAll('.hall-find-1, .hall-find-2').forEach(find => {
+    find.addEventListener('click', e => { e.preventDefault(); });
+  });
+
+  function initDesktop(){
+    // Query fresh each time in case GSAP replaced nodes
+    const finds = Array.from(document.querySelectorAll('.hall-find-1, .hall-find-2'));
+    finds.forEach(find => {
+      if(find.querySelector('.hall-play-btn-desk')) return; // already initialized
+      const vid = find.querySelector('.hall-vid');
+      if(!vid) return;
+
+      const btn = document.createElement('button');
+      btn.className = 'hall-play-btn-desk';
+      btn.setAttribute('aria-label', 'Reproducir');
+      btn.innerHTML = ICON_PLAY;
+      find.appendChild(btn);
+      deskBtns.push(btn);
+
+      function showBtn(){ btn.style.opacity = '1'; }
+      function hideBtn(){ btn.style.opacity = '0'; }
+
+      find.addEventListener('mouseenter', () => { vid.play().catch(()=>{}); });
+
+      // Click anywhere on the card toggles play/pause
+      find.addEventListener('click', e => {
+        if(vid.paused){ vid.play().catch(()=>{}); }
+        else           { vid.pause(); }
+      });
+
+      vid.addEventListener('play',  () => { btn.innerHTML = ICON_PAUSE; btn.setAttribute('aria-label','Pausar'); hideBtn(); });
+      vid.addEventListener('pause', () => { btn.innerHTML = ICON_PLAY;  btn.setAttribute('aria-label','Reproducir'); showBtn(); });
+
+      btn.addEventListener('click', e => { e.stopPropagation(); });
+    });
+  }
+
+  function destroyDesktop(){
+    deskBtns.forEach(b => b.remove());
+    deskBtns.length = 0;
+  }
+
+  function setup(){
+    if(window.innerWidth > 768){ if(!deskBtns.length) initDesktop(); }
+    else { destroyDesktop(); }
+  }
+
+  // Run after all resources loaded; if already complete, call immediately
+  if(document.readyState === 'complete'){ setup(); }
+  else { window.addEventListener('load', setup); }
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(setup, 200); }, {passive:true});
+})();
+
 /* ── PARALLAX DEPTH SHIFT — #rutas ────────────── */
 (function(){
   const section   = document.getElementById('rutas');
@@ -908,9 +970,10 @@ setTimeout(tryDismiss,2500);
       track.addEventListener('touchend', () => {
         const nearest = Math.round(offset / slideW);
         offset = ((nearest * slideW) % halfW + halfW) % halfW;
+        track.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1)';
         track.style.transform = `translateX(-${offset}px)`;
         syncDot();
-        paused = false;
+        setTimeout(() => { track.style.transition = ''; }, 380);
       }, { passive: true });
 
       dots.forEach((dot, i) => {
@@ -923,13 +986,6 @@ setTimeout(tryDismiss,2500);
       });
     }
 
-    mobileTicker = setInterval(() => {
-      if(paused) return;
-      offset += speed;
-      if(offset >= halfW) offset -= halfW;
-      track.style.transform = `translateX(-${offset}px)`;
-      syncDot();
-    }, 16);
   }
 
   function initDesktop(){

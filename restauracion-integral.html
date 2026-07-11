@@ -144,6 +144,7 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
   .ri-cursos-grid{padding:2rem 5rem 3rem;max-width:1400px;margin:0 auto}
   .ri-cursos-grid .xct-card-price{width:100%;margin-top:.25rem}
   .ch-n,.ch-l{font-size:1.1rem!important;letter-spacing:.08em!important}
+  .ri-cursos-dots{display:none}
 }
 .ri-curso-card{border-radius:1rem;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);display:flex;flex-direction:column;transition:border-color .3s,background .3s}
 .ri-curso-card:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.04)}
@@ -300,8 +301,9 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 
 
   /* 04 RESULTADOS — video y cierre */
-  #ri-resultados [style*="aspect-ratio:16/6"]{aspect-ratio:4/3!important}
-  .ri-res-video-wrap{margin-left:-1.25rem!important;margin-right:-1.25rem!important}
+  #ri-resultados [style*="aspect-ratio:16/6"]{aspect-ratio:9/16!important}
+  .ri-res-video-wrap{margin-left:-1.25rem!important;margin-right:-1.25rem!important;border-radius:.875rem!important}
+  #ri-resultados{padding-top:4rem!important;padding-bottom:3rem!important}
   #ri-resultados [style*="justify-content:space-between"]{
     flex-direction:column!important;align-items:flex-start!important;gap:1.25rem
   }
@@ -319,13 +321,19 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
   #ri-faq .ri-sub{text-align:center!important}
   #ri-faq .fc-btn{width:100%;justify-content:space-between!important}
 
-  /* 06 CURSOS — columna única */
-  .ri-cursos-grid{display:grid!important;grid-template-columns:1fr!important;gap:1.25rem!important;padding:0!important;max-width:none!important;margin:0!important}
-  .ri-cursos-grid .xct-card{flex:unset!important;width:100%!important;aspect-ratio:2/3!important;height:auto!important;overflow:hidden!important;position:relative!important}
+  /* 06 CURSOS — carrusel horizontal mobile */
+  #ri-cursos .ri-wrap{padding-left:0!important;padding-right:0!important;overflow:hidden}
+  .ri-cursos-grid{display:flex!important;flex-direction:row!important;overflow-x:auto!important;scroll-snap-type:x mandatory!important;-webkit-overflow-scrolling:touch!important;gap:1rem!important;padding:0 1.25rem 1rem!important;max-width:none!important;margin:0!important;scrollbar-width:none!important}
+  .ri-cursos-grid::-webkit-scrollbar{display:none}
+  .ri-cursos-grid .xct-card{flex:0 0 82vw!important;max-width:320px!important;scroll-snap-align:start!important;width:auto!important;aspect-ratio:2/3!important;height:auto!important;overflow:hidden!important;position:relative!important}
   .ri-cursos-grid .xct-card-img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border-radius:0!important}
   .ri-cursos-grid .xct-card-body{position:absolute!important;top:45%!important;left:0!important;right:0!important;bottom:0!important;background:rgba(10,7,4,.62)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;border-top:1px solid rgba(255,255,255,.1)!important;border-radius:0!important;padding:1.1rem 1.1rem 1.25rem!important;align-items:center!important;text-align:center!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important}
   .ri-cursos-grid .xct-card-price-wrap{margin-top:.25rem!important;margin-bottom:.25rem!important;padding-top:0!important;border-top:none!important}
   .ri-cursos-grid .xct-card-cta{align-self:stretch!important;justify-content:space-between!important;padding:.55rem .55rem .55rem 1.1rem!important;font-size:.68rem!important;white-space:nowrap!important;margin-top:0!important}
+  /* dots */
+  .ri-cursos-dots{display:flex!important;justify-content:center;gap:.5rem;padding:.75rem 0 1.5rem}
+  .ri-cursos-dot{width:.45rem;height:.45rem;border-radius:50%;background:rgba(255,255,255,.25);transition:background .3s,transform .3s;cursor:pointer}
+  .ri-cursos-dot.active{background:#fff;transform:scale(1.4)}
 
   /* CAPAS DEL PROGRAMA — grid */
   .ri-prog-grid{grid-template-columns:1fr!important}
@@ -343,7 +351,7 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
 }
 </style>
 </head>
-<body>
+<body class="page-ri">
 
 <!-- ── SVG FILTERS ─────────────────────────────── -->
 <svg class="svg-filters" height="0" width="0" xmlns="http://www.w3.org/2000/svg">
@@ -610,6 +618,10 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
         <button id="riVidMute" style="width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);backdrop-filter:blur(12px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0" aria-label="activar sonido">
           <svg id="riMuteIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
         </button>
+        <!-- botón pantalla completa -->
+        <button id="riVidFs" style="width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);backdrop-filter:blur(12px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;flex-shrink:0" aria-label="pantalla completa">
+          <svg id="riFsIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
       </div>
     </div>
 
@@ -733,6 +745,11 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
       </div>
 
     </div>
+    <div class="ri-cursos-dots" aria-hidden="true">
+      <span class="ri-cursos-dot"></span>
+      <span class="ri-cursos-dot"></span>
+      <span class="ri-cursos-dot"></span>
+    </div>
   </div>
 </section>
 </div><!-- /ri-page-bg -->
@@ -794,6 +811,7 @@ body{background:transparent;color:#fff;font-family:'Manrope',sans-serif;font-wei
       <p class="sf-col-title">Inscribirse</p>
       <p class="sf-cta-text">Próxima cohorte disponible.<br>Plazas limitadas.</p>
       <a href="index.html#cursos" class="sf-cta-btn btn-dark">Explorar cursos<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"/></svg></span></a>
+      <a href="ui-library.html" class="sf-cta-btn sf-ui-btn btn-dark">Biblioteca UI<span class="fc-btn-icon"><svg width="14" height="14" viewBox="0 0 16 19" fill="none"><path d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658-0.0976311 7.68342-0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z" fill="currentColor"></path></svg></span></a>
     </div>
   </div>
   <div class="sf-bottom">
@@ -880,6 +898,21 @@ const navEl=document.getElementById('nav');
   document.querySelectorAll('section[id]').forEach(s=>ioLogo.observe(s));
 })();
 
+// ── Video src swap mobile/desktop ────────────────
+(function(){
+  const vid = document.getElementById('riResVideo');
+  if(!vid) return;
+  const mobileSrc  = 'assets%20seccion/ri-resultados-video_mobile.mp4';
+  const desktopSrc = 'assets%20seccion/ri-resultados-video.mp4';
+  function updateSrc(){
+    const isMobile = window.innerWidth <= 768;
+    const target = isMobile ? mobileSrc : desktopSrc;
+    if(vid.getAttribute('src') !== target){ vid.src = target; vid.load(); }
+  }
+  updateSrc();
+  window.addEventListener('resize', updateSrc);
+})();
+
 // ── Video ri-resultados ──────────────────────────
 (function(){
   const vid      = document.getElementById('riResVideo');
@@ -964,6 +997,32 @@ const navEl=document.getElementById('nav');
     vid.muted = !vid.muted;
     muteIcon.innerHTML = vid.muted ? iconMute : iconSound;
   });
+
+  // pantalla completa
+  const fsBtn  = document.getElementById('riVidFs');
+  const fsIcon = document.getElementById('riFsIcon');
+  const iconExpand   = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>';
+  const iconCompress = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>';
+  const container = vid.parentElement;
+
+  fsBtn.addEventListener('click', () => {
+    const el = container;
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      const req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+      if (req) req.call(el);
+    } else {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+      if (exit) exit.call(document);
+    }
+  });
+
+  document.addEventListener('fullscreenchange', updateFsIcon);
+  document.addEventListener('webkitfullscreenchange', updateFsIcon);
+  function updateFsIcon() {
+    const inFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+    fsIcon.innerHTML = inFs ? iconCompress : iconExpand;
+    fsBtn.setAttribute('aria-label', inFs ? 'salir de pantalla completa' : 'pantalla completa');
+  }
 })();
 
 // ── Carrusel ri-resultados ───────────────────────
@@ -1013,6 +1072,28 @@ const navEl=document.getElementById('nav');
     if(!isDown) return;
     e.preventDefault();
     track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX);
+  });
+})();
+
+// ri-cursos-grid carousel dots
+(function(){
+  const grid = document.querySelector('.ri-cursos-grid');
+  const dots = Array.from(document.querySelectorAll('.ri-cursos-dot'));
+  if(!grid || !dots.length) return;
+  function getActive(){
+    const cardW = grid.querySelector('.xct-card').offsetWidth + parseInt(getComputedStyle(grid).gap||0);
+    return Math.min(Math.round(grid.scrollLeft / cardW), dots.length-1);
+  }
+  function setDot(i){
+    dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+  }
+  setDot(0);
+  grid.addEventListener('scroll',()=>setDot(getActive()),{passive:true});
+  dots.forEach((dot,i)=>{
+    dot.addEventListener('click',()=>{
+      const cardW = grid.querySelector('.xct-card').offsetWidth + parseInt(getComputedStyle(grid).gap||0);
+      grid.scrollTo({left:i*cardW,behavior:'smooth'});
+    });
   });
 })();
 </script>

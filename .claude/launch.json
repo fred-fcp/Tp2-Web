@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "raiz",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3000"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "C:\\Users\\fredf\\Documents\\GitHub\\Tp2-Web"],
       "port": 3000,
       "autoPort": true
     }

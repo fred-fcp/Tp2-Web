@@ -1,4 +1,4 @@
-const CACHE = 'raiz-v66';
+const CACHE = 'raiz-v78';
 
 const PRECACHE = [
   './index.html',
@@ -38,10 +38,10 @@ self.addEventListener('fetch', e => {
   // Skip cross-origin excepto Google Fonts
   if (url.origin !== self.location.origin && !url.hostname.endsWith('gstatic.com') && !url.hostname.endsWith('googleapis.com') && !url.hostname.endsWith('jsdelivr.net')) return;
 
-  // CSS y JS — network-first: siempre intenta red, cache como fallback
+  // CSS y JS — network-first: siempre intenta red (bypass HTTP cache), cache como fallback
   if (/\.(css|js)(\?.*)?$/.test(url.pathname)) {
     e.respondWith(
-      fetch(e.request).then(res => {
+      fetch(new Request(e.request, {cache: 'reload'})).then(res => {
         if (res.ok) {
           const clone = res.clone();
           caches.open(CACHE).then(c => c.put(e.request, clone));

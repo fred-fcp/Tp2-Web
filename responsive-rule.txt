@@ -6,6 +6,9 @@ BREAKPOINT: 768px
   Mobile  → ≤ 768px  (teléfonos)
   Desktop → ≥ 769px  (tablets y computadoras)
 
+REGLA DE SESIÓN: todos los ajustes son mobile-first
+salvo que se indique explícitamente "en desktop".
+
 
 ──────────────────────────────────────────────
   CSS · Aplicar estilos SOLO en mobile
@@ -44,7 +47,8 @@ if (window.innerWidth <= 768) {
    .mi-grid { grid-template-columns: 1fr; }
 
 2. Ocultar elementos en mobile
-   .solo-desktop { display: none; }
+   .solo-desktop { display: none !important; }
+   (usar !important si btn-dark u otro da display:flex)
 
 3. Mostrar elementos solo en mobile
    .solo-mobile { display: block; }
@@ -59,17 +63,98 @@ if (window.innerWidth <= 768) {
 6. Cambiar dirección de flex
    .fila { flex-direction: column; }
 
-7. Pausar animaciones
+7. Pausar animaciones / deshabilitar auto-scroll
    .animado { animation: none; }
+   (para sliders: eliminar el setInterval de mobileTicker
+    y dejar solo los touch events activos)
+
+8. Carrusel horizontal con scroll-snap
+   .grid {
+     display: flex !important;
+     flex-direction: row !important;
+     overflow-x: auto !important;
+     scroll-snap-type: x mandatory !important;
+     -webkit-overflow-scrolling: touch !important;
+     scrollbar-width: none !important;
+   }
+   .grid::-webkit-scrollbar { display: none; }
+   .grid .card {
+     flex: 0 0 82vw !important;
+     scroll-snap-align: start !important;
+   }
+
+9. Centrar sección en mobile
+    .mi-seccion {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+10. Escapar padding de contenedor padre en carrusel
+    /* Si el padre tiene padding que recorta el carrusel: */
+    #mi-seccion .mi-wrap { padding-left: 0 !important; padding-right: 0 !important; overflow: hidden; }
+    /* El carrusel maneja su propio padding interno */
+    .mi-grid { padding: 0 1.25rem 1rem !important; }
+
+12. Hotspot cards (hs-card) en mobile
+    — Centradas encima del dot: bottom: calc(100% + 12px); left: 50%; transform: translateX(-50%)
+    — Si un hotspot específico desborda el margen, usar nth-child para offsetear:
+      .capas-img-outer > :nth-child(N) .hs-card {
+        transform: translateX(calc(-50% - 30px)) !important;
+      }
+      (agregar DESPUÉS de la regla general .hotspot.lft .hs-card para que tenga precedencia)
+
+13. Ocultar/mostrar botón por página (sin JS)
+    — Agregar clase al <body> de la página: <body class="page-ri">
+    — CSS: .page-ri .mi-btn { display: inline-flex !important; }
+    — Así el botón se muestra solo en esa página sin afectar las otras
+
+14. Cargar SW fresco (service worker cache)
+    — Bumper la versión en sw.js: const CACHE = 'raiz-vXX'
+    — En el preview, si persiste CSS viejo:
+      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()))
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k)))
+      window.location.reload(true)
+
+
+──────────────────────────────────────────────
+  DESKTOP · Reglas específicas (min-width:769px)
+──────────────────────────────────────────────
+
+Los siguientes bloques viven en @media(min-width:769px) en main.css:
+
+· XCT cards (xct-cards-grid):
+  — aspect-ratio: 2/3 (portrait) con darkglass overlay absoluto
+  — top: 35% para el body overlay (ajustar según contenido)
+  — justify-content: flex-start en card-body + margin-top:auto en price-wrap
+    para anclar precio y CTA al fondo
+  — padding del grid: 2rem 1.5rem → ajusta tamaño de cards proporcionalmente
+  — font-size del precio: 2.1rem
+
+· rutas-foot en desktop:
+  — transform: translateY(-2rem) para subirlo sobre la sección siguiente
+
+· Botón "Biblioteca UI" en footer:
+  — Clase: sf-ui-btn
+  — Visible en desktop en ambas páginas
+  — Mobile: oculto en index.html, visible en restauracion-integral.html
+    (gracias a .page-ri en el body de restauracion-integral.html)
 
 
 ──────────────────────────────────────────────
   DÓNDE ESTÁ EN EL PROYECTO RAÍZ
 ──────────────────────────────────────────────
 
-Archivo: css/main.css
-Ubicación: al final del archivo
-Bloque: @media(max-width:768px) { ... }
+Archivo principal: css/main.css
+  — @media(max-width:768px) → múltiples bloques a lo largo del archivo
+  — @media(min-width:769px) → bloque único al final (~línea 2827)
+
+Estilos inline: restauracion-integral.html tiene un <style> propio
+  — Mobile overrides dentro de @media(max-width:768px)
+  — Desktop overrides dentro de @media(min-width:769px)
+
+SW cache: sw.js → const CACHE = 'raiz-vXX' (bumpar al modificar assets)
 
 REGLA DE ORO: si algo se rompe en desktop después
 de editar mobile, siempre revisá que el bloque
