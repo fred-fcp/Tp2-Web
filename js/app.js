@@ -601,8 +601,9 @@ setTimeout(tryDismiss,2500);
 
       find.addEventListener('mouseenter', () => { vid.play().catch(()=>{}); });
 
-      // Click anywhere on the card toggles play/pause
+      // Click anywhere on the card toggles play/pause — no navigation
       find.addEventListener('click', e => {
+        e.preventDefault();
         if(vid.paused){ vid.play().catch(()=>{}); }
         else           { vid.pause(); }
       });
@@ -610,7 +611,11 @@ setTimeout(tryDismiss,2500);
       vid.addEventListener('play',  () => { btn.innerHTML = ICON_PAUSE; btn.setAttribute('aria-label','Pausar'); hideBtn(); });
       vid.addEventListener('pause', () => { btn.innerHTML = ICON_PLAY;  btn.setAttribute('aria-label','Reproducir'); showBtn(); });
 
-      btn.addEventListener('click', e => { e.stopPropagation(); });
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        if(vid.paused){ vid.play().catch(()=>{}); }
+        else           { vid.pause(); }
+      });
     });
   }
 
@@ -631,38 +636,6 @@ setTimeout(tryDismiss,2500);
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(setup, 200); }, {passive:true});
 })();
 
-/* ── PARALLAX DEPTH SHIFT — #rutas ────────────── */
-(function(){
-  const section   = document.getElementById('rutas');
-  if(!section)return;
-
-  const layers = [
-    { el: section.querySelector('.rutas-text'),      speed: -0.08 },
-    { el: section.querySelector('.rut-wallet-wrap'), speed:  0.12 },
-    { el: section.querySelector('.rutas-foot'),      speed: -0.05 },
-  ].filter(l => l.el);
-
-  let ticking = false;
-
-  function update(){
-    const rect   = section.getBoundingClientRect();
-    const vh     = window.innerHeight;
-    const center = rect.top + rect.height / 2 - vh / 2;
-
-    layers.forEach(({el, speed}) => {
-      el.style.transform = `translateY(${(center * speed).toFixed(2)}px)`;
-    });
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if(ticking)return;
-    ticking = true;
-    requestAnimationFrame(update);
-  }, {passive:true});
-
-  update();
-})();
 
 /* ── CURSOS · PARTÍCULAS ─────── */
 (function(){
