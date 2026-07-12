@@ -2393,6 +2393,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
     transform:translate(-50%,-50%);
     background:none;border:none;cursor:pointer;
     z-index:10;padding:0;line-height:0;
+    opacity:1;transition:opacity .4s ease;
   }
   .find:hover img{transform:none;filter:none}
   .hall-accent{padding:0 1.25rem;gap:.6rem;flex-wrap:wrap;justify-content:center}
@@ -2756,7 +2757,7 @@ nav.nav-photo .n-links a{color:rgba(255,255,255,.8)}
     left:50%!important;
     width:100%!important;height:100%!important;
     object-fit:cover!important;
-    transform:translate(-50%, -10%) scale(1)!important;
+    transform:translate(-50%, -18%) scale(1)!important;
   }
 }
 

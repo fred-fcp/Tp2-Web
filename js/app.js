@@ -531,11 +531,24 @@ setTimeout(tryDismiss,2500);
           if(vid) vid.style.opacity = '1';
           if(img) img.style.opacity = '0';
           btn.innerHTML = makeSvg(true);
+          btn.style.opacity = '0';
+          btn.style.pointerEvents = 'none';
         } else {
           vid.pause();
           if(vid) vid.style.opacity = '0';
           if(img) img.style.opacity = '1';
           btn.innerHTML = makeSvg(false);
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
+        }
+      });
+
+      // Tap on video area while playing → show button again
+      find.addEventListener('click', e => {
+        if(e.target === btn || btn.contains(e.target)) return;
+        if(vid && !vid.paused && btn.style.opacity === '0'){
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
         }
       });
     });
